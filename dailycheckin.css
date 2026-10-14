@@ -1194,3 +1194,7 @@ dci-hero-note img {
 .dci-page h2 {
     font-size:17px;
 }
+.dci-day.dci-checked.dci-selected {
+    border-color: #22c77a !important;
+    box-shadow: inset 0 0 0 1px rgba(34, 199, 122, 0.18);
+}
