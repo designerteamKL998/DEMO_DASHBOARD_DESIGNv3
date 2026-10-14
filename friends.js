@@ -24,6 +24,185 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+/* =========================================
+   FRIEND REQUEST COUNTER
+========================================= */
+
+const updateFriendRequestCount = () => {
+
+    const incomingCount =
+        document.querySelectorAll(
+            "#request-content .fr-request-row"
+        ).length;
+
+    const sentCount =
+        document.querySelectorAll(
+            "#sent-content .fr-request-row"
+        ).length;
+
+
+    /* =========================
+       TAB BADGES
+    ========================= */
+
+    const requestBadge =
+        document.getElementById("friendRequestBadge");
+
+    const sentBadge =
+        document.getElementById("sentRequestBadge");
+
+
+    if (requestBadge) {
+
+        requestBadge.textContent = incomingCount;
+
+        requestBadge.classList.toggle(
+            "is-hidden",
+            incomingCount === 0
+        );
+    }
+
+
+    if (sentBadge) {
+
+        sentBadge.textContent = sentCount;
+
+        sentBadge.classList.toggle(
+            "is-hidden",
+            sentCount === 0
+        );
+    }
+
+
+    /* =========================
+       PENDING ALERT
+    ========================= */
+
+    const alertBox =
+        document.getElementById("frPendingAlert");
+
+    const alertTitle =
+        document.getElementById("frPendingTitle");
+
+    const alertMessage =
+        document.getElementById("frPendingMessage");
+
+
+    if (!alertBox) return;
+
+
+    if (incomingCount > 0) {
+
+        alertBox.style.display = "flex";
+
+        alertTitle.textContent =
+            "Pending Friend Requests";
+
+        alertMessage.textContent =
+            `You have ${incomingCount} friend request${incomingCount > 1 ? "s" : ""} waiting for your approval.`;
+
+    } else if (sentCount > 0) {
+
+        alertBox.style.display = "flex";
+
+        alertTitle.textContent =
+            "Pending Sent Requests";
+
+        alertMessage.textContent =
+            `You have ${sentCount} sent request${sentCount > 1 ? "s" : ""} waiting for a response.`;
+
+    } else {
+
+        alertBox.style.display = "none";
+    }
+};
+
+
+/* RUN ON PAGE LOAD */
+
+updateFriendRequestCount();
+
+
+document
+    .getElementById("frViewRequests")
+    ?.addEventListener("click", () => {
+
+        const requestTab =
+            document.querySelector(
+                '.fr-tab[data-tab="request"]'
+            );
+
+        requestTab?.click();
+
+    });
+
+/* =========================================
+   ACCEPT FRIEND REQUEST
+========================================= */
+
+document.addEventListener("click", e => {
+
+    const acceptBtn =
+        e.target.closest(".fr-btn-accept");
+
+    if (!acceptBtn) return;
+
+    const row =
+        acceptBtn.closest(".fr-request-row");
+
+    if (!row) return;
+
+    row.remove();
+
+    updateFriendRequestCount();
+
+});
+
+
+/* =========================================
+   DECLINE FRIEND REQUEST
+========================================= */
+
+document.addEventListener("click", e => {
+
+    const declineBtn =
+        e.target.closest(".fr-btn-decline");
+
+    if (!declineBtn) return;
+
+    const row =
+        declineBtn.closest(".fr-request-row");
+
+    if (!row) return;
+
+    row.remove();
+
+    updateFriendRequestCount();
+
+});
+
+/* =========================================
+   CANCEL SENT REQUEST
+========================================= */
+
+document.addEventListener("click", e => {
+
+    const cancelBtn =
+        e.target.closest(".fr-btn-cancel");
+
+    if (!cancelBtn) return;
+
+    const row =
+        cancelBtn.closest(".fr-request-row");
+
+    if (!row) return;
+
+    row.remove();
+
+    updateFriendRequestCount();
+
+});
+
 
     /* =========================
        CLAIM REWARD

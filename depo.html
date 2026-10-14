@@ -1,0 +1,856 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gaming Website</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="home-content.css" />
+    <link rel="stylesheet" href="depo.css" />
+    <link rel="stylesheet" href="responsive.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <!-- JQuery -->
+    <script src="depo.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-inner">
+            <!-- LOGO -->
+            <a href="index.html" class="logo">
+                <img src="imgs/logo-testing.png" alt="CM8" />
+            </a>
+            <!-- NAVIGATION -->
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_00001A_home-ich.png" />
+                    </span>
+                    <span class="nav-text">Home</span>
+                </a>
+
+                <a href="sports.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0007_sports-ich.png" />
+                    </span>
+                    <span class="nav-text">Sports</span>
+                </a>
+
+                <a href="casino.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0006_casino-ich.png" />
+                    </span>
+                    <span class="nav-text">Live Casino</span>
+                </a>
+
+                <a href="slot.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0005_slot-ich.png" />
+                    </span>
+                    <span class="nav-text">Slots</span>
+                </a>
+
+                <a href="lottery.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/lotteryiconhead.png" />
+                    </span>
+                    <span class="nav-text">Lottery</span>
+                </a>
+
+                <a href="battle.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0003_bsttle-ich.png" />
+                    </span>
+                    <span class="nav-text">Battle</span>
+                </a>
+
+                <a href="poker.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0002_poker-ich.png" />
+                    </span>
+                    <span class="nav-text">P2P</span>
+                </a>
+
+                <a href="promotion.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/promo-ich.png" />
+                    </span>
+                    <span class="nav-text">Promotion</span>
+                </a>
+
+                <a href="4D.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0001_4dlottery-ich.png" />
+                    </span>
+                    <span class="nav-text">4D</span>
+                </a>
+
+                <a href="download.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0000_download-ich.png" />
+                    </span>
+                    <span class="nav-text">Download</span>
+                </a>
+            </nav>
+
+            <!-- RIGHT SIDE -->
+            <div class="header-right">
+                <!-- USER PROFILE -->
+                <div class="user-profile-wrap">
+                    <button class="user-box" type="button" id="userProfileBtn">
+                        <!--<div class="user-icon">
+                            <span>
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                        </div>-->
+
+                        <div class="user-info">
+                            <span class="username">Mario9 Alphabet</span>
+
+                            <div class="vip-list">
+                                <span class="user-vip">
+                                    <div class="balance-icon">
+                                        <i class="fa-solid fa-arrows-rotate"></i>
+                                    </div>
+                                    MYR <span>10,000.00</span>
+                                </span>
+
+                                <span class="user-vip">
+                                    GP <span>0</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <span class="user-arrow">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </button>
+
+                    <!-- PROFILE DROPDOWN -->
+                    <div class="user-dropdown" id="userDropdown">
+                        <!-- PROFILE HEADER -->
+                        <div class="dropdown-profile mob-view">
+                            <div class="dropdown-user-info">
+                                <strong>Mario9 Alphabet</strong>
+                            </div>
+                        </div>
+
+                        <!-- =========================================
+                             LEVEL
+                        ========================================= -->
+                        <a href="levelprogram.html" class="level-link">
+                            <div class="profile-section level-section">
+                                <div class="section-heading">
+                                    <div class="section-icon">
+                                        <img src="imgs/icon/sidebar/tropht.png" alt="" />
+                                    </div>
+
+                                    <span class="section-title">Level</span>
+
+                                    <i class="fa-solid fa-chevron-right section-arrow"></i>
+                                </div>
+
+                                <div class="level-row">
+                                    <span>LV.2 (Sport)</span>
+                                    <span>2,400 / 3,000 XP</span>
+                                </div>
+
+                                <div class="level-progress">
+                                    <span></span>
+                                </div>
+
+                                <div class="level-percent">80%</div>
+                            </div>
+                        </a>
+
+                        <!-- =========================================
+                             FEATURE
+                        ========================================= -->
+                        <div class="profile-section feature-section">
+                            <div class="section-heading">
+                                <div class="section-icon">
+                                    <img src="imgs/icon/featureich.png" alt="" />
+                                </div>
+
+                                <span class="section-title">Feature</span>
+                            </div>
+
+                            <div class="profile-feature-list">
+                                <a href="luckydraw.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/lucky-ich.png" alt="" />
+                                    <span>Lucky Draw</span>
+                                </a>
+
+                                <a href="dailycheckin.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/checkin.png" alt="" />
+                                    <span>Daily Check-In</span>
+                                </a>
+
+                                <a href="levelprogram.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/lvlprgram.png" alt="" />
+                                    <span>Level Program</span>
+                                </a>
+
+                                <a href="friends.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/frenpf.png" alt="" />
+                                    <span>Friends</span>
+                                </a>
+
+                                <a href="pkbattle.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/pkbattle.png" alt="" />
+                                    <span>PK Battle</span>
+                                </a>
+
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- =========================================
+                             TREASURE
+                        ========================================= -->
+                        <div class="profile-section treasure-section">
+                            <div class="section-heading">
+                                <div class="section-icon">
+                                    <img src="imgs/icon/trasureich.png" alt="" />
+                                </div>
+
+                                <span class="section-title">Treasure</span>
+                            </div>
+
+                            <div class="profile-feature-list treasure-list">
+                                <a href="freepoint.html" class="profile-feature-item">
+                                    <img src="imgs/icon/fpointich.png" alt="" />
+                                    <span>Free Point</span>
+                                </a>
+
+                                <a href="#" class="profile-feature-item">
+                                    <img src="imgs/icon/redeemich.png" alt="" />
+                                    <span>Redeem</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- DROPDOWN FOOTER -->
+                        <div class="dropdown-actions">
+                            <a href="withdrawal.html" class="profile-action">
+                                <img src="imgs/icon/sidebar/withdraw-ich.png" />
+                                <span>Withdrawal</span>
+                            </a>
+
+                            <a href="transaction.html" class="profile-action">
+                                <img src="imgs/icon/sidebar/transactionich.png" />
+                                <span>Transaction</span>
+                            </a>
+
+                            <a href="javascript:void(0)" class="profile-action" id="languageBtn">
+                                <img src="imgs/icon/sidebar/global-ich.png" />
+                                <span>Language</span>
+                            </a>
+
+                            <a href="profile.html" class="profile-action">
+                                <img src="imgs/icon/sidebar/profileich.png" />
+                                <span>Profile</span>
+                            </a>
+
+                            <button type="button" class="logout-action">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span>Logout</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BALANCE HEADER -->
+                <div class="balance-box mob-view">
+                    <div class="balance-icon">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <div class="balance-header-value">
+                        <span class="balance-label">MYR</span>
+                        <span class="balance-amount">0.00</span>
+                    </div>
+                    <span class="balance-gp">GP 0</span>
+                    <!--<button type="button" class="balance-view">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>-->
+                </div>
+
+                <!-- DEPOSIT -->
+                <button class="btn-deposit" type="button" data-tooltip="Deposit">
+                    <a href="deposit.html">
+                        <img src="imgs/icon/sidebar/ewallet-ich.png" />
+                        <span class="deposit-plus">+</span>
+                    </a>
+                </button>
+
+                <!-- NOTIFICATION -->
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
+                        <img src="imgs/icon/sidebar/notiicon.png" />
+                        <span class="notification-dot"></span>
+                    </a>
+                </button>
+
+                <!-- MOBILE MORE -->
+                <div class="mobile-more-wrap">
+                    <button class="mobile-more-btn" type="button">
+                        <span class="menu-grid-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+                    <div class="mobile-more-menu"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="mobile-bottom-nav mob-view">
+        <!-- HOME + GAME MENU -->
+        <div class="bottom-home-wrap">
+            <div class="mobile-game-menu">
+                <a href="index.html" class="mobile-game-btn active">
+                    <img src="imgs/icon/homeiconbottom.png" alt="Home" />
+                    <span>Home</span>
+                </a>
+
+                <a href="hotgames.html" class="mobile-game-btn">
+                    <img src="imgs/icon/hot-ic.png" alt="Hot Games" />
+                    <span>Hot Games</span>
+                </a>
+
+                <a href="newgames.html" class="mobile-game-btn">
+                    <img src="imgs/icon/new-ic.png" alt="New Games" />
+                    <span>New Games</span>
+                </a>
+
+                <a href="favgames.html" class="mobile-game-btn">
+                    <img src="imgs/icon/fav-ic.png" alt="Fav Games" />
+                    <span>Fav Games</span>
+                </a>
+
+                <a href="slot.html" class="mobile-game-btn">
+                    <img src="imgs/icon/title_0004_slot-ic.png" alt="Slot" />
+                    <span>Slot</span>
+                </a>
+
+                <a href="casino.html" class="mobile-game-btn">
+                    <img src="imgs/icon/title_0005_cas-ic.png" alt="Live Casino" />
+                    <span>Casino</span>
+                </a>
+
+                <a href="sports.html" class="mobile-game-btn">
+                    <img src="imgs/icon/title_0002_sports-ic.png" alt="Sports" />
+                    <span>Sports</span>
+                </a>
+
+                <a href="lottery.html" class="mobile-game-btn" data-game="lottery-games">
+                    <img src="imgs/icon/title_0003_lottery-ic.png" alt="Lottery" />
+                    <span>Lottery</span>
+                </a>
+
+                <a href="battle.html" class="mobile-game-btn" data-game="battle-games">
+                    <img src="imgs/icon/title_0000_battle-ic.png" alt="Battle" />
+                    <span>Battle</span>
+                </a>
+
+                <a href="poker.html" class="mobile-game-btn" data-game="poker-games">
+                    <img src="imgs/icon/title_0001_poker-ic.png" alt="Poker" />
+                    <span>Poker</span>
+                </a>
+            </div>
+
+            <a href="#" class="bottom-nav-item home-btn active">
+                <span class="bottom-nav-icon">
+                    <img src="imgs/icon/menuiconbottom.png" />
+                </span>
+                <span>Menu</span>
+            </a>
+        </div>
+
+        <!-- PROMOTION -->
+        <a href="promotion.html" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                <img src="imgs/icon/promoiconbottom2.png" />
+            </span>
+            <span>Promotions</span>
+        </a>
+
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
+            <span class="bottom-nav-icon">
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
+                <span class="notification-dot"></span>
+            </span>
+            <span>Notification</span>
+        </a>
+
+        <a href="download.html" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                <img src="imgs/icon/downloadiconbottom.png" />
+            </span>
+            <span>Download</span>
+        </a>
+
+        <!-- SUPPORT
+        <a href="#" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                <i class="fa-solid fa-headset"></i>
+            </span>
+            <span>Support</span>
+        </a>-->
+        <!-- PROFILE
+        <a href="#" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                <i class="fa fa-user"></i>
+            </span>
+            <span>Profile</span>
+        </a>-->
+    </nav>
+    <button class="floating-menu-btn mob-view" type="button">
+        <img src="imgs/icon/menuiconbottom.png" />
+    </button>
+
+
+    <main>
+        <div class="heading">
+            <div>
+                <h1 id="page-title">Make a deposit</h1>
+                <p id="page-description">Choose how you’d like to add funds.</p>
+            </div>
+        </div>
+        <div class="workspace">
+            <nav class="rail" aria-label="Payment method">
+                <div class="methods" id="methods"></div>
+                <div class="rail-note">
+                    Your choice, your pace.<br />Review your details before continuing to payment.
+                </div>
+            </nav>
+            <section class="form routing-panel" aria-label="Payment details">
+                <div class="depo-title">
+                    <h2>Payment details</h2>
+                </div>
+                <div id="specific"></div>
+                <section class="manual-account" id="manual-account" hidden>
+                    <label class="field-label" for="sender-name">Sender’s full name<span class="required">Required</span></label><input id="sender-name"
+                                                                                                                                        class="sender-input"
+                                                                                                                                        autocomplete="name"
+                                                                                                                                        placeholder="Name shown on your transfer receipt"
+                                                                                                                                        aria-describedby="sender-error" />
+                    <p class="error" id="sender-error" role="status"></p>
+                    <div class="account-heading">
+                        <span class="field-label">Receiving account</span><span class="account-source">Reference details · Preview</span>
+                    </div>
+                    <dl class="account-list">
+                        <div>
+                            <dt>Bank</dt>
+                            <dd id="receiving-bank"></dd>
+                        </div>
+                        <div>
+                            <dt>Account name</dt>
+                            <dd>
+                                <span>JH AUTO MOBILE</span><button class="copy-button" type="button" data-copy="JH AUTO MOBILE" aria-label="Copy account name">
+                                    Copy
+                                </button>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Account number</dt>
+                            <dd>
+                                <span>560102718204</span><button class="copy-button"
+                                                                 type="button"
+                                                                 data-copy="560102718204"
+                                                                 aria-label="Copy account number">
+                                    Copy
+                                </button>
+                            </dd>
+                        </div>
+                    </dl>
+                    <p id="copy-status" class="helper" role="status"></p>
+                    <div id="public-qr" class="qr-preview" hidden>
+                        <button type="button"
+                                class="qr-image-button"
+                                data-qr-title="Public Bank payment QR"
+                                aria-label="Enlarge Public Bank payment QR placeholder">
+                            <img src="imgs/assets/qr-placeholder.svg" alt="QR image placeholder" /><span class="qr-enlarge"
+                                                                                                    aria-hidden="true">⤢</span>
+                        </button><strong>Public Bank payment QR</strong>
+                    </div>
+                </section>
+                <section class="receipt-section" id="receipt-section" hidden>
+                    <label class="field-label" for="receipt">Payment receipt</label><label class="upload-zone" id="drop-zone" for="receipt">
+                        <span class="upload-icon" aria-hidden="true">↑</span><span>
+                            <strong>Choose a receipt or drop it here</strong><small>JPG, PNG or PDF · Up to 10 MB</small>
+                        </span><input type="file"
+                                      id="receipt"
+                                      accept="image/jpeg,image/png,application/pdf"
+                                      aria-describedby="receipt-hint receipt-error" />
+                    </label>
+                    <p id="receipt-hint" class="helper">
+                        Show the amount, recipient, payment date and transaction reference clearly.
+                    </p>
+                    <div id="receipt-preview" hidden>
+                        <img id="receipt-image" alt="Selected payment receipt preview" hidden />
+                        <div class="receipt-file">
+                            <div><strong id="receipt-name"></strong><small id="receipt-size"></small></div>
+                            <button type="button" class="quiet" id="remove-receipt">Remove</button>
+                        </div>
+                    </div>
+                    <p class="error" id="receipt-error" role="alert"></p>
+                    <p class="helper" id="receipt-status" role="status"></p>
+                </section>
+            </section>
+            <section class="form deposit-panel" aria-label="Deposit amount and bonus">
+                <div class="depo-title">
+                    <h2>Deposit details</h2>
+                </div>
+                <p class="wallet-limit-note" id="wallet-limit-note" hidden>
+                    EeziePay supports up to MYR 500 per transaction. Choose another provider for a higher amount.
+                </p>
+                <label for="amount" class="field-label" id="amount-label">Deposit amount</label>
+                <div class="amount" id="amount-control">
+                    <span>MYR</span><input id="amount"
+                                           inputmode="decimal"
+                                           autocomplete="off"
+                                           value=""
+                                           placeholder="0.00"
+                                           aria-describedby="limits amount-error"
+                                           aria-label="Amount already paid in MYR" />
+                </div>
+                <p class="helper" id="limits"></p>
+                <div class="error" id="amount-error" role="status"></div>
+                <p class="helper" id="amount-hint"></p>
+                <div class="presets" id="qr-presets" hidden aria-label="Add to deposit amount"></div>
+                <section class="optional">
+                    <h3 class="field-label">Add a bonus</h3>
+                    <div id="bonus" class="bonus-options" role="group" aria-label="Bonus package"></div>
+                    <p class="helper" id="bonus-note">Deposit without a bonus or additional bonus conditions.</p>
+                </section>
+                <section class="optional">
+                    <h3 class="field-label">Have a promo code?</h3>
+                    <div class="promo" id="promo-control">
+                        <input id="promo"
+                               aria-describedby="promo-note"
+                               placeholder="Enter promo code"
+                               aria-label="Promo code" />
+                    </div>
+                    <p class="helper" id="promo-note" role="status"></p>
+                </section>
+                <div class="compact-summary" aria-label="Deposit summary">
+                    <div class="summary-details">
+                        <strong id="summary-method"></strong><span id="summary-route"></span><span id="summary-receiving" hidden></span><span id="summary-copy-status" role="status" aria-live="polite"></span><span id="summary-extra"></span>
+                    </div>
+                    <div class="summary-value">
+                        <span>Deposit amount</span><strong id="summary-amount">MYR —</strong>
+                    </div>
+                </div>
+                <button class="primary" id="continue">Proceed</button>
+                <p class="next-note" id="next-note"></p>
+            </section>
+        </div>
+    </main>
+    <dialog id="bonus-info-dialog" class="bonus-info-dialog" aria-labelledby="bonus-info-title">
+        <div class="bonus-info-head">
+            <h2 id="bonus-info-title" class="bonus-info-title">10% Unlimited Slot Reload Bonus (MYR)</h2>
+            <button type="button"
+                    class="bonus-info-close"
+                    id="bonus-info-close"
+                    aria-label="Close bonus information">
+                ×
+            </button>
+        </div>
+        <div class="bonus-info-stats">
+            <div class="bonus-info-stat"><strong>Bonus</strong><span>2%</span></div>
+            <div class="bonus-info-stat"><strong>Rollover</strong><span>x5</span></div>
+            <div class="bonus-info-stat"><strong>Max Bonus</strong><span>88 MYR</span></div>
+        </div>
+        <section class="bonus-info-section">
+            <h3>Eligible Product</h3>
+            <div class="bonus-info-icons ${isNoBonus?'no-bonus-products':''}">
+                <div class="bonus-info-item"><img src="imgs/assets/info/icn-sport.svg" alt="" /><span>Sport</span></div>
+                <div class="bonus-info-item">
+                    <img src="imgs/assets/info/icn-casino.svg" alt="" /><span>Casino</span>
+                </div>
+                <div class="bonus-info-item"><img src="imgs/assets/info/icn-games.svg" alt="" /><span>Games</span></div>
+                <div class="bonus-info-item">
+                    <img src="imgs/assets/info/icn-lottery.svg" alt="" /><span>Lottery</span>
+                </div>
+                <div class="bonus-info-item"><img src="imgs/assets/info/icn-p2p.svg" alt="" /><span>P2P</span></div>
+            </div>
+        </section>
+        <section class="bonus-info-section">
+            <h3>Eligible For</h3>
+            <div class="bonus-info-icons three ${isNoBonus?'no-bonus-eligible':''}">
+                <div class="bonus-info-item">
+                    <img src="imgs/assets/info/icn-freespin.svg" alt="" /><span>Free<br />Spin</span>
+                </div>
+                <div class="bonus-info-item">
+                    <img src="imgs/assets/info/icn-luckyDraw.svg" alt="" /><span>Lucky<br />Draw</span>
+                </div>
+                <div class="bonus-info-item">
+                    <img src="imgs/assets/info/icn-deposit_reward.svg" alt="" /><span>Deposit<br />Reward</span>
+                </div>
+            </div>
+        </section>
+        <section class="bonus-info-terms">
+            <h3>Terms And Conditions</h3>
+            <p>This text from agent BO</p>
+        </section>
+    </dialog>
+    <dialog id="qr-dialog" aria-labelledby="qr-dialog-title">
+        <div class="qr-dialog-heading">
+            <h2 id="qr-dialog-title">Payment QR</h2>
+            <button class="quiet" id="qr-close" type="button" aria-label="Close enlarged QR">×</button>
+        </div>
+        <img class="qr-large"
+             src="imgs/assets/qr-placeholder.svg"
+             alt="Enlarged QR image placeholder — not a payment code" />
+    </dialog>
+    <dialog id="dialog">
+        <h2 id="dialog-title"></h2>
+        <p id="dialog-copy"></p>
+        <button class="primary" id="close">Back to request</button>
+    </dialog>
+
+
+
+
+    <!-- LANGUAGE POPUP -->
+    <div class="language-overlay" id="languagePopup">
+        <div class="language-popup">
+            <!-- Header -->
+            <div class="language-header">
+                <div class="language-title-wrap">
+                    <div class="language-globe">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+
+                    <div class="language-title-content">
+                        <h3>Language</h3>
+                        <span>Choose your preferred language</span>
+                    </div>
+                </div>
+
+                <button type="button" class="language-close" id="languageClose" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Decorative line -->
+            <div class="language-divider">
+                <span></span>
+            </div>
+
+            <!-- Language List -->
+            <div class="language-list">
+                <button class="language-item active" data-language="English">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/uk-square.jpg" />
+                        </span>
+                        <span class="language-name">English</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="ភាសាខ្មែរ">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/cambodia-square.jpg" />
+                        </span>
+                        <span class="language-name">ភាសាខ្មែរ</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="简体中文">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/china-square.jpg" />
+                        </span>
+                        <span class="language-name">简体中文</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="မြန်မာ">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/myanmar-square.jpg" />
+                        </span>
+                        <span class="language-name">မြန်မာ</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="繁體中文">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/taiwan-square.jpg" />
+                        </span>
+                        <span class="language-name">繁體中文</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="ジャパン">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/japan-square.jpg" />
+                        </span>
+                        <span class="language-name">ジャパン</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="ภาษาไทย">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/thailand-square.jpg" />
+                        </span>
+                        <span class="language-name">ภาษาไทย</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="Français">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/french-square.jpg" />
+                        </span>
+                        <span class="language-name">Français</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="한국어">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/korea-square.jpg" />
+                        </span>
+                        <span class="language-name">한국어</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="Español">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/spain-square.jpg" />
+                        </span>
+                        <span class="language-name">Español</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="Tiếng Việt">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/VietNam-square.jpg" />
+                        </span>
+                        <span class="language-name">Tiếng Việt</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="Português">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/portugal-square.jpg" />
+                        </span>
+                        <span class="language-name">Português</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="Indonesia">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/indo-square.jpg" />
+                        </span>
+                        <span class="language-name">Indonesia</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="বাংলা">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/bangladesh-square.jpg" />
+                        </span>
+                        <span class="language-name">বাংলা</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="इंडिया">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/indi-square.jpg" />
+                        </span>
+                        <span class="language-name">इंडिया</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+
+                <button class="language-item" data-language="Malaysia">
+                    <div class="language-info">
+                        <span class="language-flag">
+                            <img src="imgs/language/malaysia-square.jpg" />
+                        </span>
+                        <span class="language-name">Malaysia</span>
+                    </div>
+
+                    <span class="language-radio"></span>
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="language-footer">
+                <div class="language-footer-icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+
+                <div class="language-footer-text">
+                    <strong>Applied instantly</strong>
+                    <span>Your language preference will be saved automatically.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+
+
+
+</body>
+</html>

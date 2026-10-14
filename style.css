@@ -1212,22 +1212,6 @@ body {
 /* ==================================================
    NOTIFICATION
 ================================================== */
-
-.notification-btn {
-    position: relative;
-    width: 45px;
-    height: 45px;
-    padding: 0;
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #e3c87d;
-    background: transparent;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
     .notification-btn a {
         width: 100%;
         height: 100%;
@@ -1255,7 +1239,7 @@ body {
    DEPOSIT
 ================================================== */
 
-.btn-deposit {
+.btn-deposit, .notification-btn {
     height: 45px;
     margin-left: 0px;
     padding: 0 5px;
@@ -1292,7 +1276,7 @@ body {
     background: red;
 }
 
-.btn-deposit::after {
+.btn-deposit::after, .notification-btn::after {
     content: attr(data-tooltip);
     position: absolute;
     top: calc(100% + 8px);
@@ -1313,10 +1297,10 @@ body {
     z-index: 9999;
 }
 
-.btn-deposit:hover::after {
-    opacity: 1;
-    visibility: visible;
-}
+    .btn-deposit:hover::after, .notification-btn:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
 
 .btn-deposit a {
     position: relative;
@@ -2348,4 +2332,10 @@ body {
 
 .cm8-promo-card:hover .cm8-promo-card-image img {
     transform: scale(1.04);
+}
+
+.promoindex {
+    width: 100%;
+    max-width: 1320px;
+    margin: 22px auto 20px;
 }

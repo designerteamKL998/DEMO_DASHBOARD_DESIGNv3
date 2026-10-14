@@ -1,0 +1,458 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gaming Website</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="home-content.css" />
+    <link rel="stylesheet" href="inbox.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="responsive2.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <!-- JQuery -->
+    <script src="inbox.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-inner">
+            <!-- LOGO -->
+            <a href="index.html" class="logo">
+                <img src="imgs/logo-testing.png" alt="CM8" />
+            </a>
+            <!-- NAVIGATION -->
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_00001A_home-ich.png" />
+                    </span>
+                    <span class="nav-text">Home</span>
+                </a>
+
+                <a href="sports.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0007_sports-ich.png" />
+                    </span>
+                    <span class="nav-text">Sports</span>
+                </a>
+
+                <a href="casino.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0006_casino-ich.png" />
+                    </span>
+                    <span class="nav-text">Live Casino</span>
+                </a>
+
+                <a href="slot.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0005_slot-ich.png" />
+                    </span>
+                    <span class="nav-text">Slots</span>
+                </a>
+
+                <a href="lottery.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/lotteryiconhead.png" />
+                    </span>
+                    <span class="nav-text">Lottery</span>
+                </a>
+
+                <a href="battle.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0003_bsttle-ich.png" />
+                    </span>
+                    <span class="nav-text">Battle</span>
+                </a>
+
+                <a href="poker.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0002_poker-ich.png" />
+                    </span>
+                    <span class="nav-text">P2P</span>
+                </a>
+
+                <a href="promotion.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/promo-ich.png" />
+                    </span>
+                    <span class="nav-text">Promotion</span>
+                </a>
+
+                <a href="4D.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0001_4dlottery-ich.png" />
+                    </span>
+                    <span class="nav-text">4D</span>
+                </a>
+
+                <a href="download.html" class="nav-link">
+                    <span class="nav-icon">
+                        <img src="imgs/icon/header/head_0000_download-ich.png" />
+                    </span>
+                    <span class="nav-text">Download</span>
+                </a>
+            </nav>
+
+            <!-- RIGHT SIDE -->
+            <div class="header-right">
+                <!-- USER PROFILE -->
+                <div class="user-profile-wrap">
+                    <button class="user-box" type="button" id="userProfileBtn">
+                        <!--<div class="user-icon">
+                            <span>
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                        </div>-->
+
+                        <div class="user-info">
+                            <span class="username">Mario9 Alphabet</span>
+
+                            <div class="vip-list">
+                                <span class="user-vip">
+                                    <div class="balance-icon">
+                                        <i class="fa-solid fa-arrows-rotate"></i>
+                                    </div>
+                                    MYR <span>10,000.00</span>
+                                </span>
+
+                                <span class="user-vip">
+                                    GP <span>0</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <span class="user-arrow">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </button>
+
+                    <!-- PROFILE DROPDOWN -->
+                    <div class="user-dropdown" id="userDropdown">
+                        <!-- PROFILE HEADER -->
+                        <div class="dropdown-profile mob-view">
+                            <div class="dropdown-user-info">
+                                <strong>Mario9 Alphabet</strong>
+                            </div>
+                        </div>
+
+                        <!-- =========================================
+                             LEVEL
+                        ========================================= -->
+                        <a href="levelprogram.html" class="level-link">
+                            <div class="profile-section level-section">
+                                <div class="section-heading">
+                                    <div class="section-icon">
+                                        <img src="imgs/icon/sidebar/tropht.png" alt="" />
+                                    </div>
+
+                                    <span class="section-title">Level</span>
+
+                                    <i class="fa-solid fa-chevron-right section-arrow"></i>
+                                </div>
+
+                                <div class="level-row">
+                                    <span>LV.2 (Sport)</span>
+                                    <span>2,400 / 3,000 XP</span>
+                                </div>
+
+                                <div class="level-progress">
+                                    <span></span>
+                                </div>
+
+                                <div class="level-percent">80%</div>
+                            </div>
+                        </a>
+
+                        <!-- =========================================
+                             FEATURE
+                        ========================================= -->
+                        <div class="profile-section feature-section">
+                            <div class="section-heading">
+                                <div class="section-icon">
+                                    <img src="imgs/icon/featureich.png" alt="" />
+                                </div>
+
+                                <span class="section-title">Feature</span>
+                            </div>
+
+                            <div class="profile-feature-list">
+                                <a href="luckydraw.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/lucky-ich.png" alt="" />
+                                    <span>Lucky Draw</span>
+                                </a>
+
+                                <a href="dailycheckin.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/checkin.png" alt="" />
+                                    <span>Daily Check-In</span>
+                                </a>
+
+                                <a href="levelprogram.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/lvlprgram.png" alt="" />
+                                    <span>Level Program</span>
+                                </a>
+
+                                <a href="friends.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/frenpf.png" alt="" />
+                                    <span>Friends</span>
+                                </a>
+
+                                <a href="pkbattle.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/pkbattle.png" alt="" />
+                                    <span>PK Battle</span>
+                                </a>
+
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- =========================================
+                             TREASURE
+                        ========================================= -->
+                        <div class="profile-section treasure-section">
+                            <div class="section-heading">
+                                <div class="section-icon">
+                                    <img src="imgs/icon/trasureich.png" alt="" />
+                                </div>
+
+                                <span class="section-title">Treasure</span>
+                            </div>
+
+                            <div class="profile-feature-list treasure-list">
+                                <a href="freepoint.html" class="profile-feature-item">
+                                    <img src="imgs/icon/fpointich.png" alt="" />
+                                    <span>Free Point</span>
+                                </a>
+
+                                <a href="#" class="profile-feature-item">
+                                    <img src="imgs/icon/redeemich.png" alt="" />
+                                    <span>Redeem</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- DROPDOWN FOOTER -->
+                        <div class="dropdown-actions">
+                            <a href="withdrawal.html" class="profile-action">
+                                <img src="imgs/icon/sidebar/withdraw-ich.png" />
+                                <span>Withdrawal</span>
+                            </a>
+
+                            <a href="transaction.html" class="profile-action">
+                                <img src="imgs/icon/sidebar/transactionich.png" />
+                                <span>Transaction</span>
+                            </a>
+
+                            <a href="javascript:void(0)" class="profile-action" id="languageBtn">
+                                <img src="imgs/icon/sidebar/global-ich.png" />
+                                <span>Language</span>
+                            </a>
+
+                            <a href="profile.html" class="profile-action">
+                                <img src="imgs/icon/sidebar/profileich.png" />
+                                <span>Profile</span>
+                            </a>
+
+                            <button type="button" class="logout-action">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span>Logout</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BALANCE HEADER -->
+                <div class="balance-box mob-view">
+                    <div class="balance-icon">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <div class="balance-header-value">
+                        <span class="balance-label">MYR</span>
+                        <span class="balance-amount">0.00</span>
+                    </div>
+                    <span class="balance-gp">GP 0</span>
+                    <!--<button type="button" class="balance-view">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>-->
+                </div>
+
+                <!-- DEPOSIT -->
+                <button class="btn-deposit" type="button" data-tooltip="Deposit">
+                    <a href="deposit.html">
+                        <img src="imgs/icon/sidebar/ewallet-ich.png" />
+                        <span class="deposit-plus">+</span>
+                    </a>
+                </button>
+
+                <!-- NOTIFICATION -->
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
+                        <img src="imgs/icon/sidebar/notiicon.png" />
+                        <span class="notification-dot"></span>
+                    </a>
+                </button>
+
+                <!-- MOBILE MORE -->
+                <div class="mobile-more-wrap">
+                    <button class="mobile-more-btn" type="button">
+                        <span class="menu-grid-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+                    <div class="mobile-more-menu"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="mobile-bottom-nav mob-view">
+        <!-- HOME + GAME MENU -->
+        <div class="bottom-home-wrap">
+            <div class="mobile-game-menu">
+                <a href="index.html" class="mobile-game-btn active">
+                    <img src="imgs/icon/homeiconbottom.png" alt="Home" />
+                    <span>Home</span>
+                </a>
+
+                <a href="hotgames.html" class="mobile-game-btn">
+                    <img src="imgs/icon/hot-ic.png" alt="Hot Games" />
+                    <span>Hot Games</span>
+                </a>
+
+                <a href="newgames.html" class="mobile-game-btn">
+                    <img src="imgs/icon/new-ic.png" alt="New Games" />
+                    <span>New Games</span>
+                </a>
+
+                <a href="favgames.html" class="mobile-game-btn">
+                    <img src="imgs/icon/fav-ic.png" alt="Fav Games" />
+                    <span>Fav Games</span>
+                </a>
+
+                <a href="slot.html" class="mobile-game-btn">
+                    <img src="imgs/icon/title_0004_slot-ic.png" alt="Slot" />
+                    <span>Slot</span>
+                </a>
+
+                <a href="casino.html" class="mobile-game-btn">
+                    <img src="imgs/icon/title_0005_cas-ic.png" alt="Live Casino" />
+                    <span>Casino</span>
+                </a>
+
+                <a href="sports.html" class="mobile-game-btn">
+                    <img src="imgs/icon/title_0002_sports-ic.png" alt="Sports" />
+                    <span>Sports</span>
+                </a>
+
+                <a href="lottery.html" class="mobile-game-btn" data-game="lottery-games">
+                    <img src="imgs/icon/title_0003_lottery-ic.png" alt="Lottery" />
+                    <span>Lottery</span>
+                </a>
+
+                <a href="battle.html" class="mobile-game-btn" data-game="battle-games">
+                    <img src="imgs/icon/title_0000_battle-ic.png" alt="Battle" />
+                    <span>Battle</span>
+                </a>
+
+                <a href="poker.html" class="mobile-game-btn" data-game="poker-games">
+                    <img src="imgs/icon/title_0001_poker-ic.png" alt="Poker" />
+                    <span>Poker</span>
+                </a>
+            </div>
+
+            <a href="#" class="bottom-nav-item home-btn active">
+                <span class="bottom-nav-icon">
+                    <img src="imgs/icon/menuiconbottom.png" />
+                </span>
+                <span>Menu</span>
+            </a>
+        </div>
+
+        <!-- PROMOTION -->
+        <a href="promotion.html" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                <img src="imgs/icon/promoiconbottom2.png" />
+            </span>
+            <span>Promotions</span>
+        </a>
+
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
+            <span class="bottom-nav-icon">
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
+                <span class="notification-dot"></span>
+            </span>
+            <span>Notification</span>
+        </a>
+
+        <a href="download.html" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                <img src="imgs/icon/downloadiconbottom.png" />
+            </span>
+            <span>Download</span>
+        </a>
+
+        <!-- SUPPORT
+        <a href="#" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                <i class="fa-solid fa-headset"></i>
+            </span>
+            <span>Support</span>
+        </a>-->
+        <!-- PROFILE
+        <a href="#" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                <i class="fa fa-user"></i>
+            </span>
+            <span>Profile</span>
+        </a>-->
+    </nav>
+    <button class="floating-menu-btn mob-view" type="button">
+        <img src="imgs/icon/menuiconbottom.png" />
+    </button>
+
+    <main class="inbox-page">
+        <section class="inbox-panel" aria-label="Inbox messages">
+            <header class="inbox-toolbar">
+                <div class="inbox-heading">
+                    <h2> Message</h2>
+                </div>
+                <div class="toolbar-actions">
+                    <button type="button" class="action-btn" id="markReadBtn" disabled>Mark as read</button>
+                    <button type="button" class="action-btn" id="deleteBtn" disabled>Delete</button>
+                </div>
+            </header>
+            <div class="table-wrap">
+                <table class="message-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="date-column">Date</th>
+                            <th scope="col" class="title-column">Title</th>
+                            <th scope="col" class="select-column">
+                                <input type="checkbox" id="selectAll" aria-label="Select all messages">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="messageList">
+                        <tr class="empty-row">
+                            <td colspan="3">No Message</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <script src="inbox.js"></script>
+</body>
+</html>

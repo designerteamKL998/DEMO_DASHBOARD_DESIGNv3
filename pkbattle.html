@@ -11,13 +11,14 @@
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="pkbattle.css" />
     <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="responsive2.css" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
     <!-- JQuery -->
-    <script src="script.js" defer></script>
     <script src="pkbattle.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -208,9 +209,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="specialevent.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/specialevent.png" alt="" />
-                                    <span>Special Event</span>
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
                                 </a>
                             </div>
                         </div>
@@ -294,8 +295,8 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button">
-                    <a href="announcement.html">
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
                     </a>
@@ -387,9 +388,9 @@
             <span>Promotions</span>
         </a>
 
-        <a href="announcement.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/icon/notiiconbottom.png" />
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
                 <span class="notification-dot"></span>
             </span>
             <span>Notification</span>
@@ -420,377 +421,299 @@
     <button class="floating-menu-btn mob-view" type="button">
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
-
-    <div class="pkb-page">
-        <!-- =========================
-             PAGE HEADER
-        ========================== -->
-        <div class="pkb-header">
-            <div class="pkb-header-content">
-                <h2>PK BATTLE</h2>
-            </div>
-        </div>
-
-        <!-- =========================
-         TABS
-    ========================== -->
-        <div class="pkb-tabs">
-            <button class="pkb-tab pkb-tab-active" data-pkb-tab="ongoing">
-                <span class="pkb-tab-icon"><img src="imgs/icon/pk-iconmenu-og.png" /></span>
-                <span>Ongoing Battle</span>
+    <div class="pk-page">
+        <!-- =========================================
+             TOP ACTIONS
+        ========================================== -->
+        <div class="pk-top-actions">
+            <button class="pk-icon-btn" id="leaderboardBtn" title="Leaderboard">
+                <span class="pk-icon"><img src="imgs/pkbattle/trophyiconpk.png" /></span>
             </button>
-            <button class="pkb-tab" data-pkb-tab="upcoming">
-                <span class="pkb-tab-icon"><img src="imgs/icon/pk-iconmenu-ucb.png" /></span>
-                <span>Upcoming Battle</span>
-            </button>
-            <button class="pkb-tab" data-pkb-tab="history">
-                <span class="pkb-tab-icon"><img src="imgs/icon/pk-iconmenu-bh.png" /></span>
-                <span>Battle History</span>
+            <button class="pk-icon-btn" id="historyBtn" title="History">
+                <span class="pk-icon"><img src="imgs/pkbattle/backiconpk.png" /></span>
             </button>
         </div>
 
+        <!-- =========================================
+             MAIN CONTENT
+        ========================================== -->
+        <main class="pk-container">
+            <!-- PROGRAM HEADER -->
+            <section class="pk-hero">
+                <div class="pk-logo">
+                    <img src="imgs/pkbattle/pktitletop.png" />
+                </div>
+            </section>
+            <div class="pkcenter">
+                <!-- =====================================
+             REWARD AREA 
 
 
-        <!-- =========================
-             TAB : ONGOING
-        ========================== -->
-        <section class="pkb-tab-content pkb-content-active" data-pkb-content="ongoing">
-            <!-- Ongoing Battle -->
-            <div class="pkb-panel pkb-ongoing-panel">
 
-                <!-- Battle Cards -->
-                <div class="pkb-battle-grid">
-                    <!-- Battle 1 -->
-                    <div class="pkb-battle-card">
-                        <div class="pkb-battle-top">
-                            <span class="pkb-battle-number">
-                                BATTLE 1
-                            </span>
-                            <span class="pkb-countdown">
-                                <span>◷</span>
-                                Ends in
-                                <strong data-pkb-countdown="45296">
-                                    12 : 34 : 56
+        ====================================== -->
+                <section class="pk-reward">
+                    <div class="pk-stage">
+
+                        <div class="pk-gift">
+                            <div class="pk-gift-label">
+                                <span>RM</span>
+                                <strong>100</strong>
+                                <small>GIFT VOUCHER</small>
+                            </div>
+                        </div>
+
+                        <!-- PRODUCT INFO -->
+                        <div class="pk-info">
+                            <div class="pk-info-row">
+                                <span>Product :</span>
+                                <strong>GAMES</strong>
+                            </div>
+                            <div class="pk-info-row">
+                                <span>Winning prize :</span>
+                                <strong class="pk-prize">
+                                    100.00 MYR
                                 </strong>
-                            </span>
-                        </div>
-
-                        <div class="pkb-battle-info">
-                            <div class="pkb-game-icon pkb-sports-icon">
-                                ⚽
-                            </div>
-                            <div>
-                                <h3>SPORTS BATTLE</h3>
-                                <p>Bet more, win more for your team!</p>
                             </div>
                         </div>
+                    </div>
+                </section>
 
-                        <div class="pkb-team-score">
-                            <div class="pkb-team pkb-team-a">
-                                <span>TEAM A</span>
-                                <strong>125,680</strong>
-                            </div>
-                            <div class="pkb-vs">VS</div>
-                            <div class="pkb-team pkb-team-b">
-                                <span>TEAM B</span>
-                                <strong>98,450</strong>
-                            </div>
-                        </div>
+                <!-- =====================================
+             ACTION BUTTONS
+        ====================================== -->
+                <section class="pk-actions">
+                    <button class="pk-action pk-auto"
+                            id="autoMatchBtn">
+                        AUTO MATCH
+                    </button>
 
-                        <div class="pkb-progress">
-                            <div class="pkb-progress-track">
-                                <div class="pkb-progress-a" style="width:56%"></div>
-                                <div class="pkb-progress-b" style="width:44%"></div>
-                            </div>
-                            <div class="pkb-progress-labels">
-                                <span>56%</span>
-                                <span>44%</span>
-                            </div>
-                        </div>
+                        <button class="pk-action pk-friend">
+                            <a href="friends.html" id="pkFriendBtn">
+                                PK FRIEND
+                            </a>
+                    </button>
 
-                        <button class="pkb-join-btn" type="button">
-                            JOIN NOW <span>›</span>
-                        </button>
+
+                </section>
+            </div>
+
+            <!-- =====================================
+                 TERMS
+            ====================================== -->
+            <section class="pk-terms">
+                <div class="pk-terms-title">
+                    <span>TERM &amp; CONDITIONS</span>
+                </div>
+
+                <ol class="pk-terms-list">
+                    <li>
+                        Select the APPROVE if you want to challenge.
+                        The system will searching for opponents to you to challenge.
+                    </li>
+                    <li>
+                        After successful match, you can challenge your friends.
+                    </li>
+                    <li>
+                        This challenge is play more bet to win your opponent.
+                    </li>
+                    <li>
+                        If you exit the active page during challenge,
+                        the challenge starts again.
+                    </li>
+                    <li>
+                        After successfully challenging and launching a challenge,
+                        it has been challenged the most times.
+                    </li>
+                    <li>
+                        The top ONE win the reward by the time given.
+                    </li>
+                </ol>
+            </section>
+        </main>
+
+        <!-- =========================================
+         AUTO MATCH MODAL
+    ========================================== -->
+        <div class="pk-modal" id="autoMatchModal">
+
+            <div class="pk-modal-box pk-auto-match-box">
+
+                <!-- CLOSE -->
+                <button type="button" class="pk-modal-close" data-close
+                        aria-label="Close">
+                    &times;
+                </button>
+
+                <!-- HEADER -->
+                <div class="pk-auto-header">
+                    <div class="pk-modal-icon matchmod">
+                        <img src="imgs/pkbattle/pktitletop.png" />
                     </div>
 
-                    <!-- Battle 2 -->
-                    <div class="pkb-battle-card">
-                        <div class="pkb-battle-top">
-                            <span class="pkb-battle-number">
-                                BATTLE 2
-                            </span>
-                            <span class="pkb-countdown">
-                                <span>◷</span>
-                                Ends in
-                                <strong data-pkb-countdown="30070">
-                                    08 : 21 : 10
-                                </strong>
-                            </span>
+                    <h3>Auto Match</h3>
+
+                    <p class="pk-auto-subtitle" id="matchSubtitle">
+                        Opponent found! Preparing match...
+                    </p>
+                </div>
+
+                <!-- PLAYERS -->
+                <div class="pk-auto-players">
+
+                    <div class="pk-auto-player pk-auto-me">
+
+                        <div class="pk-auto-avatar">
+                            <i class="fa-solid fa-user"></i>
                         </div>
 
-                        <div class="pkb-battle-info">
-                            <div class="pkb-game-icon pkb-slot-icon">
-                                777
-                            </div>
-                            <div>
-                                <h3>SLOT BATTLE</h3>
-                                <p>Spin together, bring victory home!</p>
-                            </div>
+                        <div class="pk-auto-name">
+                            <img src="imgs/pkbattle/croen-red.png">
+                            <span>Me</span>
                         </div>
 
-                        <div class="pkb-team-score">
-                            <div class="pkb-team pkb-team-a">
-                                <span>TEAM A</span>
-                                <strong>320,150</strong>
-                            </div>
-                            <div class="pkb-vs">VS</div>
-                            <div class="pkb-team pkb-team-b">
-                                <span>TEAM B</span>
-                                <strong>278,900</strong>
-                            </div>
-                        </div>
-
-                        <div class="pkb-progress">
-                            <div class="pkb-progress-track">
-                                <div class="pkb-progress-a" style="width:53%"></div>
-                                <div class="pkb-progress-b" style="width:47%"></div>
-                            </div>
-                            <div class="pkb-progress-labels">
-                                <span>53%</span>
-                                <span>47%</span>
-                            </div>
-                        </div>
-
-                        <button class="pkb-join-btn" type="button">
-                            JOIN NOW <span>›</span>
-                        </button>
                     </div>
 
-                    <!-- Battle 3 -->
-                    <div class="pkb-battle-card">
-                        <div class="pkb-battle-top">
-                            <span class="pkb-battle-number">
-                                BATTLE 3
-                            </span>
-                            <span class="pkb-countdown">
-                                <span>◷</span>
-                                Ends in
-                                <strong data-pkb-countdown="20842">
-                                    05 : 47 : 22
-                                </strong>
-                            </span>
+                    <div class="pk-auto-vs"><img src="imgs/pkbattle/vspk.png" /></div>
+
+                    <div class="pk-auto-player pk-auto-opponent">
+
+                        <div class="pk-auto-avatar">
+                            <i class="fa-solid fa-user"></i>
                         </div>
 
-                        <div class="pkb-battle-info">
-                            <div class="pkb-game-icon pkb-casino-icon">
-                                ♠
-                            </div>
-                            <div>
-                                <h3>LIVE CASINO BATTLE</h3>
-                                <p>Play live, support your team!</p>
-                            </div>
+                        <div class="pk-auto-name">
+                            <img src="imgs/pkbattle/croen-blue.png">
+                            <span id="matchOpponentName">testnickmy**</span>
                         </div>
 
-                        <div class="pkb-team-score">
-                            <div class="pkb-team pkb-team-a">
-                                <span>TEAM A</span>
-                                <strong>89,320</strong>
-                            </div>
-                            <div class="pkb-vs">VS</div>
-                            <div class="pkb-team pkb-team-b">
-                                <span>TEAM B</span>
-                                <strong>102,770</strong>
-                            </div>
+                    </div>
+
+                </div>
+
+                <!-- STATUS -->
+                <div class="pk-auto-status">
+
+                    <div class="pk-auto-status-message">
+
+                        <span class="pk-auto-spinner"
+                              id="matchSpinner"></span>
+
+                        <p id="matchStatus">
+                            Your opponent is
+                            <strong>testnickmy**</strong>,
+                            waiting for your opponent accept/refuse...
+                        </p>
+
+                    </div>
+
+                    <div class="pk-auto-status-divider"></div>
+
+                    <!-- TIMER -->
+                    <div class="pk-auto-timer">
+
+                        <img src="imgs/pkbattle/icon-time-progress.png" />
+
+                        <div class="pk-auto-timer-text">
+                            <span>Time Left:</span>
+                            <strong id="matchCountdown">00:01:14</strong>
                         </div>
 
-                        <div class="pkb-progress">
-                            <div class="pkb-progress-track">
-                                <div class="pkb-progress-a" style="width:46%"></div>
-                                <div class="pkb-progress-b" style="width:54%"></div>
-                            </div>
-                            <div class="pkb-progress-labels">
-                                <span>46%</span>
-                                <span>54%</span>
-                            </div>
-                        </div>
+                    </div>
 
-                        <button class="pkb-join-btn" type="button">
-                            JOIN NOW <span>›</span>
-                        </button>
+                </div>
+
+                <!-- CANCEL -->
+                <button type="button"
+                        class="pk-modal-btn pk-auto-cancel"
+                        id="cancelMatchBtn">
+                    CANCEL
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- =========================================
+             LEADERBOARD MODAL
+        ========================================== -->
+        <div class="pk-modal" id="leaderboardModal">
+            <div class="pk-modal-box pk-board-box">
+                <button class="pk-modal-close" data-close>
+                    ×
+                </button>
+                <div class="pk-modal-icon leadmod">
+                    <img src="imgs/pkbattle/trophypklead2.png" />
+                </div>
+                <div class="pk-ranking">
+                    <div class="rank-item rank-first">
+                        <span>1</span>
+                        <p>Player One</p>
+                        <b>RM 100</b>
+                    </div>
+                    <div class="rank-item">
+                        <span>2</span>
+                        <p>Player Two</p>
+                        <b>RM 50</b>
+                    </div>
+                    <div class="rank-item">
+                        <span>3</span>
+                        <p>Player Three</p>
+                        <b>RM 30</b>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- =========================
-                 BOTTOM AREA
-            ========================== -->
-            <div class="pkb-bottom-grid">
-                <!-- TOP CONTRIBUTOR -->
-                <div class="pkb-panel pkb-contributor-panel">
-                    <div class="pkb-panel-heading">
-                        <div class="pkb-panel-heading-icon">
-                            🏆
-                        </div>
-                        <div>
-                            <h2>TOP CONTRIBUTOR</h2>
-                            <p>Top players who contribute the most to their team.</p>
-                        </div>
-                        <select class="pkb-battle-select">
-                            <option>Current Battle</option>
-                            <option>Battle 1</option>
-                            <option>Battle 2</option>
-                            <option>Battle 3</option>
-                        </select>
-                    </div>
-
-                    <div class="pkb-table-wrap">
-                        <table class="pkb-table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>USERNAME</th>
-                                    <th>TEAM</th>
-                                    <th>CONTRIBUTION</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <span class="pkb-rank pkb-rank-1">1</span>
-                                    </td>
-                                    <td>Mario9</td>
-                                    <td>
-                                        <span class="pkb-team-badge pkb-team-badge-a">
-                                            Team A
-                                        </span>
-                                    </td>
-                                    <td>58,320</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="pkb-rank pkb-rank-2">2</span>
-                                    </td>
-                                    <td>LuckyStar</td>
-                                    <td>
-                                        <span class="pkb-team-badge pkb-team-badge-b">
-                                            Team B
-                                        </span>
-                                    </td>
-                                    <td>49,880</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="pkb-rank pkb-rank-3">3</span>
-                                    </td>
-                                    <td>WinHunter</td>
-                                    <td>
-                                        <span class="pkb-team-badge pkb-team-badge-a">
-                                            Team A
-                                        </span>
-                                    </td>
-                                    <td>43,210</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Queen88</td>
-                                    <td>
-                                        <span class="pkb-team-badge pkb-team-badge-b">
-                                            Team B
-                                        </span>
-                                    </td>
-                                    <td>38,650</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>TigerKing</td>
-                                    <td>
-                                        <span class="pkb-team-badge pkb-team-badge-a">
-                                            Team A
-                                        </span>
-                                    </td>
-                                    <td>32,400</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+        <!-- =========================================
+             HISTORY MODAL
+        ========================================== -->
+        <div class="pk-modal" id="historyModal">
+            <div class="pk-modal-box">
+                <button class="pk-modal-close" data-close>
+                    ×
+                </button>
+                <div class="pk-modal-icon leadmod">
+                    <img src="imgs/pkbattle/trophypkmatchistory2.png" />
                 </div>
-
-                <!-- BATTLE RULES -->
-                <div class="pkb-panel pkb-rules-panel">
-                    <div class="pkb-panel-heading">
-                        <div class="pkb-panel-heading-icon">
-                            📄
-                        </div>
-                        <div>
-                            <h2>BATTLE RULES</h2>
-
-                        </div>
+                <div class="pk-history">
+                    <div class="history-item">
+                        <span>Player A</span>
+                        <strong class="win">WIN</strong>
+                        <small>RM 100</small>
                     </div>
-
-                    <div class="pkb-rules-list">
-                        <div class="pkb-rule">
-                            <span>1</span>
-                            <p>
-                                Participate in the ongoing battle by playing the selected games.
-                            </p>
-                        </div>
-                        <div class="pkb-rule">
-                            <span>2</span>
-                            <p>
-                                All valid bets will be counted as team contribution.
-                            </p>
-                        </div>
-                        <div class="pkb-rule">
-                            <span>3</span>
-                            <p>
-                                The team with the highest total contribution wins the battle.
-                            </p>
-                        </div>
-                        <div class="pkb-rule">
-                            <span>4</span>
-                            <p>
-                                Top contributors will receive extra rewards.
-                            </p>
-                        </div>
-                        <div class="pkb-rule">
-                            <span>5</span>
-                            <p>
-                                Rewards will be credited within 24 hours after the battle ends.
-                            </p>
-                        </div>
-                        <div class="pkb-rule">
-                            <span>6</span>
-                            <p>
-                                The company reserves the right to amend the event at any time.
-                            </p>
-                        </div>
+                    <div class="history-item">
+                        <span>Player B</span>
+                        <strong class="lose">LOSE</strong>
+                        <small>RM 0</small>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- =========================
-             UPCOMING
-        ========================== -->
-        <section class="pkb-tab-content" data-pkb-content="upcoming">
-            <div class="pkb-panel pkb-empty-panel">
-                <div class="pkb-empty-icon"><img src="imgs/icon/pk-iconmenu-ucb.png" /></div>
-                <h2>UPCOMING BATTLE</h2>
-                <p>Upcoming battles will appear here.</p>
-            </div>
-        </section>
-
-        <!-- =========================
-             HISTORY
-        ========================== -->
-        <section class="pkb-tab-content" data-pkb-content="history">
-            <div class="pkb-panel pkb-empty-panel">
-                <div class="pkb-empty-icon"><img src="imgs/icon/pk-iconmenu-bh.png" /></div>
-                <h2>BATTLE HISTORY</h2>
-                <p>Your completed battles will appear here.</p>
-            </div>
-        </section>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- LANGUAGE POPUP -->
     <div class="language-overlay" id="languagePopup">
@@ -1015,10 +938,5 @@
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
-
-
-
-
 </body>
 </html>

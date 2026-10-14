@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Gaming Website</title>
-
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="transaction.css" />
-    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="transaction2.css" />
     <link rel="stylesheet" href="responsive.css" />
-
+    <link rel="stylesheet" href="responsive2.css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-
     <!-- JQuery -->
-    <script src="script.js" defer></script>
     <script src="transaction.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
-
 <body>
     <header class="main-header">
         <div class="header-inner">
@@ -209,9 +205,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="specialevent.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/specialevent.png" alt="" />
-                                    <span>Special Event</span>
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
                                 </a>
                             </div>
                         </div>
@@ -295,8 +291,8 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button">
-                    <a href="announcement.html">
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
                     </a>
@@ -388,9 +384,9 @@
             <span>Promotions</span>
         </a>
 
-        <a href="announcement.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/icon/notiiconbottom.png" />
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
                 <span class="notification-dot"></span>
             </span>
             <span>Notification</span>
@@ -422,386 +418,198 @@
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
 
-    <main class="st-page">
-        <!-- ================= HEADER ================= -->
-        <header class="st-header">
-            <div class="st-header-left">
-                <div class="section-title">
+    <div class="stment-page">
+
+        <main class="dashboard" id="dashboardPage">
+            <header class="topbar panel">
+                <div class="brand">
                     <h2>Statement</h2>
                 </div>
-            </div>
+                <div class="st-header-right">
+                    <nav class="st-tabs">
+                        <a href="statement2.html">
+                            <button type="button" class="st-tab active" data-tab="statement">
+                                <i class="fa-regular fa-file-lines"></i>
+                                Statement
 
-            <div class="st-header-right">
-                <nav class="st-tabs">
-                    <a href="transaction.html">
-                        <button type="button"
-                                class="st-tab active"
-                                data-tab="statement">
-                            <i class="fa-regular fa-file-lines"></i>
-                            Statement
-
-                        </button>
-                    </a>
-                    <a href="mybets.html">
-                        <button type="button"
-                                class="st-tab"
-                                data-tab="mybets">
-                            <i class="fa-regular fa-rectangle-list"></i>
-                            MyBets
-                        </button>
-                    </a>
-                </nav>
-            </div>
-        </header>
-
-        <!-- ================= FILTER ================= -->
-        <section class="st-filter">
-            <div class="st-filter-block st-quick-filter">
-                <div class="st-quick-buttons">
-                    <button type="button"
-                            class="st-quick-btn active"
-                            data-days="7">
-                        Last 7 Days
-                    </button>
-                    <button type="button"
-                            class="st-quick-btn"
-                            data-days="14">
-                        Last 14 Days
-                    </button>
-                    <button type="button"
-                            class="st-quick-btn"
-                            data-days="30">
-                        Last 30 Days
-                    </button>
+                            </button>
+                        </a>
+                        <a href="mybets.html">
+                            <button type="button" class="st-tab" data-tab="mybets">
+                                <i class="fa-regular fa-rectangle-list"></i>
+                                MyBets
+                            </button>
+                        </a>
+                    </nav>
                 </div>
-            </div>
+            </header>
 
-            <div class="st-filter-divider"></div>
+            <form class="toolbar" id="filterForm">
+                <label class="date-field">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1.5" /><path d="M7 3v4M17 3v4M4 9h16M8 12h2M13 12h2M8 16h2M13 16h2" /></svg>
+                    <input id="startDate" type="date" aria-label="Start date">
+                </label>
+                <span class="date-separator">–</span>
+                <label class="date-field">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1.5" /><path d="M7 3v4M17 3v4M4 9h16M8 12h2M13 12h2M8 16h2M13 16h2" /></svg>
+                    <input id="endDate" type="date" aria-label="End date">
+                </label>
+                <button class="btn btn-primary" type="submit"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m15.5 15.5 5 5" /></svg><span>Go</span></button>
+                <button class="btn btn-outline" id="transactionsBtn" type="button"><svg viewBox="0 0 24 24"><path d="M3 7h17l-4-4M21 17H4l4 4" /></svg><span>Transactions</span></button>
+            </form>
+            <section class="summary-grid" aria-label="Statement totals">
 
-            <div class="st-filter-block st-custom-filter">
-                <div class="st-date-row">
-                    <div class="st-date-input">
-                        <input type="date"
-                               id="stStartDate">
-                    </div>
-                    <span class="st-date-separator">
-                        —
-                    </span>
-                    <div class="st-date-input">
-                        <input type="date"
-                               id="stEndDate">
-                    </div>
-                    <button type="button"
-                            class="st-search-btn"
-                            id="stSearchBtn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <span>Search</span>
-                    </button>
-                </div>
-            </div>
-        </section>
+                <article class="summary-card deposit">
+                    <div><p class="eyebrow">TOTAL DEPOSIT</p><strong>0.00</strong></div>
 
-        <!-- ================= SUMMARY ================= -->
-        <section class="st-summary">
-            <div class="st-section-heading">
-                <small id="stSelectedPeriod">
-                    Last 7 Days
-                </small>
-            </div>
-
-            <div class="st-summary-grid">
-                <!-- TURNOVER -->
-                <article class="st-summary-card">
-                    <div class="st-summary-info">
-                        <span class="st-summary-title">
-                            RUNNING TOTAL
-                        </span>
-                        <strong>450.00</strong>
-                        <small>MYR</small>
-                    </div>
                 </article>
+                <article class="summary-card winloss">
+                    <div><p class="eyebrow">TOTAL WIN / LOSS</p><strong>0.00</strong></div>
 
-                <!-- DEPOSIT -->
-                <article class="st-summary-card">
-                    <div class="st-summary-info">
-                        <span class="st-summary-title">
-                            TOTAL OUTSTANDING
-                        </span>
-                        <strong>0.00</strong>
-                        <small>MYR</small>
-                    </div>
                 </article>
+                <article class="summary-card withdraw">
+                    <div><p class="eyebrow">TOTAL WITHDRAW</p><strong>0.00</strong></div>
 
-            </div>
-        </section>
-
-        <!-- ================= TRANSACTION ================= -->
-        <section class="st-transaction">
-            <div class="st-transaction-header">
-                <div>
-                    <h2>
-                        Transaction History
-                    </h2>
+                </article>
+                <article class="summary-card outstanding" id="outstandingCard" role="button" tabindex="0" aria-label="View total outstanding details">
+                    <div><p class="eyebrow">TOTAL OUTSTANDING</p><strong>0.00</strong></div>
+                    <span class="card-chevron">›</span>
+                </article>
+            </section>
+            <section class="panel activity-panel">
+                <div class="section-heading">
+                    <h2>Activity</h2>
+                    <button class="text-link" id="viewDetailsBtn" type="button">View All <span>›</span></button>
                 </div>
-                <span id="stRecordCount">
-                    6 records
-                </span>
+                <div class="activity-content">
+                    <div class="activity-title">
+                        <div class="category-icon"><img src="imgs/icon/title_0000_battle-ic.png" /></div>
+                        <div><h3>Bet</h3><p id="activityDate">2026/10/12, Monday</p></div>
+                    </div>
+                    <div class="activity-stats">
+                        <div class="net-stat"><span>NET WIN / LOSS</span><strong>0.00</strong></div>
+                        <div class="commission-stat"><span>COMMISSION</span><strong>0.00</strong></div>
+                    </div>
+                </div>
+            </section>
+            <section class="panel category-panel">
+                <div class="section-heading">
+                    <h2>Amount by Category</h2>
+                    <button class="collapse-btn" id="categoryToggle" type="button" aria-expanded="true" aria-label="Collapse amount by category"><span class="chevron-up"></span></button>
+                </div>
+                <div class="category-grid" id="categoryGrid">
+                    <div class="category-item"><div class="category-icon ball"><img src="imgs/promo/sports-ic-menupromo.png" /></div><div><strong>0.00</strong><span>Sport</span></div></div>
+                    <div class="category-item"><div class="category-icon chip"><img src="imgs/promo/cas-ic-menupromo.png" /></div><div><strong>0.00</strong><span>Live Casino</span></div></div>
+                    <div class="category-item"><div class="category-icon lottery"><img src="imgs/promo/lottery-ic-menupromo.png" /></div><div><strong>0.00</strong><span>Lottery</span></div></div>
+                    <div class="category-item"><div class="category-icon gamepad"><img src="imgs/promo/slot-ic-menupromo.png" /></div><div><strong>0.00</strong><span>Games</span></div></div>
+                    <div class="category-item"><div class="category-icon people"><img src="imgs/promo/pokerl-ic-menupromo.png" /></div><div><strong>0.00</strong><span>P2P</span></div></div>
+                </div>
+            </section>
+            <div class="toast" id="toast" role="status" aria-live="polite"></div>
+        </main>
+        <main class="dashboard details-page hidden" id="detailsPage">
+            <header class="topbar panel details-topbar">
+                <div class="brand">
+                    <h2>Statement</h2>
+                </div>
+                <form class="toolbar detail-toolbar" id="detailFilterForm">
+                    <div class="filter-row" id="betCategoryFilters">
+                        <button type="button" class="filter-pill active" data-category="All">All</button>
+                        <button type="button" class="filter-pill" data-category="Sport">Sport</button>
+                        <button type="button" class="filter-pill" data-category="Live Casino">Live Casino</button>
+                        <button type="button" class="filter-pill" data-category="Lottery">Lottery</button>
+                        <button type="button" class="filter-pill" data-category="Games">Games</button>
+                        <button type="button" class="filter-pill" data-category="P2P">P2P</button>
+                        <button type="button" class="filter-pill" data-category="Financial">Financial</button>
+                    </div>
+                    <button class="btn btn-primary" type="submit">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="10.5" cy="10.5" r="6.5" />
+                            <path d="m15.5 15.5 5 5" />
+                        </svg>
+                        <span>Go</span>
+                    </button>
+                </form>
+            </header>
+            <section class="panel details-panel">
+                <div class="detail-summary">
+                    <h2>NET WIN / LOSS</h2>
+                    <strong>0.00</strong>
+                    <div class="detail-metrics"><div><span>Total Stake</span><b>0.00</b></div><div><span>Valid Stake</span><b>0.00</b></div><div><span>Total Win / Loss</span><b>0.00</b></div></div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Game / Reference</th>
+                                <th>Total Stake</th>
+                                <th>Valid Stake</th>
+                                <th>Win / Loss</th>
+                            </tr>
+                        </thead>
+                        <tbody id="betTableBody"></tbody>
+                    </table>
+                </div>
+                <div class="empty-state"><div class="empty-symbol">≡</div><strong>No records found</strong><span>Try changing the date range or category.</span></div>
+
+            </section>
+            <div class="details-back-row">
+                <button class="back-btn" id="backBtn" type="button" aria-label="Back to Statement">
+                    <span>❮</span> Back
+                </button>
             </div>
+        </main>
+        <!-- CASH HISTORY PAGE -->
+        <div class="cash-history-page hidden" id="cashHistoryPage">
+            <div class="cash-history-box">
+                <!-- Header -->
+                <div class="cash-history-header">
+                    <div class="cash-history-title">
+                        <button type="button" class="cash-back-btn" id="cashBackBtn">
+                            <span>‹</span> Back
+                        </button>
+                        <div class="cash-history-title-icon">▤</div>
+                        <h2>Cash History</h2>
+                    </div>
+                    <form class="cash-history-filter" id="cashHistoryForm">
+                        <label for="cashFrom">From</label>
+                        <input type="date" id="cashFrom" required>
+                        <label for="cashTo">To</label>
+                        <input type="date" id="cashTo" required>
+                        <button type="submit" class="cash-go-btn">
+                            <span>⌕</span> Go
+                        </button>
+                    </form>
+                </div>
+                <!-- Table -->
+                <div class="cash-history-table-wrap">
+                    <table class="cash-history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Transaction No</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                                <th>Bonus</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cashHistoryBody">
+                            <tr>
 
-            <div class="st-table-wrapper">
-                <table class="st-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>DETAILS</th>
-                            <th>SELECTION</th>
-                            <th>ODDS</th>
-                            <th>STAKE & VALID BET</th>
-                            <th>WIN/LOSS</th>
-                            <th>STATUS</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="stTransactionBody">
-
-                        <!-- RECORD 1 -->
-                        <tr>
-                            <td>1</td>
-
-                            <td>
-                                <div class="st-detail">
-                                    <strong>18/09/2026 10:12:34</strong>
-                                    <span>TXN000001</span>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="st-selection">
-                                    <strong>Deposit</strong>
-                                    <span>Main Wallet</span>
-                                </div>
-                            </td>
-
-                            <td>-</td>
-
-                            <td>
-                                <div class="st-stake">
-                                    <strong>+500.00</strong>
-                                    <span>500.00</span>
-                                </div>
-                            </td>
-
-                            <td class="status-success">
-                                +500.00
-                            </td>
-
-                            <td>
-                                <span class="st-status success">Completed</span>
-                            </td>
-                        </tr>
-
-
-                        <!-- RECORD 2 -->
-                        <tr>
-                            <td>2</td>
-
-                            <td>
-                                <div class="st-detail">
-                                    <strong>17/09/2026 21:45:10</strong>
-                                    <span>TXN000002</span>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="st-selection">
-                                    <strong>Sports</strong>
-                                    <span>Football - EPL</span>
-                                </div>
-                            </td>
-
-                            <td>
-                                <span class="st-odds">1.85</span>
-                            </td>
-
-                            <td>
-                                <div class="st-stake">
-                                    <strong>150.00</strong>
-                                    <span>150.00</span>
-                                </div>
-                            </td>
-
-                            <td class="status-error">
-                                -150.00
-                            </td>
-
-                            <td>
-                                <span class="st-status success">Completed</span>
-                            </td>
-                        </tr>
-
-
-                        <!-- RECORD 3 -->
-                        <tr>
-                            <td>3</td>
-
-                            <td>
-                                <div class="st-detail">
-                                    <strong>17/09/2026 23:12:56</strong>
-                                    <span>TXN000003</span>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="st-selection">
-                                    <strong>Sports</strong>
-                                    <span>Arsenal</span>
-                                </div>
-                            </td>
-
-                            <td>
-                                <span class="st-odds">2.40</span>
-                            </td>
-
-                            <td>
-                                <div class="st-stake">
-                                    <strong>150.00</strong>
-                                    <span>150.00</span>
-                                </div>
-                            </td>
-
-                            <td class="status-success">
-                                +320.00
-                            </td>
-
-                            <td>
-                                <span class="st-status success">Completed</span>
-                            </td>
-                        </tr>
-
-
-                        <!-- RECORD 4 -->
-                        <tr>
-                            <td>4</td>
-
-                            <td>
-                                <div class="st-detail">
-                                    <strong>16/09/2026 14:20:31</strong>
-                                    <span>TXN000004</span>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="st-selection">
-                                    <strong>Withdrawal</strong>
-                                    <span>Bank Transfer</span>
-                                </div>
-                            </td>
-
-                            <td>-</td>
-
-                            <td>
-                                <div class="st-stake">
-                                    <strong>300.00</strong>
-                                    <span>300.00</span>
-                                </div>
-                            </td>
-
-                            <td class="status-error">
-                                -300.00
-                            </td>
-
-                            <td>
-                                <span class="st-status success">Completed</span>
-                            </td>
-                        </tr>
-
-
-                        <!-- RECORD 5 -->
-                        <tr>
-                            <td>5</td>
-
-                            <td>
-                                <div class="st-detail">
-                                    <strong>15/09/2026 09:08:17</strong>
-                                    <span>TXN000005</span>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="st-selection">
-                                    <strong>Bonus</strong>
-                                    <span>Daily Bonus</span>
-                                </div>
-                            </td>
-
-                            <td>-</td>
-
-                            <td>
-                                <div class="st-stake">
-                                    <strong>+80.00</strong>
-                                    <span>80.00</span>
-                                </div>
-                            </td>
-
-                            <td class="status-success">
-                                +80.00
-                            </td>
-
-                            <td>
-                                <span class="st-status success">Completed</span>
-                            </td>
-                        </tr>
-
-                        <!-- RECORD 6 -->
-                        <tr>
-                            <td>6</td>
-
-                            <td>
-                                <div class="st-detail">
-                                    <strong>14/09/2026 18:35:42</strong>
-                                    <span>TXN000006</span>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="st-selection">
-                                    <strong>Withdrawal</strong>
-                                    <span>Bank Transfer</span>
-                                </div>
-                            </td>
-
-                            <td>-</td>
-
-                            <td>
-                                <div class="st-stake">
-                                    <strong>200.00</strong>
-                                    <span>200.00</span>
-                                </div>
-                            </td>
-
-                            <td class="status-error">
-                                -200.00
-                            </td>
-
-                            <td>
-                                <span class="st-status rejected">Rejected</span>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
+                                <td colspan="7" class="no-record">
+                                    No Record.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </section>
-    </main>
-
-
-
-
-
-
-
-
-
+        </div>
+    </div>
 
 
 
@@ -816,23 +624,19 @@
                     <div class="language-globe">
                         <i class="fa-solid fa-globe"></i>
                     </div>
-
                     <div class="language-title-content">
                         <h3>Language</h3>
                         <span>Choose your preferred language</span>
                     </div>
                 </div>
-
                 <button type="button" class="language-close" id="languageClose" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
             <!-- Decorative line -->
             <div class="language-divider">
                 <span></span>
             </div>
-
             <!-- Language List -->
             <div class="language-list">
                 <button class="language-item active" data-language="English">
@@ -842,10 +646,8 @@
                         </span>
                         <span class="language-name">English</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ភាសាខ្មែរ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -853,10 +655,8 @@
                         </span>
                         <span class="language-name">ភាសាខ្មែរ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="简体中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -864,10 +664,8 @@
                         </span>
                         <span class="language-name">简体中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="မြန်မာ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -875,10 +673,8 @@
                         </span>
                         <span class="language-name">မြန်မာ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="繁體中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -886,10 +682,8 @@
                         </span>
                         <span class="language-name">繁體中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ジャパン">
                     <div class="language-info">
                         <span class="language-flag">
@@ -897,10 +691,8 @@
                         </span>
                         <span class="language-name">ジャパン</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ภาษาไทย">
                     <div class="language-info">
                         <span class="language-flag">
@@ -908,10 +700,8 @@
                         </span>
                         <span class="language-name">ภาษาไทย</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Français">
                     <div class="language-info">
                         <span class="language-flag">
@@ -919,10 +709,8 @@
                         </span>
                         <span class="language-name">Français</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="한국어">
                     <div class="language-info">
                         <span class="language-flag">
@@ -930,10 +718,8 @@
                         </span>
                         <span class="language-name">한국어</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Español">
                     <div class="language-info">
                         <span class="language-flag">
@@ -941,10 +727,8 @@
                         </span>
                         <span class="language-name">Español</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Tiếng Việt">
                     <div class="language-info">
                         <span class="language-flag">
@@ -952,10 +736,8 @@
                         </span>
                         <span class="language-name">Tiếng Việt</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Português">
                     <div class="language-info">
                         <span class="language-flag">
@@ -963,10 +745,8 @@
                         </span>
                         <span class="language-name">Português</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Indonesia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -974,10 +754,8 @@
                         </span>
                         <span class="language-name">Indonesia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="বাংলা">
                     <div class="language-info">
                         <span class="language-flag">
@@ -985,10 +763,8 @@
                         </span>
                         <span class="language-name">বাংলা</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="इंडिया">
                     <div class="language-info">
                         <span class="language-flag">
@@ -996,10 +772,8 @@
                         </span>
                         <span class="language-name">इंडिया</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Malaysia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -1007,17 +781,14 @@
                         </span>
                         <span class="language-name">Malaysia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
             </div>
-
             <!-- Footer -->
             <div class="language-footer">
                 <div class="language-footer-icon">
                     <i class="fa-solid fa-check"></i>
                 </div>
-
                 <div class="language-footer-text">
                     <strong>Applied instantly</strong>
                     <span>Your language preference will be saved automatically.</span>
@@ -1025,11 +796,12 @@
             </div>
         </div>
     </div>
-
     <!-- BACK TO TOP -->
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
+
+    <!-- Statement / Bet Details navigation -->
 
 </body>
 </html>

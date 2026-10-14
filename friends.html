@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="friends.css" />
     <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="responsive2.css" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -208,9 +209,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="specialevent.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/specialevent.png" alt="" />
-                                    <span>Special Event</span>
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
                                 </a>
                             </div>
                         </div>
@@ -294,8 +295,8 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button">
-                    <a href="announcement.html">
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
                     </a>
@@ -387,9 +388,9 @@
             <span>Promotions</span>
         </a>
 
-        <a href="announcement.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/icon/notiiconbottom.png" />
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
                 <span class="notification-dot"></span>
             </span>
             <span>Notification</span>
@@ -421,486 +422,439 @@
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
 
-    <div class="fr-page">
-        <!-- =========================================
-             TOP HEADER
-        ========================================== -->
-        <header class="fr-header">
-            <div class="fr-title">
-                <h2>FRIENDS</h2>
-            </div>
-            <div class="fr-header-actions">
-                <button class="fr-icon-btn" id="fr-history-btn" title="History">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                </button>
-                <button class="fr-icon-btn" id="fr-transfer-btn" title="Transfer History">
-                    <i class="fa-solid fa-layer-group"></i>
-                </button>
-                <button type="button" class="fr-icon-btn" id="fr-add-friend-btn" title="Add Friend">
-                    <i class="fa-solid fa-user-plus"></i>
-                </button>
-                <button class="fr-icon-btn" id="fr-settings-btn" title="Settings">
-                    <i class="fa-solid fa-gear"></i>
-                </button>
-            </div>
-        </header>
-        <!-- =========================================
-             FRIEND TABS
-        ========================================== -->
-        <nav class="fr-tabs">
-            <button class="fr-tab active" data-tab="all">
-                ALL FRIENDS <span>(0)</span>
-            </button>
-            <button class="fr-tab" data-tab="request">
-                FRIEND REQUEST
-            </button>
-            <button class="fr-tab" data-tab="sent">
-                SENT REQUEST
-            </button>
-        </nav>
-        <!-- =========================================
-             ALL FRIENDS CONTENT
-        ========================================== -->
-        <main id="all-content" class="fr-tab-content active">
+    <main class="friend-page">
+
+        <div class="fr-page">
             <!-- =========================================
-                 COLLECTION + REWARD ROW
+                 TOP HEADER
             ========================================== -->
-            <div class="fr-collection-reward">
-                <!-- =====================================
-                     FRIENDS COLLECTION
-                ====================================== -->
-                <section class="fr-section fr-collection">
-                    <div class="fr-section-header">
-                        <div class="fr-section-title">
-                            <i class="fa-solid fa-layer-group"></i>
-                            <span>FRIENDS COLLECTION</span>
-                        </div>
-                        <div class="fr-collection-count">
-                            <span class="fr-dot"></span>
-                            5 Cards Collection
-                        </div>
-                    </div>
-
-                    <div class="fr-cards-grid">
-                        <!-- CARD 1 -->
-                        <div class="fr-card fr-card-diamond">
-                            <img src="imgs/icon/1f9bc74631154e18baa71b5381d940e9_A1.jpg" />
-                            <div class="fr-card-symbol">0</div>
-
-                        </div>
-
-                        <!-- CARD 2 -->
-                        <div class="fr-card fr-card-diamond">
-                            <img src="imgs/icon/3f992f81edb94e0baf5c3cd6706a5f33_A2.jpg" />
-                            <div class="fr-card-symbol">0</div>
-                        </div>
-
-                        <!-- CARD 3 -->
-                        <div class="fr-card fr-card-diamond">
-                            <img src="imgs/icon/251a5078a763462e8e97a0956d929fee_A3.jpg" />
-                            <div class="fr-card-symbol">0</div>
-                        </div>
-
-                        <!-- CARD 4 -->
-                        <div class="fr-card fr-card-diamond">
-                            <img src="imgs/icon/d4ac8eee09fe4a568c2ae123c071aa82_A4.jpg" />
-                            <div class="fr-card-symbol">0</div>
-                        </div>
-
-                        <!-- CARD 5 -->
-                        <div class="fr-card fr-card-black">
-                            <img src="imgs/icon/284e65a304324bc087fdcf06b9160d8d_A5.jpg" />
-                            <div class="fr-card-symbol">0</div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- =====================================
-                     REWARD SYSTEM
-                ====================================== -->
-                <section class="fr-section fr-reward">
-                    <div class="fr-section-header">
-                        <div class="fr-section-title">
-                            <i class="fa-solid fa-gift"></i>
-                            <span>REWARD SYSTEM</span>
-                        </div>
-                    </div>
-
-                    <div class="fr-reward-list">
-                        <div class="fr-reward-item">
-                            <div class="fr-reward-info">
-                                <strong>3 Cards</strong>
-                                <span>→</span>
-                                <b>Bonus</b>
-                            </div>
-                            <button class="fr-claim" data-reward="3 Cards">
-                                CLAIM
-                            </button>
-                        </div>
-
-                        <div class="fr-reward-item">
-                            <div class="fr-reward-info">
-                                <strong>4 Cards</strong>
-                                <span>→</span>
-                                <b>Bonus</b>
-                            </div>
-                            <button class="fr-claim" data-reward="4 Cards">
-                                CLAIM
-                            </button>
-                        </div>
-
-                        <div class="fr-reward-item">
-                            <div class="fr-reward-info">
-                                <strong>5 Cards</strong>
-                                <span>→</span>
-                                <b>Bonus</b>
-                            </div>
-                            <button class="fr-claim" data-reward="5 Cards">
-                                CLAIM
-                            </button>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <!-- =====================================
-                 INFORMATION ROW
-            ====================================== -->
-            <div class="fr-info-grid">
-                <!-- CARD COLLECTION -->
-                <section class="fr-section fr-info-box">
-                    <div class="fr-section-header">
-                        <div class="fr-section-title">
-                            <i class="fa-regular fa-circle-question"></i>
-                            <span>CARD COLLECTION / HOW TO GET CARDS</span>
-                        </div>
-                    </div>
-                    <p class="fr-info-desc">
-                        1) During play any Game can get free random Card(s).
-                    </p>
-                    <div class="fr-game-types">
-                        <div class="fr-card-type">
-                            <span>Sport</span>
-                            <strong>Card 1, 2, 3</strong>
-                        </div>
-                        <div class="fr-card-type">
-                            <span>Casino</span>
-                            <strong>Card 2, 3, 4</strong>
-                        </div>
-                        <div class="fr-card-type">
-                            <span>Lottery</span>
-                            <strong>Card 3, 4, 5</strong>
-                        </div>
-                        <div class="fr-card-type">
-                            <span>Slot</span>
-                            <strong>Card 4, 5, 1</strong>
-                        </div>
-                        <div class="fr-card-type">
-                            <span>P2P</span>
-                            <strong>Card 5, 1, 2</strong>
-                        </div>
-                    </div>
-                </section>
-                <!-- CARD EXCHANGE -->
-                <section class="fr-section fr-info-box">
-                    <div class="fr-section-header">
-                        <div class="fr-section-title">
-                            <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                            <span>CARD EXCHANGE</span>
-                        </div>
-                    </div>
-                    <p class="fr-info-desc">
-                        2) Your Card can Exchange or Send to friend.
-                    </p>
-                    <div class="fr-exchange-grid">
-                        <button class="fr-exchange-item" data-cards="3">
-                            <span>3 Different Cards</span>
-                            <strong>
-                                Free <b>39</b>
-                            </strong>
-                        </button>
-                        <button class="fr-exchange-item" data-cards="4">
-                            <span>4 Different Cards</span>
-                            <strong>
-                                Free <b>399</b>
-                            </strong>
-                        </button>
-                        <button class="fr-exchange-item" data-cards="5">
-                            <span>5 Different Cards</span>
-                            <strong>
-                                Free <b>3,999</b>
-                            </strong>
-                        </button>
-                    </div>
-                </section>
-            </div>
-            <!-- =====================================
-                 RECORDS
-            ====================================== -->
-            <section class="fr-section fr-records">
-                <div class="fr-section-header">
-                    <div class="fr-section-title">
-                        <i class="fa-regular fa-file-lines"></i>
-                        <span>RECORDS</span>
-                    </div>
+            <header class="fr-header">
+                <div class="fr-title">
+                    <h2>FRIENDS</h2>
                 </div>
-                <div class="fr-records-body" id="recordsBody">
-                    <div class="fr-empty-record">
-                        <div class="fr-empty-icon">
-                            <i class="fa-regular fa-clipboard"></i>
-                        </div>
-                        <h3>No records has been added yet.</h3>
-                        <p>
-                            Add a new record by simply clicking the button on top right side.
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <!-- =========================================
-         FRIEND REQUEST TAB
-    ========================================= -->
-        <div id="request-content" class="fr-tab-content fr-hidden">
-
-            <section class="fr-section fr-request-section">
-
-                <div class="fr-section-header">
-                    <div class="fr-section-title">
-                        <i class="fa-solid fa-user-clock"></i>
-                        <span>FRIEND REQUEST</span>
-                    </div>
-
-                    <div class="fr-record-count">
-                        3 Requests
-                    </div>
-                </div>
-
-                <div class="fr-request-list">
-
-                    <!-- REQUEST 1 -->
-                    <div class="fr-request-row">
-
-                        <div class="fr-request-user">
-
-                            <div class="fr-request-avatar">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-
-                            <div class="fr-request-info">
-                                <strong>PlayerM9</strong>
-                                <span>Sent you a friend request</span>
-                                <small>2 minutes ago</small>
-                            </div>
-
-                        </div>
-
-                        <div class="fr-request-actions">
-                            <button class="fr-btn-accept">
-                                Accept
-                            </button>
-
-                            <button class="fr-btn-decline">
-                                Decline
-                            </button>
-                        </div>
-
-                    </div>
-
-
-                    <!-- REQUEST 2 -->
-                    <div class="fr-request-row">
-
-                        <div class="fr-request-user">
-
-                            <div class="fr-request-avatar">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-
-                            <div class="fr-request-info">
-                                <strong>LuckyPlayer</strong>
-                                <span>Sent you a friend request</span>
-                                <small>1 hour ago</small>
-                            </div>
-
-                        </div>
-
-                        <div class="fr-request-actions">
-                            <button class="fr-btn-accept">
-                                Accept
-                            </button>
-
-                            <button class="fr-btn-decline">
-                                Decline
-                            </button>
-                        </div>
-
-                    </div>
-
-
-                    <!-- REQUEST 3 -->
-                    <div class="fr-request-row">
-
-                        <div class="fr-request-user">
-
-                            <div class="fr-request-avatar">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-
-                            <div class="fr-request-info">
-                                <strong>StarPlayer</strong>
-                                <span>Sent you a friend request</span>
-                                <small>Yesterday</small>
-                            </div>
-
-                        </div>
-
-                        <div class="fr-request-actions">
-                            <button class="fr-btn-accept">
-                                Accept
-                            </button>
-
-                            <button class="fr-btn-decline">
-                                Decline
-                            </button>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-        </div>
-
-
-        <!-- =========================================
-         SENT REQUEST TAB
-    ========================================= -->
-        <div id="sent-content" class="fr-tab-content fr-hidden">
-
-            <section class="fr-section fr-request-section">
-
-                <div class="fr-section-header">
-
-                    <div class="fr-section-title">
+                <div class="fr-header-actions">
+                    <button class="fr-icon-btn" id="fr-history-btn" title="History">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </button>
+                    <button class="fr-icon-btn" id="fr-transfer-btn" title="Transfer History">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </button>
+                    <button type="button" class="fr-icon-btn" id="fr-add-friend-btn" title="Add Friend">
                         <i class="fa-solid fa-user-plus"></i>
-                        <span>SENT REQUEST</span>
-                    </div>
-
-                    <div class="fr-record-count">
-                        2 Requests
-                    </div>
-
+                    </button>
+                    <button class="fr-icon-btn" id="fr-settings-btn" title="Settings">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
                 </div>
+            </header>
+            <!-- =========================================
+                 FRIEND TABS
+            ========================================== -->
+            <nav class="fr-tabs">
 
+                <button class="fr-tab active" data-tab="all">
+                    ALL FRIENDS <span>(0)</span>
+                </button>
 
-                <div class="fr-request-list">
+                <button class="fr-tab" data-tab="request">
+                    FRIEND REQUEST
+                    <span class="fr-tab-badge" id="friendRequestBadge">3</span>
+                </button>
 
-                    <!-- SENT 1 -->
-                    <div class="fr-request-row">
+                <button class="fr-tab" data-tab="sent">
+                    SENT REQUEST
+                    <span class="fr-tab-badge" id="sentRequestBadge">2</span>
+                </button>
 
-                        <div class="fr-request-user">
+            </nav>
 
-                            <div class="fr-request-avatar">
-                                <i class="fa-solid fa-user"></i>
+            <!-- =========================================
+                 ALL FRIENDS CONTENT
+            ========================================== -->
+            <main id="all-content" class="fr-tab-content active">
+                <!-- =========================================
+                     COLLECTION + REWARD ROW
+                ========================================== -->
+                <div class="fr-collection-reward">
+                    <!-- =====================================
+                         FRIENDS COLLECTION
+                    ====================================== -->
+                    <section class="fr-section fr-collection">
+                        <div class="fr-section-header">
+                            <div class="fr-section-title">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <span>FRIENDS COLLECTION</span>
                             </div>
-
-                            <div class="fr-request-info">
-                                <strong>PlayerOne</strong>
-                                <span>Friend request sent</span>
-                                <small>10 minutes ago</small>
+                            <div class="fr-collection-count">
+                                <span class="fr-dot"></span>
+                                5 Cards Collection
                             </div>
-
                         </div>
 
-                        <div class="fr-request-actions">
+                        <div class="fr-cards-grid">
+                            <!-- CARD 1 -->
+                            <div class="fr-card fr-card-diamond">
+                                <img src="imgs/icon/1f9bc74631154e18baa71b5381d940e9_A1.jpg" />
+                                <div class="fr-card-symbol">0</div>
 
-                            <button class="fr-btn-cancel">
-                                Cancel
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- SENT 2 -->
-                    <div class="fr-request-row">
-
-                        <div class="fr-request-user">
-
-                            <div class="fr-request-avatar">
-                                <i class="fa-solid fa-user"></i>
                             </div>
 
-                            <div class="fr-request-info">
-                                <strong>GameMaster</strong>
-                                <span>Friend request sent</span>
-                                <small>Yesterday</small>
+                            <!-- CARD 2 -->
+                            <div class="fr-card fr-card-diamond">
+                                <img src="imgs/icon/3f992f81edb94e0baf5c3cd6706a5f33_A2.jpg" />
+                                <div class="fr-card-symbol">0</div>
                             </div>
 
+                            <!-- CARD 3 -->
+                            <div class="fr-card fr-card-diamond">
+                                <img src="imgs/icon/251a5078a763462e8e97a0956d929fee_A3.jpg" />
+                                <div class="fr-card-symbol">0</div>
+                            </div>
+
+                            <!-- CARD 4 -->
+                            <div class="fr-card fr-card-diamond">
+                                <img src="imgs/icon/d4ac8eee09fe4a568c2ae123c071aa82_A4.jpg" />
+                                <div class="fr-card-symbol">0</div>
+                            </div>
+
+                            <!-- CARD 5 -->
+                            <div class="fr-card fr-card-black">
+                                <img src="imgs/icon/284e65a304324bc087fdcf06b9160d8d_A5.jpg" />
+                                <div class="fr-card-symbol">0</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- =====================================
+                         REWARD SYSTEM
+                    ====================================== -->
+                    <section class="fr-section fr-reward">
+                        <div class="fr-section-header">
+                            <div class="fr-section-title">
+                                <i class="fa-solid fa-gift"></i>
+                                <span>REWARD SYSTEM</span>
+                            </div>
                         </div>
 
-                        <div class="fr-request-actions">
+                        <div class="fr-reward-list">
+                            <div class="fr-reward-item">
+                                <div class="fr-reward-info">
+                                    <img src="imgs/friend/treasurefren_0000_Layer-3.png" />
+                                    <strong>3 Cards</strong>
+                                    <span>→</span>
+                                    <b>Bonus</b>
+                                </div>
+                                <button class="fr-claim" data-reward="3 Cards">
+                                    CLAIM
+                                </button>
+                            </div>
 
-                            <button class="fr-btn-cancel">
-                                Cancel
-                            </button>
+                            <div class="fr-reward-item">
+                                <div class="fr-reward-info">
+                                    <img src="imgs/friend/treasurefren_0001_Layer-2.png" />
+                                    <strong>4 Cards</strong>
+                                    <span>→</span>
+                                    <b>Bonus</b>
+                                </div>
+                                <button class="fr-claim" data-reward="4 Cards">
+                                    CLAIM
+                                </button>
+                            </div>
 
+                            <div class="fr-reward-item">
+                                <div class="fr-reward-info">
+                                    <img src="imgs/friend/treasurefren_0002_Layer-1.png" />
+                                    <strong>5 Cards</strong>
+                                    <span>→</span>
+                                    <b>Bonus</b>
+                                </div>
+                                <button class="fr-claim" data-reward="5 Cards">
+                                    CLAIM
+                                </button>
+                            </div>
                         </div>
-
-                    </div>
-
+                    </section>
                 </div>
+                <!-- =====================================
+                     INFORMATION ROW
+                ====================================== -->
+                <div class="announcement-bar">
+                    <div class="announcement-icon">
+                        <span><img src="imgs/friend/announcefriend.png" /></span>
+                    </div>
+                    <div class="announcement-text">
+                        Feeling lucky? Place your bets now and unlock a world of excitement!
+                        Win big while collecting cards with every wager. Join the action today!
+                    </div>
+                </div>
+                <!-- =====================================
+                     RECORDS
+                ====================================== -->
+                <section class="fr-section fr-records">
+                    <div class="fr-section-header">
+                        <div class="fr-section-title">
+                            <i class="fa-regular fa-file-lines"></i>
+                            <span>RECORDS</span>
+                        </div>
+                    </div>
+                    <div class="fr-records-body" id="recordsBody">
+                        <div class="fr-empty-record">
+                            <div class="fr-empty-icon">
+                                <i class="fa-regular fa-clipboard"></i>
+                            </div>
+                            <h3>No records has been added yet.</h3>
+                            <p>
+                                Add a new record by simply clicking the button on top right side.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <!-- =========================================
+                 FRIEND REQUEST TAB
+            ========================================= -->
+            <div id="request-content" class="fr-tab-content fr-hidden">
 
-            </section>
+                <section class="fr-section fr-request-section">
 
+                    <div class="fr-section-header">
+                        <div class="fr-section-title">
+                            <i class="fa-solid fa-user-clock"></i>
+                            <span>FRIEND REQUEST</span>
+                        </div>
+
+                        <div class="fr-record-count">
+                            3 Requests
+                        </div>
+                    </div>
+
+                    <div class="fr-request-list">
+
+                        <!-- REQUEST 1 -->
+                        <div class="fr-request-row">
+
+                            <div class="fr-request-user">
+
+                                <div class="fr-request-avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <div class="fr-request-info">
+                                    <strong>PlayerM9</strong>
+                                    <span>Sent you a friend request</span>
+                                    <small>2 minutes ago</small>
+                                </div>
+
+                            </div>
+
+                            <div class="fr-request-actions">
+                                <button class="fr-btn-accept">
+                                    Accept
+                                </button>
+
+                                <button class="fr-btn-decline">
+                                    Decline
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                        <!-- REQUEST 2 -->
+                        <div class="fr-request-row">
+
+                            <div class="fr-request-user">
+
+                                <div class="fr-request-avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <div class="fr-request-info">
+                                    <strong>LuckyPlayer</strong>
+                                    <span>Sent you a friend request</span>
+                                    <small>1 hour ago</small>
+                                </div>
+
+                            </div>
+
+                            <div class="fr-request-actions">
+                                <button class="fr-btn-accept">
+                                    Accept
+                                </button>
+
+                                <button class="fr-btn-decline">
+                                    Decline
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                        <!-- REQUEST 3 -->
+                        <div class="fr-request-row">
+
+                            <div class="fr-request-user">
+
+                                <div class="fr-request-avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <div class="fr-request-info">
+                                    <strong>StarPlayer</strong>
+                                    <span>Sent you a friend request</span>
+                                    <small>Yesterday</small>
+                                </div>
+
+                            </div>
+
+                            <div class="fr-request-actions">
+                                <button class="fr-btn-accept">
+                                    Accept
+                                </button>
+
+                                <button class="fr-btn-decline">
+                                    Decline
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- =========================================
+                 SENT REQUEST TAB
+            ========================================= -->
+            <div id="sent-content" class="fr-tab-content fr-hidden">
+
+                <section class="fr-section fr-request-section">
+
+                    <div class="fr-section-header">
+
+                        <div class="fr-section-title">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>SENT REQUEST</span>
+                        </div>
+
+                        <div class="fr-record-count">
+                            2 Requests
+                        </div>
+
+                    </div>
+
+
+                    <div class="fr-request-list">
+
+                        <!-- SENT 1 -->
+                        <div class="fr-request-row">
+
+                            <div class="fr-request-user">
+
+                                <div class="fr-request-avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <div class="fr-request-info">
+                                    <strong>PlayerOne</strong>
+                                    <span>Friend request sent</span>
+                                    <small>10 minutes ago</small>
+                                </div>
+
+                            </div>
+
+                            <div class="fr-request-actions">
+
+                                <button class="fr-btn-cancel">
+                                    Cancel
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SENT 2 -->
+                        <div class="fr-request-row">
+
+                            <div class="fr-request-user">
+
+                                <div class="fr-request-avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <div class="fr-request-info">
+                                    <strong>GameMaster</strong>
+                                    <span>Friend request sent</span>
+                                    <small>Yesterday</small>
+                                </div>
+
+                            </div>
+
+                            <div class="fr-request-actions">
+
+                                <button class="fr-btn-cancel">
+                                    Cancel
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
         </div>
-    </div>
-    <!-- =========================================
-         ADD RECORD MODAL
-    ========================================== -->
-    <div class="fr-modal-overlay" id="recordModal">
-        <div class="fr-record-modal">
-            <div class="fr-modal-header">
-                <h3>Add Record</h3>
-                <button class="fr-modal-close" id="closeModal">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="fr-modal-body">
-                <label>
-                    Record Type
-                </label>
-                <select id="recordType">
-                    <option value="Card Collection">
-                        Card Collection
-                    </option>
-                    <option value="Card Exchange">
-                        Card Exchange
-                    </option>
-                    <option value="Friend Activity">
-                        Friend Activity
-                    </option>
-                </select>
-                <label>
-                    Description
-                </label>
-                <input type="text"
-                       id="recordDescription"
-                       placeholder="Enter description...">
-            </div>
-            <div class="fr-modal-footer">
-                <button class="fr-cancel" id="cancelModal">
-                    Cancel
-                </button>
-                <button class="fr-save" id="saveRecord">
-                    Add Record
-                </button>
+        <!-- =========================================
+             ADD RECORD MODAL
+        ========================================== -->
+        <div class="fr-modal-overlay" id="recordModal">
+            <div class="fr-record-modal">
+                <div class="fr-modal-header">
+                    <h3>Add Record</h3>
+                    <button class="fr-modal-close" id="closeModal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="fr-modal-body">
+                    <label>
+                        Record Type
+                    </label>
+                    <select id="recordType">
+                        <option value="Card Collection">
+                            Card Collection
+                        </option>
+                        <option value="Card Exchange">
+                            Card Exchange
+                        </option>
+                        <option value="Friend Activity">
+                            Friend Activity
+                        </option>
+                    </select>
+                    <label>
+                        Description
+                    </label>
+                    <input type="text"
+                           id="recordDescription"
+                           placeholder="Enter description...">
+                </div>
+                <div class="fr-modal-footer">
+                    <button class="fr-cancel" id="cancelModal">
+                        Cancel
+                    </button>
+                    <button class="fr-save" id="saveRecord">
+                        Add Record
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-
+    </main>
 
     <!-- LANGUAGE POPUP -->
     <div class="language-overlay" id="languagePopup">

@@ -5,7 +5,6 @@
 
 .account-page {
     width: calc(100% - 28px);
-    max-width: 1600px;
     margin: 14px auto;
 }
 

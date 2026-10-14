@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="freepoint.css" />
     <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="responsive2.css" />
+
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -19,6 +21,7 @@
     <script src="freepoint.js" defer></script>
     <script src="script.js" defer></script>
 </head>
+
 
 <body>
     <header class="main-header">
@@ -208,9 +211,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="specialevent.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/specialevent.png" alt="" />
-                                    <span>Special Event</span>
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
                                 </a>
                             </div>
                         </div>
@@ -294,8 +297,8 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button">
-                    <a href="announcement.html">
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
                     </a>
@@ -387,9 +390,9 @@
             <span>Promotions</span>
         </a>
 
-        <a href="announcement.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/icon/notiiconbottom.png" />
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
                 <span class="notification-dot"></span>
             </span>
             <span>Notification</span>
@@ -421,160 +424,153 @@
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
 
+    <div class="freepointbg">
 
+        <main class="freepoint-page">
+            <!-- =========================
+                 TABS
+            ========================== -->
+            <div class="pkb-tabs">
+                <a href="freepoint.html" class="pkb-tab pkb-tab-active">
+                    <span>Freepoint</span>
+                </a>
+                <a href="fp-history.html" class="pkb-tab">
+                    <span>History</span>
+                </a>
+            </div>
 
+            <div class="freepoint-layout">
 
-    <main class="freepoint-page">
-        <!-- =========================
-         TABS
-    ========================== -->
-        <div class="pkb-tabs">
-            <a href="freepoint.html" class="pkb-tab pkb-tab-active">
-                <span>Freepoint</span>
-            </a>
-            <a href="fp-history.html" class="pkb-tab">
-                <span>History</span>
-            </a>
-        </div>
+                <!-- =====================================
+                     LEFT : FREE POINT
+                ====================================== -->
+                <section class="freepoint-card">
+                    <!-- Background decoration -->
+                    <div class="gold-circle circle-1"></div>
+                    <div class="gold-circle circle-2"></div>
+                    <div class="freepoint-content">
+                        <!-- Title -->
+                        <div class="freepoint-icon">
+                            <img src="imgs/freepoint/titlefreepoint.png" />
+                        </div>
 
-        <div class="freepoint-layout">
+                        <p class="freepoint-subtitle">
+                            Claim your free points and enjoy more exciting rewards!
+                        </p>
 
-            <!-- =====================================
-                 LEFT : FREE POINT
-            ====================================== -->
-            <section class="freepoint-card">
-                <!-- Background decoration -->
-                <div class="gold-circle circle-1"></div>
-                <div class="gold-circle circle-2"></div>
-                <div class="freepoint-content">
-                    <!-- Title -->
-                    <div class="freepoint-icon">
-                        <i class="fa-solid fa-gift"></i>
-                    </div>
-                    <h1>Free Point</h1>
-                    <p class="freepoint-subtitle">
-                        Claim your free points and enjoy more exciting rewards!
-                    </p>
-
-                    <!-- POINT -->
-                    <div class="point-area">
-                        <div class="point-orb">
-                            <div class="point-star">
-                                <i class="fa-solid fa-star"></i>
-                                <span id="pointValue">
-                                    0
-                                </span>
+                        <!-- POINT -->
+                        <div class="point-area">
+                            <div class="point-orb">
+                                <div class="point-star">
+                                    <i class="fa-solid fa-star"></i>
+                                    <span id="pointValue">
+                                        0
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="point-label">
+                                Your current point
                             </div>
                         </div>
-                        <div class="point-label">
-                            Your current point
+
+                        <!-- CLAIM BUTTON -->
+                        <button type="button"
+                                class="claim-btn"
+                                id="claimBtn">
+                            <i class="fa-solid fa-gift"></i>
+                            <span id="claimText">
+                                Claim Free Points
+                            </span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- =====================================
+                     RIGHT : TERMS
+                ====================================== -->
+                <section class="terms-card">
+                    <!-- Header -->
+                    <div class="terms-header">
+                        <div class="terms-icon">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <h2>
+                            Terms & Conditions
+                        </h2>
+                    </div>
+
+                    <div class="terms-divider"></div>
+
+                    <!-- Terms -->
+                    <div class="terms-list">
+                        <!-- 01 -->
+                        <div class="term-item">
+                            <div class="term-number">
+                                1
+                            </div>
+                            <p>
+                                It's required to deposit to continues claim the free point. <a href="deposit.html">Deposit to claim points.</a>
+                            </p>
+                        </div>
+
+                        <!-- 02 -->
+                        <div class="term-item">
+                            <div class="term-number">
+                                2
+                            </div>
+                            <p>
+                                You agree that by accessing the Site, you have read, understood, and agree to be bound by all of these Terms and Conditions.
+                            </p>
+                        </div>
+
+                        <!-- 03 -->
+                        <div class="term-item">
+                            <div class="term-number">
+                                3
+                            </div>
+                            <p>
+                                If you do not agree with all of these Terms and Conditions, then you are expressly prohibited from using the Site and you must discontinue use immediately.
+                            </p>
+                        </div>
+
+                        <!-- 04 -->
+                        <div class="term-item">
+                            <div class="term-number">
+                                4
+                            </div>
+                            <p>
+                                The company reserves the right to modify,
+                                suspend or terminate this feature at any
+                                time without prior notice.
+                            </p>
+                        </div>
+
+                        <!-- 05 -->
+                        <div class="term-item">
+                            <div class="term-number">
+                                5
+                            </div>
+                            <p>
+                                Rewards obtained from free points are
+                                subject to the respective game rules.
+                            </p>
+                        </div>
+
+                        <!-- 06 -->
+                        <div class="term-item">
+                            <div class="term-number">
+                                6
+                            </div>
+                            <p>
+                                By claiming the free points, you agree
+                                to our Terms & Conditions.
+                            </p>
                         </div>
                     </div>
-
-                    <!-- CLAIM BUTTON -->
-                    <button type="button"
-                            class="claim-btn"
-                            id="claimBtn">
-                        <i class="fa-solid fa-gift"></i>
-                        <span id="claimText">
-                            Claim Free Points
-                        </span>
-                    </button>
-                </div>
-            </section>
-
-            <!-- =====================================
-                 RIGHT : TERMS
-            ====================================== -->
-            <section class="terms-card">
-                <!-- Header -->
-                <div class="terms-header">
-                    <div class="terms-icon">
-                        <i class="fa-solid fa-file-lines"></i>
-                    </div>
-                    <h2>
-                        Terms & Conditions
-                    </h2>
-                </div>
-
-                <div class="terms-divider"></div>
-
-                <!-- Terms -->
-                <div class="terms-list">
-                    <!-- 01 -->
-                    <div class="term-item">
-                        <div class="term-number">
-                            1
-                        </div>
-                        <p>
-                            Free points can be claimed once per day
-                            per member.
-                        </p>
-                    </div>
-
-                    <!-- 02 -->
-                    <div class="term-item">
-                        <div class="term-number">
-                            2
-                        </div>
-                        <p>
-                            The claimed points will be credited to
-                            your main wallet immediately.
-                        </p>
-                    </div>
-
-                    <!-- 03 -->
-                    <div class="term-item">
-                        <div class="term-number">
-                            3
-                        </div>
-                        <p>
-                            Free points are non-transferable and
-                            cannot be exchanged for cash.
-                        </p>
-                    </div>
-
-                    <!-- 04 -->
-                    <div class="term-item">
-                        <div class="term-number">
-                            4
-                        </div>
-                        <p>
-                            The company reserves the right to modify,
-                            suspend or terminate this feature at any
-                            time without prior notice.
-                        </p>
-                    </div>
-
-                    <!-- 05 -->
-                    <div class="term-item">
-                        <div class="term-number">
-                            5
-                        </div>
-                        <p>
-                            Rewards obtained from free points are
-                            subject to the respective game rules.
-                        </p>
-                    </div>
-
-                    <!-- 06 -->
-                    <div class="term-item">
-                        <div class="term-number">
-                            6
-                        </div>
-                        <p>
-                            By claiming the free points, you agree
-                            to our Terms & Conditions.
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-
-
-
+                </section>
+            </div>
+        </main>
+    </div>
 
 
 
@@ -810,6 +806,5 @@
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
 </body>
 </html>

@@ -305,98 +305,75 @@ function lpChangeCategory(category) {
 
 
     const lpCategoryIcon =
-        document.getElementById(
-            "lpCategoryIcon"
-        );
+        document.getElementById("lpCategoryIcon");
 
     const lpCategory =
-        document.getElementById(
-            "lpCategory"
-        );
+        document.getElementById("lpCategory");
 
     const lpHeroLabel =
-        document.getElementById(
-            "lpHeroLabel"
-        );
+        document.getElementById("lpHeroLabel");
 
     const lpHeroTitle =
-        document.getElementById(
-            "lpHeroTitle"
-        );
+        document.getElementById("lpHeroTitle");
 
     const lpHeroHighlight =
-        document.getElementById(
-            "lpHeroHighlight"
-        );
+        document.getElementById("lpHeroHighlight");
 
     const lpHeroSubtitle =
-        document.getElementById(
-            "lpHeroSubtitle"
-        );
+        document.getElementById("lpHeroSubtitle");
 
     const lpHeroButtonText =
-        document.getElementById(
-            "lpHeroButtonText"
-        );
+        document.getElementById("lpHeroButtonText");
 
 
     if (lpCategoryIcon) {
-
-        lpCategoryIcon.src =
-            data.icon;
-
-        lpCategoryIcon.alt =
-            data.name;
-
+        lpCategoryIcon.src = data.icon;
+        lpCategoryIcon.alt = data.name;
     }
 
 
     if (lpCategory) {
-
-        lpCategory.textContent =
-            data.name;
-
+        lpCategory.textContent = data.name;
     }
 
 
     if (lpHeroLabel) {
-
-        lpHeroLabel.textContent =
-            data.label;
-
+        lpHeroLabel.textContent = data.label;
     }
 
 
     if (lpHeroTitle) {
-
-        lpHeroTitle.textContent =
-            data.title;
-
+        lpHeroTitle.textContent = data.title;
     }
 
 
     if (lpHeroHighlight) {
-
-        lpHeroHighlight.textContent =
-            data.highlight;
-
+        lpHeroHighlight.textContent = data.highlight;
     }
 
 
     if (lpHeroSubtitle) {
-
-        lpHeroSubtitle.textContent =
-            data.subtitle;
-
+        lpHeroSubtitle.textContent = data.subtitle;
     }
 
 
     if (lpHeroButtonText) {
-
-        lpHeroButtonText.textContent =
-            data.button;
-
+        lpHeroButtonText.textContent = data.button;
     }
+
+
+    /* =========================================
+       CHANGE REWARD SECTION
+    ========================================= */
+
+    document.querySelectorAll(".lp-rewards-section").forEach(section => {
+
+        section.style.display =
+            section.dataset.category === category
+                ? "block"
+                : "none";
+
+    });
 
 }
 

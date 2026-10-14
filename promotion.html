@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Gaming Website</title>
-
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home-content.css" />
+    <link rel="stylesheet" href="promotion.css" />
     <link rel="stylesheet" href="responsive.css" />
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-
     <!-- JQuery -->
+    <script src="promotion.js" defer></script>
     <script src="script.js" defer></script>
 </head>
-
 <body>
     <header class="main-header">
         <div class="header-inner">
@@ -206,9 +203,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="specialevent.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/specialevent.png" alt="" />
-                                    <span>Special Event</span>
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
                                 </a>
                             </div>
                         </div>
@@ -292,8 +289,8 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button">
-                    <a href="announcement.html">
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
                     </a>
@@ -385,9 +382,9 @@
             <span>Promotions</span>
         </a>
 
-        <a href="announcement.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/icon/notiiconbottom.png" />
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
                 <span class="notification-dot"></span>
             </span>
             <span>Notification</span>
@@ -419,407 +416,356 @@
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
 
-    <!-- =========================
-         PROMO SLIDER
-    ========================= -->
-
-    <section class="promo-slider">
-        <div class="promo-track">
-            <!-- SLIDE 1 -->
-            <div class="promo-slide">
-                <a href="#">
-                    <img src="imgs/banner01a.jpg" alt="Promotion Banner" />
-                </a>
+    <div id="promotionpage">
+        <main class="rewards-page">
+            <!-- ================= REWARDS ================= -->
+            <div class="titlepromo">
+                <h2>Claim Your Rewards</h2>
             </div>
+            <div class="reward-slider">
+                <button class="reward-arrow reward-prev" type="button">‹</button>
+                <div class="reward-grid">
+                    <!-- CARD 1 -->
+                    <article class="reward-card" data-page="dailycheckin.html">
+                        <span class="status available">Available</span>
+                        <div class="reward-image image-checkin"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>DAILY CHECK-IN</h3>
+                                    <strong>MYR 11.00</strong>
+                                    <p>Deposit min of MYR 20.00</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/welbonpromo2.jpg" alt="Daily Check-In">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Check-In Now">
+                                Daily Check-in
+                            </button>
+                        </div>
+                    </article>
 
-            <!-- SLIDE 2 -->
-            <div class="promo-slide">
-                <a href="#">
-                    <img src="imgs/banner01b.jpg" alt="Promotion Banner" />
-                </a>
+                    <!-- CARD 2 -->
+                    <article class="reward-card" data-page="levelprogram.html">
+                        <span class="status available">Available</span>
+                        <div class="reward-image image-sports"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>LEVELING - SPORTS</h3>
+                                    <strong>MYR 100.00</strong>
+                                    <p>Reach Sports Level 29, get KFC Voucher</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/sportpromo2.jpg" alt="Leveling Sports">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Claim Now">
+                                Levelling Program
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 3 -->
+                    <article class="reward-card" data-page="luckydraw.html">
+                        <span class="status eligibility">Eligibility</span>
+                        <div class="reward-image image-lucky"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>LUCKY DRAW</h3>
+                                    <strong>Lucky Draw</strong>
+                                    <p>Deposit min. of MYR 30.00 on a Lucky Draw package.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/pokerpromo2.jpg" alt="Lucky Draw">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Deposit Now">
+                                Lucky Draw
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 4 -->
+                    <article class="reward-card" data-page="deposit.html">
+                        <span class="status eligibility">Eligibility</span>
+                        <div class="reward-image image-spin"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>FREE SPIN</h3>
+                                    <strong>Free Spin</strong>
+                                    <p>Deposit min. of MYR 50.00 on a Free Spin package.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/slotpromo2.jpg" alt="Free Spin">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Deposit Now">
+                                Deposit Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 5 -->
+                    <article class="reward-card" data-page="invitefren.html">
+                        <span class="status eligibility">Eligibility</span>
+                        <div class="reward-image image-friend"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>INVITE FRIEND</h3>
+                                    <strong>Referrer Bonus</strong>
+                                    <p>Invite a friend. Invited friend must deposit a min of MYR 30.00.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/lotterypromo2.jpg" alt="Invite Friend">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Get">
+                                Invite Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 6 -->
+                    <article class="reward-card" data-page="freepoint.html">
+                        <span class="status eligibility">Eligibility</span>
+                        <div class="reward-image image-point"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>GAME POINT</h3>
+                                    <strong>Game Point</strong>
+                                    <p>Deposit 1 time to claim a treasure.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/casinopromo2.jpg" alt="Game Point">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Collect Now">
+                                Collect Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 7 -->
+                    <article class="reward-card" data-page="deposit.html">
+                        <span class="status available">Available</span>
+                        <div class="reward-image image-checkin"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>WEEKLY BONUS</h3>
+                                    <strong>MYR 25.00</strong>
+                                    <p>Complete your weekly deposit requirement.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/welbonpromo2.jpg" alt="Weekly Bonus">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Claim Now">
+                                Claim Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 8 -->
+                    <article class="reward-card" data-page="deposit.html">
+                        <span class="status eligibility">Eligibility</span>
+                        <div class="reward-image image-sports"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>SPORTS BONUS</h3>
+                                    <strong>MYR 50.00</strong>
+                                    <p>Reach the required sports level to unlock.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/sportpromo2.jpg" alt="Sports Bonus">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Claim Now">
+                                Deposit Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 9 -->
+                    <article class="reward-card" data-page="luckydraw.html">
+                        <span class="status eligibility">Eligibility</span>
+                        <div class="reward-image image-lucky"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>LUCKY BONUS</h3>
+                                    <strong>MYR 30.00</strong>
+                                    <p>Deposit into an eligible Lucky Draw package.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/pokerpromo2.jpg" alt="Lucky Bonus">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Deposit Now">
+                                Spin Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 10 -->
+                    <article class="reward-card" data-page="luckydraw.html">
+                        <span class="status eligibility">Eligibility</span>
+                        <div class="reward-image image-spin"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>SPIN BONUS</h3>
+                                    <strong>20 Free Spins</strong>
+                                    <p>Deposit into an eligible Free Spin package.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/slotpromo2.jpg" alt="Spin Bonus">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Deposit Now">
+                                Spin Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 11 -->
+                    <article class="reward-card" data-page="friends.html">
+                        <span class="status eligibility">Eligibility</span>
+                        <div class="reward-image image-friend"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>FRIEND BONUS</h3>
+                                    <strong>MYR 50.00</strong>
+                                    <p>Invite friends and unlock your referral reward.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/lotterypromo2.jpg" alt="Friend Bonus">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Get">
+                                Collect Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CARD 12 -->
+                    <article class="reward-card" data-page="freepoint.html">
+                        <span class="status eligibility">Eligibility</span>
+                        <div class="reward-image image-point"></div>
+                        <div class="reward-content">
+                            <div class="reward-info-row">
+                                <div class="reward-text">
+                                    <h3>POINT BONUS</h3>
+                                    <strong>500 Points</strong>
+                                    <p>Complete the requirement to collect your points.</p>
+                                </div>
+                                <div class="reward-small-image">
+                                    <img src="imgs/promo/casinopromo2.jpg" alt="Point Bonus">
+                                </div>
+                            </div>
+                            <button class="gold-btn" data-action="Collect Now">
+                                Collect Now
+                            </button>
+                        </div>
+                    </article>
+                </div>
+                <button class="reward-arrow reward-next" type="button">›</button>
             </div>
-
-            <!-- SLIDE 3 -->
-            <div class="promo-slide">
-                <a href="#">
-                    <img src="imgs/banner01c.jpg" alt="Promotion Banner" />
-                </a>
+            <!-- 4 DOTS -->
+            <div class="reward-dots">
+                <span class="reward-dot active"></span>
+                <span class="reward-dot"></span>
+                <span class="reward-dot"></span>
             </div>
-        </div>
+            <!-- ================= DEPOSIT ================= -->
+            <section class="deposit-section">
+                <div class="deposit-heading">
+                    <div class="titlepromo">
+                        <h2>Deposit Packages</h2>
+                        <p>Pick a package before you deposit and to claim the bonus!</p>
+                    </div>
+                </div>
+                <div class="package-grid">
+                    <article class="package-card">
+                        <div class="package-rate">+5%</div>
+                        <div class="package-visual visual-gift"></div>
+                        <div class="package-info">
+                            <h3>Bonus 5%</h3>
+                            <p>Up to <b>MYR 88.00</b> bonus</p>
+                            <p>From <b>MYR 100.00</b></p>
+                        </div>
+                        <button class="gold-btn package-btn" data-action="Claim Package">Claim Package</button>
+                    </article>
+                    <article class="package-card">
+                        <div class="package-rate">+3%</div>
+                        <div class="package-visual visual-gift"></div>
+                        <div class="package-info">
+                            <h3>Bonus 3%</h3>
+                            <p>Up to <b>MYR 88.00</b> bonus</p>
+                            <p>From <b>MYR 80.00</b></p>
+                        </div>
+                        <button class="gold-btn package-btn" data-action="Claim Package">Claim Package</button>
+                    </article>
+                    <article class="package-card">
+                        <div class="package-rate">+2%</div>
+                        <div class="package-visual visual-gift"></div>
+                        <div class="package-info">
+                            <h3>Bonus 2%</h3>
+                            <p>Up to <b>MYR 88.00</b> bonus</p>
+                            <p>From <b>MYR 50.00</b></p>
+                        </div>
+                        <button class="gold-btn package-btn" data-action="Claim Package">Claim Package</button>
+                    </article>
+                    <article class="package-card">
+                        <div class="package-rate">0%</div>
+                        <div class="package-visual visual-treasure"></div>
+                        <div class="package-info">
+                            <h3>No Bonus</h3>
+                            <p>From <b>MYR 20.00</b></p>
+                        </div>
+                        <button class="gold-btn package-btn" data-action="Claim Package">Claim Package</button>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
 
-        <!-- DOTS -->
-        <div class="promo-dots">
-            <span class="promo-dot active"></span>
-            <span class="promo-dot"></span>
-            <span class="promo-dot"></span>
-        </div>
-    </section>
 
 
-    <!-- =========================
-         PROMOTIONS
-    ========================= -->
 
-    <section class="cm8-promo-section hot-games">
 
-        <!-- PROMOTION HEADER -->
-        <div class="slot-section-title">
-            <div class="slot-section-icon">
-                <img src="imgs/icon/promo-ic.png" alt="Promo Icon" />
+    <div class="reward-modal" id="rewardModal">
+        <div class="reward-modal-box">
+            <!-- LEFT : CONTENT -->
+            <div class="reward-modal-content">
+                <span id="modalRewardStatus" class="status"></span>
+                <h2 id="modalRewardTitle"></h2>
+                <strong id="modalRewardAmount"></strong>
+                <p id="modalRewardDescription"></p>
+                <button class="gold-btn" id="modalRewardButton">
+                    Claim Now
+                </button>
             </div>
-
-            <div class="slot-section-text">
-                <h2>Promotion</h2>
-                <p>Exclusive offers for you</p>
+            <!-- RIGHT : IMAGE -->
+            <div class="reward-modal-image">
+                <img id="modalRewardImage"
+                     src="imgs/promo/promo-welc.jpg"
+                     alt="">
             </div>
-
+            <!-- CLOSE -->
+            <button class="reward-modal-close" id="rewardModalClose">
+                ×
+            </button>
         </div>
-
-
-        <!-- PROMOTION CATEGORIES -->
-        <div class="cm8-promo-category-wrap">
-            <button class="cm8-promo-category active" type="button" data-promo-category="all">
-                <img src="imgs/promo/all-ic-menupromo.png" />
-                <span>All</span>
-            </button>
-
-            <button class="cm8-promo-category" type="button" data-promo-category="sport">
-                <img src="imgs/promo/sports-ic-menupromo.png" />
-                <span>Sport</span>
-            </button>
-
-            <button class="cm8-promo-category" type="button" data-promo-category="casino">
-                <img src="imgs/promo/cas-ic-menupromo.png" />
-                <span>Casino</span>
-            </button>
-
-            <button class="cm8-promo-category" type="button" data-promo-category="lottery">
-                <img src="imgs/promo/lottery-ic-menupromo.png" />
-                <span>Lottery</span>
-            </button>
-
-            <button class="cm8-promo-category" type="button" data-promo-category="games">
-                <img src="imgs/promo/slot-ic-menupromo.png" />
-                <span>Games</span>
-            </button>
-
-            <button class="cm8-promo-category" type="button" data-promo-category="p2p">
-                <img src="imgs/promo/pokerl-ic-menupromo.png" />
-                <span>P2P</span>
-            </button>
-
-            <button class="cm8-promo-category" type="button" data-promo-category="financial">
-                <img src="imgs/promo/finance-ic-menupromo.png" />
-                <span>Financial</span>
-            </button>
-
-        </div>
-
-
-        <!-- PROMOTION GRID -->
-        <div class="cm8-promo-grid">
-
-
-            <!-- ================= CARD 01 ================= -->
-            <article class="cm8-promo-card"
-                     data-promo-type="welcome">
-
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>UNLOCK LIVE CASINO REWARDS</h3>
-                    <p>Real Dealers, Real Excitement</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-welc.jpg" alt="Welcome Bonus">
-                </div>
-
-            </article>
-
-
-            <!-- ================= CARD 02 ================= -->
-            <article class="cm8-promo-card" data-promo-type="sport">
-
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>EXCLUSIVE SPORTS CASHBACK PROMOTION</h3>
-                    <p>Bet more, Get more back</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-sport01.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-
-            <!-- ================= CARD 03 ================= -->
-            <article class="cm8-promo-card" data-promo-type="casino">
-
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>LIVE CASINO SPECIAL DEALS</h3>
-                    <p>Spin more, Win more</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-casino.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-
-            <!-- ================= CARD 04 ================= -->
-            <article class="cm8-promo-card" data-promo-type="games">
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>ULTIMATE SLOT TOURNAMENT</h3>
-                    <p>Your lucky moments awaits</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-slot.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-
-            <!-- ================= CARD 05 ================= -->
-            <article class="cm8-promo-card" data-promo-type="lottery">
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>WIN THE JACKPOT FOR LOTTERY</h3>
-                    <p>Claim your exclusive rewards.</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-lotto.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-
-            <!-- ================= CARD 06 ================= -->
-            <article class="cm8-promo-card" data-promo-type="p2p">
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>POKER WEEKLY REWARD CHALLENGE</h3>
-                    <p>Play more, Win More</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-poker.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-            <!-- ================= CARD 07 ================= -->
-            <article class="cm8-promo-card"
-                     data-promo-type="welcome">
-
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>UNLOCK LIVE CASINO REWARDS</h3>
-                    <p>Real Dealers, Real Excitement</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-welc.jpg" alt="Welcome Bonus">
-                </div>
-
-            </article>
-
-
-            <!-- ================= CARD 08 ================= -->
-            <article class="cm8-promo-card" data-promo-type="sport">
-
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>EXCLUSIVE SPORTS CASHBACK PROMOTION</h3>
-                    <p>Bet more, Get more back</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-sport01.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-
-            <!-- ================= CARD 09 ================= -->
-            <article class="cm8-promo-card" data-promo-type="casino">
-
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>LIVE CASINO SPECIAL DEALS</h3>
-                    <p>Spin more, Win more</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-casino.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-
-            <!-- ================= CARD 10 ================= -->
-            <article class="cm8-promo-card" data-promo-type="games">
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>ULTIMATE SLOT TOURNAMENT</h3>
-                    <p>Your lucky moments awaits</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-slot.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-
-            <!-- ================= CARD 11 ================= -->
-            <article class="cm8-promo-card" data-promo-type="lottery">
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>WIN THE JACKPOT FOR LOTTERY</h3>
-                    <p>Claim your exclusive rewards.</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-lotto.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-
-            <!-- ================= CARD 12 ================= -->
-            <article class="cm8-promo-card" data-promo-type="p2p">
-                <!-- LEFT CONTENT -->
-                <div class="cm8-promo-card-content">
-                    <h3>POKER WEEKLY REWARD CHALLENGE</h3>
-                    <p>Play more, Win More</p>
-                    <div class="cm8-promo-action">
-                        <button type="button" class="cm8-promo-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        <strong>Bet Now</strong>
-                    </div>
-
-                </div>
-
-
-                <!-- RIGHT IMAGE -->
-                <div class="cm8-promo-card-image">
-                    <img src="imgs/promo/promo-poker.jpg" alt="Welcome Bonus">
-                </div>
-            </article>
-
-
-
-        </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
 
 
     <!-- LANGUAGE POPUP -->
@@ -831,23 +777,19 @@
                     <div class="language-globe">
                         <i class="fa-solid fa-globe"></i>
                     </div>
-
                     <div class="language-title-content">
                         <h3>Language</h3>
                         <span>Choose your preferred language</span>
                     </div>
                 </div>
-
                 <button type="button" class="language-close" id="languageClose" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
             <!-- Decorative line -->
             <div class="language-divider">
                 <span></span>
             </div>
-
             <!-- Language List -->
             <div class="language-list">
                 <button class="language-item active" data-language="English">
@@ -857,10 +799,8 @@
                         </span>
                         <span class="language-name">English</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ភាសាខ្មែរ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -868,10 +808,8 @@
                         </span>
                         <span class="language-name">ភាសាខ្មែរ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="简体中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -879,10 +817,8 @@
                         </span>
                         <span class="language-name">简体中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="မြန်မာ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -890,10 +826,8 @@
                         </span>
                         <span class="language-name">မြန်မာ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="繁體中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -901,10 +835,8 @@
                         </span>
                         <span class="language-name">繁體中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ジャパン">
                     <div class="language-info">
                         <span class="language-flag">
@@ -912,10 +844,8 @@
                         </span>
                         <span class="language-name">ジャパン</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ภาษาไทย">
                     <div class="language-info">
                         <span class="language-flag">
@@ -923,10 +853,8 @@
                         </span>
                         <span class="language-name">ภาษาไทย</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Français">
                     <div class="language-info">
                         <span class="language-flag">
@@ -934,10 +862,8 @@
                         </span>
                         <span class="language-name">Français</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="한국어">
                     <div class="language-info">
                         <span class="language-flag">
@@ -945,10 +871,8 @@
                         </span>
                         <span class="language-name">한국어</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Español">
                     <div class="language-info">
                         <span class="language-flag">
@@ -956,10 +880,8 @@
                         </span>
                         <span class="language-name">Español</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Tiếng Việt">
                     <div class="language-info">
                         <span class="language-flag">
@@ -967,10 +889,8 @@
                         </span>
                         <span class="language-name">Tiếng Việt</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Português">
                     <div class="language-info">
                         <span class="language-flag">
@@ -978,10 +898,8 @@
                         </span>
                         <span class="language-name">Português</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Indonesia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -989,10 +907,8 @@
                         </span>
                         <span class="language-name">Indonesia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="বাংলা">
                     <div class="language-info">
                         <span class="language-flag">
@@ -1000,10 +916,8 @@
                         </span>
                         <span class="language-name">বাংলা</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="इंडिया">
                     <div class="language-info">
                         <span class="language-flag">
@@ -1011,10 +925,8 @@
                         </span>
                         <span class="language-name">इंडिया</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Malaysia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -1022,17 +934,14 @@
                         </span>
                         <span class="language-name">Malaysia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
             </div>
-
             <!-- Footer -->
             <div class="language-footer">
                 <div class="language-footer-icon">
                     <i class="fa-solid fa-check"></i>
                 </div>
-
                 <div class="language-footer-text">
                     <strong>Applied instantly</strong>
                     <span>Your language preference will be saved automatically.</span>
@@ -1040,11 +949,9 @@
             </div>
         </div>
     </div>
-
     <!-- BACK TO TOP -->
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
 </body>
 </html>

@@ -1,0 +1,237 @@
+/* INBOX - aligned with the site's existing black & gold theme */
+:root {
+    --inbox-primary: #EAD87D;
+    --inbox-accent: #FFD700;
+    --inbox-surface: #121418;
+    --inbox-panel: #202228;
+    --inbox-bg: #000000;
+    --inbox-text: #FFFFFF;
+    --inbox-muted: #B6C0CB;
+    --inbox-border: #292E35;
+    --inbox-gold-border: rgba(234, 216, 125, 0.42);
+}
+
+/* Match the site's centered content width */
+.inbox-page {
+    width: 100%;
+    margin: 14px auto;
+    padding: 0 20px;
+}
+
+.inbox-panel {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    background: var(--inbox-panel);
+    color: var(--inbox-text);
+    border: 1px solid var(--inbox-border);
+    border-radius: 16px;
+}
+
+/* Header follows the existing compact topbar style */
+.inbox-toolbar {
+    min-height: 64px;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #111214;
+    border-bottom: 1px solid var(--inbox-border);
+}
+
+.inbox-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.mail-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    display: grid;
+    place-items: center;
+    padding: 5px;
+    background: linear-gradient(145deg, #292417, #111315);
+    border: 1px solid var(--inbox-primary);
+    border-radius: 8px;
+    color: var(--inbox-primary);
+}
+
+    .mail-icon svg {
+        width: 25px;
+        height: 25px;
+        fill: none;
+        stroke: var(--inbox-primary);
+        stroke-width: 2.1;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+.inbox-heading h2 {
+    line-height: 1.2;
+    color: #ead87d;
+    font-weight: 700;
+    font-size: var(--font-icon-xl);
+}
+
+.toolbar-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.action-btn {
+    min-width: 92px;
+    min-height: 36px;
+    padding: 0 16px;
+    border: 1px solid #434343;
+    border-radius: 20px;
+    background: #111315;
+    color: var(--inbox-primary);
+    font: inherit;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, filter .15s ease;
+}
+
+    .action-btn:hover:not(:disabled),
+    .action-btn:focus-visible:not(:disabled) {
+        background: #282314;
+        border-color: var(--inbox-primary);
+        outline: none;
+    }
+
+    .action-btn:active:not(:disabled) {
+        transform: translateY(1px);
+    }
+
+    .action-btn:disabled {
+        opacity: .45;
+        cursor: not-allowed;
+    }
+
+/* Table uses the same dark header and thin borders as the site's tables */
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.message-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background: transparent;
+    color: var(--inbox-text);
+}
+
+    .message-table thead {
+        background: #050505;
+    }
+
+    .message-table th {
+        height: 46px;
+        padding: 12px 16px;
+        color: var(--inbox-primary);
+        background: #050505;
+        border-right: 1px solid #202326;
+        border-bottom: 1px solid var(--inbox-border);
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: none;
+    }
+
+        .message-table th:last-child {
+            border-right: 0;
+        }
+
+.date-column {
+    width: 39%;
+}
+
+.title-column {
+    width: 42%;
+}
+
+.select-column {
+    width: 19%;
+}
+
+.message-table td {
+    padding: 14px 16px;
+    color: var(--inbox-text);
+    text-align: center;
+    border-bottom: 1px solid rgba(41, 46, 53, .85);
+    background: transparent;
+}
+
+.message-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.empty-row td {
+    height: 48px;
+    color: var(--inbox-muted);
+    background: #17191D;
+    font-weight: 500;
+}
+
+.select-column input,
+.row-check {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    accent-color: var(--inbox-accent);
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.message-row {
+    background: var(--inbox-surface);
+    transition: background-color .15s ease;
+}
+
+    .message-row:hover {
+        background: #1b1e22;
+    }
+
+    .message-row.unread .message-title {
+        color: var(--inbox-primary);
+        font-weight: 700;
+    }
+
+    .message-row.is-selected {
+        background: #262319;
+    }
+
+.message-date,
+.message-title {
+    overflow-wrap: anywhere;
+}
+
+.message-date {
+    color: var(--inbox-muted) !important;
+}
+
+
+
+
+/* Make the select checkbox reliably clickable and visibly interactive */
+.select-column input,
+.row-check {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    accent-color: var(--inbox-accent);
+}
+
+    .select-column input:disabled {
+        opacity: .45;
+        cursor: not-allowed;
+    }

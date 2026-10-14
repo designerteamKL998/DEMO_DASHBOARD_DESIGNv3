@@ -1,12 +1,5 @@
 ﻿.download-page {
-    width: 100%;
-    max-width: 1500px;
-    margin: 14px auto;
-    padding: 10px 32px 20px;
-    background: #202228;
-    color: var(--st-text);
-    box-sizing: border-box;
-    border-radius: 20px;
+    padding:0px 20px;
 }
 
 /* =========================================================
@@ -40,12 +33,18 @@
 
 
 
-
-
+.dl-page {
+    width: 100%;
+    margin: 14px auto;
+    padding: 10px 32px 20px;
+    background: #202228;
+    color: var(--st-text);
+    box-sizing: border-box;
+    border-radius: 20px;
+}
 /* =========================================================
    BACKGROUND
 ========================================================= */
-
 .dl-bg-orb {
     position: absolute;
     border-radius: 50%;

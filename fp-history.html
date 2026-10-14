@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="freepoint.css" />
     <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="responsive2.css" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -208,9 +209,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="specialevent.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/specialevent.png" alt="" />
-                                    <span>Special Event</span>
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
                                 </a>
                             </div>
                         </div>
@@ -294,8 +295,8 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button">
-                    <a href="announcement.html">
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
                     </a>
@@ -387,9 +388,9 @@
             <span>Promotions</span>
         </a>
 
-        <a href="announcement.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/icon/notiiconbottom.png" />
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
                 <span class="notification-dot"></span>
             </span>
             <span>Notification</span>
@@ -439,229 +440,24 @@
             </a>
         </header>
 
-        <!-- =========================================
-             SUMMARY
-        ========================================== -->
-        <section class="fp-summary">
-            <!-- TOTAL POINT -->
-            <div class="fp-summary-card">
-                <div class="fp-summary-icon">
-                    <i class="fa-solid fa-coins"></i>
-                </div>
-                <div class="fp-summary-info">
-                    <span>Total Free Point</span>
-                    <strong>1,250</strong>
-                </div>
-                <div class="fp-summary-decoration">
-                    <i class="fa-solid fa-coins"></i>
-                </div>
-            </div>
-
-            <!-- AVAILABLE BALANCE -->
-            <div class="fp-summary-card">
-                <div class="fp-summary-icon">
-                    <i class="fa-solid fa-wallet"></i>
-                </div>
-                <div class="fp-summary-info">
-                    <span>Available Balance</span>
-                    <strong>GP 1,250</strong>
-                </div>
-                <div class="fp-summary-decoration">
-                    <i class="fa-solid fa-wallet"></i>
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================
-             HISTORY
-        ========================================== -->
-        <section class="fp-history-section">
-            <!-- SECTION HEADER -->
-            <div class="fp-section-header">
-                <div class="fp-section-title">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    <span>HISTORY</span>
-                </div>
-
-                <div class="fp-record-count">
-                    4 Records
-                </div>
-            </div>
-
-            <!-- TABLE -->
-            <div class="fp-table-wrap">
-                <table class="fp-table">
-                    <thead>
-                        <tr>
-                            <th>DATE</th>
-                            <th>TYPE</th>
-                            <th>POINT</th>
-                            <th>STATUS</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <!-- RECORD 1 -->
-                        <tr>
-                            <td>
-                                <span class="fp-date">
-                                    25 Sep 2026
-                                </span>
-                            </td>
-
-                            <td>
-                                <div class="fp-type">
-                                    <div class="fp-type-icon">
-                                        <i class="fa-solid fa-layer-group"></i>
-                                    </div>
-                                    <div class="fp-type-info">
-                                        <strong>
-                                            Card Collection
-                                        </strong>
-                                        <small>
-                                            Reward received
-                                        </small>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <td>
-                                <span class="fp-point fp-plus">
-                                    +39
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="fp-status fp-added">
-                                    <i class="fa-solid fa-circle"></i>
-                                    Added
-                                </span>
-                            </td>
-                        </tr>
-
-                        <!-- RECORD 2 -->
-                        <tr>
-                            <td>
-                                <span class="fp-date">
-                                    24 Sep 2026
-                                </span>
-                            </td>
-
-                            <td>
-                                <div class="fp-type">
-                                    <div class="fp-type-icon">
-                                        <i class="fa-solid fa-gift"></i>
-                                    </div>
-                                    <div class="fp-type-info">
-                                        <strong>
-                                            Friend Reward
-                                        </strong>
-                                        <small>
-                                            Reward received
-                                        </small>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <td>
-                                <span class="fp-point fp-plus">
-                                    +399
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="fp-status fp-added">
-                                    <i class="fa-solid fa-circle"></i>
-                                    Added
-                                </span>
-                            </td>
-                        </tr>
-
-                        <!-- RECORD 3 -->
-                        <tr>
-                            <td>
-                                <span class="fp-date">
-                                    23 Sep 2026
-                                </span>
-                            </td>
-
-                            <td>
-                                <div class="fp-type">
-                                    <div class="fp-type-icon">
-                                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                    </div>
-                                    <div class="fp-type-info">
-                                        <strong>
-                                            Card Exchange
-                                        </strong>
-                                        <small>
-                                            Point used
-                                        </small>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <td>
-                                <span class="fp-point fp-minus">
-                                    -39
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="fp-status fp-used">
-                                    <i class="fa-solid fa-circle"></i>
-                                    Used
-                                </span>
-                            </td>
-                        </tr>
-
-                        <!-- RECORD 4 -->
-                        <tr>
-                            <td>
-                                <span class="fp-date">
-                                    21 Sep 2026
-                                </span>
-                            </td>
-
-                            <td>
-                                <div class="fp-type">
-                                    <div class="fp-type-icon">
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div class="fp-type-info">
-                                        <strong>
-                                            Bonus Reward
-                                        </strong>
-                                        <small>
-                                            Promotional reward
-                                        </small>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <td>
-                                <span class="fp-point fp-plus">
-                                    +100
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="fp-status fp-added">
-                                    <i class="fa-solid fa-circle"></i>
-                                    Added
-                                </span>
-                            </td>
-                        </tr>
+        <section class="history-card">
+            <form class="filter-row" id="filterForm">
+                <label for="historyDate">Date</label>
+                <input class="date-input" type="date" id="historyDate" name="historyDate">
+                <button class="go-btn" type="submit">Go</button>
+            </form>
+            <div class="table-wrap">
+                <table aria-label="Free point history records">
+                    <thead><tr><th>Date</th><th>Claimed time</th><th>Points</th></tr></thead>
+                    <tbody id="historyRows">
+                        <tr class="empty-state"><td colspan="3"><div class="empty-icon">▤⌕</div><div class="empty-text">No Record.</div></td></tr>
                     </tbody>
                 </table>
             </div>
-
-            <!-- EMPTY / END -->
-            <div class="fp-no-more">
-                <i class="fa-regular fa-file-lines"></i>
-                <span>No more records</span>
-            </div>
+            <div class="notice" id="filterNotice" role="status"></div>
         </section>
+
+
     </main>
 
 

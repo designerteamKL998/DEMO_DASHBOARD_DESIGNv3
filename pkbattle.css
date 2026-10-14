@@ -1,714 +1,907 @@
-﻿/* =========================================================
-   PK BATTLE PAGE
-   PREFIX: pkb-
-========================================================= */
+﻿/* =========================================
+   ROOT
+========================================= */
 
-.pkb-page {
-    /* =========================================
-       COLOR PALETTE
-    ========================================= */
-    --pkb-primary: #EAD87D;
-    --pkb-secondary: #202228;
-    --pkb-accent: #FFD700;
-    --pkb-surface: #121418;
-    --pkb-text: #FFFFFF;
-    --pkb-background: #000000;
-    --pkb-highlight: #FFF1A8;
-    --pkb-on-primary: #111111;
-    --pkb-success: #43C07A;
-    --pkb-error: #FF5B5B;
-    --pkb-live: #2EE6C6;
-    /* =========================================
-       EXTRA UI COLORS
-    ========================================= */
-    --pkb-muted: #9B9FA8;
-    --pkb-border: rgba(234, 216, 125, 0.22);
-    --pkb-border-light: rgba(255, 255, 255, 0.08);
-    --pkb-team-a: #258EEA;
-    --pkb-team-b: #F2384B;
-
+:root {
+    --pk-gold: #EAD87D;
+    --pk-gold-light: #FFF1A8;
+    --pk-gold-dark: #B8A64F;
+    --pk-red: #FFD700;
+    --pk-red-dark: #C5A900;
+    --pk-black: #000000;
+    --pk-panel: #121418;
+    --pk-border: rgba(234, 216, 125, 0.22);
+    --pk-white: #FFFFFF;
+    --pk-muted: #8C8C8C;
+    /* BRAND COLORS */
+    --pk-primary: #EAD87D;
+    --pk-secondary: #202228;
+    --pk-accent: #FFD700;
+    --pk-surface: #121418;
+    --pk-background: #000000;
+    --pk-text: #FFFFFF;
+    --pk-highlight: #FFF1A8;
+    --pk-success: #43C07A;
+    --pk-error: #FF5B5B;
+    --pk-live: #2EE6C6;
+    --pk-on-primary: #111111;
+    --pk-border-light: rgba(255, 255, 255, 0.08);
 }
 
-
-    /* =========================================================
+/* =========================================
    RESET
-========================================================= */
+========================================= */
 
-    .pkb-page *,
-    .pkb-page *::before,
-    .pkb-page *::after {
-        box-sizing: border-box;
-    }
-
-
-/* =========================================================
-   PAGE HEADER
-========================================================= */
-.pkb-page {
-    width: 100%;
-    max-width: 1600px;
-    margin: 14px auto;
-    padding: 10px 32px;
-    background: var(--pkb-secondary);
-    color: var(--pkb-text);
+* {
     box-sizing: border-box;
-    border-radius: 8px;
-}
-
-.pkb-header {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid #30333d;
-}
-
-.pkb-header-line {
-    width: 8px;
-    height: 76px;
-    flex-shrink: 0;
-    background: var(--pkb-primary);
-    border-radius: 8px;
-}
-
-.pkb-header-content h2 {
     margin: 0;
-    color: var(--pkb-primary);
-    line-height: 1;
-    font-weight: 800;
-    letter-spacing: 1px;
-    padding: 10px 20px 0px;
+    padding: 0;
 }
 
-.pkb-header-content p {
-    margin: 10px 0 0;
-    color: var(--pkb-muted);
-}
-
-
-/* =========================================================
-   TABS
-========================================================= */
-
-.pkb-tabs {
+html,
+body {
     width: 100%;
-    max-width: 1600px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 48px;
-    padding: 0px;
-    background: #121418;
-    border: 1px solid #292d35;
-    border-radius: 40px;
-    margin: 5px auto;
+    min-height: 100%;
 }
 
-.pkb-tab {
-    padding: 10px 17px;
+body {
+    background: #090909;
+    color: var(--pk-white);
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.pk-page {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background: url(imgs/pkbattle/bgpkbattle.jpg) no-repeat;
+    background-size:cover;
+    padding: 25px 30px 45px;
+}
+
+
+/* =========================================
+   TOP BUTTONS
+========================================= */
+
+.pk-top-actions {
+    position: absolute;
+    top: 24px;
+    right: 28px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    color: #969ba5;
-    border: 0px solid var(--pkb-border-light);
+    gap: 16px;
+    z-index: 20;
+}
+
+.pk-icon-btn {
+    width:53px;
+    height:48px;
+    padding:5px 8px;
+    border-radius: 12px;
+    border: 2px solid var(--pk-gold);
+    background: linear-gradient( 145deg, #171717, #050505 );
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), 0 4px 15px rgba(0,0,0,.5);
+    color: var(--pk-gold-light);
     cursor: pointer;
-    transition: 0.2s ease;
-    border-radius: 30px;
-    text-transform: uppercase;
+    transition: transform .2s ease, border-color .2s ease;
 }
 
-.pkb-tab-icon img {
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-    display:none;
-}
-
-.pkb-tab:hover img, .pkb-tab-active img {
-    filter: brightness(0) saturate(100%);
-}
-
-.pkb-tab:hover {
-    color: #000;
-    background: #ead87d;
-}
-
-.pkb-tab-active {
-    color: #000;
-    background: #ead87d;
-    margin: 0 5px;
-}
-
-    .pkb-tab-active:hover {
-        color: #000;
-        background: #ead87d;
-
+    .pk-icon-btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
-.pkb-tab-icon {
-    line-height: 1;
-    font-size:17px;
+
+    .pk-icon-btn:hover {
+        transform: translateY(-2px);
+        border-color: #fff0a4;
+    }
+
+.pk-icon {
+    font-size: 30px;
 }
 
 
-/* =========================================================
-   TAB CONTENT
-========================================================= */
+/* =========================================
+   MAIN
+========================================= */
 
-.pkb-tab-content {
-    display: none;
-}
-
-.pkb-content-active {
-    display: block;
-}
-
-
-/* =========================================================
-   GENERAL PANEL
-========================================================= */
-
-.pkb-panel {
-    border-radius: 8px;
+.pk-container {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+    position: relative;
+    padding-top: 10px;
 }
 
 
-/* =========================================================
-   ONGOING BATTLE PANEL
-========================================================= */
+/* =========================================
+   HERO / LOGO
+========================================= */
 
-.pkb-ongoing-panel {
-    padding: 0px 0px 0px;
-    border-color: var(--pkb-border);
-}
-
-
-/* =========================================================
-   SECTION TITLE
-========================================================= */
-
-.pkb-section-title {
+.pk-hero {
+    height: 250px;
     display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 0 8px 12px;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    z-index: 4;
 }
 
-.pkb-section-icon {
-    color: var(--pkb-primary);
-    line-height: 1;
-    font-size: 40px;
+.pk-logo {
+    text-align: center;
+    filter: drop-shadow(0 8px 5px rgba(0,0,0,.6));
 }
 
-.pkb-section-title h2 {
-    margin: 0;
-    color: var(--pkb-primary);
-    font-weight: 800;
+.pk-logo-main {
+    font-family: Georgia, serif;
+    font-size: clamp(70px, 8vw, 120px);
+    line-height: .8;
+    font-weight: 900;
+    color: #fff0a0;
+    text-shadow: 0 3px 0 #b67a12, 0 6px 0 #6c4007, 0 10px 15px rgba(0,0,0,.7);
+    letter-spacing: -8px;
 }
 
-.pkb-section-title p {
-    margin: 5px 0 0;
-    color: var(--pkb-muted);
-}
-
-
-/* =========================================================
-   BATTLE GRID
-========================================================= */
-
-.pkb-battle-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-}
-
-
-/* =========================================================
-   BATTLE CARD
-========================================================= */
-
-.pkb-battle-card {
-    min-width: 0;
-    padding: 14px 17px 16px;
-    background: var(--pkb-surface);
-    border: 1px solid var(--pkb-border-light);
+.pk-logo-ribbon {
+    margin-top: 15px;
+    padding: 12px 60px;
+    min-width: 330px;
+    background: linear-gradient( #d3202d, #8d0711 );
+    border: 3px solid #e4a934;
     border-radius: 8px;
-    transition: border-color 0.2s ease;
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    box-shadow: 0 7px 12px rgba(0,0,0,.5), inset 0 2px 0 rgba(255,255,255,.25);
 }
 
-    .pkb-battle-card:hover {
-        border-color: var(--pkb-border);
-    }
 
+/* =========================================
+   REWARD
+========================================= */
 
-/* =========================================================
-   BATTLE TOP
-========================================================= */
-
-.pkb-battle-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 13px;
+.pk-reward {
+    position: relative;
+    margin-top: -10px;
 }
 
-.pkb-battle-number {
-    display: inline-flex;
-    align-items: center;
-    min-height: 29px;
-    padding: 0 11px;
-    background: transparent;
-    border: 1px solid var(--pkb-primary);
-    border-radius: 8px;
-    color: var(--pkb-primary);
+.pk-stage {
+    position: relative;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    border: 0px solid #a8751e;
+    border-radius: 12px;
 }
 
-.pkb-countdown {
-    color: var(--pkb-muted);
-    white-space: nowrap;
+.pkcenter {
+    background: url(imgs/pkbattle/stagebgpkbattle.png)bottom no-repeat;
 }
-
-    .pkb-countdown > span {
-        color: var(--pkb-accent);
-        margin-right: 5px;
-    }
-
-    .pkb-countdown strong {
-        color: var(--pkb-text);
-        margin-left: 4px;
-        letter-spacing: 1px;
-    }
-
-
-/* =========================================================
-   GAME INFORMATION
-========================================================= */
-
-.pkb-battle-info {
-    display: flex;
-    align-items: center;
-    gap: 17px;
-    margin: 5px 5px 10px;
-}
-
-.pkb-game-icon {
-    width: 60px;
-    height: 60px;
-    flex: 0 0 60px;
+/* =========================================
+   CARDS
+========================================= */
+.pk-card-decor {
+    position: absolute;
+    top: 20px;
+    width: 105px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--pkb-secondary);
-    border: 1px solid var(--pkb-border);
-    border-radius: 50%;
-    color: var(--pkb-primary);
-    font-size: 20px;
+    background: linear-gradient( 145deg, #171717, #050505 );
+    border: 2px solid #b28a38;
+    border-radius: 8px;
+    font-family: Georgia, serif;
+    font-size: 27px;
+    color: #f2bd45;
+    box-shadow: 0 7px 12px rgba(0,0,0,.6);
+    z-index: 1;
 }
 
-.pkb-sports-icon {
+.pk-card-left {
+    left: 25px;
+    transform: rotate(-17deg);
 }
 
-.pkb-slot-icon {
-    font-weight: 900;
-    letter-spacing: -2px;
-}
-
-.pkb-casino-icon {
-}
-
-.pkb-battle-info h3 {
-    margin: 0 0 5px;
-    color: var(--pkb-text);
-}
-
-.pkb-battle-info p {
-    margin: 0;
-    color: var(--pkb-muted);
-    line-height: 1.35;
+.pk-card-right {
+    right: 25px;
+    transform: rotate(17deg);
 }
 
 
-/* =========================================================
-   TEAM SCORE
-========================================================= */
+/* =========================================
+   GIFT
+========================================= */
 
-.pkb-team-score {
-    display: grid;
-    grid-template-columns: 1fr 50px 1fr;
+.pk-gift {
+    position: relative;
+    z-index: 3;
+    width: 250px;
+    min-height: 155px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    margin: 0 5px 13px;
+    background: url(imgs/pkbattle/voucherpkbattle.png)no-repeat;
 }
 
-.pkb-team {
+.pk-gift-label {
+    text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 6px;
 }
 
-    .pkb-team span {
-        font-weight: 800;
+    .pk-gift-label span {
+        font-size: 21px;
     }
 
-    .pkb-team strong {
-        color: var(--pkb-text);
+    .pk-gift-label strong {
+        line-height: .95;
+        font-size: 25px;
     }
 
-.pkb-team-a span {
-    color: var(--pkb-team-a);
+    .pk-gift-label small {
+        letter-spacing: 1px;
+        font-size:21px;
+    }
+
+.pk-gift-ribbon {
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    transform: rotate(-12deg);
 }
 
-.pkb-team-b span {
-    color: var(--pkb-team-b);
+
+/* =========================================
+   INFO
+========================================= */
+
+.pk-info {
+    position: relative;
+    z-index: 5;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 12px 30px;
+    background: url(imgs/pkbattle/listgoldpkbattle.png)no-repeat;
+    color: #17100a;
 }
 
-.pkb-vs {
-    color: var(--pkb-accent);
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   PROGRESS BAR
-========================================================= */
-
-.pkb-progress {
-    margin: 0 0 12px;
-}
-
-.pkb-progress-track {
+.pk-info-row {
     display: flex;
-    width: 100%;
-    height: 10px;
-    overflow: hidden;
-    background: var(--pkb-secondary);
-    border-radius: 20px;
-}
-
-.pkb-progress-a {
-    height: 100%;
-    background: var(--pkb-team-a);
-}
-
-.pkb-progress-b {
-    height: 100%;
-    background: var(--pkb-team-b);
-}
-
-.pkb-progress-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    padding: 0 3px;
-    color: var(--pkb-text);
-}
-
-
-/* =========================================================
-   JOIN BUTTON
-========================================================= */
-
-.pkb-join-btn {
-    width: 100%;
-    height: 40px;
-    border: 0;
-    border-radius: 8px;
-    background: var(--pkb-primary);
-    color: var(--pkb-on-primary);
-    font-weight: 800;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-    .pkb-join-btn span {
-        margin-left: 6px;
-        line-height: 0;
-        vertical-align: -2px;
-    }
-
-    .pkb-join-btn:hover {
-        background: var(--pkb-accent);
-        transform: translateY(-1px);
-    }
-
-    .pkb-join-btn:active {
-        transform: translateY(0);
-    }
-
-
-/* =========================================================
-   BOTTOM GRID
-========================================================= */
-
-.pkb-bottom-grid {
-    display: grid;
-    grid-template-columns: 1.35fr 1fr;
-    gap: 14px;
-    margin: 5px 0px;
-}
-
-
-/* =========================================================
-   CONTRIBUTOR / RULES PANEL
-========================================================= */
-
-.pkb-contributor-panel,
-.pkb-rules-panel {
-    padding: 16px 20px 20px;
-    background: #111;
-}
-
-
-/* =========================================================
-   PANEL HEADING
-========================================================= */
-
-.pkb-panel-heading {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 14px;
-}
-
-.pkb-panel-heading-icon {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    color: var(--pkb-primary);
-    font-size:20px;
+    align-items: center;
+    gap: 7px;
+    line-height: 1.7;
 }
 
-.pkb-panel-heading h2 {
-    margin: 0;
-    color: var(--pkb-primary);
+    .pk-info-row strong {
+        font-weight: 900;
+        font-size: 17px;
+    }
+
+.pk-prize {
+    color: #ad1017;
 }
 
-.pkb-panel-heading p {
-    color: var(--pkb-muted);
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.pk-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: -2px;
+    position: relative;
+    z-index: 10;
 }
 
-
-/* =========================================================
-   BATTLE SELECT
-========================================================= */
-
-.pkb-battle-select {
-    margin-left: auto;
-    min-width: 190px;
-    height: 42px;
-    padding: 0 15px;
-    background: var(--pkb-surface);
-    color: var(--pkb-text);
-    border: 1px solid var(--pkb-primary);
-    border-radius: 8px;
+.pk-action {
+    width: 320px;
+    min-height: 66px;
+    border-radius: 35px;
+    font-weight: 900;
+    letter-spacing: .5px;
     cursor: pointer;
     outline: none;
-    font-family: var(--font-main);
+    font-size:21px;
 }
 
-    .pkb-battle-select:focus {
-        border-color: var(--pkb-accent);
+    .pk-action:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1);
     }
 
-
-/* =========================================================
-   TABLE
-========================================================= */
-
-.pkb-table-wrap {
-    width: 100%;
-    overflow-x: auto;
+.pk-auto {
+    border: none;
+    outline: none;
+    background: url(imgs/pkbattle/automatchpkbattle.png) no-repeat center;
+    background-size: 100% 100%;
+    box-shadow: none;
+    color:#fff;
 }
 
-.pkb-table {
-    width: 100%;
-    min-width: 600px;
-    border-collapse: collapse;
+.pk-friend {
+    color: #4b3000;
+    border: 0px solid #a66b0d;
+    background: url(imgs/pkbattle/pkfrenpkbattle.png) no-repeat center;
+    box-shadow: none;
+    outline: none;
 }
 
-    .pkb-table th {
-        height: 36px;
-        padding: 0 14px;
-        background: var(--pkb-secondary);
-        color: var(--pkb-primary);
-        font-weight: 700;
-        text-align: center;
+    .pk-friend a {
+        color: #4b3000;
     }
 
-        .pkb-table th:first-child {
-            width: 60px;
-            text-align: center;
-        }
+    /* =========================================
+   TERMS
+========================================= */
+    .pk-terms {
+    margin-top: 35px;
+    padding: 25px 30px 45px;
+    background: url(imgs/pkbattle/bgtermspkbattle.png)no-repeat;
+    background-size:100% 100%;
+    border: 0px solid var(--pk-border);
+    border-radius: 13px;
+    box-shadow: none;
+    position: relative;
+    outline:none;
+}
 
-        .pkb-table th:last-child,
-        .pkb-table td:last-child {
-            text-align: right;
-        }
+.pk-terms-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    color: #f4c94d;
+    font-weight: 900;
+    margin-left: 30px;
+}
 
-    .pkb-table td {
-        height: 41px;
-        padding: 0 14px;
-        border-bottom: 1px solid var(--pkb-border-light);
-        color: var(--pkb-text);
-        text-align: center;
-    }
-
-    .pkb-table tbody tr {
-        background: transparent;
-        transition: background 0.2s ease;
-    }
-
-        .pkb-table tbody tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.015);
-        }
-
-        .pkb-table tbody tr:hover {
-            background: rgba(234, 216, 125, 0.04);
-        }
-
-
-/* =========================================================
-   RANK
-========================================================= */
-
-.pkb-rank {
-    width: 29px;
-    height: 29px;
-    display: inline-flex;
+.pk-terms-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-weight: 800;
+    background: linear-gradient( #ffe27a, #b7790c );
+    box-shadow: inset 0 1px rgba(255,255,255,.5);
 }
 
-.pkb-rank-1 {
-    background: var(--pkb-primary);
-    color: var(--pkb-on-primary);
+.pk-terms-list {
+    padding-left: 40px;
+    color: #eee;
+    line-height: 1.7;
 }
 
-.pkb-rank-2 {
-    background: #C9CDD4;
-    color: #202228;
-}
-
-.pkb-rank-3 {
-    background: #C77D2A;
-    color: #111111;
-}
+    .pk-terms-list li {
+        padding-left: 8px;
+    }
 
 
-/* =========================================================
-   TEAM BADGE
-========================================================= */
+/* =========================================
+   MODAL
+========================================= */
 
-.pkb-team-badge {
-    display: inline-flex;
+.pk-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
     align-items: center;
     justify-content: center;
-    min-width: 78px;
-    height: 29px;
-    border-radius: 8px;
+    padding: 20px;
+    background: rgba(0,0,0,.78);
+    backdrop-filter: blur(4px);
 }
 
-.pkb-team-badge-a {
-    background: #103D79;
-    color: #FFFFFF;
+    .pk-modal.active {
+        display: flex;
+    }
+
+.pk-modal-box {
+    position: relative;
+    width: min(500px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 35px 30px;
+    text-align: center;
+    background: url(imgs/pkbattle/bgpkleadmod.jpg)no-repeat;
+    background-size: cover;
+    border: 1px solid var(--pk-gold);
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.8);
 }
 
-.pkb-team-badge-b {
-    background: #8E1726;
-    color: #FFFFFF;
+    .pk-modal-box h3 {
+        margin-bottom: 10px;
+        color: var(--pk-gold-light);
+    }
+
+    .pk-modal-box p {
+        color: #cfcfcf;
+        line-height: 1.6;
+    }
+
+.pk-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: 0;
+    background: transparent;
+    color: #fbf876;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+    .pk-modal-close:hover {
+        color: white;
+    }
+
+.matchmod {
+    height: 125px;
+    width: 248px;
+    margin: 0px auto 10px !important;
+}
+
+.leadmod {
+    width: 420px;
+    margin: 0px auto 10px !important;
+}
+
+    .matchmod img, .leadmod img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.pk-auto-timer img {
+    width:90%;
+}
+/* =========================================
+   LOADER
+========================================= */
+.pk-loader {
+    width: 100%;
+    height: 7px;
+    margin: 25px 0;
+    overflow: hidden;
+    background: #282828;
+    border-radius: 10px;
+}
+
+    .pk-loader span {
+        display: block;
+        width: 35%;
+        height: 100%;
+        background: linear-gradient( 90deg, #c58b1c, #ffe27b );
+        border-radius: inherit;
+        animation: pkLoading 1.2s infinite ease-in-out;
+    }
+
+@keyframes pkLoading {
+    0% {
+        transform: translateX(-120%);
+    }
+
+    100% {
+        transform: translateX(330%);
+    }
+}
+
+.pk-modal-btn {
+    min-width: 150px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: 1px solid var(--pk-gold);
+    background: #151515;
+    color: var(--pk-gold-light);
+    font-weight: 600;
+    cursor: pointer;
 }
 
 
-/* =========================================================
-   BATTLE RULES
-========================================================= */
+/* =========================================
+   FRIEND LIST
+========================================= */
 
-.pkb-rules-list {
+.pk-friend-list {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 10px;
 }
 
-.pkb-rule {
+.pk-friend-item {
     display: grid;
-    grid-template-columns: 38px 1fr;
+    grid-template-columns: 40px 1fr auto;
     align-items: center;
-    gap: 13px;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #4a4a4a;
+    background: #111;
+    color: white;
+    text-align: left;
+    cursor: pointer;
 }
 
-    .pkb-rule > span {
-        width: 32px;
-        height: 32px;
+    .pk-friend-item:hover {
+        border-color: var(--pk-gold);
+    }
+
+.friend-avatar {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #b17a16;
+    color: white;
+    font-weight: 900;
+}
+
+.pk-friend-item b {
+    color: var(--pk-gold-light);
+}
+
+
+/* =========================================
+   RANKING
+========================================= */
+
+.pk-ranking {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.rank-item {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    padding: 13px;
+    border-radius: 8px;
+    background: #151515;
+    border: 1px solid #333;
+    text-align: left;
+}
+
+    .rank-item span {
+        color: var(--pk-gold-light);
+        font-weight: 900;
+    }
+
+    .rank-item b {
+        color: #f2c84b;
+    }
+
+.rank-first {
+    
+}
+
+.pk-ranking div:nth-child(1) {
+    border-color: var(--pk-gold);
+}
+
+.pk-ranking div:nth-child(2) {
+    border-color: #e18a00;
+}
+
+.pk-ranking div:nth-child(3) {
+    border-color: #088d60;
+}
+
+
+
+/* =========================================
+   AUTO MATCH - REDESIGN
+========================================= */
+#autoMatchModal {
+    z-index: 9999;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+    #autoMatchModal .pk-auto-match-box {
+        position: relative;
+        width: min(760px, 100%);
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 34px 30px 28px;
+        background: rgba(17, 17, 17, 0.8);
+        border: 1px solid #b99a4b;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+        text-align: center;
+    }
+
+    /* HEADER */
+
+    #autoMatchModal .pk-auto-header {
+        padding: 0 25px;
+    }
+
+        #autoMatchModal .pk-auto-header .pk-modal-icon {
+            margin: 0 0 8px;
+            color: #e5c36b;
+        }
+
+        #autoMatchModal .pk-auto-header h3 {
+            margin: 0;
+            color: #f2d783;
+            font-weight: 800;
+        }
+
+    #autoMatchModal .pk-auto-subtitle {
+        color: #aeb0b5;
+    }
+
+    /* CLOSE */
+
+    #autoMatchModal .pk-modal-close {
+        top: 12px;
+        right: 14px;
+        z-index: 2;
+        width: 36px;
+        height: 36px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: transparent;
-        border: 1px solid var(--pkb-primary);
-        border-radius: 8px;
-        color: var(--pkb-primary);
+        border: 1px solid #55504a;
+        border-radius: 50%;
+        background: #202124;
+        color: #ddd;
+        font-size: 25px;
+        line-height: 1;
     }
 
-    .pkb-rule p {
-        margin: 0;
-        color: #C6CBD3;
-        line-height: 1.45;
+        #autoMatchModal .pk-modal-close:hover {
+            color: #f2d783;
+            border-color: #b99a4b;
+        }
+
+    /* PLAYER VS PLAYER */
+
+    #autoMatchModal .pk-auto-players {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 180px minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 10px 0;
+    }
+
+    #autoMatchModal .pk-auto-player {
+        min-width: 0;
+    }
+
+    #autoMatchModal .pk-auto-avatar {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #c7a74f;
+        border-radius: 50%;
+        background: #29251d;
+        color: #c5c6c9;
+    }
+
+    #autoMatchModal .pk-auto-avatar i{
+        font-size:35px;
     }
 
 
-/* =========================================================
-   EMPTY TAB
-========================================================= */
+        #autoMatchModal .pk-auto-opponent .pk-auto-avatar {
+        border-color: #747985;
+        background: #24262b;
+    }
 
-.pkb-empty-panel {
-    min-height: 350px;
+    #autoMatchModal .pk-auto-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 45px;
+        padding: 10px;
+        border: 0px solid #b99a4b;
+        border-radius: 6px;
+        background: url(imgs/pkbattle/btnmatchpk.png)no-repeat;
+        background-size:100% 100%;
+        color: #f2d783;
+        overflow-wrap: anywhere;
+    }
+
+.pk-auto-name img {
+    width:15%;
+}
+
+#autoMatchModal .pk-auto-name i {
+    color: #e1bd5a;
+    flex-shrink: 0;
+}
+
+#autoMatchModal .pk-auto-opponent .pk-auto-name {
+    border-color: #626772;
+    background: url(imgs/pkbattle/btnmatchgreypk.png)no-repeat;
+    background-size:cover;
+    color: #e5e6e8;
+}
+
+    #autoMatchModal .pk-auto-vs {
+        color: #f0d078;
+        font-weight: 900;
+        font-style: italic;
+    }
+
+.pk-auto-vs img {
+    width:70%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* STATUS PANEL */
+#autoMatchModal .pk-auto-status {
+    display: grid;
+    grid-template-columns: minmax(0, 2.5fr) 1px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+    padding: 5px 15px;
+    background: #1d1e20;
+    border: 1px solid #3d3e41;
+    border-radius: 13px;
+}
+
+#autoMatchModal .pk-auto-status-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+        #autoMatchModal .pk-auto-status-message p {
+            margin: 0;
+            color: #c9cbd0;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+
+        #autoMatchModal .pk-auto-status-message strong {
+            color: #f0ce67;
+        }
+
+    /* SPINNER */
+
+    #autoMatchModal .pk-auto-spinner {
+        flex: 0 0 23px;
+        width: 23px;
+        height: 23px;
+        margin-top: 2px;
+        border: 3px solid #45464a;
+        border-top-color: #e2c36b;
+        border-radius: 50%;
+        animation: pkAutoSpin 0.8s linear infinite;
+    }
+
+@keyframes pkAutoSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* TIMER */
+
+#autoMatchModal .pk-auto-status-divider {
+    width: 1px;
+    align-self: stretch;
+    background: #414246;
+}
+
+#autoMatchModal .pk-auto-timer {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+.pk-auto-timer {
+    width:40px;
+}
+
+
+#autoMatchModal .pk-auto-timer > i {
+    flex-shrink: 0;
+}
+
+#autoMatchModal .pk-auto-timer-text {
     display: flex;
     flex-direction: column;
-    pkb-empty-icon align-items: center;
-    justify-content: center;
-    text-align: center;
+    gap: 4px;
+    min-width: 0;
 }
 
-.pkb-empty-icon {
-    margin-bottom: 15px;
-    color: var(--pkb-primary);
-    font-size:20px;
+    #autoMatchModal .pk-auto-timer-text span {
+        color: #aeb0b5;
+    }
+
+    #autoMatchModal .pk-auto-timer-text strong {
+        color: #f1d16b;
+        font-variant-numeric: tabular-nums;
+        font-size: 17px;
+    }
+
+/* CANCEL BUTTON */
+
+#autoMatchModal .pk-auto-cancel {
+    display: block;
+    width: 210px;
+    min-height: 50px;
+    margin: 25px auto 0;
+    padding: 12px 24px;
+    border: 1px solid #c5a34e;
+    border-radius: 28px;
+    background: #171819;
+    color: #f0d27a;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, color 0.2s;
 }
 
-.pkb-empty-icon img{
-    width:40px;
-    height:40px;
+    #autoMatchModal .pk-auto-cancel:hover {
+        background: #e6c66f;
+        color: #171717;
+    }
+
+    #autoMatchModal .pk-auto-cancel:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+
+
+
+/* =========================================
+   HISTORY
+========================================= */
+
+.pk-history {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
 }
 
-.pkb-empty-panel h2 {
-    margin: 0;
-    color: var(--pkb-primary);
+.history-item {
+    display: grid;
+    grid-template-columns: 1fr 70px 70px;
+    padding: 13px;
+    background: #151515;
+    border: 1px solid #edaf22;
+    border-radius: 8px;
+    text-align: left;
 }
 
-.pkb-empty-panel p {
-    color: var(--pkb-muted);
-}
+    .history-item .win {
+        color: #42cf83;
+    }
 
+    .history-item .lose {
+        color: #e55757;
+    }
 
-/* =========================================================
-   SUCCESS / ERROR / LIVE
-========================================================= */
-
-.pkb-success {
-    color: var(--pkb-success);
-}
-
-.pkb-error {
-    color: var(--pkb-error);
-}
-
-.pkb-live {
-    color: var(--pkb-live);
-}
 

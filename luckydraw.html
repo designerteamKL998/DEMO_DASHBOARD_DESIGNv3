@@ -11,13 +11,14 @@
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="luckydraw.css" />
     <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="responsive2.css" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
     <!-- JQuery -->
-    <script src="script.js" defer></script>
     <script src="luckydraw.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -208,9 +209,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="specialevent.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/specialevent.png" alt="" />
-                                    <span>Special Event</span>
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
                                 </a>
                             </div>
                         </div>
@@ -294,8 +295,8 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button">
-                    <a href="announcement.html">
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
                     </a>
@@ -387,9 +388,9 @@
             <span>Promotions</span>
         </a>
 
-        <a href="announcement.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/icon/notiiconbottom.png" />
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
                 <span class="notification-dot"></span>
             </span>
             <span>Notification</span>
@@ -422,190 +423,170 @@
     </button>
 
 
-    <div class="sw-page">
+    <div class="luckyWheelPage theme-goldLuxury">
+        <header class="lwHeader">
 
-        <!-- =========================
-             MAIN WRAPPER
-        ========================== -->
-        <main class="sw-container">
-            <!-- HEADER -->
-            <!-- =========================
-                 CONTENT
-            ========================== -->
-            <section class="sw-content">
+            <h1 class="lwTitle"> <img src="./Lucky Wheel - Gold Luxury_files/img-text-title.png"></h1>
+            <!--<p class="lwSubtitle">Spin the luxury wheel and stand a chance to win exclusive rewards.</p>-->
+        </header>
 
-                <!-- =========================
-                     WHEEL AREA
-                ========================== -->
-                <div class="sw-wheel-section">
-                    <header class="sw-header">
-                        <div class="sw-header-line"></div>
-                        <img src="imgs/icon/spinwin.png" />
-                    </header>
-                    <div class="sw-wheel-stage">
-                        <!-- outer decorative rings -->
-                        <div class="sw-wheel-ring sw-ring-one"></div>
-                        <div class="sw-wheel-ring sw-ring-two"></div>
-                        <!-- light dots -->
-                        <div class="sw-wheel-lights"></div>
-                        <!-- pointer -->
-                        <div class="sw-pointer">
-                            <div class="sw-pointer-inner"></div>
+        <main class="lwLayout">
+
+            <section class="lwStage">
+
+                <div class="lwWheelWrap">
+                    <div class="lwWheelGlow"></div>
+                    <div class="lwWheelBase"></div>
+                    <div class="lwWheelShell"> </div>
+
+                    <div class="lwPointer"></div>
+
+                    <div class="lwWheelDisc" id="lwWheelDisc" style="--wheel-segments: conic-gradient(from 0deg, #895710 0deg, #895710 45deg, #1f1e17 45deg, #080303 90deg, #152123 90deg, #01354e 135deg, #033f1e 135deg, #001508 180deg, #020e08 180deg, #0f1411 225deg, #00240f 225deg, #013100 270deg, #011d2b 270deg, #00283b 315deg, #013319 315deg, #01210f 360deg);">
+                        <div class="lwWheel__label" data-prize-index="0" style="transform: rotate(22.5deg) translateY(var(--lw-label-distance));">
+                            <span>Try Again</span>
                         </div>
-                        <!-- actual wheel -->
-                        <div class="sw-wheel-wrap">
-                            <div class="sw-wheel" id="swWheel">
-                                <div class="sw-wheel-segment sw-s1">
-                                    <span>$888</span>
-                                </div>
-                                <div class="sw-wheel-segment sw-s2">
-                                    <span class="sw-phone">
-                                        📱
-                                        <small>iPhone 17<br>Pro Max<br>2TB</small>
-                                    </span>
-                                </div>
-                                <div class="sw-wheel-segment sw-s3">
-                                    <span>😲</span>
-                                </div>
-                                <div class="sw-wheel-segment sw-s4">
-                                    <span>Please Try<br>Again!</span>
-                                </div>
-                                <div class="sw-wheel-segment sw-s5">
-                                    <span>$0</span>
-                                </div>
-                                <div class="sw-wheel-segment sw-s6">
-                                    <span>$1</span>
-                                </div>
-                                <div class="sw-wheel-segment sw-s7">
-                                    <span>$5</span>
-                                </div>
-                                <div class="sw-wheel-segment sw-s8">
-                                    <span>$88</span>
-                                </div>
-                            </div>
-                            <!-- center -->
-                            <div class="sw-wheel-center">
-                                <div class="sw-center-inner">
-                                    <span>♛</span>
-                                </div>
-                            </div>
+
+                        <div class="lwWheel__label" data-prize-index="1" style="transform: rotate(67.5deg) translateY(var(--lw-label-distance));">
+                            <span>Bonus</span><span>RM 88</span>
+                        </div>
+
+                        <div class="lwWheel__label" data-prize-index="2" style="transform: rotate(112.5deg) translateY(var(--lw-label-distance));">
+                            <span>Mystery</span><span>Gift</span>
+                        </div>
+
+                        <div class="lwWheel__label" data-prize-index="3" style="transform: rotate(157.5deg) translateY(var(--lw-label-distance));">
+                            <span>Bonus</span><span>RM 18</span>
+                        </div>
+
+                        <div class="lwWheel__label" data-prize-index="4" style="transform: rotate(202.5deg) translateY(var(--lw-label-distance));">
+                            <span>VIP</span><span>Point x100</span>
+                        </div>
+
+                        <div class="lwWheel__label" data-prize-index="5" style="transform: rotate(247.5deg) translateY(var(--lw-label-distance));">
+                            <span>Bonus</span><span>RM 8</span>
+                        </div>
+
+                        <div class="lwWheel__label" data-prize-index="6" style="transform: rotate(292.5deg) translateY(var(--lw-label-distance));">
+                            <span>Free</span><span>Spin x5</span>
+                        </div>
+
+                        <div class="lwWheel__label" data-prize-index="7" style="transform: rotate(337.5deg) translateY(var(--lw-label-distance));">
+                            <span>iPhone 17</span><span>Pro Max</span><span>1TB (Silver)</span>
                         </div>
                     </div>
+                    <div class="lwWinnerHighlight" id="lwWinnerHighlight" style="--lw-winner-highlight-bg: conic-gradient(
+                                                from -22.5deg,
+                                                rgba(255, 241, 178, 0.00) 0deg,
+                                                rgba(255, 224, 140, 0.08) 4.5deg,
+                                                rgba(245, 206, 108, 0.22) 12.600000000000001deg,
+                                                rgba(255, 239, 178, 0.34) 22.5deg,
+                                                rgba(245, 206, 108, 0.22) 32.4deg,
+                                                rgba(255, 224, 140, 0.08) 40.5deg,
+                                                rgba(255, 241, 178, 0.00) 45deg,
+                                                transparent 45deg 360deg
+                                            );"></div>
 
-                    <!-- SPIN BUTTON -->
-                    <button class="sw-spin-btn" id="swSpinBtn">
-                        <span class="sw-spin-icon">↻</span>
-                        <span class="sw-spin-text">
-                            <strong>SPIN NOW</strong>
-                            <small>
-                                <b id="swSpinCount">0</b>
-                                SPIN(S) AVAILABLE
-                            </small>
-                        </span>
+                    <div class="lwSpinBtn-Con">
+                        <button class="lwSpinBtn" id="lwCenterSpinBtn" type="button" aria-label="Spin now">
+                            <span class="lwSpinBtn__top">SPIN</span>
+                            <span class="lwSpinBtn__bottom">NOW</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="lwChance">
+                    <div class="lwChance__main">
+                        <strong>23</strong>
+                        <span>Spin(s) Available</span>
+                    </div>
+                </div>
+
+
+
+                <div class="lwSpinActions">
+
+                    <button class="lwSpinAction lwSpinAction--all" id="lwSpinAllBtn" type="button">
+                        Spin All
+                    </button>
+                    <button class="lwSpinAction lwSpinAction--single" id="lwSpinBtn" type="button">
+                        Spin Once
                     </button>
                 </div>
 
-                <!-- =========================
-                     HISTORY
-                ========================== -->
-                <!-- =========================
-         RIGHT SIDE
-    ========================== -->
-                <div class="sw-right-column">
+                <p class="lwSpinNote">
+                    Deposit 1 gets FREE LUCKY DRAW SPIN CHANCE.
+                    <br>
+                    Maximum of 100 chances per deposit.
+                </p>
 
-                    <!-- SPIN HISTORY -->
-                    <aside class="sw-history">
-
-                        <div class="sw-history-header">
-
-                            <div class="sw-history-icon">
-                                ◷
-                            </div>
-
-                            <div>
-                                <h2>SPIN HISTORY</h2>
-
-                                <p>
-                                    Records may take some time to appear
-                                    in the history.
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div class="sw-history-table">
-
-                            <div class="sw-history-empty"
-                                 id="swHistoryEmpty">
-
-                                <div class="sw-empty-icon">
-                                    <span>☷</span>
-                                    <i>+</i>
-                                </div>
-
-                                <strong>No records found</strong>
-
-                                <p>
-                                    Spin and win your first reward!
-                                </p>
-
-                            </div>
-
-                            <div class="sw-history-list"
-                                 id="swHistoryList"></div>
-
-                        </div>
-
-                    </aside>
-
-
-                    <!-- DEPOSIT PROMOTION -->
-                    <div class="sw-promo-card">
-
-                        <div class="sw-promo-icon">
-                            <i class="fa-solid fa-gift"></i>
-                        </div>
-
-                        <div class="sw-promo-copy">
-
-                            <div>
-                                <strong>Deposit 50</strong>
-                                <span>gets free Lucky Draw spin chance</span>
-                            </div>
-
-                            <small>
-                                Maximum of 5 chances per deposit
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- TERMS & CONDITIONS -->
-                    <div class="sw-terms-card">
-
-                        <div class="sw-terms-title">
-                            TERMS &amp; CONDITIONS
-                        </div>
-
-                        <div class="sw-term-item">
-                            <span class="sw-term-number">1</span>
-                            <span>Rewards are subject to the applicable promotion terms.</span>
-                        </div>
-
-                        <div class="sw-term-item">
-                            <span class="sw-term-number">2</span>
-                            <span>All Lucky Draw results are final.</span>
-                        </div>
-
-                    </div>
-
+                <div class="lwMobileActions">
+                    <button class="lwActionBtn" type="button" data-open-panel="history">History</button>
                 </div>
             </section>
 
+            <aside class="lwPanel lwPanel--history" id="lwHistoryPanel">
+                <div class="lwPanel__head">
+                    <div class="lwhead__container">
+                        <h2>Spin History</h2>
+                        <!--<p>Recent spin records</p>-->
+                    </div>
+                </div>
+
+                <div class="lwHistoryList" id="lwHistoryList">
+                    <div class="lwHistoryEmpty">
+                        No spin records yet.<br>
+                        Spin the wheel to create your first record.
+                    </div>
+                </div>
+            </aside>
+            <section class="lwTnc">
+                <div class="lwTnc__head">
+                    <h2>Terms &amp; Conditions</h2>
+                </div>
+
+                <ul class="lwTnc__list">
+                    <li>This promotion is valid for selected members only.</li>
+                    <li>Each spin chance is subject to the campaign rules and availability.</li>
+                    <li>Rewards are non-transferable and cannot be exchanged for cash unless stated otherwise.</li>
+                    <li>The company reserves the right to amend, suspend, or cancel this promotion at any time.</li>
+                </ul>
+            </section>
         </main>
+
+        <div class="lwPopup" id="lwPopup">
+            <div class="lwPopupConfetti" id="lwPopupConfetti" aria-hidden="true"></div>
+            <div class="lwPopup__card">
+                <button class="lwPopup__close" type="button" id="lwPopupClose">×</button>
+
+                <div class="lwPopup__inner">
+                    <div class="lwPopup__head">
+                        <h2 class="lwPopup__title" id="lwPopupTitle">Spin History</h2>
+                    </div>
+
+                    <div class="lwPopup__body" id="lwPopupBody">
+                        <div class="lwHistoryList" id="lwHistoryList">
+                            <div class="lwHistoryEmpty">
+                                No spin records yet.<br>
+                                Spin the wheel to create your first record.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <audio id="lwSoundSpin" src="audio/rolling.mp3" preload="auto"></audio>
+    <audio id="lwSoundLose" src="audio/sad.mp3" preload="auto"></audio>
+    <audio id="lwSoundWin" src="audio/slot_bonus.mp3" preload="auto"></audio>
+    <audio id="lwSoundPopup" src="audio/bi-bling.mp3" preload="auto"></audio>
+
+
+
+
+
+
+
+
 
     <!-- LANGUAGE POPUP -->
     <div class="language-overlay" id="languagePopup">
@@ -830,7 +811,5 @@
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
-
 </body>
 </html>

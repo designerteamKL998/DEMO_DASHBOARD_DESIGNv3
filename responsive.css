@@ -1454,7 +1454,7 @@
         margin-bottom: 50px;
     }
 
-    /*----------------------------  FRIENDS PAGE  ----------------------------------*/
+    /*----------------------------  FRIENDS PAGE  ----------------------------------
     .fr-page {
         padding: 10px 18px 18px;
         margin: 10px auto;
@@ -1516,7 +1516,7 @@
 
     .fr-record-list {
         padding: 10px;
-    }
+    }*/
 
     /*----------------  TRANSACTION (STATEMENT/MYBET) PAGE  ---------------*/
     .st-page,
@@ -1804,7 +1804,7 @@
         font-size: 14px;
     }
 
-    /*--------------------------  FREE POINT PAGE  ---------------------------*/
+    /*--------------------------  FREE POINT PAGE  ---------------------------
     .freepoint-page,
     .fp-history-page,
     .pkb-tabs {
@@ -1816,14 +1816,12 @@
         padding: 8px;
     }
 
-    /* MAIN LAYOUT */
     .freepoint-layout {
         grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
         gap: 16px;
         padding: 8px;
     }
 
-    /* FREE POINT CARD */
     .freepoint-content {
         padding: 35px 20px;
     }
@@ -1856,7 +1854,6 @@
         margin-top: 28px;
     }
 
-    /* TERMS */
     .terms-card {
         padding: 22px;
     }
@@ -1880,13 +1877,11 @@
         font-size: 14px;
     }
 
-    /* HISTORY PAGE */
     .fp-history-page {
         margin: 15px auto 50px;
         padding: 15px;
     }
 
-    /* SUMMARY */
     .fp-summary {
         gap: 15px;
         margin-top: 20px;
@@ -1911,7 +1906,6 @@
         font-size: 100px;
     }
 
-    /* TABS */
     .pkb-tabs {
         padding: 0 15px;
         gap: 6px;
@@ -1923,12 +1917,10 @@
         gap: 10px;
     }
 
-    /* HISTORY SECTION */
     .fp-section-header {
         padding: 0 18px;
     }
 
-    /* TABLE */
     .fp-table {
         min-width: 750px;
     }
@@ -1937,16 +1929,15 @@
         .fp-table td {
             padding-left: 18px;
             padding-right: 18px;
-        }
+        }*/
 
-    /*---------------  PK-BATTLE PAGE  -------------*/
+    /*---------------  PK-BATTLE PAGE  -------------
     .pkb-page {
         max-width: 100%;
         margin: 10px auto 40px;
         padding: 8px;
     }
 
-    /* HEADER */
     .pkb-header {
         gap: 18px;
         margin-bottom: 14px;
@@ -2027,8 +2018,6 @@
         font-size: 12px;
     }
 
-
-    /* GAME INFO */
     .pkb-battle-info {
         gap: 12px;
         margin: 5px 3px 10px;
@@ -2049,8 +2038,6 @@
         font-size: 12px;
     }
 
-
-    /* TEAM SCORE */
     .pkb-team-score {
         grid-template-columns: 1fr 40px 1fr;
         margin: 0 3px 12px;
@@ -2068,8 +2055,6 @@
         font-size: 14px;
     }
 
-
-    /* PROGRESS */
     .pkb-progress-track {
         height: 8px;
     }
@@ -2078,7 +2063,6 @@
         font-size: 12px;
     }
 
-    /* JOIN */
     .pkb-join-btn {
         height: 38px;
         font-size: 13px;
@@ -2113,8 +2097,6 @@
         height: 40px;
     }
 
-
-    /* TABLE */
     .pkb-table {
         min-width: 580px;
     }
@@ -2123,9 +2105,9 @@
         .pkb-table td {
             padding-left: 10px;
             padding-right: 10px;
-        }
+        }*/
 
-    /*-----------------  PK-BATTLE PAGE  -----------------*/
+    /*-----------------  PK-BATTLE PAGE  -----------------
     .special-event-page {
         width: 100%;
         max-width: 100%;
@@ -2283,7 +2265,7 @@
     .reward-item {
         min-height: 95px;
         padding: 12px;
-    }
+    }*/
 
     /*-----------------  WITHDRAWAL PAGE  --------------*/
     .wdr-page {
@@ -2617,7 +2599,124 @@
     .rf-promo-title {
         margin-right: 20px;
     }
-}
+
+    .dashboard {
+        margin: 14px auto 40px;
+    }
+
+    /*--------------- PROMOTION PAGE ----------------*/
+
+    #promotionpage {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        box-sizing: border-box;
+        padding: 0 16px 24px;
+        overflow: visible;
+        background-position: center top;
+        background-size: cover;
+    }
+
+    .reward-content {
+        height:auto;
+    }
+    
+    .rewards-page {
+        width: 100%;
+        margin: 12px auto;
+        padding: 18px;
+        box-sizing: border-box;
+    }
+
+    .reward-card {
+        flex-basis: calc((100% - 36px) / 4);
+    }
+
+    .reward-small-image {
+        width: 76px;
+        height: 145px;
+        flex-basis: 76px;
+    }
+
+    .reward-slider {
+        padding: 10px 12px;
+    }
+
+    .reward-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 22px;
+    }
+
+    .reward-prev {
+        left: -12px;
+    }
+
+    .reward-next {
+        right: -12px;
+    }
+
+    .package-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .package-card {
+        min-height: 190px;
+    }
+
+    .package-info {
+        width: 68%;
+        padding: 48px 12px 66px;
+        box-sizing: border-box;
+    }
+
+    .package-rate {
+        left: 12px;
+        padding: 7px 14px;
+    }
+
+    .entitlements {
+        gap: 14px;
+    }
+
+    .reward-modal-box {
+        max-width: 460px;
+    }
+
+    .promoindex{
+        max-width:100%;
+        padding:10px;
+    }
+
+    .status {
+        position: relative;
+    }
+    .reward-content h3 {
+        margin-top: 5px;
+    }
+
+    .reward-info-row {
+        min-height:115px;
+    }
+
+    .reward-modal-content .status.available {
+        background: url(imgs/promo/greenbuttonpromo-m.png) no-repeat;
+        background-size: 100% 100%;
+    }
+    .status.available, .status.eligibility {
+        left: 0px !important;
+        width: 40%;
+    }
+
+
+
+
+
+
+
+    }
 
 /*===========================================================================================================  MOBILE 768PX  =======================================================================================*/
 @media (max-width: 768px) {
@@ -3891,7 +3990,7 @@
     }
 
     i.dci-terms-arrow {
-        display: block;
+        display:none;
     }
 
     .dci-mobile-checkin {
@@ -3911,7 +4010,7 @@
             padding-top: 8px;
         }
 
-    /*------------------  FRIENDS PAGE  -----------------*/
+    /*------------------  FRIENDS PAGE  -----------------
     .fr-page {
         padding: 8px 12px 15px;
         margin: 8px auto;
@@ -3991,9 +4090,9 @@
     .fr-collection-count {
         padding: 3px 8px;
         font-size: 11px;
-    }
+    }*/
 
-    /* COLLECTION + REWARD */
+    /* COLLECTION + REWARD 
     .fr-collection-reward {
         grid-template-columns: 1fr;
         gap: 8px;
@@ -4052,9 +4151,9 @@
         min-width: 65px;
         height: 32px;
         font-size: 11px;
-    }
+    }*/
 
-    /* INFO */
+    /* INFO 
     .fr-info-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
@@ -4146,7 +4245,7 @@
         .fr-popup-table thead th,
         .fr-popup-table tbody td {
             padding: 8px 5px;
-        }
+        }*/
 
     /*----------------  TRANSACTION (STATEMENT/MYBET) PAGE  ---------------*/
     .st-page,
@@ -4777,7 +4876,7 @@
             font-size: 14px;
         }
 
-    /*--------------------  FREE POINT PAGE  -----------------*/
+    /*--------------------  FREE POINT PAGE  -----------------
     .freepoint-page {
         padding: 6px;
         border-radius: 0 0 14px 14px;
@@ -4789,7 +4888,6 @@
         padding: 6px;
     }
 
-    /* FREE POINT CARD */
     .freepoint-card {
         min-height: auto;
     }
@@ -4812,9 +4910,9 @@
         width: 50px;
         height: 50px;
         font-size: 36px;
-    }
+    }*/
 
-    /* ORB */
+    /* ORB 
     .point-orb {
         width: 190px;
         height: 190px;
@@ -4832,7 +4930,6 @@
         font-size: 14px;
     }
 
-    /* BUTTON */
     .claim-btn {
         width: 100%;
         max-width: 500px;
@@ -4840,7 +4937,6 @@
         margin-top: 25px;
     }
 
-    /* TERMS */
     .terms-card {
         padding: 20px;
     }
@@ -4890,7 +4986,6 @@
         border-radius: 14px;
     }
 
-    /* HEADER */
     .fp-history-header {
         gap: 15px;
     }
@@ -4912,7 +5007,6 @@
         font-size: 13px;
     }
 
-    /* BACK BUTTON */
     .fp-back-btn {
         min-width: 100px;
         height: 42px;
@@ -4920,8 +5014,6 @@
         font-size: 13px;
     }
 
-
-    /* SUMMARY */
     .fp-summary {
         grid-template-columns: 1fr 1fr;
         gap: 10px;
@@ -5059,7 +5151,7 @@
     .fp-no-more {
         min-height: 70px;
         font-size: 13px;
-    }
+    }*/
 
     /*-------------------  PK-BATTLE PAGE  ----------------*/
 
@@ -6342,6 +6434,191 @@
         bottom: 15px;
         padding: 12px 15px;
     }
+
+    /*------------------  PROMOTION PAGE --------------------*/
+    #promotionpage {
+        padding: 0 12px 24px;
+    }
+
+    .rewards-page {
+        margin: 10px auto;
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .titlepromo {
+        padding-bottom: 8px;
+    }
+
+    .section-heading,
+    .deposit-heading {
+        gap: 10px;
+        align-items: center;
+    }
+
+    .heading-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 28px;
+    }
+
+    .section-heading h1,
+    .deposit-heading h2 {
+        font-size: 22px;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .section-heading p,
+    .deposit-heading p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .reward-slider {
+        margin-top: 14px;
+        padding: 10px 10px;
+    }
+
+    .reward-grid {
+        gap: 10px;
+    }
+
+    .reward-card {
+        flex-basis: calc((100% - 20px) / 3);
+        border-radius: 11px;
+    }
+
+    .reward-content {
+        padding: 9px;
+    }
+
+        .reward-content h3 {
+            font-size: 15px;
+        }
+
+        .reward-content strong {
+            font-size: 14px;
+        }
+
+        .reward-content p {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+    .reward-small-image {
+        width: 64px;
+        height: 120px;
+        flex-basis: 64px;
+    }
+
+    .status.available,
+    .status.eligibility {
+        top: 8px;
+        left: 8px;
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+
+    .reward-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
+
+    .reward-prev {
+        left: -8px;
+    }
+
+    .reward-next {
+        right: -8px;
+    }
+
+    .reward-dots {
+        gap: 6px;
+        margin-top: 9px;
+    }
+
+    .package-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .package-card {
+        min-height: 190px;
+    }
+
+    .package-visual {
+        width: 44%;
+        height: 78%;
+    }
+
+    .package-info {
+        width: 75%;
+        padding: 46px 10px 62px;
+    }
+
+        .package-info h3 {
+            font-size: 16px;
+        }
+
+        .package-info p {
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+    .package-rate {
+        left: 10px;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .package-btn {
+        left: 10px;
+        bottom: 10px;
+        max-width: calc(100% - 20px);
+        padding: 7px 10px;
+        font-size: 12px;
+    }
+
+    .entitlements {
+        margin-left: 0;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-size: 12px;
+    }
+
+    .deposit-heading {
+        flex-wrap: wrap;
+    }
+
+    .reward-modal {
+        padding: 14px;
+    }
+
+    .reward-modal-box {
+        max-width: 520px;
+    }
+
+    .reward-modal-content {
+        padding: 18px;
+    }
+
+    .reward-modal-image {
+        width: 42%;
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
 
 /*===========================================================================================  MOBILE 480PX  ======================================================================================================*/
@@ -6595,4 +6872,274 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 8px;
     }
-}
+    /*--------------  PROMOTION PAGE  -----------------*/
+    #promotionpage {
+        padding: 0 8px 20px;
+        background-position: center top;
+    }
+
+    .rewards-page {
+        margin: 8px auto;
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    .titlepromo {
+        padding-bottom: 6px;
+    }
+
+    .section-heading,
+    .deposit-heading {
+        gap: 8px;
+    }
+
+    .heading-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 23px;
+    }
+
+    .section-heading h1,
+    .deposit-heading h2 {
+        font-size: 18px;
+    }
+
+    .section-heading p,
+    .deposit-heading p {
+        margin-top: 3px;
+        font-size: 11px;
+    }
+
+    .reward-slider {
+        margin-top: 10px;
+        padding: 8px 8px;
+        border-radius: 8px;
+    }
+
+    .reward-grid {
+        gap: 8px;
+        padding-bottom: 4px;
+    }
+
+    .reward-card {
+        flex-basis: calc((100% - 8px) / 2);
+        border-radius: 9px;
+    }
+
+    .reward-content {
+        padding: 8px;
+    }
+
+        .reward-content h3 {
+            font-size: 13px;
+            line-height: 1.25;
+        }
+
+        .reward-content strong {
+            font-size: 12px;
+        }
+
+        .reward-content p {
+            max-width: 100%;
+            font-size: 11px;
+            line-height: 1.35;
+        }
+
+    .reward-small-image {
+        width: 52px;
+        height: 96px;
+        flex-basis: 52px;
+    }
+
+    .status.available,
+    .status.eligibility {
+        top: 6px;
+        left: 6px;
+        padding: 8px 9px;
+        font-size: 9px;
+        max-width: calc(100% - 12px);
+        box-sizing: border-box;
+    }
+
+    .gold-btn {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+        .gold-btn i {
+            width: 18px;
+            height: 18px;
+            margin-left: 4px;
+        }
+
+    .reward-arrow {
+        width: 27px;
+        height: 27px;
+        font-size: 18px;
+    }
+
+    .reward-prev {
+        left: -5px;
+    }
+
+    .reward-next {
+        right: -5px;
+    }
+
+    .reward-dots {
+        gap: 5px;
+        margin-top: 8px;
+    }
+
+    .reward-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+        .reward-dot.active {
+            width: 16px;
+        }
+
+    .deposit-section {
+        margin-top: 8px;
+        padding-bottom: 12px;
+    }
+
+    .deposit-heading {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+    }
+
+        .deposit-heading .coins {
+            font-size: 24px;
+        }
+
+    .entitlements {
+        width: 100%;
+        gap: 6px 12px;
+        font-size: 10px;
+    }
+
+    .package-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        padding: 7px;
+        border-radius: 8px;
+    }
+
+    .package-card {
+        min-height: 168px;
+        border-radius: 9px;
+    }
+
+    .package-visual {
+        width: 48%;
+        height: 68%;
+        opacity: 0.68;
+    }
+
+    .package-info {
+        width: 82%;
+        padding: 40px 8px 56px;
+    }
+
+        .package-info h3 {
+            font-size: 13px;
+            line-height: 1.2;
+        }
+
+        .package-info p {
+            margin: 3px 0;
+            font-size: 10px;
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
+
+    .package-rate {
+        left: 8px;
+        padding: 5px 9px;
+        font-size: 10px;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .package-btn {
+        left: 8px;
+        bottom: 8px;
+        max-width: calc(100% - 16px);
+        padding: 6px 8px;
+        font-size: 10px;
+        white-space: normal;
+    }
+
+    .reward-modal {
+        padding: 10px;
+    }
+
+    .reward-modal-box {
+        width: 100%;
+        max-width: 360px;
+        max-height: calc(100vh - 20px);
+        overflow-y: auto;
+        border-radius: 12px;
+    }
+
+    .reward-modal-content {
+        width: 100%;
+        padding: 16px;
+        order: 2;
+    }
+
+    .reward-modal-image {
+        width: 100%;
+        order: 1;
+    }
+
+        .reward-modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    .reward-modal-close {
+        top: 8px;
+        right: 8px;
+        width: 30px;
+        height: 30px;
+        font-size: 21px;
+    }
+
+    .reward-modal-content h2 {
+        margin: 4px 0 8px;
+        font-size: 18px;
+    }
+
+    .reward-modal-content strong {
+        font-size: 17px;
+        margin-bottom: 8px;
+    }
+
+    .reward-modal-content p {
+        font-size: 12px;
+        line-height: 1.45;
+        margin-bottom: 14px;
+    }
+
+    .toast {
+        width: calc(100% - 32px);
+        max-width: 340px;
+        left: 50%;
+        bottom: 12px;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 12px;
+    }
+    .dci-terms-icon {
+        display: none;
+    }
+
+    .dci-terms-header {
+        display: inline-block;
+    }
+
+
+    }

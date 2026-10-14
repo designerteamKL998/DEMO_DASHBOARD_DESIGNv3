@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="transaction.css" />
+    <link rel="stylesheet" href="transaction2.css" />
     <link rel="stylesheet" href="profile.css" />
     <link rel="stylesheet" href="responsive.css" />
 
@@ -17,8 +18,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
     <!-- JQuery -->
-    <script src="script.js" defer></script>
     <script src="transaction.js" defer></script>
+    <script src="script.js" defer></script>
+
 </head>
 
 <body>
@@ -209,9 +211,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="specialevent.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/specialevent.png" alt="" />
-                                    <span>Special Event</span>
+                                <a href="announcement.html" class="profile-feature-item">
+                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
+                                    <span>Announce</span>
                                 </a>
                             </div>
                         </div>
@@ -295,8 +297,8 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button">
-                    <a href="announcement.html">
+                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                    <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
                     </a>
@@ -388,9 +390,9 @@
             <span>Promotions</span>
         </a>
 
-        <a href="announcement.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/icon/notiiconbottom.png" />
+                <img src="imgs/promo/bot-icon-promo-slot.png" />
                 <span class="notification-dot"></span>
             </span>
             <span>Notification</span>
@@ -422,74 +424,75 @@
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
 
-    <main class="mb-page">
+    <div class="bets-page">
+        <main class="mb-page">
 
-        <!-- =========================
-             MYBETS HEADER
-        ========================== -->
-        <header class="st-header">
-            <div class="st-header-left">
-                <div class="section-title">
-                    <h2>My Bets</h2>
+            <!-- =========================
+                 MYBETS HEADER
+            ========================== -->
+            <header class="st-header">
+                <div class="st-header-left">
+                    <div class="section-title">
+                        <h2>My Bets</h2>
+                    </div>
                 </div>
-            </div>
 
-            <div class="st-header-right">
-                <nav class="st-tabs">
-                    <a href="transaction.html">
-                        <button type="button"
-                                class="st-tab"
-                                data-tab="statement">
-                            <i class="fa-regular fa-file-lines"></i>
-                            Statement
+                <div class="st-header-right">
+                    <nav class="st-tabs">
+                        <a href="transaction.html">
+                            <button type="button"
+                                    class="st-tab"
+                                    data-tab="statement">
+                                <i class="fa-regular fa-file-lines"></i>
+                                Statement
 
-                        </button>
-                    </a>
-                    <a href="mybets.html">
-                        <button type="button"
-                                class="st-tab active"
-                                data-tab="mybets">
-                            <i class="fa-regular fa-rectangle-list"></i>
-                            MyBets
-                        </button>
-                    </a>
-                </nav>
-            </div>
-        </header>
+                            </button>
+                        </a>
+                        <a href="mybets.html">
+                            <button type="button"
+                                    class="st-tab active"
+                                    data-tab="mybets">
+                                <i class="fa-regular fa-rectangle-list"></i>
+                                MyBets
+                            </button>
+                        </a>
+                    </nav>
+                </div>
+            </header>
 
-        <div class="mb-actions">
-            <div class="mb-filter-wrap">
-                <div class="mb-dropdown" id="mbDropdown">
+            <div class="mb-actions">
+                <div class="mb-filter-wrap">
+                    <div class="mb-dropdown" id="mbDropdown">
 
-                    <!-- Selected -->
-                    <button type="button" class="mb-dropdown-selected">
-                        <span>All</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-
-                    <!-- Options -->
-                    <div class="mb-dropdown-menu">
-
-                        <button type="button" class="mb-dropdown-option active">
-                            All
+                        <!-- Selected -->
+                        <button type="button" class="mb-dropdown-selected">
+                            <span>All</span>
+                            <i class="fa-solid fa-chevron-down"></i>
                         </button>
 
-                        <button type="button" class="mb-dropdown-option">
-                            Sports
-                        </button>
+                        <!-- Options -->
+                        <div class="mb-dropdown-menu">
 
-                        <button type="button" class="mb-dropdown-option">
-                            Live Casino
-                        </button>
+                            <button type="button" class="mb-dropdown-option active">
+                                All
+                            </button>
 
-                        <button type="button" class="mb-dropdown-option">
-                            Slots
-                        </button>
+                            <button type="button" class="mb-dropdown-option">
+                                Sports
+                            </button>
+
+                            <button type="button" class="mb-dropdown-option">
+                                Live Casino
+                            </button>
+
+                            <button type="button" class="mb-dropdown-option">
+                                Slots
+                            </button>
+
+                        </div>
 
                     </div>
-
                 </div>
-            </div>
                 <button class="mb-print" type="button">
                     <i class="fa-solid fa-print"></i>
                 </button>
@@ -502,238 +505,238 @@
             </div>
 
 
-        <!-- =========================
-             TABLE HEADER
-        ========================== -->
-        <div class="mb-table-head">
+            <!-- =========================
+                 TABLE HEADER
+            ========================== -->
+            <div class="mb-table-head">
 
-            <div>#</div>
-            <div>Details</div>
-            <div>Selection</div>
-            <div>Odds</div>
-            <div>Stake</div>
-            <div>Status</div>
-            <div></div>
+                <div>#</div>
+                <div>Details</div>
+                <div>Selection</div>
+                <div>Odds</div>
+                <div>Stake</div>
+                <div>Status</div>
+                <div></div>
 
-        </div>
-
-
-        <!-- =========================
-             RECORD 1
-        ========================== -->
-        <div class="mb-record">
-
-            <div class="mb-number">
-                1
             </div>
 
-            <div class="mb-details">
-                <strong>18/09/2026 10:12:34</strong>
-                <span>MB000001</span>
-            </div>
 
-            <div class="mb-selection">
+            <!-- =========================
+                 RECORD 1
+            ========================== -->
+            <div class="mb-record">
 
-                <div>
-                    <strong>Manchester City</strong>
-                    <span>Football</span>
+                <div class="mb-number">
+                    1
                 </div>
 
-            </div>
-
-            <div class="mb-odds">
-                1.85
-            </div>
-
-            <div class="mb-stake">
-                200.00 MYR
-            </div>
-
-            <div class="mb-status won">
-                <i class="fa-solid fa-circle"></i>
-                Won
-            </div>
-
-            <button class="mb-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
-
-        </div>
-
-
-        <!-- =========================
-             RECORD 2
-        ========================== -->
-        <div class="mb-record">
-
-            <div class="mb-number">
-                2
-            </div>
-
-            <div class="mb-details">
-                <strong>17/09/2026 21:45:10</strong>
-                <span>MB000002</span>
-            </div>
-
-            <div class="mb-selection">
-
-                <div>
-                    <strong>Liverpool</strong>
-                    <span>Football</span>
+                <div class="mb-details">
+                    <strong>18/09/2026 10:12:34</strong>
+                    <span>MB000001</span>
                 </div>
 
-            </div>
+                <div class="mb-selection">
 
-            <div class="mb-odds">
-                2.10
-            </div>
+                    <div>
+                        <strong>Manchester City</strong>
+                        <span>Football</span>
+                    </div>
 
-            <div class="mb-stake">
-                150.00 MYR
-            </div>
-
-            <div class="mb-status lost">
-                <i class="fa-solid fa-circle"></i>
-                Lost
-            </div>
-
-            <button class="mb-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
-
-        </div>
-
-
-        <!-- =========================
-             RECORD 3
-        ========================== -->
-        <div class="mb-record">
-
-            <div class="mb-number">
-                3
-            </div>
-
-            <div class="mb-details">
-                <strong>17/09/2026 18:22:11</strong>
-                <span>MB000003</span>
-            </div>
-
-            <div class="mb-selection">
-
-                <div>
-                    <strong>Baccarat</strong>
-                    <span>Live Casino</span>
                 </div>
 
-            </div>
-
-            <div class="mb-odds">
-                1.95
-            </div>
-
-            <div class="mb-stake">
-                300.00 MYR
-            </div>
-
-            <div class="mb-status won">
-                <i class="fa-solid fa-circle"></i>
-                Won
-            </div>
-
-            <button class="mb-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
-
-        </div>
-
-
-        <!-- =========================
-             RECORD 4
-        ========================== -->
-        <div class="mb-record">
-
-            <div class="mb-number">
-                4
-            </div>
-
-            <div class="mb-details">
-                <strong>16/09/2026 14:20:31</strong>
-                <span>MB000004</span>
-            </div>
-
-            <div class="mb-selection">
-
-                <div>
-                    <strong>Sweet Bonanza</strong>
-                    <span>Slots</span>
+                <div class="mb-odds">
+                    1.85
                 </div>
 
-            </div>
-
-            <div class="mb-odds">
-                -
-            </div>
-
-            <div class="mb-stake">
-                100.00 MYR
-            </div>
-
-            <div class="mb-status lost">
-                <i class="fa-solid fa-circle"></i>
-                Lost
-            </div>
-
-            <button class="mb-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
-
-        </div>
-
-
-        <!-- =========================
-             RECORD 5
-        ========================== -->
-        <div class="mb-record">
-
-            <div class="mb-number">
-                5
-            </div>
-
-            <div class="mb-details">
-                <strong>15/09/2026 09:08:17</strong>
-                <span>MB000005</span>
-            </div>
-
-            <div class="mb-selection">
-
-                <div>
-                    <strong>Arsenal</strong>
-                    <span>Football</span>
+                <div class="mb-stake">
+                    200.00 MYR
                 </div>
 
+                <div class="mb-status won">
+                    <i class="fa-solid fa-circle"></i>
+                    Won
+                </div>
+
+                <button class="mb-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
             </div>
 
-            <div class="mb-odds">
-                1.92
+
+            <!-- =========================
+                 RECORD 2
+            ========================== -->
+            <div class="mb-record">
+
+                <div class="mb-number">
+                    2
+                </div>
+
+                <div class="mb-details">
+                    <strong>17/09/2026 21:45:10</strong>
+                    <span>MB000002</span>
+                </div>
+
+                <div class="mb-selection">
+
+                    <div>
+                        <strong>Liverpool</strong>
+                        <span>Football</span>
+                    </div>
+
+                </div>
+
+                <div class="mb-odds">
+                    2.10
+                </div>
+
+                <div class="mb-stake">
+                    150.00 MYR
+                </div>
+
+                <div class="mb-status lost">
+                    <i class="fa-solid fa-circle"></i>
+                    Lost
+                </div>
+
+                <button class="mb-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
             </div>
 
-            <div class="mb-stake">
-                250.00 MYR
+
+            <!-- =========================
+                 RECORD 3
+            ========================== -->
+            <div class="mb-record">
+
+                <div class="mb-number">
+                    3
+                </div>
+
+                <div class="mb-details">
+                    <strong>17/09/2026 18:22:11</strong>
+                    <span>MB000003</span>
+                </div>
+
+                <div class="mb-selection">
+
+                    <div>
+                        <strong>Baccarat</strong>
+                        <span>Live Casino</span>
+                    </div>
+
+                </div>
+
+                <div class="mb-odds">
+                    1.95
+                </div>
+
+                <div class="mb-stake">
+                    300.00 MYR
+                </div>
+
+                <div class="mb-status won">
+                    <i class="fa-solid fa-circle"></i>
+                    Won
+                </div>
+
+                <button class="mb-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
             </div>
 
-            <div class="mb-status rejected">
-                <i class="fa-regular fa-circle"></i>
-                Rejected
+
+            <!-- =========================
+                 RECORD 4
+            ========================== -->
+            <div class="mb-record">
+
+                <div class="mb-number">
+                    4
+                </div>
+
+                <div class="mb-details">
+                    <strong>16/09/2026 14:20:31</strong>
+                    <span>MB000004</span>
+                </div>
+
+                <div class="mb-selection">
+
+                    <div>
+                        <strong>Sweet Bonanza</strong>
+                        <span>Slots</span>
+                    </div>
+
+                </div>
+
+                <div class="mb-odds">
+                    -
+                </div>
+
+                <div class="mb-stake">
+                    100.00 MYR
+                </div>
+
+                <div class="mb-status lost">
+                    <i class="fa-solid fa-circle"></i>
+                    Lost
+                </div>
+
+                <button class="mb-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
             </div>
 
-            <button class="mb-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
 
-        </div>
+            <!-- =========================
+                 RECORD 5
+            ========================== -->
+            <div class="mb-record">
 
-    </main>
+                <div class="mb-number">
+                    5
+                </div>
 
+                <div class="mb-details">
+                    <strong>15/09/2026 09:08:17</strong>
+                    <span>MB000005</span>
+                </div>
+
+                <div class="mb-selection">
+
+                    <div>
+                        <strong>Arsenal</strong>
+                        <span>Football</span>
+                    </div>
+
+                </div>
+
+                <div class="mb-odds">
+                    1.92
+                </div>
+
+                <div class="mb-stake">
+                    250.00 MYR
+                </div>
+
+                <div class="mb-status rejected">
+                    <i class="fa-regular fa-circle"></i>
+                    Rejected
+                </div>
+
+                <button class="mb-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+            </div>
+
+        </main>
+    </div>
 
 
 

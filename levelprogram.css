@@ -26,7 +26,6 @@
 
 .lp-page {
     width: 100%;
-    max-width: 1500px;
     margin: 14px auto;
     padding: 10px;
     background: var(--lp-secondary);

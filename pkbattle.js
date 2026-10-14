@@ -1,150 +1,367 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
 
-    /* =====================================================
-       PK BATTLE TABS
-    ===================================================== */
+document.addEventListener("DOMContentLoaded", () => {
 
-    const pkbTabs = document.querySelectorAll(".pkb-tab");
-    const pkbContents = document.querySelectorAll(".pkb-tab-content");
+    /* =========================================
+       ELEMENTS
+    ========================================== */
 
-    pkbTabs.forEach(function (tab) {
+    const autoMatchBtn = document.getElementById("autoMatchBtn");
+    const pkFriendBtn = document.getElementById("pkFriendBtn");
+    const leaderboardBtn = document.getElementById("leaderboardBtn");
+    const historyBtn = document.getElementById("historyBtn");
 
-        tab.addEventListener("click", function () {
+    const autoMatchModal = document.getElementById("autoMatchModal");
+    const friendModal = document.getElementById("friendModal");
+    const leaderboardModal = document.getElementById("leaderboardModal");
+    const historyModal = document.getElementById("historyModal");
 
-            const target = tab.dataset.pkbTab;
+    const cancelMatchBtn = document.getElementById("cancelMatchBtn");
+    const matchStatus = document.getElementById("matchStatus");
 
-            /* Remove active tab */
-            pkbTabs.forEach(function (item) {
-                item.classList.remove("pkb-tab-active");
-            });
-
-            /* Hide all content */
-            pkbContents.forEach(function (content) {
-                content.classList.remove("pkb-content-active");
-            });
-
-            /* Activate selected tab */
-            tab.classList.add("pkb-tab-active");
-
-            const targetContent = document.querySelector(
-                '[data-pkb-content="' + target + '"]'
-            );
-
-            if (targetContent) {
-                targetContent.classList.add("pkb-content-active");
-            }
-
-        });
-
-    });
+    // Elements untuk design Auto Match baru
+    const matchSubtitle = document.getElementById("matchSubtitle");
+    const matchCountdown = document.getElementById("matchCountdown");
+    const matchSpinner = document.getElementById("matchSpinner");
 
 
-    /* =====================================================
-       COUNTDOWN
-    ===================================================== */
+    /* =========================================
+       OPEN MODAL
+    ========================================== */
 
-    const pkbCountdowns = document.querySelectorAll(
-        "[data-pkb-countdown]"
-    );
+    function openModal(modal) {
+        if (!modal) return;
 
-    pkbCountdowns.forEach(function (element) {
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
 
-        let remaining = parseInt(
-            element.dataset.pkbCountdown,
-            10
+
+    /* =========================================
+       CLOSE MODAL
+    ========================================== */
+
+    function closeModal(modal) {
+        if (!modal) return;
+
+        modal.classList.remove("active");
+
+        // Restore scroll only if no other modal is open
+        const anotherModalOpen =
+            document.querySelector(".pk-modal.active");
+
+        if (!anotherModalOpen) {
+            document.body.style.overflow = "";
+        }
+    }
+
+
+    /* =========================================
+       AUTO MATCH TIMER
+    ========================================== */
+
+    let matchTimer = null;
+    let matchCountdownTimer = null;
+    let matchSecondsLeft = 74;
+    let matchState = "idle";
+
+    function stopMatchTimers() {
+        clearTimeout(matchTimer);
+        clearInterval(matchCountdownTimer);
+
+        matchTimer = null;
+        matchCountdownTimer = null;
+    }
+
+
+    /* =========================================
+       FORMAT COUNTDOWN
+    ========================================== */
+
+    function formatMatchTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+
+        return (
+            "00:" +
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(secs).padStart(2, "0")
         );
+    }
 
-        function updateCountdown() {
 
-            if (remaining <= 0) {
-                element.textContent = "00 : 00 : 00";
+    /* =========================================
+       RESET AUTO MATCH
+    ========================================== */
+
+    function resetAutoMatch() {
+        stopMatchTimers();
+
+        matchSecondsLeft = 74;
+        matchState = "waiting";
+
+        if (matchCountdown) {
+            matchCountdown.textContent = "00:01:14";
+        }
+
+        if (matchSubtitle) {
+            matchSubtitle.textContent =
+                "Opponent found! Preparing match...";
+        }
+
+        if (matchStatus) {
+            matchStatus.innerHTML =
+                'Your opponent is ' +
+                '<strong>testnickmy**</strong>, ' +
+                'waiting for your opponent accept/refuse...';
+        }
+
+        if (matchSpinner) {
+            matchSpinner.style.display = "block";
+        }
+
+        if (cancelMatchBtn) {
+            cancelMatchBtn.disabled = false;
+            cancelMatchBtn.textContent = "CANCEL";
+        }
+    }
+
+
+    /* =========================================
+       START COUNTDOWN
+    ========================================== */
+
+    function startMatchCountdown() {
+        clearInterval(matchCountdownTimer);
+
+        matchCountdownTimer = setInterval(() => {
+
+            if (matchState !== "waiting") {
+                stopMatchTimers();
                 return;
             }
 
-            const hours = Math.floor(
-                remaining / 3600
-            );
+            matchSecondsLeft--;
 
-            const minutes = Math.floor(
-                (remaining % 3600) / 60
-            );
+            if (matchCountdown) {
+                matchCountdown.textContent =
+                    formatMatchTime(
+                        Math.max(matchSecondsLeft, 0)
+                    );
+            }
 
-            const seconds = remaining % 60;
+            if (matchSecondsLeft <= 0) {
+                stopMatchTimers();
 
-            element.textContent =
-                String(hours).padStart(2, "0") +
-                " : " +
-                String(minutes).padStart(2, "0") +
-                " : " +
-                String(seconds).padStart(2, "0");
+                matchState = "expired";
 
-            remaining--;
+                if (matchSubtitle) {
+                    matchSubtitle.textContent =
+                        "Match request expired";
+                }
 
-        }
+                if (matchStatus) {
+                    matchStatus.textContent =
+                        "Time is up. Please try matching again.";
+                }
 
-        updateCountdown();
+                if (matchSpinner) {
+                    matchSpinner.style.display = "none";
+                }
 
-        setInterval(updateCountdown, 1000);
+                if (cancelMatchBtn) {
+                    cancelMatchBtn.disabled = false;
+                    cancelMatchBtn.textContent = "CLOSE";
+                }
+            }
 
-    });
+        }, 1000);
+    }
 
 
-    /* =====================================================
-       JOIN BUTTON
-    ===================================================== */
+    /* =========================================
+       AUTO MATCH BUTTON
+    ========================================== */
 
-    const pkbJoinButtons = document.querySelectorAll(
-        ".pkb-join-btn"
-    );
+    if (autoMatchBtn && autoMatchModal) {
 
-    pkbJoinButtons.forEach(function (button) {
+        autoMatchBtn.addEventListener("click", () => {
 
-        button.addEventListener("click", function () {
+            resetAutoMatch();
+            openModal(autoMatchModal);
 
-            const originalText = button.innerHTML;
+            // Demo status update
+            matchTimer = setTimeout(() => {
 
-            button.innerHTML = "JOINED ✓";
+                if (matchState !== "waiting") return;
 
-            button.style.filter = "brightness(0.9)";
+                if (matchSubtitle) {
+                    matchSubtitle.textContent =
+                        "Waiting for opponent confirmation...";
+                }
 
-            setTimeout(function () {
+            }, 2500);
 
-                button.innerHTML = originalText;
-                button.style.filter = "";
-
-            }, 1500);
+            startMatchCountdown();
 
         });
 
+    }
+
+
+    /* =========================================
+       CANCEL MATCH
+    ========================================== */
+
+    if (cancelMatchBtn && autoMatchModal) {
+
+        cancelMatchBtn.addEventListener("click", () => {
+
+            stopMatchTimers();
+
+            matchState = "cancelled";
+
+            closeModal(autoMatchModal);
+
+        });
+
+    }
+
+
+    /* =========================================
+       PK FRIEND
+    ========================================== */
+
+    if (pkFriendBtn && friendModal) {
+
+        pkFriendBtn.addEventListener("click", () => {
+            openModal(friendModal);
+        });
+
+    }
+
+
+    /* =========================================
+       LEADERBOARD
+    ========================================== */
+
+    if (leaderboardBtn && leaderboardModal) {
+
+        leaderboardBtn.addEventListener("click", () => {
+            openModal(leaderboardModal);
+        });
+
+    }
+
+
+    /* =========================================
+       HISTORY
+    ========================================== */
+
+    if (historyBtn && historyModal) {
+
+        historyBtn.addEventListener("click", () => {
+            openModal(historyModal);
+        });
+
+    }
+
+
+    /* =========================================
+       CLOSE BUTTONS
+    ========================================== */
+
+    document.querySelectorAll("[data-close]")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const modal = button.closest(".pk-modal");
+
+                if (!modal) return;
+
+                if (modal === autoMatchModal) {
+                    stopMatchTimers();
+                    matchState = "closed";
+                }
+
+                closeModal(modal);
+
+            });
+
+        });
+
+
+    /* =========================================
+       CLOSE WHEN CLICK OUTSIDE
+    ========================================== */
+
+    document.querySelectorAll(".pk-modal")
+        .forEach(modal => {
+
+            modal.addEventListener("click", event => {
+
+                if (event.target !== modal) return;
+
+                if (modal === autoMatchModal) {
+                    stopMatchTimers();
+                    matchState = "closed";
+                }
+
+                closeModal(modal);
+
+            });
+
+        });
+
+
+    /* =========================================
+       ESCAPE KEY
+    ========================================== */
+
+    document.addEventListener("keydown", event => {
+
+        if (event.key !== "Escape") return;
+
+        document.querySelectorAll(".pk-modal.active")
+            .forEach(modal => {
+
+                if (modal === autoMatchModal) {
+                    stopMatchTimers();
+                    matchState = "closed";
+                }
+
+                closeModal(modal);
+
+            });
+
     });
 
 
-    /* =====================================================
-       BATTLE SELECT
-    ===================================================== */
+    /* =========================================
+       FRIEND CHALLENGE
+    ========================================== */
 
-    const pkbBattleSelect = document.querySelector(
-        ".pkb-battle-select"
-    );
+    document.querySelectorAll(".pk-friend-item")
+        .forEach(friend => {
 
-    if (pkbBattleSelect) {
+            friend.addEventListener("click", () => {
 
-        pkbBattleSelect.addEventListener(
-            "change",
-            function () {
+                const player =
+                    friend.querySelector("span:nth-child(2)");
 
-                console.log(
-                    "Selected battle:",
-                    this.value
+                const playerName = player
+                    ? player.textContent.trim()
+                    : "Player";
+
+                alert(
+                    `Challenge request sent to ${playerName}.`
                 );
 
-                /*
-                    Add AJAX/API here later if required.
-                */
+                closeModal(friendModal);
 
-            }
-        );
+            });
 
-    }
+        });
 
 });

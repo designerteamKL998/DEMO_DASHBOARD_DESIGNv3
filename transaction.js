@@ -1,530 +1,199 @@
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const today = new Date();
+  const dateInputValue = (date) => {
+    const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    return local.toISOString().slice(0, 10);
+  };
+  const formatActivityDate = (value) => {
+    const date = new Date(`${value}T12:00:00`);
+    return `${value.replaceAll('-', '/')}, ${date.toLocaleDateString('en-US', { weekday: 'long' })}`;
+  };
+  const start = $('#startDate');
+  const end = $('#endDate');
+  const detailStart = $('#detailStartDate');
+  const detailEnd = $('#detailEndDate');
+  const todayValue = dateInputValue(today);
+  [start, end, detailStart, detailEnd].forEach(input => {
+    if (input) input.value = todayValue;
+  });
 
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
-
-    const quickButtons = document.querySelectorAll(".quick-btn");
-    const topTabs = document.querySelectorAll(".top-tab");
-
-    const startDate = document.getElementById("startDate");
-    const endDate = document.getElementById("endDate");
-
-    const searchBtn = document.getElementById("searchBtn");
-
-    const selectedPeriod =
-        document.getElementById("selectedPeriod");
-
-    const recordCount =
-        document.getElementById("recordCount");
-
-    const transactionBody =
-        document.getElementById("transactionBody");
-
-
-    /* =====================================================
-       DATE FUNCTIONS
-    ===================================================== */
-
-    function formatDate(date) {
-
-        const year = date.getFullYear();
-
-        const month = String(
-            date.getMonth() + 1
-        ).padStart(2, "0");
-
-        const day = String(
-            date.getDate()
-        ).padStart(2, "0");
-
-        return `${year}-${month}-${day}`;
+  let toastTimer;
+  function showToast(message) {
+    const toast = $('#toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+  function validDateRange(from, to) {
+    if (!from || !to) {
+      showToast('Please select both dates.');
+      return false;
     }
-
-
-    function formatDisplayDate(dateString) {
-
-        const date = new Date(
-            dateString + "T00:00:00"
-        );
-
-        const day = String(
-            date.getDate()
-        ).padStart(2, "0");
-
-        const month = String(
-            date.getMonth() + 1
-        ).padStart(2, "0");
-
-        const year = date.getFullYear();
-
-        return `${day}/${month}/${year}`;
+    if (from > to) {
+      showToast('Start date cannot be later than end date.');
+      return false;
     }
+    return true;
+  }
 
+  $('#filterForm').addEventListener('submit', event => {
+    event.preventDefault();
+    if (!validDateRange(start.value, end.value)) return;
+    $('#activityDate').textContent = formatActivityDate(end.value);
+    showToast(`Statement updated: ${start.value} to ${end.value}`);
+  });
 
-    /* =====================================================
-       SET DEFAULT DATE
-       Last 7 Days
-    ===================================================== */
+  $('#categoryToggle').addEventListener('click', () => {
+    const panel = $('.category-panel');
+    const collapsed = panel.classList.toggle('collapsed');
+    $('#categoryToggle').setAttribute('aria-expanded', String(!collapsed));
+    $('#categoryToggle').setAttribute('aria-label', collapsed ? 'Expand amount by category' : 'Collapse amount by category');
+    $('#categoryToggle .chevron-up').style.transform = collapsed ? 'rotate(225deg) translateY(3px)' : '';
+  });
 
-    function setDefaultDates() {
-
-        const today = new Date();
-
-        const start = new Date(today);
-
-        start.setDate(
-            today.getDate() - 6
-        );
-
-        startDate.value =
-            formatDate(start);
-
-        endDate.value =
-            formatDate(today);
-
-    }
-
-    setDefaultDates();
-
-
-    /* =====================================================
-       QUICK DATE BUTTONS
-    ===================================================== */
-
-    quickButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            /* Remove active */
-            quickButtons.forEach(btn => {
-                btn.classList.remove("active");
-            });
-
-            /* Add active */
-            button.classList.add("active");
-
-            const days =
-                Number(button.dataset.days);
-
-            const today = new Date();
-
-            const start = new Date(today);
-
-            start.setDate(
-                today.getDate() - (days - 1)
-            );
-
-
-            /* Update input */
-            startDate.value =
-                formatDate(start);
-
-            endDate.value =
-                formatDate(today);
-
-
-            /* Update label */
-            selectedPeriod.textContent =
-                `Last ${days} Days`;
-
-
-            /* Reset transaction display */
-            showEmptyState();
-
-        });
-
+  const dashboardPage = $('#dashboardPage');
+  const detailsPage = $('#detailsPage');
+  function openDetails() {
+    detailsPage.classList.remove('hidden');
+    dashboardPage.classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (detailStart && start) detailStart.value = start.value;
+    if (detailEnd && end) detailEnd.value = end.value;
+  }
+  function backToDashboard() {
+    dashboardPage.classList.remove('hidden');
+    detailsPage.classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  $('#viewDetailsBtn').addEventListener('click', openDetails);
+  // Transactions button is handled by the Cash History section below.
+  // Total Outstanding card/arrow opens the same destination as the MyBets tab.
+  const outstandingCard = $('#outstandingCard');
+  if (outstandingCard) {
+    const openMyBets = () => { window.location.href = 'mybets.html'; };
+    outstandingCard.addEventListener('click', openMyBets);
+    outstandingCard.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openMyBets();
+      }
     });
-
-
-    /* =====================================================
-       CUSTOM DATE SEARCH
-    ===================================================== */
-
-    searchBtn.addEventListener("click", () => {
-
-        const start = startDate.value;
-        const end = endDate.value;
-
-
-        /* Check empty */
-        if (!start || !end) {
-
-            showMessage(
-                "Please select both start and end dates."
-            );
-
-            return;
-        }
-
-
-        /* Check invalid range */
-        if (
-            new Date(start) >
-            new Date(end)
-        ) {
-
-            showMessage(
-                "Start date cannot be later than end date."
-            );
-
-            return;
-        }
-
-
-        /* Remove quick active */
-        quickButtons.forEach(button => {
-            button.classList.remove("active");
-        });
-
-
-        /* Update period */
-        selectedPeriod.textContent =
-            `${formatDisplayDate(start)} - ${formatDisplayDate(end)}`;
-
-
-        /*
-         * IMPORTANT:
-         * API call can be added here later.
-         */
-
-        searchTransactions(start, end);
-
+  }
+  const backBtn = $('#backBtn');
+  if (backBtn) backBtn.addEventListener('click', backToDashboard);
+  const detailFilterForm = $('#detailFilterForm');
+  if (detailFilterForm) {
+    detailFilterForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const activeCategory = $('#betCategoryFilters .filter-pill.active');
+      showToast(`${activeCategory ? activeCategory.dataset.category : 'All'} bet details selected`);
     });
+  }
 
-
-    /* =====================================================
-       SEARCH TRANSACTIONS
-    ===================================================== */
-
-    function searchTransactions(start, end) {
-
-        console.log("Searching transactions:");
-
-        console.log({
-            startDate: start,
-            endDate: end
-        });
-
-
-        /*
-         * Example API:
-         *
-         * fetch("/api/transactions", {
-         *
-         *     method: "POST",
-         *
-         *     headers: {
-         *         "Content-Type": "application/json"
-         *     },
-         *
-         *     body: JSON.stringify({
-         *         startDate: start,
-         *         endDate: end
-         *     })
-         *
-         * })
-         *
-         * .then(response => response.json())
-         *
-         * .then(data => {
-         *
-         *     renderTransactions(data);
-         *
-         * })
-         *
-         * .catch(error => {
-         *
-         *     console.error(error);
-         *
-         * });
-         */
-
-
-        /* Temporary empty state */
-        showEmptyState();
-
-    }
-
-
-    /* =====================================================
-       EMPTY STATE
-    ===================================================== */
-
-    function showEmptyState() {
-
-        recordCount.textContent =
-            "0 records";
-
-
-        transactionBody.innerHTML = `
-
-            <tr class="empty-row">
-
-                <td colspan="9">
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-
-                            <i class="fa-regular fa-file-lines"></i>
-
-                            <i class="fa-solid fa-magnifying-glass"></i>
-
-                        </div>
-
-                        <h3>
-                            No transactions found
-                        </h3>
-
-                        <p>
-                            There are no records for the selected date range.
-                        </p>
-
-                    </div>
-
-                </td>
-
-            </tr>
-
-        `;
-
-    }
-
-
-    /* =====================================================
-       SHOW MESSAGE
-    ===================================================== */
-
-    function showMessage(message) {
-
-        alert(message);
-
-    }
-
-
-    /* =====================================================
-       TOP TABS
-    ===================================================== */
-
-    topTabs.forEach(tab => {
-
-        tab.addEventListener("click", () => {
-
-            topTabs.forEach(item => {
-                item.classList.remove("active");
-            });
-
-            tab.classList.add("active");
-
-
-            const tabName =
-                tab.dataset.tab;
-
-
-            console.log(
-                "Selected tab:",
-                tabName
-            );
-
-
-            /*
-             * Kalau nak tukar page:
-             *
-             * if (tabName === "mybets") {
-             *     window.location.href = "/mybets";
-             * }
-             */
-
-
-        });
-
+  $$('#betCategoryFilters .filter-pill').forEach(button => {
+    button.addEventListener('click', () => {
+      $$('#betCategoryFilters .filter-pill').forEach(pill => pill.classList.remove('active'));
+      button.classList.add('active');
+      // The visual filter is ready; connect this to your bet data/API when available.
+      showToast(`${button.dataset.category} category selected`);
     });
+  });
+})();
 
 
-    /* =====================================================
-       RENDER TRANSACTIONS
-       Untuk API nanti
-    ===================================================== */
 
-    function renderTransactions(data) {
+/* =========================
+   CASH HISTORY FUNCTIONS
+========================= */
 
-        if (!Array.isArray(data) || data.length === 0) {
+const cashHistoryPage = document.getElementById("cashHistoryPage");
+const transactionsBtn = document.getElementById("transactionsBtn");
+const cashHistoryForm = document.getElementById("cashHistoryForm");
 
-            showEmptyState();
+const cashFrom = document.getElementById("cashFrom");
+const cashTo = document.getElementById("cashTo");
 
-            return;
-        }
+const cashHistoryBody = document.getElementById("cashHistoryBody");
 
+// Buka Cash History apabila klik Transactions
+transactionsBtn.addEventListener("click", function () {
 
-        recordCount.textContent =
-            `${data.length} records`;
+  // Sorok paparan Statement
+  document.getElementById("dashboardPage")
+    .classList.add("hidden");
 
+  // Sorok paparan details jika ada
+  const detailsPage = document.getElementById("detailsPage");
 
-        transactionBody.innerHTML = "";
+  if (detailsPage) {
+    detailsPage.classList.add("hidden");
+  }
 
+  // Paparkan Cash History
+  cashHistoryPage.classList.remove("hidden");
 
-        data.forEach((transaction, index) => {
+  // Set tarikh hari ini
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
 
-            const row =
-                document.createElement("tr");
+  const todayDate = `${year}-${month}-${day}`;
 
+  cashFrom.value = todayDate;
+  cashTo.value = todayDate;
 
-            row.innerHTML = `
+});
 
-                <td>
-                    ${index + 1}
-                </td>
+// Button Go
+cashHistoryForm.addEventListener("submit", function (event) {
 
-                <td>
-                    ${transaction.date || "-"}
-                </td>
+  event.preventDefault();
 
-                <td>
-                    ${transaction.type || "-"}
-                </td>
+  const fromDate = cashFrom.value;
+  const toDate = cashTo.value;
 
-                <td>
-                    ${transaction.description || "-"}
-                </td>
+  if (!fromDate || !toDate) {
+    alert("Please select both dates.");
+    return;
+  }
 
-                <td>
-                    ${transaction.amount || "0.00"}
-                </td>
+  if (fromDate > toDate) {
+    alert("From date cannot be later than To date.");
+    return;
+  }
 
-                <td>
-                    ${transaction.balance || "0.00"}
-                </td>
-
-                <td>
-                    ${transaction.status || "-"}
-                </td>
-
-                <td>
-                    ${transaction.reference || "-"}
-                </td>
-
-                <td>
-
-                    <button
-                        type="button"
-                        class="view-btn"
-                        data-id="${transaction.id || ""}"
-                    >
-                        View
-                    </button>
-
-                </td>
-
-            `;
-
-
-            transactionBody.appendChild(row);
-
-        });
-
-    }
-
-
-    /* =====================================================
-       VIEW TRANSACTION
-    ===================================================== */
-
-    transactionBody.addEventListener(
-        "click",
-        event => {
-
-            const button =
-                event.target.closest(".view-btn");
-
-
-            if (!button) return;
-
-
-            const transactionId =
-                button.dataset.id;
-
-
-            console.log(
-                "View transaction:",
-                transactionId
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       DATE INPUT CHANGE
-    ===================================================== */
-
-    startDate.addEventListener("change", () => {
-
-        quickButtons.forEach(button => {
-            button.classList.remove("active");
-        });
-
-    });
-
-
-    endDate.addEventListener("change", () => {
-
-        quickButtons.forEach(button => {
-            button.classList.remove("active");
-        });
-
-    });
-
-
-    /* =====================================================
-       INITIAL STATE
-    ===================================================== */
-
-    showEmptyState();
+  // Paparan kosong sementara tiada data transaksi
+  cashHistoryBody.innerHTML = `
+    <tr>
+      <td colspan="7" class="no-record">
+        No Record.
+      </td>
+    </tr>
+  `;
 
 });
 
 
-//statement
-document.addEventListener("DOMContentLoaded", function () {
 
-    const dropdown = document.getElementById("mbDropdown");
-    const selected = dropdown.querySelector(".mb-dropdown-selected");
-    const selectedText = selected.querySelector("span");
-    const options = dropdown.querySelectorAll(".mb-dropdown-option");
+document.getElementById("cashBackBtn").addEventListener("click", function () {
 
-    /* OPEN / CLOSE */
-    selected.addEventListener("click", function (e) {
-        e.stopPropagation();
+  // Tutup Cash History
+  document.getElementById("cashHistoryPage")
+    .classList.add("hidden");
 
-        dropdown.classList.toggle("open");
-    });
+  // Kembali ke Statement
+  document.getElementById("dashboardPage")
+    .classList.remove("hidden");
 
-
-    /* SELECT OPTION */
-    options.forEach(option => {
-
-        option.addEventListener("click", function (e) {
-
-            e.stopPropagation();
-
-            selectedText.textContent = this.textContent.trim();
-
-            options.forEach(item => {
-                item.classList.remove("active");
-            });
-
-            this.classList.add("active");
-
-            dropdown.classList.remove("open");
-        });
-
-    });
-
-
-    /* CLICK OUTSIDE */
-    document.addEventListener("click", function () {
-        dropdown.classList.remove("open");
-    });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 
 });
+
+
