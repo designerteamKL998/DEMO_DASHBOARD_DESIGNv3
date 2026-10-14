@@ -1,8 +1,21 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
     const dciDays = document.getElementById("dciDays");
-    const dciCheckinButton = document.getElementById("dciCheckinButton");
-    const dciStatus = document.getElementById("dciStatus");
+    // Support both the mobile and desktop Check-in buttons/status labels.
+    const dciCheckinButtons = document.querySelectorAll("#dciCheckinButton");
+    const dciStatuses = document.querySelectorAll("#dciStatus");
+
+    function setCheckinDisabled(disabled) {
+        dciCheckinButtons.forEach(button => {
+            button.disabled = disabled;
+        });
+    }
+
+    function setStatus(message) {
+        dciStatuses.forEach(status => {
+            status.textContent = message;
+        });
+    }
     const dciProgressText = document.getElementById("dciProgressText");
     const dciProgressBar = document.getElementById("dciProgressBar");
 
@@ -75,9 +88,15 @@
 
         const [year, month, dayNumber] = malaysiaDate.split("-").map(Number);
 
-        // 12:00 PM GMT+08:00 on the next calendar day.
+        // Normalize the next date safely, including month/year boundaries.
+        const nextDate = new Date(Date.UTC(year, month - 1, dayNumber + 1));
+        const nextYear = nextDate.getUTCFullYear();
+        const nextMonth = String(nextDate.getUTCMonth() + 1).padStart(2, "0");
+        const nextDay = String(nextDate.getUTCDate()).padStart(2, "0");
+
+        // 12:00 PM Malaysia time (GMT+08:00) on the next calendar day.
         return new Date(
-            `${year}-${String(month).padStart(2, "0")}-${String(dayNumber + 1).padStart(2, "0")}T12:00:00+08:00`
+            `${nextYear}-${nextMonth}-${nextDay}T12:00:00+08:00`
         ).getTime();
     }
 
@@ -171,43 +190,47 @@
         });
 
         if (checkedDays.has(day)) {
-            dciCheckinButton.disabled = true;
-            dciStatus.textContent = `Day ${day} already checked in.`;
+            setCheckinDisabled(true);
+            setStatus(`Day ${day} already checked in.`);
             return;
         }
 
         if (!canCheck(day)) {
-            dciCheckinButton.disabled = true;
+            setCheckinDisabled(true);
 
             if (day !== getNextDay()) {
-                dciStatus.textContent =
-                    `Please complete Day ${getNextDay()} first.`;
+                setStatus(
+                    `Please complete Day ${getNextDay()} first.`
+                );
                 return;
             }
 
             const unlock = getUnlockTime(day);
 
             if (unlock === Infinity) {
-                dciStatus.textContent =
-                    `Day ${day} will unlock after Day ${day - 1} is checked in.`;
+                setStatus(
+                    `Day ${day} will unlock after Day ${day - 1} is checked in.`
+                );
             } else {
-                dciStatus.textContent =
-                    `Day ${day} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`;
+                setStatus(
+                    `Day ${day} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`
+                );
             }
 
             return;
         }
 
-        dciCheckinButton.disabled = false;
-        dciStatus.textContent =
-            `Day ${day} selected. Click Check-in.`;
+        setCheckinDisabled(false);
+        setStatus(
+            `Day ${day} selected. Click Check-in.`
+        );
     }
 
     /* =========================
        CHECK-IN
     ========================= */
 
-    dciCheckinButton.addEventListener("click", () => {
+    function handleCheckin() {
 
         if (!selectedDay || !canCheck(selectedDay)) {
             return;
@@ -232,19 +255,23 @@
         renderDays();
         selectDay(completedDay);
 
-        dciCheckinButton.disabled = true;
+        setCheckinDisabled(true);
 
         const nextDay = completedDay + 1;
 
         if (nextDay <= 28) {
             const unlock = getUnlockTime(nextDay);
 
-            dciStatus.textContent =
-                `Day ${completedDay} checked in. Day ${nextDay} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`;
+            setStatus(
+                `Day ${completedDay} checked in. Day ${nextDay} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`
+            );
         } else {
-            dciStatus.textContent =
-                "All 28 days completed!";
+            setStatus("All 28 days completed!");
         }
+    }
+
+    dciCheckinButtons.forEach(button => {
+        button.addEventListener("click", handleCheckin);
     });
 
     /* =========================
