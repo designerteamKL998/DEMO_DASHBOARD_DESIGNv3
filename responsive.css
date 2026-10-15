@@ -2656,8 +2656,12 @@
         right: -12px;
     }
 
+    .deposit-section {
+        margin-bottom: 20px;
+    }
+
     .package-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 10px;
         padding: 12px;
     }
@@ -2667,8 +2671,7 @@
     }
 
     .package-info {
-        width: 68%;
-        padding: 48px 12px 66px;
+        padding: 20px;
         box-sizing: border-box;
     }
 
@@ -6546,18 +6549,20 @@
     }
 
     .package-card {
-        min-height: 165px;
+        min-height: 180px;
     }
 
     .package-visual {
-        width: 35%;
-        height: 55%;
-        top: 20px;
+        width: 20%;
+        height: 40%;
+        top: 10px;
+        right: 20px;
     }
 
     .package-info {
-        width: 75%;
-        padding:10px 10px;
+        padding: 10px 10px;
+        min-height: 95px;
+        margin-top: 5px;
     }
 
         .package-info h3 {
@@ -7032,7 +7037,7 @@
     }
 
     .package-card {
-        min-height: 145px;
+        min-height: 165px;
         border-radius: 9px;
     }
 
@@ -7046,7 +7051,7 @@
 
     .package-info {
         width: 100%;
-        padding: 40px 8px 56px;
+        padding: 20px 10px;
     }
 
         .package-info h3 {
@@ -7066,6 +7071,7 @@
         padding: 5px 9px;
         font-size: 10px;
         border-radius: 0 0 8px 8px;
+        width:25%;
     }
 
     .package-btn {
