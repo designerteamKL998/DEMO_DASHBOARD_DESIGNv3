@@ -85,18 +85,18 @@
 }
 
 .wdr-methods i {
-    font-size:20px;
+    font-size: 20px;
 }
 
 .wdr-method:hover {
     border-color: var(--wdr-primary);
 }
 
-    .wdr-method.is-active {
-        background: var(--wdr-primary);
-        border-color: var(--wdr-primary);
-        color: var(--wdr-on-primary);
-    }
+.wdr-method.is-active {
+    background: var(--wdr-primary);
+    border-color: var(--wdr-primary);
+    color: var(--wdr-on-primary);
+}
 
 .wdr-method-icon {
     position: relative;
@@ -358,16 +358,14 @@
     font-weight: 800;
 }
 
-.wdr-bank-logo img{
-    width:40px;
-}
-
-.wdr-logo-hlb, .wdr-logo-cimb {
-
+    .wdr-bank-logo img {
+        width: 40px;
     }
 
-.wdr-logo-maybank {
+.wdr-logo-hlb, .wdr-logo-cimb {
+}
 
+.wdr-logo-maybank {
 }
 
 .wdr-bank-data {
@@ -452,30 +450,30 @@
     width: 100%;
 }
 
-    .wdr-rollover span {
-        display: block;
-        color: #AAB3BE;
-    }
+.wdr-rollover span {
+    display: block;
+    color: #AAB3BE;
+}
 
-    .wdr-rollover strong {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 2px;
-        color: #F1F3F5;
-    }
+.wdr-rollover strong {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+    color: #F1F3F5;
+}
 
-    .wdr-rollover i {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--wdr-success);
-        color: #06140C;
-        font-style: normal;
-    }
+.wdr-rollover i {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wdr-success);
+    color: #06140C;
+    font-style: normal;
+}
 
 .wdr-field {
     padding: 0;
@@ -592,7 +590,6 @@
     }
 
 .wdr-summary-bank {
-
 }
 
     .wdr-summary-bank > strong {
@@ -621,7 +618,7 @@
 
 .wdr-submit {
     width: calc(100% - 48px);
-    padding:10px;
+    padding: 10px;
     margin: 13px 24px 0;
     border: 0;
     border-radius: 9px;
@@ -764,7 +761,6 @@
 }
 
 .wdr-ewallet-info-panel {
-
 }
 
 .wdr-ewallet-info-box {
@@ -985,3 +981,735 @@
     }
 
 
+
+/* =========================================================
+   DEPOSIT-MATCHED THEME OVERRIDES
+   Visual-only changes: existing Withdrawal content and JS hooks
+   are preserved.
+========================================================= */
+
+:root {
+    --wdr-primary: #EAD87D;
+    --wdr-secondary: #202228;
+    --wdr-accent: #EAD87D;
+    --wdr-surface: #121418;
+    --wdr-background: #000000;
+    --wdr-text: #FFFFFF;
+    --wdr-highlight: #FFF1A8;
+    --wdr-muted: #AEB5C0;
+    --wdr-muted-2: #87919E;
+    --wdr-border: rgba(255, 255, 255, 0.08);
+    --wdr-border-gold: rgba(234, 216, 125, 0.35);
+}
+
+.wdr-page {
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 24px 28px 42px;
+    color: var(--wdr-text);
+    font-family: inherit;
+}
+
+.wdr-page-head {
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+    .wdr-page-head h2 {
+        color: #FFFFFF;
+        font-size: 30px;
+        line-height: 1.2;
+        letter-spacing: -0.7px;
+        font-weight: 700;
+    }
+
+    .wdr-page-head p {
+        color: #AEB5C0;
+        font-size: 13px;
+    }
+
+.wdr-methods {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.wdr-method {
+    width: 100%;
+    min-width: 0;
+    min-height: 64px;
+    height: auto;
+    padding: 13px 16px;
+    gap: 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 9px;
+    background: #121418;
+    color: #FFFFFF;
+    transition: border-color .18s ease, background .18s ease;
+}
+
+    .wdr-method > i {
+        width: 24px;
+        flex: 0 0 24px;
+        color: #EAD87D;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .wdr-method:hover {
+        border-color: rgba(234,216,125,.55);
+        background: #17191E;
+    }
+
+    .wdr-method.is-active {
+        color: #EAD87D;
+        background: #202228;
+        border-color: rgba(234,216,125,.35);
+    }
+
+        .wdr-method.is-active .wdr-method-copy small {
+            color: #AEB5C0;
+        }
+
+.wdr-method-copy strong {
+    font-size: 13px;
+    line-height: 1.35;
+    font-weight: 700;
+}
+
+.wdr-method-copy small {
+    margin-top: 3px;
+    color: #AEB5C0;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.wdr-bank-columns {
+    /* Keep the original Withdrawal layout:
+       Bank Details top-left, Amount underneath, Announcement on the right. */
+    grid-template-columns: minmax(0, 0.9fr) minmax(300px, .5fr);
+    grid-template-areas: "bank-details announcement" "withdraw announcement";
+    gap: 14px 16px;
+    align-items: stretch;
+}
+
+.wdr-bank-details {
+    grid-area: bank-details;
+}
+
+.wdr-bank-columns > .wdr-withdraw-panel {
+    grid-area: withdraw;
+}
+
+.wdr-bank-columns > .wdr-bank-announcement {
+    grid-area: announcement;
+    height: 100%;
+    margin-top: 0;
+}
+
+    .wdr-bank-columns > .wdr-bank-announcement .wdr-bank-announcement-grid {
+        grid-template-columns: 1fr;
+        border-right: 0;
+    }
+
+    .wdr-bank-columns > .wdr-bank-announcement .wdr-steps {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+.wdr-ewallet-columns {
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+    gap: 14px;
+}
+
+.wdr-ewallet-left {
+    gap: 14px;
+}
+
+.wdr-panel {
+    min-width: 0;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    background: #121418;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.wdr-panel-head {
+    padding: 20px 18px 14px;
+    gap: 12px;
+}
+
+.wdr-heading {
+    gap: 12px;
+}
+
+.wdr-heading-icon {
+    display: none;
+}
+
+.wdr-heading h2 {
+    color: #FFFFFF;
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    letter-spacing: -.25px;
+}
+
+.wdr-heading p {
+    margin-top: 4px;
+    color: #AEB5C0;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.wdr-outline-btn {
+    min-height: 36px;
+    height: auto;
+    padding: 8px 12px;
+    border: 1px solid rgba(234,216,125,.45);
+    border-radius: 7px;
+    background: transparent;
+    color: #EAD87D;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background .18s ease, border-color .18s ease;
+}
+
+    .wdr-outline-btn:hover {
+        border-color: #EAD87D;
+        background: rgba(234,216,125,.07);
+    }
+
+.wdr-bank-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 0 18px 18px;
+}
+
+.wdr-bank-row {
+    min-width: 0;
+    padding: 12px;
+    gap: 10px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #121418;
+    transition: border-color .18s ease, background .18s ease;
+}
+
+    .wdr-bank-row:hover {
+        border-color: rgba(234,216,125,.45);
+        background: #17191E;
+    }
+
+    .wdr-bank-row.is-selected {
+        border-color: rgba(234,216,125,.7);
+        background: #202228;
+    }
+
+.wdr-bank-logo {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: 5px;
+    background: transparent;
+}
+
+    .wdr-bank-logo img {
+        width: 34px;
+        max-height: 34px;
+        object-fit: contain;
+    }
+
+.wdr-bank-data p {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+.wdr-bank-data span,
+.wdr-bank-data small {
+    color: #AEB5C0;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+.wdr-radio {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+    border: 1px solid #73777D;
+}
+
+.wdr-bank-row.is-selected .wdr-radio {
+    border: 4px solid #EAD87D;
+    background: #121418;
+}
+
+.wdr-withdraw-panel {
+    padding: 0 0 18px;
+}
+
+.wdr-withdraw-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 20px 18px 0;
+}
+
+.wdr-field label {
+    margin-bottom: 7px;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+    .wdr-field label em {
+        color: #FF5B5B;
+    }
+
+.wdr-money-input {
+    height: 44px;
+    border: 1px solid rgba(234,216,125,.35);
+    border-radius: 8px;
+    background: #111111;
+}
+
+    .wdr-money-input > span {
+        width: 62px;
+        padding-left: 13px;
+        border-right: 1px solid rgba(255,255,255,.08);
+        color: #EAD87D;
+        font-size: 12px;
+    }
+
+    .wdr-money-input input {
+        padding: 0 12px;
+        color: #FFFFFF;
+        font-family: inherit;
+        font-size: 13px;
+    }
+
+        .wdr-money-input input::placeholder {
+            color: #747B85;
+        }
+
+    .wdr-money-input:focus-within {
+        border-color: #EAD87D;
+        box-shadow: 0 0 0 1px rgba(234,216,125,.12);
+    }
+
+.wdr-rollover {
+    width: 100%;
+    min-height: auto;
+    padding: 10px 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #202228;
+}
+
+    .wdr-rollover span {
+        color: #AEB5C0;
+        font-size: 11px;
+    }
+
+    .wdr-rollover strong {
+        color: #FFFFFF;
+        font-size: 13px;
+    }
+
+    .wdr-rollover i {
+        width: 18px;
+        height: 18px;
+        background: #43C07A;
+    }
+
+.wdr-amount-note {
+    padding: 7px 18px 0;
+    color: #AEB5C0;
+    font-size: 11px;
+}
+
+.wdr-quick {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+    padding: 13px 18px 16px;
+}
+
+    .wdr-quick button {
+        min-width: 0;
+        height: 34px;
+        padding: 5px 3px;
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 6px;
+        background: #121418;
+        color: #FFFFFF;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+        .wdr-quick button:hover,
+        .wdr-quick button.is-active {
+            border-color: #EAD87D;
+            color: #EAD87D;
+            background: #202228;
+        }
+
+.wdr-summary {
+    margin: 0 18px;
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    border-radius: 0;
+    background: transparent;
+}
+
+.wdr-summary-row {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    font-size: 12px;
+}
+
+    .wdr-summary-row > span {
+        color: #AEB5C0;
+    }
+
+    .wdr-summary-row > b {
+        color: #FFFFFF;
+        font-weight: 600;
+        text-align: right;
+    }
+
+.wdr-summary-bank > strong {
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.wdr-summary-bank small {
+    color: #AEB5C0;
+    font-size: 11px;
+}
+
+.wdr-receive > b {
+    color: #EAD87D;
+}
+
+.wdr-submit {
+    width: calc(100% - 36px);
+    min-height: 39px;
+    margin: 14px 18px 0;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 7px;
+    background: #EAD87D;
+    color: #111111;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: none;
+    transition: background .18s ease;
+}
+
+    .wdr-submit:hover {
+        background: #FFF1A8;
+        transform: none;
+    }
+
+    .wdr-submit span {
+        display: none;
+    }
+
+.wdr-bank-announcement-grid {
+    margin: 0 18px 18px;
+    min-height: 0;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #121418;
+}
+
+.wdr-steps {
+    padding: 12px 14px;
+    border-right: 1px solid rgba(255,255,255,.08);
+}
+
+    .wdr-steps > div {
+        min-height: 38px;
+        gap: 10px;
+        color: #D5D7DC;
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    .wdr-steps b {
+        width: 23px;
+        height: 23px;
+        flex: 0 0 23px;
+        border: 1px solid rgba(234,216,125,.5);
+        border-radius: 5px;
+        color: #EAD87D;
+        font-size: 11px;
+    }
+
+.wdr-notes {
+    padding: 13px 14px;
+    gap: 12px;
+}
+
+    .wdr-notes > div {
+        gap: 9px;
+        color: #AEB5C0;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .wdr-notes i {
+        width: 6px;
+        height: 6px;
+        flex: 0 0 6px;
+        margin-top: 6px;
+        background: #EAD87D;
+    }
+
+.wdr-wallet-setup {
+    min-height: 0;
+}
+
+.wdr-wallet-alert {
+    margin: 0 18px 18px;
+    min-height: 0;
+    padding: 13px;
+    gap: 11px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #202228;
+}
+
+.wdr-alert-icon {
+    width: 25px;
+    height: 25px;
+    flex: 0 0 25px;
+    background: #EAD87D;
+    font-size: 12px;
+}
+
+.wdr-wallet-alert strong {
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.wdr-wallet-alert p {
+    color: #AEB5C0;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.wdr-wallet-address {
+    flex: 0 0 auto;
+}
+
+.wdr-ewallet-info-box {
+    margin: 0 18px 16px;
+    padding: 13px;
+    gap: 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #202228;
+}
+
+.wdr-info-circle {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    background: #EAD87D;
+    font-size: 13px;
+}
+
+.wdr-ewallet-info-box strong {
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.wdr-ewallet-info-box p {
+    color: #AEB5C0;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.wdr-subtitle {
+    margin: 14px 18px 10px;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.wdr-how-list {
+    padding: 0 18px;
+    gap: 8px;
+}
+
+    .wdr-how-list > div {
+        min-height: 30px;
+        gap: 10px;
+        color: #D5D7DC;
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    .wdr-how-list b {
+        width: 24px;
+        height: 24px;
+        flex: 0 0 24px;
+        border: 1px solid rgba(234,216,125,.5);
+        border-radius: 5px;
+        color: #EAD87D;
+        font-size: 11px;
+    }
+
+.wdr-divider {
+    margin: 18px 18px 0;
+    background: rgba(255,255,255,.08);
+}
+
+.wdr-important-title {
+    margin-top: 14px;
+}
+
+.wdr-ewallet-notes {
+    padding: 0 18px 18px;
+    gap: 10px;
+}
+
+.wdr-modal-box {
+    border-color: rgba(255,255,255,.1);
+    border-radius: 12px;
+    background: #121418;
+    box-shadow: 0 18px 55px rgba(0,0,0,.45);
+}
+
+    .wdr-modal-box h3 {
+        color: #FFFFFF;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .wdr-modal-box > p {
+        color: #AEB5C0;
+        font-size: 12px;
+    }
+
+    .wdr-modal-box label {
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .wdr-modal-box input,
+    .wdr-modal-box select {
+        border-color: rgba(255,255,255,.1);
+        border-radius: 7px;
+        background: #202228;
+        color: #FFFFFF;
+        font-size: 13px;
+    }
+
+        .wdr-modal-box input:focus,
+        .wdr-modal-box select:focus {
+            border-color: #EAD87D;
+        }
+
+.wdr-toast {
+    border-color: rgba(255,255,255,.1);
+    border-radius: 8px;
+    background: #121418;
+    font-size: 13px;
+}
+
+    .wdr-toast.is-error {
+        border-color: #FF5B5B;
+    }
+
+    .wdr-toast.is-success {
+        border-color: #43C07A;
+    }
+
+.wdr-page button:focus-visible,
+.wdr-modal-box input:focus-visible,
+.wdr-modal-box select:focus-visible {
+    outline: 2px solid #EAD87D;
+    outline-offset: 2px;
+}
+
+
+
+/* Match the selected radio indicator used on the Deposit page */
+.wdr-bank-row .wdr-radio {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+    border: 1px solid #73777D;
+    border-radius: 50%;
+    background: transparent;
+}
+
+.wdr-bank-row.is-selected .wdr-radio {
+    border: 4px solid #EAD87D;
+    background: #121418;
+}
+
+    .wdr-bank-row.is-selected .wdr-radio::after {
+        content: none;
+        display: none;
+    }
+
+
+
+/* Keep Amount and Rollover / Target side-by-side like the reference image */
+.wdr-withdraw-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px;
+    align-items: end;
+    gap: 14px;
+    padding: 18px 18px 0;
+}
+
+    .wdr-withdraw-top .wdr-rollover {
+        width: 100%;
+        min-height: 44px;
+        padding: 8px 11px;
+    }
+
+        .wdr-withdraw-top .wdr-rollover span {
+            font-size: 11px;
+            line-height: 1.3;
+        }
+
+        .wdr-withdraw-top .wdr-rollover strong {
+            margin-top: 2px;
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+.wdr-amount-note {
+    padding: 7px 18px 0;
+}
+
+
+/* Active method indicator: small gold dot on the right, matching Deposit */
+.wdr-method {
+    position: relative;
+    padding-right: 32px;
+    width: 260px;
+    flex: 0 0 260px;
+}
+
+    .wdr-method.is-active::after {
+        content: "";
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #EAD87D;
+        transform: translateY(-50%);
+    }

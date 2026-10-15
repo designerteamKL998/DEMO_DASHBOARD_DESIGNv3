@@ -27,22 +27,21 @@
 }
 
 .stment-page {
-    padding:0px 20px;
+    padding: 0px 20px;
 }
 
 .dashboard {
     width: 100%;
-    max-width:1440px;
+    max-width: 1440px;
     margin: 14px auto;
     padding: 10px 32px 20px;
     background: #202228;
     color: var(--st-text);
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 11px;
 }
 
 .panel, .topbar {
-
 }
 
 .topbar {
@@ -76,11 +75,10 @@
     color: #ead87d;
     border-radius: 8px;
     box-shadow: inset 0 0 0 1px rgba(255,215,90,.04);
-    padding:5px;
+    padding: 5px;
 }
 
 .brand-icon {
-
 }
 
     .brand-icon svg {
@@ -97,7 +95,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 .date-field {
@@ -237,7 +235,7 @@
     align-items: center;
     border-bottom: 1px solid var(--st-border);
     background: #000;
-    border-radius: 30px;
+    border-radius: 11px;
     padding: 5px;
 }
 
@@ -337,7 +335,7 @@
     letter-spacing: -.6px;
     color: var(--accent);
     font-weight: 600;
-    font-size:25px;
+    font-size: 25px;
 }
 
 .watermark {
@@ -360,7 +358,7 @@
     top: 50%;
     transform: translateY(-50%);
     color: var(--gold);
-    font-size:30px;
+    font-size: 30px;
 }
 
 .outstanding .watermark {
@@ -415,7 +413,7 @@
 .activity-content {
     padding: 20px 36px 22px;
     background: linear-gradient(120deg,rgba(20,24,28,.9),rgba(17,21,25,.75));
-    border-radius:20px;
+    border-radius: 20px;
 }
 
 .activity-title {
@@ -427,8 +425,7 @@
 }
 
 .category-icon {
-    padding:5px;
-
+    padding: 5px;
 }
 
     .category-icon svg {
@@ -461,7 +458,7 @@
 
     .activity-stats strong {
         letter-spacing: -.5px;
-        font-size: 25px;
+        font-size: 14px;
     }
 
 .commission-stat {
@@ -515,14 +512,13 @@
     }
 
 .category-icon img {
-    width:35px;
+    width: 35px;
 }
 
 .category-icon.ball {
 }
 
 .category-icon.chip {
-
 }
 
 .category-icon.lottery {
@@ -583,7 +579,6 @@
 }
 
 .details-page {
-
 }
 
 .details-topbar {
@@ -731,8 +726,8 @@ th {
 
 .cash-history-box {
     width: 100%;
-    max-width:1440px;
-    margin:10px auto;
+    max-width: 1440px;
+    margin: 10px auto;
     padding: 0;
     overflow: hidden;
     background: linear-gradient(135deg, #141719, #0e1012);
@@ -774,7 +769,7 @@ th {
 
     .cash-history-filter input {
         width: 222px;
-        height: 53px;
+        height: 34px;
         padding: 0 14px;
         color: #f0f0f0;
         background: #0c0e10;
@@ -786,12 +781,8 @@ th {
         font-size: var(--font-md);
     }
 
-        .cash-history-filter input:focus {
-            border-color: #b99132;
-        }
-
 .cash-go-btn {
-    height: 53px;
+    height: 34px;
     min-width: 115px;
     padding: 0 20px;
     display: flex;
@@ -1111,13 +1102,262 @@ th {
         font-weight: 600;
         cursor: pointer;
         transition: .2s;
-        font-size:13px;
+        font-size: 13px;
     }
 
-    .back-btn:hover {
-        background: #282314;
-        border-color: var(--primary);
+.back-btn:hover {
+    background: #282314;
+    border-color: var(--primary);
+}
+
+
+
+/* =========================================================
+   DEPOSIT DESIGN SYSTEM — SHARED TYPOGRAPHY & CONTROLS
+   Matched to deposit(3).css. Visual overrides only.
+========================================================= */
+
+:root {
+    --bg: #000000;
+    --panel: #121418;
+    --raised: #202228;
+    --line: rgba(255,255,255,0.08);
+    --text: #FFFFFF;
+    --muted: #8C8C8C;
+    --gold: #EAD87D;
+    --ink: #111111;
+    --primary: #EAD87D;
+    --secondary: #202228;
+    --accent: #FFD700;
+    --surface: #121418;
+    --background: #000000;
+    --highlight: #FFF1A8;
+    --radius: 11px;
+}
+
+/* Page typography follows Deposit */
+.st-page,
+.mb-page,
+.stment-page {
+    color: #FFFFFF;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+    .st-page *,
+    .st-page *::before,
+    .st-page *::after,
+    .mb-page *,
+    .mb-page *::before,
+    .mb-page *::after,
+    .stment-page *,
+    .stment-page *::before,
+    .stment-page *::after {
+        box-sizing: border-box;
+    }
+
+    /* Titles: same restrained white/gold hierarchy as Deposit */
+    .st-page .st-header-text h1,
+    .st-page .st-transaction-header h2,
+    .st-page .st-section-heading > span,
+    .mb-page h1,
+    .mb-page h2,
+    .stment-page .brand h2,
+    .stment-page .section-heading h2,
+    .stment-page .activity-title h3,
+    .stment-page .cash-history-header h2,
+    .stment-page .details-topbar .brand h1 {
+        color: #FFFFFF;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+    }
+
+    .st-page .st-header-text h1,
+    .stment-page .brand h2,
+    .stment-page .details-topbar .brand h1 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    .st-page .st-header-text p,
+    .st-page .st-transaction-header p,
+    .st-page .st-transaction-header > span,
+    .st-page .st-section-heading small,
+    .st-page .st-summary-title,
+    .st-page .st-summary-info small,
+    .stment-page .activity-title p,
+    .stment-page .activity-stats span,
+    .stment-page .detail-metrics span,
+    .stment-page .cash-history-filter label {
+        color: #8C8C8C;
+    }
+
+    /* Deposit-like summary cards: compact, quiet, no gradients or oversized glow */
+    .st-page .st-summary-card,
+    .stment-page .summary-card {
+        background: #121418;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 11px;
+        box-shadow: none;
+    }
+
+    .st-page .st-summary-card {
+        padding: 20px;
+    }
+
+    .st-page .st-summary-title,
+    .stment-page .summary-card .eyebrow {
+        display: block;
+        margin: 0;
+        color: #8C8C8C;
+        font-size: 9px;
+        line-height: 1.3;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+    }
+
+    .st-page .st-summary-info small {
+        margin-top: 6px;
+        color: #EAD87D;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 1.25px;
+    }
+
+    .stment-page .summary-card::before {
+        width: 2px;
+        opacity: .9;
+    }
+
+    /* Date fields use one font, size, height and surface */
+    .st-page .st-date-input,
+    .stment-page .date-field,
+    .stment-page .cash-history-filter input,
+    .stment-page .cash-history-filter select,
+    .stment-page input[type="date"] {
+        font-weight: 400;
+        color: #FFFFFF;
+        background: #111111;
+        border-radius: 8px;
+        box-shadow: none;
     }
 
 
+        .st-page .st-date-input i,
+        .stment-page .date-field svg {
+            color: #EAD87D;
+            stroke: #EAD87D;
+        }
+
+    /* Buttons: flat gold primary and dark outlined secondary */
+    .st-page .st-search-btn,
+    .stment-page .btn-primary,
+    .stment-page .cash-go-btn {
+        background: #EAD87D;
+        color: #111111;
+        border: 1px solid #EAD87D;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 650;
+        box-shadow: none;
+    }
+
+        .st-page .st-search-btn:hover,
+        .stment-page .btn-primary:hover,
+        .stment-page .cash-go-btn:hover {
+            background: #FFF1A8;
+            border-color: #FFF1A8;
+            color: #111111;
+            filter: none;
+            transform: none;
+        }
+
+    .st-page .st-date-shortcut,
+    .st-page .st-quick-btn,
+    .stment-page .btn-outline,
+    .stment-page .filter-pill,
+    .stment-page .cash-back-btn,
+    .stment-page .details-back-row .back-btn {
+        background: #121418;
+        color: #FFFFFF;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+        .st-page .st-date-shortcut:hover,
+        .st-page .st-quick-btn:hover,
+        .st-page .st-date-shortcut.active,
+        .st-page .st-quick-btn.active,
+        .stment-page .btn-outline:hover,
+        .stment-page .filter-pill:hover,
+        .stment-page .filter-pill.active,
+        .stment-page .cash-back-btn:hover,
+        .stment-page .details-back-row .back-btn:hover {
+            background: #202228;
+            color: #EAD87D;
+            border-color: rgba(234,216,125,0.35);
+            transform: none;
+        }
+
+
+
+    .st-page .st-transaction-header,
+    .stment-page .section-heading,
+    .stment-page .cash-history-header {
+        background: transparent;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .st-page .st-table th,
+    .stment-page .table-wrap th,
+    .stment-page .cash-history-table th {
+        background: #202228;
+        color: #EAD87D;
+        font-size: 12px;
+        font-weight: 600;
+        border-color: rgba(255,255,255,0.08);
+    }
+
+    .st-page .st-table td,
+    .stment-page .table-wrap td,
+    .stment-page .cash-history-table td {
+        background: #121418;
+        color: #FFFFFF;
+        font-size: 13px;
+        border-color: rgba(255,255,255,0.08);
+    }
+
+    .st-page .st-table tbody tr:hover td,
+    .stment-page .table-wrap tbody tr:hover td,
+    .stment-page .cash-history-table tbody tr:hover td {
+        background: #202228;
+    }
+
+    /* Bet details summary amount and metric typography */
+    .stment-page .detail-summary {
+        background: #121418;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+        .stment-page .detail-summary h2 {
+            color: #8C8C8C;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+        }
+
+        .stment-page .detail-summary > strong {
+            color: #EEEEEE;
+            font-size: 14px;
+            line-height: 1.25;
+            font-weight: 400;
+            letter-spacing: -0.4px;
+        }
+
+    .stment-page .detail-metrics > div {
+        border-left-color: rgba(255,255,255,0.08);
+    }
 

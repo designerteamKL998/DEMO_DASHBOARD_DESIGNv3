@@ -37,31 +37,31 @@
 
 /* MYBETS */
 .bets-page {
-    padding:0px 20px;
+    padding: 0px 20px;
 }
 
 .mb-page {
     width: 100%;
-    max-width:1440px;
+    max-width: 1440px;
     margin: 14px auto;
     padding: 10px 32px;
     background: var(--st-background);
     color: var(--st-text);
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 11px;
     --mb-grid: 70px 1.2fr 1.5fr .7fr .9fr 1fr;
 }
 
 
-    /* =========================================================
+/* =========================================================
    BOX SIZING
 ========================================================= */
 
-    .st-page *,
-    .st-page *::before,
-    .st-page *::after {
-        box-sizing: border-box;
-    }
+.st-page *,
+.st-page *::before,
+.st-page *::after {
+    box-sizing: border-box;
+}
 
 
 /* =========================================================
@@ -88,7 +88,13 @@
 }
 
 
-.st-icon {
+    .st-header-left h2 {
+        font-size: 30px !important;
+        line-height: 1.2 !important;
+        color: #fff !important;
+        font-weight: 600 important;
+    }
+    .st-icon {
     width: 58px;
     height: 58px;
     flex: 0 0 58px;
@@ -167,15 +173,6 @@
    TOP TABS
 ========================================================= */
 
-.st-tabs {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--st-border);
-    background: #000;
-    border-radius: 30px;
-    padding: 5px 10px;
-}
-
 
 .st-tab {
     position: relative;
@@ -207,7 +204,7 @@
     }
 
 
-        /*.st-tab.active::after {
+/*.st-tab.active::after {
             content: "";
             position: absolute;
             left: 10px;
@@ -328,11 +325,6 @@
 }
 
 
-    .st-date-input:focus-within {
-        border-color: var(--st-primary);
-    }
-
-
     .st-date-input i {
         flex: 0 0 auto;
         color: var(--st-primary);
@@ -383,7 +375,7 @@
     color: #000000;
     cursor: pointer;
     transition: background 0.2s ease, border-color 0.2s ease;
-    border-radius:20px;
+    border-radius: 20px;
 }
 
 
@@ -455,7 +447,7 @@
     justify-content: space-between;
     background: var(--st-surface);
     border: 1px solid #30333d;
-    border-radius:20px;
+    border-radius: 20px;
 }
 
 
@@ -687,7 +679,6 @@
 
 
     .st-empty-icon .fa-file-lines {
-
     }
 
 
@@ -752,16 +743,6 @@
     color: var(--st-live);
 }
 
-
-/* =========================================================
-   FOCUS
-========================================================= */
-
-.st-page button:focus-visible,
-.st-page input:focus-visible {
-    outline: 1px solid var(--st-accent);
-    outline-offset: 2px;
-}
 
 
 /* =========================================================
@@ -898,7 +879,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding:10px 0px;
+    padding: 10px 0px;
 }
 
 
@@ -936,11 +917,6 @@
     .mb-filter:hover {
         border-color: rgba(234, 216, 125, 0.65);
         background: #16191D;
-    }
-    .mb-filter:focus {
-        border-color: #EAD87D;
-        background: #121418;
-        box-shadow: 0 0 0 2px rgba(234, 216, 125, 0.08);
     }
 
 
@@ -1065,11 +1041,11 @@
     font-weight: 500;
     letter-spacing: .2px;
     align-content: center;
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 
-/* =========================================================
+    /* =========================================================
    MYBETS RECORD
 ========================================================= */
     .mb-table-head > *,
@@ -1270,7 +1246,6 @@
 }
 
     .mb-status i {
-
     }
 
 
@@ -1317,7 +1292,7 @@
     color: #D5D9DD;
     cursor: pointer;
     transition: background .2s ease, color .2s ease, transform .2s ease;
-    display:none;
+    display: none;
 }
 
     .mb-arrow:hover {
@@ -1356,7 +1331,6 @@
     border: 1px solid rgba(234, 216, 125, 0.35);
     border-radius: 12px;
     color: #FFFFFF;
-    font-family: inherit;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
@@ -1434,7 +1408,6 @@
     border: 0;
     border-radius: 8px;
     color: #D8D8D8;
-    font-family: inherit;
     font-size: 12px;
     font-weight: 500;
     text-align: left;
@@ -1465,3 +1438,213 @@
             background: rgba(234, 216, 125, 0.15);
             color: #FFD700;
         }
+
+
+
+/* =========================================================
+   DEPOSIT DESIGN SYSTEM — SHARED TYPOGRAPHY & CONTROLS
+   Matched to deposit(3).css. Visual overrides only.
+========================================================= */
+
+:root {
+    --bg: #000000;
+    --panel: #121418;
+    --raised: #202228;
+    --line: rgba(255,255,255,0.08);
+    --text: #FFFFFF;
+    --muted: #8C8C8C;
+    --gold: #EAD87D;
+    --ink: #111111;
+    --primary: #EAD87D;
+    --secondary: #202228;
+    --accent: #FFD700;
+    --surface: #121418;
+    --background: #000000;
+    --highlight: #FFF1A8;
+    --radius: 11px;
+}
+
+    .st-page *,
+    .st-page *::before,
+    .st-page *::after,
+    .mb-page *,
+    .mb-page *::before,
+    .mb-page *::after,
+    .stment-page *,
+    .stment-page *::before,
+    .stment-page *::after {
+        box-sizing: border-box;
+    }
+
+    .st-page .st-header-text p,
+    .st-page .st-transaction-header p,
+    .st-page .st-transaction-header > span,
+    .st-page .st-section-heading small,
+    .st-page .st-summary-title,
+    .st-page .st-summary-info small,
+    .stment-page .activity-title p,
+    .stment-page .activity-stats span,
+    .stment-page .detail-metrics span,
+    .stment-page .cash-history-filter label {
+        color: #8C8C8C;
+    }
+
+    /* Deposit-like summary cards: compact, quiet, no gradients or oversized glow */
+    .st-page .st-summary-card,
+    .stment-page .summary-card {
+        background: #121418;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 11px;
+        box-shadow: none;
+    }
+
+    .st-page .st-summary-card {
+        padding: 20px;
+    }
+
+    .st-page .st-summary-title,
+    .stment-page .summary-card .eyebrow {
+        display: block;
+        margin: 0;
+        color: #8C8C8C;
+        font-size: 9px;
+        line-height: 1.3;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+    }
+
+    .st-page .st-summary-info strong,
+    .stment-page .summary-card strong {
+        display: block;
+        margin-top: 8px;
+        color: #EEEEEE;
+        font-size: 14px;
+        line-height: 1.25;
+        font-weight: 400;
+        letter-spacing: -0.4px;
+    }
+
+    .st-page .st-summary-info small {
+        margin-top: 6px;
+        color: #EAD87D;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 1.25px;
+    }
+
+    .stment-page .summary-card::before {
+        width: 2px;
+        opacity: .9;
+    }
+
+
+        .st-page .st-date-input i,
+        .stment-page .date-field svg {
+            color: #EAD87D;
+            stroke: #EAD87D;
+        }
+
+
+        .st-page .st-search-btn:hover,
+        .stment-page .btn-primary:hover,
+        .stment-page .cash-go-btn:hover {
+            background: #FFF1A8;
+            border-color: #FFF1A8;
+            color: #111111;
+            filter: none;
+            transform: none;
+        }
+
+    .st-page .st-date-shortcut,
+    .st-page .st-quick-btn,
+    .stment-page .btn-outline,
+    .stment-page .filter-pill,
+    .stment-page .cash-back-btn,
+    .stment-page .details-back-row .back-btn {
+        background: #121418;
+        color: #FFFFFF;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+        .st-page .st-date-shortcut:hover,
+        .st-page .st-quick-btn:hover,
+        .st-page .st-date-shortcut.active,
+        .st-page .st-quick-btn.active,
+        .stment-page .btn-outline:hover,
+        .stment-page .filter-pill:hover,
+        .stment-page .filter-pill.active,
+        .stment-page .cash-back-btn:hover,
+        .stment-page .details-back-row .back-btn:hover {
+            background: #202228;
+            color: #EAD87D;
+            border-color: rgba(234,216,125,0.35);
+            transform: none;
+        }
+
+    /* Panels and tables */
+    .st-page .st-transaction,
+    .stment-page .activity-panel,
+    .stment-page .category-panel,
+    .stment-page .details-panel,
+    .stment-page .cash-history-box {
+        background: #121418;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 11px;
+        box-shadow: none;
+        padding:0px 10px;
+    }
+
+    .st-page .st-transaction-header,
+    .stment-page .section-heading,
+    .stment-page .cash-history-header {
+        background: transparent;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .st-page .st-table th,
+    .stment-page .table-wrap th,
+    .stment-page .cash-history-table th {
+        background: #202228;
+        color: #EAD87D;
+        font-size: 12px;
+        font-weight: 600;
+        border-color: rgba(255,255,255,0.08);
+    }
+
+    .st-page .st-table td,
+    .stment-page .table-wrap td,
+    .stment-page .cash-history-table td {
+        background: #121418;
+        color: #FFFFFF;
+        font-size: 13px;
+        border-color: rgba(255,255,255,0.08);
+    }
+
+    .st-page .st-table tbody tr:hover td,
+    .stment-page .table-wrap tbody tr:hover td,
+    .stment-page .cash-history-table tbody tr:hover td {
+        background: #202228;
+    }
+
+    /* Bet details summary amount and metric typography */
+    .stment-page .detail-summary {
+        background: #121418;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+        .stment-page .detail-summary h2 {
+            color: #8C8C8C;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+        }
+
+    .stment-page .detail-metrics > div {
+        border-left-color: rgba(255,255,255,0.08);
+    }
+
+
