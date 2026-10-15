@@ -443,7 +443,6 @@
 .wdr-amount-note {
     padding: 5px 24px 0;
     color: #AEB5C0;
-    font-size: 12px;
 }
 
 .wdr-withdraw-top .wdr-rollover {
@@ -544,12 +543,6 @@
 }
 
     .wdr-quick button {
-        height: 44px;
-        border: 1px solid #303943;
-        border-radius: 8px;
-        background: #0C1115;
-        color: #E6E9EC;
-        font-weight: 600;
         cursor: pointer;
     }
 
@@ -1003,7 +996,7 @@
 }
 
 .wdr-page {
-    max-width: 1380px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 24px 28px 42px;
     color: var(--wdr-text);
@@ -1011,7 +1004,7 @@
 }
 
 .wdr-page-head {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     gap: 12px;
 }
 
@@ -1020,12 +1013,11 @@
         font-size: 30px;
         line-height: 1.2;
         letter-spacing: -0.7px;
-        font-weight: 700;
+        font-weight: 600;
     }
 
     .wdr-page-head p {
         color: #AEB5C0;
-        font-size: 13px;
     }
 
 .wdr-methods {
@@ -1072,9 +1064,8 @@
         }
 
 .wdr-method-copy strong {
-    font-size: 13px;
     line-height: 1.35;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .wdr-method-copy small {
@@ -1118,7 +1109,7 @@
     }
 
 .wdr-ewallet-columns {
-    grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(300px, .5fr);
     gap: 14px;
 }
 
@@ -1159,7 +1150,6 @@
 .wdr-heading p {
     margin-top: 4px;
     color: #AEB5C0;
-    font-size: 12px;
     line-height: 1.5;
 }
 
@@ -1171,7 +1161,6 @@
     border-radius: 7px;
     background: transparent;
     color: #EAD87D;
-    font-size: 12px;
     font-weight: 600;
     transition: background .18s ease, border-color .18s ease;
 }
@@ -1224,7 +1213,6 @@
 .wdr-bank-data p {
     margin: 0;
     color: #FFFFFF;
-    font-size: 12px;
     line-height: 1.35;
     font-weight: 600;
 }
@@ -1232,7 +1220,6 @@
 .wdr-bank-data span,
 .wdr-bank-data small {
     color: #AEB5C0;
-    font-size: 11px;
     overflow-wrap: anywhere;
 }
 
@@ -1261,7 +1248,6 @@
 .wdr-field label {
     margin-bottom: 7px;
     color: #FFFFFF;
-    font-size: 12px;
     font-weight: 700;
 }
 
@@ -1281,14 +1267,12 @@
         padding-left: 13px;
         border-right: 1px solid rgba(255,255,255,.08);
         color: #EAD87D;
-        font-size: 12px;
     }
 
     .wdr-money-input input {
         padding: 0 12px;
         color: #FFFFFF;
         font-family: inherit;
-        font-size: 13px;
     }
 
         .wdr-money-input input::placeholder {
@@ -1311,12 +1295,10 @@
 
     .wdr-rollover span {
         color: #AEB5C0;
-        font-size: 11px;
     }
 
     .wdr-rollover strong {
         color: #FFFFFF;
-        font-size: 13px;
     }
 
     .wdr-rollover i {
@@ -1328,25 +1310,22 @@
 .wdr-amount-note {
     padding: 7px 18px 0;
     color: #AEB5C0;
-    font-size: 11px;
 }
 
 .wdr-quick {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 6px;
     padding: 13px 18px 16px;
 }
 
     .wdr-quick button {
         min-width: 0;
-        height: 34px;
-        padding: 5px 3px;
+        padding: 9px 3px;
         border: 1px solid rgba(255,255,255,.08);
         border-radius: 6px;
         background: #121418;
         color: #FFFFFF;
-        font-size: 13px;
-        font-weight: 600;
+        font-weight: 500;
     }
 
         .wdr-quick button:hover,
@@ -1367,7 +1346,6 @@
 .wdr-summary-row {
     padding: 10px 0;
     border-bottom: 1px solid rgba(255,255,255,.06);
-    font-size: 12px;
 }
 
     .wdr-summary-row > span {
@@ -1382,12 +1360,10 @@
 
 .wdr-summary-bank > strong {
     color: #FFFFFF;
-    font-size: 12px;
 }
 
 .wdr-summary-bank small {
     color: #AEB5C0;
-    font-size: 11px;
 }
 
 .wdr-receive > b {
@@ -1403,7 +1379,6 @@
     border-radius: 7px;
     background: #EAD87D;
     color: #111111;
-    font-size: 12px;
     font-weight: 700;
     box-shadow: none;
     transition: background .18s ease;
@@ -1436,7 +1411,6 @@
         min-height: 38px;
         gap: 10px;
         color: #D5D7DC;
-        font-size: 12px;
         line-height: 1.45;
     }
 
@@ -1447,7 +1421,6 @@
         border: 1px solid rgba(234,216,125,.5);
         border-radius: 5px;
         color: #EAD87D;
-        font-size: 11px;
     }
 
 .wdr-notes {
@@ -1458,7 +1431,6 @@
     .wdr-notes > div {
         gap: 9px;
         color: #AEB5C0;
-        font-size: 12px;
         line-height: 1.5;
     }
 
@@ -1489,17 +1461,14 @@
     height: 25px;
     flex: 0 0 25px;
     background: #EAD87D;
-    font-size: 12px;
 }
 
 .wdr-wallet-alert strong {
     color: #FFFFFF;
-    font-size: 12px;
 }
 
 .wdr-wallet-alert p {
     color: #AEB5C0;
-    font-size: 11px;
     line-height: 1.5;
 }
 
@@ -1521,25 +1490,21 @@
     height: 30px;
     flex: 0 0 30px;
     background: #EAD87D;
-    font-size: 13px;
 }
 
 .wdr-ewallet-info-box strong {
     color: #FFFFFF;
-    font-size: 12px;
 }
 
 .wdr-ewallet-info-box p {
     color: #AEB5C0;
-    font-size: 11px;
     line-height: 1.5;
 }
 
 .wdr-subtitle {
     margin: 14px 18px 10px;
     color: #FFFFFF;
-    font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .wdr-how-list {
@@ -1551,7 +1516,6 @@
         min-height: 30px;
         gap: 10px;
         color: #D5D7DC;
-        font-size: 12px;
         line-height: 1.45;
     }
 
@@ -1562,7 +1526,6 @@
         border: 1px solid rgba(234,216,125,.5);
         border-radius: 5px;
         color: #EAD87D;
-        font-size: 11px;
     }
 
 .wdr-divider {
@@ -1594,12 +1557,10 @@
 
     .wdr-modal-box > p {
         color: #AEB5C0;
-        font-size: 12px;
     }
 
     .wdr-modal-box label {
         color: #FFFFFF;
-        font-size: 12px;
         font-weight: 600;
     }
 
@@ -1609,7 +1570,6 @@
         border-radius: 7px;
         background: #202228;
         color: #FFFFFF;
-        font-size: 13px;
     }
 
         .wdr-modal-box input:focus,
@@ -1621,7 +1581,6 @@
     border-color: rgba(255,255,255,.1);
     border-radius: 8px;
     background: #121418;
-    font-size: 13px;
 }
 
     .wdr-toast.is-error {
@@ -1679,13 +1638,11 @@
     }
 
         .wdr-withdraw-top .wdr-rollover span {
-            font-size: 11px;
             line-height: 1.3;
         }
 
         .wdr-withdraw-top .wdr-rollover strong {
             margin-top: 2px;
-            font-size: 13px;
             line-height: 1.3;
         }
 
