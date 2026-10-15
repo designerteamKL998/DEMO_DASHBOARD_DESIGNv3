@@ -2307,10 +2307,10 @@ body {
     font-weight: 700;
 }
 
+.package-btn a{color:#000;}
 /* =========================================================
    RIGHT IMAGE
 ========================================================= */
-
 .cm8-promo-card-image {
     position: relative;
     width: 100%;

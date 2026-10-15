@@ -19,7 +19,7 @@
 
 .wdr-page {
     width: 100%;
-    max-width: 1600px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 30px 38px 42px;
 }
@@ -247,7 +247,6 @@
     height: 40px;
     flex: 0 0 40px;
     color: var(--wdr-primary);
-    display:none;
 }
 
 .wdr-heading h2 {

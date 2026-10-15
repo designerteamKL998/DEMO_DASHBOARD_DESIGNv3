@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+﻿document.addEventListener("DOMContentLoaded", () => {
 
     const dciDays = document.getElementById("dciDays");
     // Support both the mobile and desktop Check-in buttons/status labels.

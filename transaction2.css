@@ -32,6 +32,7 @@
 
 .dashboard {
     width: 100%;
+    max-width:1440px;
     margin: 14px auto;
     padding: 10px 32px 20px;
     background: #202228;
@@ -730,6 +731,8 @@ th {
 
 .cash-history-box {
     width: 100%;
+    max-width:1440px;
+    margin:10px auto;
     padding: 0;
     overflow: hidden;
     background: linear-gradient(135deg, #141719, #0e1012);

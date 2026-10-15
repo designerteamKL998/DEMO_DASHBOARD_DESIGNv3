@@ -66,6 +66,13 @@ if (homeWrap && homeBtn) {
         e.preventDefault();
         e.stopPropagation();
 
+        // Buka/tutup game menu, dan tutup dropdown user supaya tak overlap.
+        const moreMenu = document.querySelector(".mobile-more-menu");
+        const profileWrap = document.querySelector(".user-profile-wrap");
+
+        if (moreMenu) moreMenu.classList.remove("active");
+        if (profileWrap) profileWrap.classList.remove("active");
+
         homeWrap.classList.toggle("game-open");
     });
 
@@ -81,6 +88,10 @@ if (moreBtn && moreMenu) {
     moreBtn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
+
+        // More/profile dropdown tak boleh terbuka serentak dengan game menu.
+        const homeWrap = document.querySelector(".bottom-home-wrap");
+        if (homeWrap) homeWrap.classList.remove("game-open");
 
         moreMenu.classList.toggle("active");
     });
@@ -191,6 +202,13 @@ if (userProfileBtn && userProfileWrap) {
         if (window.innerWidth > 1024) return;
 
         e.stopPropagation();
+
+        // Bila buka user dropdown, tutup Menu game terlebih dahulu.
+        const homeWrap = document.querySelector(".bottom-home-wrap");
+        const moreMenu = document.querySelector(".mobile-more-menu");
+        if (homeWrap) homeWrap.classList.remove("game-open");
+        if (moreMenu) moreMenu.classList.remove("active");
+
         userProfileWrap.classList.toggle("active");
 
     });

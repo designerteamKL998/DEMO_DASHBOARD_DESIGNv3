@@ -27,7 +27,7 @@
 ===================================================== */
 
 .rf-container {
-    width: min(1500px, 100%);
+    width: 100%;
     margin: auto;
     position: relative;
     z-index: 2;

@@ -42,6 +42,7 @@
 
 .mb-page {
     width: 100%;
+    max-width:1440px;
     margin: 14px auto;
     padding: 10px 32px;
     background: var(--st-background);
