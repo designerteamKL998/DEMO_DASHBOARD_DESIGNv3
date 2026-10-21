@@ -1145,8 +1145,8 @@
     .new-page .games-grid,
     .fav-games .games-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 15px;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 7px;
         overflow: visible;
     }
 
@@ -6041,6 +6041,15 @@
 /*===========================================================================================  MOBILE 480PX  ======================================================================================================*/
 
 @media (max-width: 480px) {
+
+    .page-hot .games-grid,
+    .new-page .games-grid,
+    .fav-games .games-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 7px;
+        overflow: visible;
+    }
     .main-header {
         padding: 6px 8px;
     }
