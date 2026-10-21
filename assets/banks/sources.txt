@@ -1,0 +1,5 @@
+CIMB: https://www.cimb.com.my/content/dam/cimb/personal/images/global/CIMB_logo.png
+Other bank logos: extracted from user-supplied reference codex-clipboard-40fae036-4334-4bd0-809e-e2f3e1decc93.png.
+RHB: https://commons.wikimedia.org/wiki/File:RHB_Logo.svg (replaces incorrect mark in reference).
+v12 CIMB: https://www.cimb.com.my/content/dam/cimb/personal/images/global/CIMB-logo-footer-without-background.svg
+v12 RHB: https://companieslogo.com/rhb-bank/logo/ (dark-background wordmark)

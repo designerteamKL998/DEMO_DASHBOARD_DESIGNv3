@@ -1,0 +1,2 @@
+Vector logo source: https://github.com/SnorSnor9998/Payment-Icon
+Original *_SVG.svg logo artwork, with background paths omitted for Maybank and TNG and white lettering variants for FPX and DuitNow on dark cards.
