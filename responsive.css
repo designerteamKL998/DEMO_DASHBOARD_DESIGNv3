@@ -1145,9 +1145,15 @@
     .new-page .games-grid,
     .fav-games .games-grid {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 7px;
-        overflow: visible;
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+        gap: 12px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 8px;
+        padding-right: 8px;
+        box-sizing: border-box;
+        justify-items: center;
     }
 
     .slot-section-title {
@@ -6046,9 +6052,15 @@
     .new-page .games-grid,
     .fav-games .games-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 7px;
-        overflow: visible;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 8px;
+        padding-right: 8px;
+        box-sizing: border-box;
+        justify-items: center;
     }
     .main-header {
         padding: 6px 8px;
