@@ -3,24 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Gaming Website</title>
-
+    <title>Daily Check-In - Boss Comparison</title>
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="dailycheckin.css" />
     <link rel="stylesheet" href="responsive.css" />
     <link rel="stylesheet" href="responsive2.css" />
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-
     <!-- JQuery -->
     <script src="dailycheckin.js" defer></script>
     <script src="script.js" defer></script>
 </head>
-
 <body>
     <header class="main-header">
         <div class="header-inner">
@@ -209,9 +204,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="announcement.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
-                                    <span>Announce</span>
+                                <a href="invitefren.html" class="profile-feature-item">
+                                    <img src="imgs/icon/invitefrenich.png" alt="" />
+                                    <span>Invite Friend</span>
                                 </a>
                             </div>
                         </div>
@@ -238,11 +233,22 @@
                                     <img src="imgs/icon/redeemich.png" alt="" />
                                     <span>Redeem</span>
                                 </a>
+
+                                <a href="#" class="profile-feature-item">
+                                    <img src="imgs/icon/angpowrainich.png" alt="" />
+                                    <span>Angpow Rain</span>
+                                </a>
                             </div>
                         </div>
 
                         <!-- DROPDOWN FOOTER -->
                         <div class="dropdown-actions">
+
+                            <a href="deposit.html" class="profile-action">
+                                <img src="imgs/icon/sidebar/ewallet-ich.png">
+                                <span>Deposit</span>
+                            </a>
+
                             <a href="withdrawal.html" class="profile-action">
                                 <img src="imgs/icon/sidebar/withdraw-ich.png" />
                                 <span>Withdrawal</span>
@@ -251,11 +257,6 @@
                             <a href="transaction.html" class="profile-action">
                                 <img src="imgs/icon/sidebar/transactionich.png" />
                                 <span>Transaction</span>
-                            </a>
-
-                            <a href="javascript:void(0)" class="profile-action" id="languageBtn">
-                                <img src="imgs/icon/sidebar/global-ich.png" />
-                                <span>Language</span>
                             </a>
 
                             <a href="profile.html" class="profile-action">
@@ -287,7 +288,7 @@
                 </div>
 
                 <!-- DEPOSIT -->
-                <button class="btn-deposit" type="button" data-tooltip="Deposit">
+                <button class="btn-deposit deks-view" type="button" data-tooltip="Deposit">
                     <a href="deposit.html">
                         <img src="imgs/icon/sidebar/ewallet-ich.png" />
                         <span class="deposit-plus">+</span>
@@ -295,7 +296,7 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                <button class="notification-btn" type="button" data-tooltip="Notifications">
                     <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
@@ -388,12 +389,11 @@
             <span>Promotions</span>
         </a>
 
-        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="Deposit.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/promo/bot-icon-promo-slot.png" />
-                <span class="notification-dot"></span>
+                <img src="imgs/icon/depo-mob.png" />
             </span>
-            <span>Notification</span>
+            <span>Deposit</span>
         </a>
 
         <a href="download.html" class="bottom-nav-item">
@@ -421,6 +421,8 @@
     <button class="floating-menu-btn mob-view" type="button">
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
+
+
 
     <div class="dci-page">
         <main class="dci-container">
@@ -504,9 +506,7 @@
                     <!-- Reward content changes when
                          user clicks a day -->
                     <div class="dci-reward-content" id="dciRewardContent">
-
                         <div class="dci-reward-list">
-
                             <div class="dci-reward-item">
                                 <h2>Day 7 - <span>MYR 20</span></h2>
                                 <p>
@@ -516,7 +516,6 @@
                                     </span>
                                 </p>
                             </div>
-
                             <div class="dci-reward-item">
                                 <h2>Day 14 - <span>MYR 60</span></h2>
                                 <p>
@@ -526,7 +525,6 @@
                                     </span>
                                 </p>
                             </div>
-
                             <div class="dci-reward-item">
                                 <h2>Day 21 - <span>MYR 70</span></h2>
                                 <p>
@@ -536,7 +534,6 @@
                                     </span>
                                 </p>
                             </div>
-
                             <div class="dci-reward-item">
                                 <h2>Day 28 - <span>MYR 100</span></h2>
                                 <p>
@@ -546,9 +543,7 @@
                                     </span>
                                 </p>
                             </div>
-
                         </div>
-
                     </div>
                     <!-- =================================
                          ELIGIBILITY
@@ -563,7 +558,7 @@
                         <p>
                             One-time deposit package with minimum
                             <strong> 21 MYR</strong>
-                             and must claim within 3 days if not claim will be considered an immediate waiver.
+                            and must claim within 3 days if not claim will be considered an immediate waiver.
                         </p>
                     </div>
                     <!-- =================================
@@ -587,59 +582,44 @@
                 </aside>
             </section>
             <!-- =========================================
-         TERMS & CONDITIONS
-    ========================================== -->
+                 TERMS & CONDITIONS
+            ========================================== -->
             <section class="dci-terms-card">
-
                 <div class="dci-terms-header">
-
                     <div class="dci-terms-icon">
                         <i class="fa-solid fa-list"></i>
                     </div>
-
                     <div class="dci-terms-title">
                         <span>IMPORTANT</span>
                         <h2>Terms and Conditions</h2>
                     </div>
-
                     <!-- LANGUAGE SWITCHER -->
                     <div class="dci-language-switcher">
-
                         <button class="dci-lang active" data-lang="en">
                             EN
                         </button>
-
                         <button class="dci-lang" data-lang="cn">
                             中文
                         </button>
-
                         <button class="dci-lang" data-lang="hi">
                             हिन्दी
                         </button>
-
                     </div>
-
                     <i class="fa-solid fa-chevron-down dci-terms-arrow"></i>
-
                 </div>
-
 
                 <!-- ENGLISH -->
                 <div class="dci-terms-list dci-lang-content active" data-content="en">
-
                     <div class="dci-term-row">
                         <div class="dci-term-number">1</div>
-
                         <p>
                             Company reserves the right, at any time and without
                             prior notice, to remove or disable eligibility of any
                             user at its sole discretion.
                         </p>
                     </div>
-
                     <div class="dci-term-row">
                         <div class="dci-term-number">2</div>
-
                         <p>
                             In order to claim the sign-in bonus, each member must
                             deposit at least 4 times within the specified week
@@ -647,50 +627,38 @@
                             bonuses will be forfeited.
                         </p>
                     </div>
-
                 </div>
-
 
                 <!-- CHINESE -->
                 <div class="dci-terms-list dci-lang-content" data-content="cn">
-
                     <div class="dci-term-row">
                         <div class="dci-term-number">1</div>
-
                         <p>
                             公司保留随时在无需事先通知的情况下，自行决定取消或
                             禁用任何用户领取奖励资格的权利。
                         </p>
                     </div>
-
                     <div class="dci-term-row">
                         <div class="dci-term-number">2</div>
-
                         <p>
                             如需领取签到奖励，每位会员必须在指定的一周内至少
                             存款4次后方可提款，否则所有奖金及奖励将被没收。
                         </p>
                     </div>
-
                 </div>
-
 
                 <!-- HINDI -->
                 <div class="dci-terms-list dci-lang-content" data-content="hi">
-
                     <div class="dci-term-row">
                         <div class="dci-term-number">1</div>
-
                         <p>
                             कंपनी को बिना किसी पूर्व सूचना के, अपने विवेक के अनुसार
                             किसी भी उपयोगकर्ता की पात्रता को हटाने या निष्क्रिय करने
                             का अधिकार सुरक्षित है।
                         </p>
                     </div>
-
                     <div class="dci-term-row">
                         <div class="dci-term-number">2</div>
-
                         <p>
                             साइन-इन बोनस का दावा करने के लिए, प्रत्येक सदस्य को
                             प्राप्त बोनस को निकालने से पहले निर्धारित सप्ताह के
@@ -698,243 +666,197 @@
                             और पुरस्कार जब्त कर लिए जाएंगे।
                         </p>
                     </div>
-
                 </div>
-
             </section>
 
 
 
 
 
-
-
-
-
-
-    <!-- LANGUAGE POPUP -->
-    <div class="language-overlay" id="languagePopup">
-        <div class="language-popup">
-            <!-- Header -->
-            <div class="language-header">
-                <div class="language-title-wrap">
-                    <div class="language-globe">
-                        <i class="fa-solid fa-globe"></i>
+            <!-- LANGUAGE POPUP -->
+            <div class="language-overlay" id="languagePopup">
+                <div class="language-popup">
+                    <!-- Header -->
+                    <div class="language-header">
+                        <div class="language-title-wrap">
+                            <div class="language-globe">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div class="language-title-content">
+                                <h3>Language</h3>
+                                <span>Choose your preferred language</span>
+                            </div>
+                        </div>
+                        <button type="button" class="language-close" id="languageClose" aria-label="Close">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
                     </div>
-
-                    <div class="language-title-content">
-                        <h3>Language</h3>
-                        <span>Choose your preferred language</span>
+                    <!-- Decorative line -->
+                    <div class="language-divider">
+                        <span></span>
+                    </div>
+                    <!-- Language List -->
+                    <div class="language-list">
+                        <button class="language-item active" data-language="English">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/uk-square.jpg" />
+                                </span>
+                                <span class="language-name">English</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="ភាសាខ្មែរ">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/cambodia-square.jpg" />
+                                </span>
+                                <span class="language-name">ភាសាខ្មែរ</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="简体中文">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/china-square.jpg" />
+                                </span>
+                                <span class="language-name">简体中文</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="မြန်မာ">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/myanmar-square.jpg" />
+                                </span>
+                                <span class="language-name">မြန်မာ</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="繁體中文">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/taiwan-square.jpg" />
+                                </span>
+                                <span class="language-name">繁體中文</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="ジャパン">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/japan-square.jpg" />
+                                </span>
+                                <span class="language-name">ジャパン</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="ภาษาไทย">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/thailand-square.jpg" />
+                                </span>
+                                <span class="language-name">ภาษาไทย</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="Français">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/french-square.jpg" />
+                                </span>
+                                <span class="language-name">Français</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="한국어">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/korea-square.jpg" />
+                                </span>
+                                <span class="language-name">한국어</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="Español">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/spain-square.jpg" />
+                                </span>
+                                <span class="language-name">Español</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="Tiếng Việt">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/VietNam-square.jpg" />
+                                </span>
+                                <span class="language-name">Tiếng Việt</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="Português">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/portugal-square.jpg" />
+                                </span>
+                                <span class="language-name">Português</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="Indonesia">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/indo-square.jpg" />
+                                </span>
+                                <span class="language-name">Indonesia</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="বাংলা">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/bangladesh-square.jpg" />
+                                </span>
+                                <span class="language-name">বাংলা</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="इंडिया">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/indi-square.jpg" />
+                                </span>
+                                <span class="language-name">इंडिया</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                        <button class="language-item" data-language="Malaysia">
+                            <div class="language-info">
+                                <span class="language-flag">
+                                    <img src="imgs/language/malaysia-square.jpg" />
+                                </span>
+                                <span class="language-name">Malaysia</span>
+                            </div>
+                            <span class="language-radio"></span>
+                        </button>
+                    </div>
+                    <!-- Footer -->
+                    <div class="language-footer">
+                        <div class="language-footer-icon">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div class="language-footer-text">
+                            <strong>Applied instantly</strong>
+                            <span>Your language preference will be saved automatically.</span>
+                        </div>
                     </div>
                 </div>
-
-                <button type="button" class="language-close" id="languageClose" aria-label="Close">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
             </div>
-
-            <!-- Decorative line -->
-            <div class="language-divider">
-                <span></span>
-            </div>
-
-            <!-- Language List -->
-            <div class="language-list">
-                <button class="language-item active" data-language="English">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/uk-square.jpg" />
-                        </span>
-                        <span class="language-name">English</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="ភាសាខ្មែរ">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/cambodia-square.jpg" />
-                        </span>
-                        <span class="language-name">ភាសាខ្មែរ</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="简体中文">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/china-square.jpg" />
-                        </span>
-                        <span class="language-name">简体中文</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="မြန်မာ">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/myanmar-square.jpg" />
-                        </span>
-                        <span class="language-name">မြန်မာ</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="繁體中文">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/taiwan-square.jpg" />
-                        </span>
-                        <span class="language-name">繁體中文</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="ジャパン">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/japan-square.jpg" />
-                        </span>
-                        <span class="language-name">ジャパン</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="ภาษาไทย">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/thailand-square.jpg" />
-                        </span>
-                        <span class="language-name">ภาษาไทย</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="Français">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/french-square.jpg" />
-                        </span>
-                        <span class="language-name">Français</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="한국어">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/korea-square.jpg" />
-                        </span>
-                        <span class="language-name">한국어</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="Español">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/spain-square.jpg" />
-                        </span>
-                        <span class="language-name">Español</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="Tiếng Việt">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/VietNam-square.jpg" />
-                        </span>
-                        <span class="language-name">Tiếng Việt</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="Português">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/portugal-square.jpg" />
-                        </span>
-                        <span class="language-name">Português</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="Indonesia">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/indo-square.jpg" />
-                        </span>
-                        <span class="language-name">Indonesia</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="বাংলা">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/bangladesh-square.jpg" />
-                        </span>
-                        <span class="language-name">বাংলা</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="इंडिया">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/indi-square.jpg" />
-                        </span>
-                        <span class="language-name">इंडिया</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-
-                <button class="language-item" data-language="Malaysia">
-                    <div class="language-info">
-                        <span class="language-flag">
-                            <img src="imgs/language/malaysia-square.jpg" />
-                        </span>
-                        <span class="language-name">Malaysia</span>
-                    </div>
-
-                    <span class="language-radio"></span>
-                </button>
-            </div>
-
-            <!-- Footer -->
-            <div class="language-footer">
-                <div class="language-footer-icon">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-
-                <div class="language-footer-text">
-                    <strong>Applied instantly</strong>
-                    <span>Your language preference will be saved automatically.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- BACK TO TOP -->
-    <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
-
+            <!-- BACK TO TOP -->
+            <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
 </body>
 </html>

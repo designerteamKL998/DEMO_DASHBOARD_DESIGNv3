@@ -2,14 +2,14 @@
    HOT GAMES
 ========================================================= */
 
-.hot-games, .cm8-promo-section {
+.hot-games, .cm8-promo-section, .new-games {
     width: 100%;
     max-width: 1320px;
     margin: 22px auto 20px;
 }
 
 .hot-badge {
-    background: #ff5b5b;
+    background: #ff0000;
 }
 
 .new-badge {

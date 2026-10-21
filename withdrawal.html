@@ -203,9 +203,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="announcement.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
-                                    <span>Announce</span>
+                                <a href="invitefren.html" class="profile-feature-item">
+                                    <img src="imgs/icon/invitefrenich.png" alt="" />
+                                    <span>Invite Friend</span>
                                 </a>
                             </div>
                         </div>
@@ -232,11 +232,22 @@
                                     <img src="imgs/icon/redeemich.png" alt="" />
                                     <span>Redeem</span>
                                 </a>
+
+                                <a href="#" class="profile-feature-item">
+                                    <img src="imgs/icon/angpowrainich.png" alt="" />
+                                    <span>Angpow Rain</span>
+                                </a>
                             </div>
                         </div>
 
                         <!-- DROPDOWN FOOTER -->
                         <div class="dropdown-actions">
+
+                            <a href="deposit.html" class="profile-action">
+                                <img src="imgs/icon/sidebar/ewallet-ich.png">
+                                <span>Deposit</span>
+                            </a>
+
                             <a href="withdrawal.html" class="profile-action">
                                 <img src="imgs/icon/sidebar/withdraw-ich.png" />
                                 <span>Withdrawal</span>
@@ -245,11 +256,6 @@
                             <a href="transaction.html" class="profile-action">
                                 <img src="imgs/icon/sidebar/transactionich.png" />
                                 <span>Transaction</span>
-                            </a>
-
-                            <a href="javascript:void(0)" class="profile-action" id="languageBtn">
-                                <img src="imgs/icon/sidebar/global-ich.png" />
-                                <span>Language</span>
                             </a>
 
                             <a href="profile.html" class="profile-action">
@@ -281,7 +287,7 @@
                 </div>
 
                 <!-- DEPOSIT -->
-                <button class="btn-deposit" type="button" data-tooltip="Deposit">
+                <button class="btn-deposit deks-view" type="button" data-tooltip="Deposit">
                     <a href="deposit.html">
                         <img src="imgs/icon/sidebar/ewallet-ich.png" />
                         <span class="deposit-plus">+</span>
@@ -289,7 +295,7 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                <button class="notification-btn" type="button" data-tooltip="Notifications">
                     <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
@@ -382,12 +388,11 @@
             <span>Promotions</span>
         </a>
 
-        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="Deposit.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/promo/bot-icon-promo-slot.png" />
-                <span class="notification-dot"></span>
+                <img src="imgs/icon/depo-mob.png" />
             </span>
-            <span>Notification</span>
+            <span>Deposit</span>
         </a>
 
         <a href="download.html" class="bottom-nav-item">
@@ -437,6 +442,13 @@
                 <span class="wdr-method-copy">
                     <strong>E-Wallet (SKLPay)</strong>
                     <small>Withdraw to your e-wallet</small>
+                </span>
+            </button>
+            <button class="wdr-method" data-method="crypto" type="button">
+                <i class="fa-brands fa-bitcoin"></i>
+                <span class="wdr-method-copy">
+                    <strong>Crypto</strong>
+                    <small>Withdraw to your crypto wallet</small>
                 </span>
             </button>
         </div>
@@ -722,6 +734,79 @@
                 </section>
             </div>
         </section>
+
+        <!-- ======================================================
+             CRYPTO VIEW
+        ======================================================= -->
+        <section class="wdr-view wdr-crypto-view" data-view="crypto">
+            <div class="wdr-crypto-columns">
+                <div class="wdr-crypto-left">
+                    <section class="wdr-panel wdr-crypto-details">
+                        <div class="wdr-panel-head">
+                            <div class="wdr-heading">
+                                <div>
+                                    <h2>Crypto Details</h2>
+                                    <p>Select a cryptocurrency and network for your withdrawal.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wdr-crypto-list" id="wdrCryptoList">
+                            <button class="wdr-crypto-row is-selected" type="button" data-crypto="Ethereum" data-network="Ethereum" data-address-label="Wallet address - Ethereum">
+                                <span class="wdr-crypto-symbol wdr-crypto-eth"><img src="imgs/assets/crypto/crypto_0004_ethereum.png" /></span><span class="wdr-crypto-copy"><strong>Ethereum</strong><small>Ethereum Network</small></span><span class="wdr-radio"></span>
+                            </button>
+                            <button class="wdr-crypto-row" type="button" data-crypto="USDT (ERC20)" data-network="ERC20" data-address-label="Wallet address - USDT (ERC20)">
+                                <span class="wdr-crypto-symbol wdr-crypto-usdt"><img src="imgs/assets/crypto/crypto_0003_erc20.png" /></span><span class="wdr-crypto-copy"><strong>USDT (ERC20)</strong><small>Ethereum Network</small></span><span class="wdr-radio"></span>
+                            </button>
+                            <button class="wdr-crypto-row" type="button" data-crypto="USDT (TRC20)" data-network="TRC20" data-address-label="Wallet address - USDT (TRC20)">
+                                <span class="wdr-crypto-symbol wdr-crypto-usdt"><img src="imgs/assets/crypto/crypto_0002_trc20.png" /></span><span class="wdr-crypto-copy"><strong>USDT (TRC20)</strong><small>TRON Network</small></span><span class="wdr-radio"></span>
+                            </button>
+                            <button class="wdr-crypto-row" type="button" data-crypto="USDT (BEP20)" data-network="BEP20" data-address-label="Wallet address - USDT (BEP20)">
+                                <span class="wdr-crypto-symbol wdr-crypto-usdt"><img src="imgs/assets/crypto/crypto_0001_bep20.png" /></span><span class="wdr-crypto-copy"><strong>USDT (BEP20)</strong><small>BNB Smart Chain</small></span><span class="wdr-radio"></span>
+                            </button>
+                            <button class="wdr-crypto-row" type="button" data-crypto="USDT (SOL)" data-network="SOL" data-address-label="Wallet address - USDT (SOL)">
+                                <span class="wdr-crypto-symbol wdr-crypto-usdt"><img src="imgs/assets/crypto/crypto_0000_sol.png" /></span><span class="wdr-crypto-copy"><strong>USDT (SOL)</strong><small>Solana Network</small></span><span class="wdr-radio"></span>
+                            </button>
+                        </div>
+                        <div class="wdr-crypto-address-box">
+                            <label id="wdrCryptoAddressLabel">Wallet address - Ethereum</label>
+                            <div class="wdr-crypto-address-content">
+                                <span class="wdr-crypto-symbol wdr-crypto-address-symbol" id="wdrCryptoAddressSymbol" aria-hidden="true">◆</span>
+                                <div class="wdr-crypto-address-value" id="wdrCryptoAddressValue">Please set up your wallet address</div>
+                            </div>
+                            <button class="wdr-outline-btn" type="button" id="wdrSetCryptoWallet"><span>+</span> Set Wallet Address</button>
+                        </div>
+                    </section>
+                    <section class="wdr-panel wdr-withdraw-panel wdr-crypto-withdraw">
+                        <div class="wdr-withdraw-top">
+                            <div class="wdr-field wdr-amount-field">
+                                <label>Amount (MYR)<em>*</em></label>
+                                <div class="wdr-money-input"><span>MYR</span><input class="wdr-crypto-amount" type="number" min="0" step="1" placeholder="0.00"></div>
+                            </div>
+                            <div class="wdr-rollover"><span>Rollover / Target</span><strong>0.00 / 0.00 <i>✓</i></strong></div>
+                        </div>
+                        <div class="wdr-amount-note">Minimum withdrawal amount: MYR 50</div>
+                        <div class="wdr-quick">
+                            <button type="button" data-crypto-amount="50">MYR 50</button><button type="button" data-crypto-amount="100">MYR 100</button><button type="button" data-crypto-amount="200">MYR 200</button><button type="button" data-crypto-amount="500">MYR 500</button><button type="button" data-crypto-amount="1000">MYR 1000</button>
+                        </div>
+                        <div class="wdr-summary">
+                            <div class="wdr-summary-row"><span>Selected Cryptocurrency</span><b id="wdrCryptoSelected">Ethereum</b></div>
+                            <div class="wdr-summary-row"><span>Withdrawal Amount</span><b id="wdrCryptoTotal">MYR 0.00</b></div>
+                            <div class="wdr-summary-row wdr-receive"><span>You Will Receive</span><b id="wdrCryptoReceive">MYR 0.00</b></div>
+                        </div>
+                        <button class="wdr-submit" type="button" data-submit="crypto"><span>➤</span> Submit Withdrawal</button>
+                    </section>
+                </div>
+                <section class="wdr-panel wdr-crypto-announcement">
+                    <div class="wdr-panel-head"><div class="wdr-heading"><div><h2>Announcement</h2><p>Please check the network carefully before making a withdrawal.</p></div></div></div>
+                    <div class="wdr-ewallet-info-box"><span class="wdr-info-circle">i</span><div><strong>Cryptocurrency Withdrawal</strong><p>Choose the exact coin and network supported by your receiving wallet.</p></div></div>
+                    <h3 class="wdr-subtitle">How to Withdraw</h3>
+                    <div class="wdr-how-list"><div><b>1</b><span>Select a cryptocurrency and network.</span></div><div><b>2</b><span>Set up and verify your wallet address.</span></div><div><b>3</b><span>Enter the withdrawal amount.</span></div><div><b>4</b><span>Review the details and submit your request.</span></div></div>
+                    <div class="wdr-divider"></div><h3 class="wdr-subtitle wdr-important-title">Important Notes</h3>
+                    <div class="wdr-notes wdr-ewallet-notes"><div><i></i><span>Only use a wallet address that supports the selected coin and network.</span></div><div><i></i><span>Sending funds through an incorrect network may result in loss of funds.</span></div><div><i></i><span>Minimum withdrawal amount is MYR 50 in this page demo.</span></div><div><i></i><span>Available coins and networks must be confirmed with the payment/backend configuration.</span></div></div>
+                </section>
+            </div>
+        </section>
+
     </main>
     <!-- ADD BANK MODAL -->
     <div class="wdr-modal" id="wdrBankModal">
@@ -744,6 +829,19 @@
                 <label>Location</label>
                 <input id="wdrNewLocation" type="text" placeholder="e.g. Kuala Lumpur" required>
                 <button type="submit" class="wdr-submit">Add Bank Account</button>
+            </form>
+        </div>
+    </div>
+    <!-- SET CRYPTO WALLET MODAL -->
+    <div class="wdr-modal" id="wdrCryptoWalletModal" aria-hidden="true">
+        <div class="wdr-modal-box" role="dialog" aria-modal="true" aria-labelledby="wdrCryptoWalletModalTitle">
+            <button class="wdr-modal-close" type="button" id="wdrCloseCryptoWallet" aria-label="Close">×</button>
+            <h3 id="wdrCryptoWalletModalTitle">Set Wallet Address</h3>
+            <p id="wdrCryptoWalletModalDescription">Enter the wallet address for your selected cryptocurrency and network.</p>
+            <form id="wdrCryptoWalletForm">
+                <label for="wdrCryptoWalletInput">Wallet Address</label>
+                <input id="wdrCryptoWalletInput" type="text" placeholder="Enter wallet address" autocomplete="off" required>
+                <button type="submit" class="wdr-submit" id="wdrSaveCryptoWallet">Save Wallet Address</button>
             </form>
         </div>
     </div>

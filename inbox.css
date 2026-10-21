@@ -13,9 +13,15 @@
 
 /* Match the site's centered content width */
 .inbox-page {
-    width: 100%;
+    width: calc(100% - 28px);
     margin: 14px auto;
-    padding: 0 20px;
+}
+
+.inbox-content {
+    background: #202228;
+    padding: 20px;
+    width: 100%;
+    border-radius: 14px;
 }
 
 .inbox-panel {
@@ -26,6 +32,7 @@
     color: var(--inbox-text);
     border: 1px solid var(--inbox-border);
     border-radius: 16px;
+    margin-top: 15px;
 }
 
 /* Header follows the existing compact topbar style */

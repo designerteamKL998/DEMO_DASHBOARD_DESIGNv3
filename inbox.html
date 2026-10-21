@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="inbox.css" />
+    <link rel="stylesheet" href="freepoint.css" />
     <link rel="stylesheet" href="responsive.css" />
     <link rel="stylesheet" href="responsive2.css" />
 
@@ -209,9 +210,9 @@
                                     <span>PK Battle</span>
                                 </a>
 
-                                <a href="announcement.html" class="profile-feature-item">
-                                    <img src="imgs/icon/sidebar/announce.png" alt="" />
-                                    <span>Announce</span>
+                                <a href="invitefren.html" class="profile-feature-item">
+                                    <img src="imgs/icon/invitefrenich.png" alt="" />
+                                    <span>Invite Friend</span>
                                 </a>
                             </div>
                         </div>
@@ -238,11 +239,22 @@
                                     <img src="imgs/icon/redeemich.png" alt="" />
                                     <span>Redeem</span>
                                 </a>
+
+                                <a href="#" class="profile-feature-item">
+                                    <img src="imgs/icon/angpowrainich.png" alt="" />
+                                    <span>Angpow Rain</span>
+                                </a>
                             </div>
                         </div>
 
                         <!-- DROPDOWN FOOTER -->
                         <div class="dropdown-actions">
+
+                            <a href="deposit.html" class="profile-action">
+                                <img src="imgs/icon/sidebar/ewallet-ich.png">
+                                <span>Deposit</span>
+                            </a>
+
                             <a href="withdrawal.html" class="profile-action">
                                 <img src="imgs/icon/sidebar/withdraw-ich.png" />
                                 <span>Withdrawal</span>
@@ -251,11 +263,6 @@
                             <a href="transaction.html" class="profile-action">
                                 <img src="imgs/icon/sidebar/transactionich.png" />
                                 <span>Transaction</span>
-                            </a>
-
-                            <a href="javascript:void(0)" class="profile-action" id="languageBtn">
-                                <img src="imgs/icon/sidebar/global-ich.png" />
-                                <span>Language</span>
                             </a>
 
                             <a href="profile.html" class="profile-action">
@@ -287,7 +294,7 @@
                 </div>
 
                 <!-- DEPOSIT -->
-                <button class="btn-deposit" type="button" data-tooltip="Deposit">
+                <button class="btn-deposit deks-view" type="button" data-tooltip="Deposit">
                     <a href="deposit.html">
                         <img src="imgs/icon/sidebar/ewallet-ich.png" />
                         <span class="deposit-plus">+</span>
@@ -295,7 +302,7 @@
                 </button>
 
                 <!-- NOTIFICATION -->
-                <button class="notification-btn deks-view" type="button" data-tooltip="Notification">
+                <button class="notification-btn" type="button" data-tooltip="Notifications">
                     <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
                         <span class="notification-dot"></span>
@@ -388,12 +395,11 @@
             <span>Promotions</span>
         </a>
 
-        <a href="inbox.html" class="bottom-nav-item notification-bottom-btn">
+        <a href="Deposit.html" class="bottom-nav-item notification-bottom-btn">
             <span class="bottom-nav-icon">
-                <img src="imgs/promo/bot-icon-promo-slot.png" />
-                <span class="notification-dot"></span>
+                <img src="imgs/icon/depo-mob.png" />
             </span>
-            <span>Notification</span>
+            <span>Deposit</span>
         </a>
 
         <a href="download.html" class="bottom-nav-item">
@@ -423,35 +429,50 @@
     </button>
 
     <main class="inbox-page">
-        <section class="inbox-panel" aria-label="Inbox messages">
-            <header class="inbox-toolbar">
-                <div class="inbox-heading">
-                    <h2> Message</h2>
-                </div>
-                <div class="toolbar-actions">
-                    <button type="button" class="action-btn" id="markReadBtn" disabled>Mark as read</button>
-                    <button type="button" class="action-btn" id="deleteBtn" disabled>Delete</button>
-                </div>
-            </header>
-            <div class="table-wrap">
-                <table class="message-table">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="date-column">Date</th>
-                            <th scope="col" class="title-column">Title</th>
-                            <th scope="col" class="select-column">
-                                <input type="checkbox" id="selectAll" aria-label="Select all messages">
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="messageList">
-                        <tr class="empty-row">
-                            <td colspan="3">No Message</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="inbox-content">
+            <!-- =========================
+             TABS
+        ========================== -->
+            <div class="pkb-tabs">
+                <a href="inbox.html" class="pkb-tab pkb-tab-active">
+                    <span>INBOX</span>
+                </a>
+
+                <a href="announcement.html" class="pkb-tab">
+                    <span>ANNOUNCEMENT</span>
+                </a>
             </div>
-        </section>
+
+            <section class="inbox-panel" aria-label="Inbox messages">
+                <header class="inbox-toolbar">
+                    <div class="inbox-heading">
+                        <h2> Message</h2>
+                    </div>
+                    <div class="toolbar-actions">
+                        <button type="button" class="action-btn" id="markReadBtn" disabled>Mark as read</button>
+                        <button type="button" class="action-btn" id="deleteBtn" disabled>Delete</button>
+                    </div>
+                </header>
+                <div class="table-wrap">
+                    <table class="message-table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="date-column">Date</th>
+                                <th scope="col" class="title-column">Title</th>
+                                <th scope="col" class="select-column">
+                                    <input type="checkbox" id="selectAll" aria-label="Select all messages">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="messageList">
+                            <tr class="empty-row">
+                                <td colspan="3">No Message</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
     </main>
     <script src="inbox.js"></script>
 </body>

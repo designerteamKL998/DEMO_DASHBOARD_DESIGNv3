@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --wdr-primary: #EAD87D;
     --wdr-secondary: #202228;
     --wdr-accent: #FFD700;
@@ -1141,7 +1141,6 @@
 
 .wdr-heading h2 {
     color: #FFFFFF;
-    font-size: 17px;
     line-height: 1.35;
     font-weight: 700;
     letter-spacing: -.25px;
@@ -1551,7 +1550,6 @@
 
     .wdr-modal-box h3 {
         color: #FFFFFF;
-        font-size: 18px;
         font-weight: 700;
     }
 
@@ -1670,3 +1668,145 @@
         background: #EAD87D;
         transform: translateY(-50%);
     }
+
+
+/* =========================================================
+   CRYPTO VIEW - follows the existing Withdrawal page styling
+========================================================= */
+.wdr-crypto-columns { display:grid; grid-template-columns:minmax(0,.9fr) minmax(300px,.5fr); gap:14px; align-items:stretch; }
+.wdr-crypto-left { display:flex; flex-direction:column; gap:14px; min-width:0; }
+.wdr-crypto-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:0 18px 16px; }
+.wdr-crypto-row {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    min-width: 0;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 8px;
+    background: #121418;
+    transition: border-color .18s ease, background .18s ease;
+}
+.wdr-crypto-row:hover,.wdr-crypto-row.is-selected { border-color:rgba(234,216,125,.65); background:rgba(234,216,125,.045); }
+.wdr-crypto-symbol { 
+    width:38px; 
+    height:38px; 
+    flex:0 0 38px; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    border:1px solid rgba(234,216,125,.25); 
+    border-radius:50%; 
+    color:#EAD87D; 
+    font-weight:700;
+    padding:5px;
+}
+    .wdr-crypto-symbol img {
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        display:block;
+    }
+    
+    .wdr-crypto-copy {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+        gap: 4px;
+    }
+.wdr-crypto-copy strong { line-height:1.3; }
+.wdr-crypto-copy small { color:#AEB5C0; line-height:1.35; }
+.wdr-crypto-row .wdr-radio { width:15px; height:15px; flex:0 0 15px; border:1px solid #73777D; }
+.wdr-crypto-row.is-selected .wdr-radio { border:4px solid #EAD87D; background:#121418; }
+.wdr-crypto-address-box { margin:0 18px 18px; padding:15px; border:1px solid rgba(255,255,255,.08); border-radius:9px; background:#0C1115; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:10px 14px; }
+.wdr-crypto-address-box label { grid-column:1/-1; color:#AEB5C0; }
+.wdr-crypto-address-content { min-width:0; display:flex; align-items:center; gap:12px; grid-column:1; grid-row:2; }
+.wdr-crypto-address-symbol { width:38px; height:38px; flex:0 0 38px; }
+.wdr-crypto-address-value { min-width:0; color:#fff; overflow-wrap:anywhere; }
+.wdr-crypto-address-box .wdr-outline-btn { grid-column:2; grid-row:2; }
+.wdr-crypto-announcement { height:100%; }
+.wdr-crypto-announcement .wdr-ewallet-info-box { margin-top:0; }
+.wdr-crypto-withdraw .wdr-quick { grid-template-columns:repeat(5,minmax(0,1fr)); }
+.wdr-crypto-withdraw .wdr-summary-row:first-child b { max-width:60%; text-align:right; overflow-wrap:anywhere; }
+
+
+/* Crypto wallet setup modal — uses the existing Withdrawal modal theme */
+#wdrCryptoWalletModal .wdr-modal-box input:focus {
+    border-color: var(--wdr-primary);
+}
+#wdrCryptoWalletModal .wdr-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Added bank accounts: keep the same logo + bank name + account number layout */
+.wdr-bank-logo-fallback {
+    color: var(--wdr-primary);
+    border: 1px solid rgba(234,216,125,.28);
+    border-radius: 50%;
+    letter-spacing: .3px;
+}
+
+.wdr-bank-logo-fallback > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.wdr-bank-data p {
+    margin: 0;
+    color: #FFFFFF;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+/* Bank account delete control: visible only when hovering/focusing the account card */
+.wdr-bank-item {
+    position: relative;
+    min-width: 0;
+}
+.wdr-bank-item > .wdr-bank-row {
+    width: 100%;
+    height: 100%;
+}
+.wdr-bank-delete {
+    position: absolute;
+    top: 50%;
+    right: 43px;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(234,216,125,.45);
+    border-radius: 6px;
+    background: #202228;
+    color: #EAD87D;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .16s ease, background .16s ease, color .16s ease;
+}
+.wdr-bank-item:hover .wdr-bank-delete,
+.wdr-bank-item:focus-within .wdr-bank-delete {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.wdr-bank-delete:hover {
+    background: #EAD87D;
+    color: #111;
+}

@@ -84,22 +84,23 @@ const moreBtn = document.querySelector(".mobile-more-btn");
 const moreMenu = document.querySelector(".mobile-more-menu");
 
 if (moreBtn && moreMenu) {
-
-    moreBtn.addEventListener("click", (e) => {
+    moreBtn.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
-        // More/profile dropdown tak boleh terbuka serentak dengan game menu.
         const homeWrap = document.querySelector(".bottom-home-wrap");
-        if (homeWrap) homeWrap.classList.remove("game-open");
+        if (homeWrap) {
+            homeWrap.classList.remove("game-open");
+        }
 
-        moreMenu.classList.toggle("active");
+        const isOpen = moreMenu.classList.contains("active");
+
+        moreMenu.classList.toggle("active", !isOpen);
     });
 
-    moreMenu.addEventListener("click", (e) => {
+    moreMenu.addEventListener("click", function (e) {
         e.stopPropagation();
     });
-
 }
 
 
@@ -126,7 +127,7 @@ const bottomHomeWrap = document.querySelector(".bottom-home-wrap");
 
 function updateMobileMenuScroll() {
 
-    if (window.innerWidth > 1024) return;
+    if (window.innerWidth > 1030) return;
 
     const scrolled = window.scrollY > 80;
 
@@ -176,7 +177,7 @@ if (floatingMenuBtn) {
 
 window.addEventListener("scroll", () => {
 
-    if (window.innerWidth > 1024) return;
+    if (window.innerWidth > 1030) return;
 
     const header =
         document.querySelector(".main-header");
@@ -199,7 +200,7 @@ if (userProfileBtn && userProfileWrap) {
 
     userProfileBtn.addEventListener("click", function (e) {
 
-        if (window.innerWidth > 1024) return;
+        if (window.innerWidth > 1030) return;
 
         e.stopPropagation();
 
@@ -229,20 +230,49 @@ btns.forEach(btn => btn.onclick = () => {
 });
 
 //user dropdown
-const dropdown = document.getElementById("userDropdown");
-const mobileMenu = document.querySelector(".mobile-more-menu");
-const desktopParent = dropdown.parentElement;
 
-function moveDropdown() {
-    if (window.innerWidth <= 1024) {
-        mobileMenu.appendChild(dropdown);
-    } else {
-        desktopParent.appendChild(dropdown);
+
+/* USER DROPDOWN - MOBILE MORE MENU */
+
+/* USER DROPDOWN - MOBILE MORE MENU */
+function initUserDropdownMove() {
+    const dropdown = document.getElementById("userDropdown");
+    const mobileMenu = document.querySelector(".mobile-more-menu");
+
+    if (!dropdown || !mobileMenu) return;
+
+    const originalParent = dropdown.parentElement;
+    const placeholder = document.createComment("userDropdown-position");
+
+    if (originalParent) {
+        originalParent.insertBefore(placeholder, dropdown);
     }
+
+    function moveDropdown() {
+        if (window.innerWidth <= 1030) {
+            if (!mobileMenu.contains(dropdown)) {
+                mobileMenu.appendChild(dropdown);
+            }
+        } else if (
+            placeholder.parentNode &&
+            !placeholder.parentNode.contains(dropdown)
+        ) {
+            placeholder.parentNode.insertBefore(dropdown, placeholder);
+        }
+    }
+
+    moveDropdown();
+    window.addEventListener("resize", moveDropdown);
 }
 
-moveDropdown();
-window.addEventListener("resize", moveDropdown);
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initUserDropdownMove, {
+        once: true
+    });
+} else {
+    initUserDropdownMove();
+}
+
 
 // =========================================
 // LANGUAGE POPUP
@@ -423,7 +453,7 @@ document.addEventListener("pointerdown", function (e) {
 // Bila PAGE scroll
 window.addEventListener("scroll", function () {
 
-    if (window.innerWidth > 1024) return;
+    if (window.innerWidth > 1030) return;
 
     // Kalau scroll bermula dalam menu,
     // jangan close menu

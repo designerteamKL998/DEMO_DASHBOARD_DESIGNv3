@@ -77,6 +77,13 @@
         gap: 8px;
     }
 
+    .notification-btn,
+    .btn-deposit {
+        height: auto;
+        width: auto;
+        padding: 5px;
+    }
+
     .language {
         padding: 3px 6px;
         display: none;
@@ -199,13 +206,13 @@
         margin-bottom: 0px;
     }
 
-    .hot-games {
+    .hot-games, .new-games {
         width: calc(100% - 30px);
         overflow: hidden;
         margin: 10px auto 10px;
     }
 
-        .hot-games .games-grid {
+        .hot-games .games-grid, .new-games .games-grid{
             display: flex;
             gap: 20px;
             overflow-x: auto;
@@ -216,11 +223,11 @@
             scrollbar-width: none;
         }
 
-            .hot-games .games-grid::-webkit-scrollbar {
+            .hot-games .games-grid::-webkit-scrollbar, .new-games .games-grid::-webkit-scrollbar {
                 display: none;
             }
 
-            .hot-games .games-grid .game-card {
+            .hot-games .games-grid .game-card, .new-games .games-grid .game-card {
                 flex: 0 0 84px;
                 width: 84px;
                 min-width: 84px;
@@ -840,11 +847,13 @@
     .mobile-more-wrap {
         width: 34px;
         height: 34px;
-        display: flex;
         align-items: center;
         justify-content: center;
+        display: flex !important;
         position: relative;
         flex: 0 0 43px;
+        visibility: visible !important;
+        z-index: 10003;
     }
 
     .mobile-more-btn {
@@ -902,7 +911,7 @@
         display: none;
         position: fixed;
         top: 55px;
-        right: 0;
+        right: 12px;
         width: 300px;
         max-width: calc(100vw - 20px);
         /* Bagi ruang untuk bottom navigation */
@@ -918,9 +927,6 @@
         -webkit-overflow-scrolling: touch;
     }
 
-        .mobile-more-menu.active {
-            display: block;
-        }
 
             .mobile-more-menu.active .user-dropdown {
                 opacity: 1;
@@ -1384,75 +1390,7 @@
         font-size: 13px;
     }
 
-    /*-------------------  DAILY CHECKIN PAGE  ------------------*/
-    .dci-page {
-        padding: 16px;
-    }
 
-    .dci-main {
-        grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.9fr);
-        gap: 12px;
-    }
-
-    .dci-calendar-card,
-    .dci-reward-card {
-        padding: 16px;
-    }
-
-    .dci-header {
-        gap: 16px;
-    }
-
-    .dci-brand-text h1 {
-        font-size: 26px;
-    }
-
-    .dci-brand-text p {
-        font-size: 13px;
-    }
-
-    .dci-header-badge {
-        padding: 8px 12px;
-    }
-
-    .dci-days-grid {
-        grid-template-columns: repeat(7, minmax(55px, 1fr));
-        gap: 6px;
-    }
-
-    .dci-day {
-        min-height: 95px;
-        padding: 8px 6px;
-    }
-
-    .dci-day-number {
-        font-size: 24px;
-    }
-
-    .dci-day-symbol {
-        font-size: 19px;
-    }
-
-    .dci-day-label {
-        font-size: 12px;
-    }
-
-    .dci-progress-wrap {
-        min-width: 120px;
-    }
-
-    .dci-progress-track {
-        width: 120px;
-    }
-
-    .dci-reward-content {
-        min-height: 180px;
-    }
-
-    .dci-terms-card {
-        padding: 16px 18px;
-        margin-bottom: 50px;
-    }
 
     /*----------------------------  FRIENDS PAGE  ----------------------------------
     .fr-page {
@@ -2268,229 +2206,121 @@
     }*/
 
     /*-----------------  WITHDRAWAL PAGE  --------------*/
+
     .wdr-page {
-        width: 100%;
-        max-width: 100%;
-        padding: 25px 20px 35px;
-        margin-bottom: 40px;
-    }
-
-    .wdr-page-head {
-        gap: 15px;
-        margin-bottom: 14px;
-    }
-
-    .wdr-title-accent {
-        width: 9px;
-        height: 65px;
-        flex: 0 0 9px;
-    }
-
-    .wdr-page-head h2 {
-        font-size: 25px;
-    }
-
-    .wdr-page-head p {
-        font-size: 13px;
-    }
-
-    .wdr-methods {
-        width: 100%;
-        gap: 10px;
+        padding: 22px 20px 34px;
     }
 
     .wdr-method {
         width: auto;
-        flex: 1;
-        height: 56px;
-        padding: 0 18px;
-        gap: 13px;
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 12px 30px 12px 13px;
+        gap: 9px;
     }
 
-    .wdr-method-icon {
-        width: 38px;
-        height: 38px;
-        flex: 0 0 38px;
+    .wdr-method-copy strong {
+        font-size: 13px;
     }
 
+    .wdr-method-copy small {
+        font-size: 10px;
+        overflow-wrap: anywhere;
+    }
 
-    .wdr-bank-columns {
-        grid-template-columns: 1.1fr .75fr;
+    .wdr-bank-columns,
+    .wdr-ewallet-columns,
+    .wdr-crypto-columns {
+        grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr);
         gap: 12px;
-    }
-
-    .wdr-ewallet-columns {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
-
-    .wdr-panel-head {
-        padding: 14px 18px;
-        gap: 12px;
-    }
-
-    .wdr-heading {
-        gap: 12px;
-    }
-
-    .wdr-heading-icon {
-        width: 36px;
-        height: 36px;
-        flex: 0 0 36px;
-    }
-
-    .wdr-heading h2 {
-        font-size: 18px;
-    }
-
-    .wdr-heading p {
-        font-size: 12px;
-    }
-
-    .wdr-outline-btn {
-        height: 38px;
-        padding: 0 13px;
-        font-size: 12px;
     }
 
     .wdr-bank-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .wdr-crypto-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding-right: 14px;
+        padding-left: 14px;
         gap: 8px;
-        padding: 0 18px 10px;
     }
 
-    .wdr-bank-row {
-        padding: 9px 13px;
-        gap: 10px;
+    .wdr-crypto-row {
+        padding: 10px;
+        gap: 8px;
     }
 
-    .wdr-bank-logo {
-        width: 44px;
-        height: 44px;
-        flex: 0 0 44px;
+    .wdr-crypto-copy strong {
+        font-size: 13px;
     }
 
-        .wdr-bank-logo img {
-            width: 35px;
-        }
-
-    .wdr-radio {
-        width: 21px;
-        height: 21px;
-        flex: 0 0 21px;
+    .wdr-crypto-copy small {
+        font-size: 11px;
     }
 
-    .wdr-withdraw-top {
-        grid-template-columns: minmax(0, 1fr) 165px;
-        gap: 10px;
-        padding: 16px 18px 0;
-    }
-
-    .wdr-rollover {
-        width: 165px;
-        min-height: 58px;
-        padding: 8px 11px;
-    }
-
-    .wdr-amount-note {
-        padding: 5px 18px 0;
-    }
-
-
-    /* MONEY INPUT */
-    .wdr-money-input {
-        height: 48px;
-    }
-
-        .wdr-money-input > span {
-            width: 58px;
-            padding-left: 13px;
-        }
-
-        .wdr-money-input input {
-            padding: 0 12px;
-        }
-
-
-    /* QUICK AMOUNT */
-    .wdr-quick {
-        gap: 7px;
-        padding: 13px 18px 15px;
-    }
-
-        .wdr-quick button {
-            height: 40px;
-            font-size: 12px;
-        }
-
-
-    /* SUMMARY */
-    .wdr-summary {
-        margin: 0 18px;
-    }
-
-    .wdr-summary-row {
-        padding: 9px 13px;
-    }
-
-    .wdr-submit {
-        width: calc(100% - 36px);
-        margin: 12px 18px 0;
+    .wdr-panel-head {
+        padding: 17px 14px 12px;
     }
 
     .wdr-bank-announcement-grid {
-        margin: 0 18px 18px;
-        min-height: 170px;
+        margin-right: 14px;
+        margin-left: 14px;
     }
 
-    .wdr-steps {
-        padding: 9px 15px;
-    }
-
+    .wdr-steps,
     .wdr-notes {
-        padding: 12px 15px;
+        padding-right: 11px;
+        padding-left: 11px;
     }
 
-        .wdr-steps > div,
-        .wdr-notes > div {
-            font-size: 12px;
+    .wdr-withdraw-top {
+        grid-template-columns: minmax(0, 1fr) 160px;
+        gap: 10px;
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .wdr-amount-note {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .wdr-quick {
+        padding-right: 14px;
+        padding-left: 14px;
+        gap: 5px;
+    }
+
+    .wdr-summary {
+        margin-right: 14px;
+        margin-left: 14px;
+    }
+
+    .wdr-submit {
+        width: calc(100% - 28px);
+        margin-right: 14px;
+        margin-left: 14px;
+    }
+
+    .wdr-crypto-address-box {
+        margin-right: 14px;
+        margin-left: 14px;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+        .wdr-crypto-address-box .wdr-outline-btn {
+            grid-column: 1;
+            grid-row: auto;
+            justify-self: start;
         }
 
+    .wdr-ewallet-info-box,
     .wdr-wallet-alert {
-        margin: 0 18px 17px;
-        padding: 11px 13px;
-    }
-
-    .wdr-ewallet-info-box {
-        margin: 0 18px;
-        padding: 14px 16px;
-        gap: 13px;
-    }
-
-    .wdr-subtitle {
-        margin: 10px 18px;
-    }
-
-    .wdr-how-list {
-        padding: 0 18px;
-        gap: 10px;
-    }
-
-    .wdr-divider {
-        margin: 22px 18px 0;
-    }
-
-    .wdr-ewallet-notes {
-        padding: 0 18px 18px;
-    }
-
-    .wdr-notes i {
-        width: 5px;
-        height: 5px;
-        flex: 0 0 5px;
-    }
-
-    .pkb-panel-heading-icon {
-        display: none;
+        margin-right: 14px;
+        margin-left: 14px;
     }
 
     /*---------------  PINVITEFREN PAGE  --------------*/
@@ -2713,7 +2543,14 @@
         width: 40%;
     }
 
-
+    .game-fav-btn {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
+    }
 
 
 
@@ -2781,17 +2618,16 @@
         display: none;
     }
 
+    .notification-btn,
+    .btn-deposit {
+        padding: 0px;
+    }
+
     .btn-deposit {
         margin-left: 0px;
         padding: 0px;
         height: auto;
     }
-
-        .notification-btn,
-        .btn-deposit a {
-            height: auto;
-            width: auto;
-        }
 
             .btn-deposit a,
             .notification-btn a {
@@ -2896,7 +2732,7 @@
             width: 14px;
         }
 
-    .hot-games {
+    .hot-games, .new-games {
         width: calc(100% - 16px);
         max-width: none;
         transition: opacity 1.2s ease, transform 1.2s ease;
@@ -2904,12 +2740,12 @@
     }
 
 
-    .new-games {
+        /*.new-games {
         opacity: 1;
         transform: translateY(0);
         transition: opacity 1.2s ease, transform 1.2s ease;
         will-change: opacity, transform;
-    }
+    }*/
 
         .hot-games.mobile-scroll-hide-games,
         .new-games.mobile-scroll-hide-games {
@@ -3820,198 +3656,7 @@
         margin-bottom: 40px;
     }
 
-    /*-------------------  DAILY CHECK IN PAGE ----------------*/
-    .dci-page {
-        padding: 12px;
-    }
 
-    .dci-header {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 0 4px 12px;
-        gap: 12px;
-    }
-
-    .dci-brand {
-        width: 100%;
-    }
-
-    .dci-brand-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 23px;
-    }
-
-    .dci-brand-text h1 {
-        font-size: 24px;
-    }
-
-    .dci-brand-text p {
-        margin-top: 4px;
-        font-size: 12px;
-    }
-
-    .dci-header-badge {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .dci-main {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .dci-calendar-card,
-    .dci-reward-card {
-        padding: 14px;
-        border-radius: 14px;
-    }
-
-    .dci-calendar-top {
-        gap: 12px;
-        margin-bottom: 14px;
-    }
-
-    .dci-section-label {
-        font-size: 12px;
-    }
-
-    .dci-calendar-heading h2 {
-        font-size: 17px;
-    }
-
-    .dci-progress-wrap {
-        min-width: 105px;
-    }
-
-        .dci-progress-wrap > span {
-            font-size: 12px;
-        }
-
-    .dci-progress-track {
-        width: 105px;
-    }
-
-    .dci-days-grid {
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        gap: 5px;
-    }
-
-    .dci-day {
-        min-height: 70px;
-        padding: 7px 5px;
-        border-radius: 8px;
-    }
-
-    .dci-day-number {
-        font-size: 22px;
-    }
-
-    .dci-day-symbol {
-        font-size: 18px;
-    }
-
-    .dci-day-label {
-        font-size: 10px;
-    }
-
-    .dci-day.dci-checked::after {
-        top: 5px;
-        right: 5px;
-        width: 19px;
-        height: 19px;
-        font-size: 11px;
-    }
-
-    .dci-calendar-footer {
-        font-size: 12px;
-    }
-
-    .dci-reward-header {
-        padding-bottom: 12px;
-    }
-
-    .dci-reward-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
-
-    .dci-reward-heading h2 {
-        font-size: 16px;
-    }
-
-    .dci-reward-content {
-        min-height: 160px;
-    }
-
-    .dci-eligibility {
-        margin-top: 10px;
-    }
-
-    .dci-checkin-button {
-        min-height: 46px;
-        font-size: 14px;
-    }
-
-    .dci-terms-card {
-        margin-top: 12px;
-        padding: 14px;
-        border-radius: 14px;
-        margin-bottom: 50px;
-    }
-
-    .dci-terms-header {
-        cursor: pointer;
-    }
-
-    .dci-terms-arrow {
-        margin-left: auto;
-        flex-shrink: 0;
-        color: var(--dci-accent);
-        font-size: 14px;
-        transition: transform 0.25s ease;
-    }
-
-    /* CLOSED */
-    .dci-terms-list {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 0.35s ease, opacity 0.25s ease;
-    }
-
-    /* OPEN */
-    .dci-terms-card.dci-open .dci-terms-list {
-        max-height: 1000px;
-        opacity: 1;
-    }
-
-    /* ARROW */
-    .dci-terms-card.dci-open .dci-terms-arrow {
-        transform: rotate(180deg);
-    }
-
-    i.dci-terms-arrow {
-        display:none;
-    }
-
-    .dci-mobile-checkin {
-        display: block;
-        margin-top: 12px;
-    }
-
-        .dci-mobile-checkin .dci-checkin-wrap {
-            display: block;
-        }
-
-        .dci-mobile-checkin .dci-checkin-button {
-            margin-top: 0;
-        }
-
-        .dci-mobile-checkin .dci-status {
-            padding-top: 8px;
-        }
 
     /*------------------  FRIENDS PAGE  -----------------
     .fr-page {
@@ -5767,434 +5412,202 @@
 
     /*----------------------------  WITHHDRAWAL PAGE  -------------------------------*/
     .wdr-page {
-        width: 100%;
-        max-width: 100%;
-        padding: 18px 10px 25px;
-        overflow: hidden;
+        padding: 20px 16px 28px;
     }
 
     .wdr-page-head {
         gap: 10px;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
     }
 
     .wdr-title-accent {
-        width: 6px;
+        width: 7px;
         height: 52px;
-        flex: 0 0 6px;
+        flex-basis: 7px;
     }
 
     .wdr-page-head h2 {
-        font-size: 20px;
-        letter-spacing: -.5px;
+        font-size: 25px;
+        letter-spacing: -.4px;
     }
 
     .wdr-page-head p {
-        margin-top: 5px;
-        font-size: 11px;
-        line-height: 1.4;
+        font-size: 12px;
+        line-height: 1.45;
     }
 
-
-    /* ==============
-       METHOD TABS
-       2 COLUMNS
-    =============== */
-
     .wdr-methods {
-        width: 100%;
-        gap: 7px;
-        margin-bottom: 9px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin-bottom: 12px;
     }
 
     .wdr-method {
-        width: 50%;
-        min-width: 0;
-        height: 52px;
-        padding: 0 10px;
-        gap: 8px;
-        border-radius: 9px;
+        width: auto;
+        min-height: 60px;
+        flex: initial;
+        padding: 10px 24px 10px 10px;
+        gap: 7px;
     }
 
-    .wdr-method-icon {
-        width: 32px;
-        height: 32px;
-        flex: 0 0 32px;
-    }
-
-    .wdr-methods i {
-        font-size: 16px;
-    }
-
-    .wdr-method-copy {
-        min-width: 0;
-    }
-
-        .wdr-method-copy strong {
-            font-size: 12px;
-            white-space: nowrap;
+        .wdr-method > i {
+            width: 20px;
+            flex-basis: 20px;
+            font-size: 17px;
         }
 
-        .wdr-method-copy small {
-            margin-top: 2px;
-            font-size: 9px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-    .wdr-bank-columns {
-        grid-template-columns: 1fr;
-        grid-template-areas: "bank-details" "withdraw" "announcement";
-        gap: 10px;
+    .wdr-method-copy strong {
+        font-size: 12px;
+        line-height: 1.3;
     }
+
+    .wdr-method-copy small {
+        font-size: 10px;
+        line-height: 1.3;
+    }
+
+    .wdr-method.is-active::after {
+        right: 8px;
+        width: 5px;
+        height: 5px;
+    }
+
+    .wdr-bank-columns,
+    .wdr-ewallet-columns,
+    .wdr-crypto-columns {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: none;
+        gap: 12px;
+    }
+
+        .wdr-bank-columns > .wdr-bank-details,
+        .wdr-bank-columns > .wdr-withdraw-panel,
+        .wdr-bank-columns > .wdr-bank-announcement {
+            grid-area: auto;
+        }
 
         .wdr-bank-columns > .wdr-bank-announcement {
             height: auto;
         }
 
-    .wdr-ewallet-columns {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .wdr-ewallet-left {
-        gap: 10px;
-    }
-
-
-    .wdr-panel {
-        border-radius: 10px;
-    }
-
-    .wdr-panel-head {
-        padding: 12px 13px;
-        gap: 8px;
-    }
-
-    .wdr-heading {
-        gap: 9px;
-    }
-
-    .wdr-heading-icon {
-        width: 32px;
-        height: 32px;
-        flex: 0 0 32px;
-    }
-
-    .wdr-heading h2 {
-        font-size: 15px;
-    }
-
-    .wdr-heading p {
-        margin-top: 2px;
-        font-size: 10px;
-    }
-
-    .wdr-outline-btn {
-        height: 34px;
-        padding: 0 9px;
-        font-size: 10px;
+    .wdr-ewallet-left,
+    .wdr-crypto-left {
+        gap: 12px;
     }
 
     .wdr-bank-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 7px;
-        padding: 0 13px 10px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
     }
 
     .wdr-bank-row {
-        padding: 8px 10px;
-        gap: 9px;
-        border-radius: 9px;
+        padding: 10px;
+        gap: 8px;
     }
 
     .wdr-bank-logo {
-        width: 40px;
-        height: 40px;
-        flex: 0 0 40px;
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
     }
 
         .wdr-bank-logo img {
-            width: 32px;
+            width: 29px;
+            max-height: 29px;
         }
 
     .wdr-bank-data p {
         font-size: 12px;
+        overflow-wrap: anywhere;
     }
 
-    .wdr-bank-data span {
-        font-size: 10px;
-    }
-
+    .wdr-bank-data span,
     .wdr-bank-data small {
-        font-size: 9px;
-    }
-
-    .wdr-radio {
-        width: 20px;
-        height: 20px;
-        flex: 0 0 20px;
-    }
-
-    .wdr-withdraw-top {
-        grid-template-columns: 1fr;
-        gap: 9px;
-        padding: 13px 13px 0;
-    }
-
-        .wdr-withdraw-top .wdr-rollover {
-            width: 100%;
-        }
-
-    .wdr-rollover {
-        min-height: 55px;
-        padding: 8px 11px;
-    }
-
-    .wdr-amount-note {
-        padding: 5px 13px 0;
         font-size: 10px;
-    }
-
-    .wdr-field label {
-        margin-bottom: 5px;
-        font-size: 12px;
-    }
-
-    .wdr-money-input {
-        height: 46px;
-    }
-
-        .wdr-money-input > span {
-            width: 52px;
-            padding-left: 11px;
-            font-size: 12px;
-        }
-
-        .wdr-money-input input {
-            padding: 0 11px;
-            font-size: 13px;
-        }
-
-    .wdr-field > small {
-        font-size: 9px;
-    }
-
-    .wdr-quick {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 5px;
-        padding: 11px 13px 13px;
-    }
-
-        .wdr-quick button {
-            height: 36px;
-            padding: 0 3px;
-            font-size: 10px;
-            border-radius: 6px;
-        }
-
-    .wdr-summary {
-        margin: 0 13px;
-        border-radius: 8px;
-    }
-
-    .wdr-summary-row {
-        padding: 8px 11px;
-        gap: 8px;
-        font-size: 11px;
-    }
-
-    .wdr-summary-bank > strong {
-        font-size: 11px;
-    }
-
-    .wdr-summary-bank small {
-        font-size: 9px;
-    }
-
-    .wdr-submit {
-        width: calc(100% - 26px);
-        margin: 10px 13px 0;
-        padding: 9px;
-        font-size: 12px;
+        line-height: 1.35;
     }
 
     .wdr-bank-announcement-grid {
-        margin: 0 13px 13px;
-        min-height: auto;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .wdr-steps {
-        padding: 10px 12px;
-        border-right: 0;
-        border-bottom: 1px solid #343B42;
+    .wdr-bank-columns > .wdr-bank-announcement .wdr-bank-announcement-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .wdr-notes {
-        padding: 10px 12px;
+    .wdr-bank-columns > .wdr-bank-announcement .wdr-steps {
+        border-right: 1px solid rgba(255,255,255,.08);
+        border-bottom: 0;
     }
 
-    .wdr-steps > div {
-        min-height: 29px;
-        gap: 9px;
-        font-size: 10px;
+    .wdr-withdraw-top {
+        grid-template-columns: minmax(0, 1fr) 190px;
+        padding-right: 18px;
+        padding-left: 18px;
     }
 
-    .wdr-steps b {
-        width: 26px;
-        height: 26px;
-        flex: 0 0 26px;
-        font-size: 10px;
+    .wdr-amount-note {
+        padding-right: 18px;
+        padding-left: 18px;
     }
 
-    .wdr-notes > div {
-        gap: 8px;
-        font-size: 10px;
-        line-height: 1.4;
+    .wdr-quick {
+        padding-right: 18px;
+        padding-left: 18px;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 7px;
     }
 
+    .wdr-summary {
+        margin-right: 18px;
+        margin-left: 18px;
+    }
+
+    .wdr-submit {
+        width: calc(100% - 36px);
+        margin-right: 18px;
+        margin-left: 18px;
+    }
+
+    .wdr-crypto-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .wdr-crypto-row {
+        padding: 11px;
+    }
+
+    .wdr-crypto-address-box {
+        margin-right: 18px;
+        margin-left: 18px;
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+        .wdr-crypto-address-box .wdr-outline-btn {
+            grid-column: 2;
+            grid-row: 2;
+            justify-self: auto;
+        }
+
+    .wdr-ewallet-info-box,
     .wdr-wallet-alert {
-        margin: 0 13px 13px;
-        min-height: 65px;
-        padding: 10px 11px;
-        gap: 9px;
+        margin-right: 18px;
+        margin-left: 18px;
     }
 
-    .wdr-alert-icon {
-        width: 27px;
-        height: 27px;
-        flex: 0 0 27px;
-        font-size: 12px;
+    .wdr-outline-btn {
+        white-space: normal;
     }
-
-    .wdr-wallet-alert strong {
-        font-size: 12px;
-    }
-
-    .wdr-wallet-alert p {
-        font-size: 10px;
-        line-height: 1.4;
-    }
-
-    .wdr-ewallet-info-box {
-        margin: 0 13px;
-        padding: 12px;
-        gap: 10px;
-    }
-
-    .wdr-info-circle {
-        width: 34px;
-        height: 34px;
-        flex: 0 0 34px;
-        font-size: 12px;
-    }
-
-    .wdr-ewallet-info-box strong {
-        font-size: 12px;
-    }
-
-    .wdr-ewallet-info-box p {
-        font-size: 10px;
-        line-height: 1.4;
-    }
-
-    .wdr-subtitle {
-        margin: 9px 13px;
-        font-size: 12px;
-    }
-
-    .wdr-how-list {
-        padding: 0 13px;
-        gap: 8px;
-    }
-
-        .wdr-how-list > div {
-            min-height: 34px;
-            gap: 10px;
-            font-size: 10px;
-            line-height: 1.4;
-        }
-
-        .wdr-how-list b {
-            width: 31px;
-            height: 31px;
-            flex: 0 0 31px;
-            font-size: 10px;
-        }
-
-    .wdr-divider {
-        margin: 18px 13px 0;
-    }
-
-    .wdr-important-title {
-        margin-top: 13px;
-    }
-
-    .wdr-ewallet-notes {
-        padding: 0 13px 15px;
-        font-size: 10px;
-    }
-
-    .wdr-summary-ewallet > strong {
-        gap: 8px;
-    }
-
-    .wdr-sklpay-mini {
-        width: 32px;
-        height: 32px;
-    }
-
-
-    /* ======
-       MODAL
-    ====== */
 
     .wdr-modal {
-        padding: 10px;
+        padding: 16px;
     }
 
     .wdr-modal-box {
-        width: 100%;
-        max-width: 100%;
-        max-height: 92vh;
-        padding: 18px;
-        border-radius: 10px;
-    }
-
-        .wdr-modal-box h3 {
-            font-size: 17px;
-        }
-
-        .wdr-modal-box > p {
-            margin-bottom: 15px;
-            font-size: 11px;
-        }
-
-        .wdr-modal-box label {
-            margin: 11px 0 5px;
-            font-size: 12px;
-        }
-
-        .wdr-modal-box input,
-        .wdr-modal-box select {
-            height: 42px;
-            font-size: 12px;
-        }
-
-        .wdr-modal-box .wdr-submit {
-            margin-top: 15px;
-        }
-
-    .wdr-toast {
-        left: 10px;
-        right: 10px;
-        bottom: 12px;
-        min-width: 0;
-        width: auto;
-        max-width: none;
-        font-size: 12px;
+        padding: 22px;
     }
 
     /*-------------------------  INVITE FREN PAGE ----------------------*/
@@ -6623,11 +6036,6 @@
 
 
 
-
-
-
-
-
 }
 
 /*===========================================================================================  MOBILE 480PX  ======================================================================================================*/
@@ -6697,7 +6105,7 @@
             width: 12px;
         }
 
-    .hot-games {
+    .hot-games, .new-games {
         width: calc(100% - 12px);
         margin: 0px 5px;
         padding: 0px 6px;
@@ -7153,5 +6561,534 @@
         display: inline-block;
     }
 
+/*============================ WITHDRAWAL PAGE ===============================*/
+    .wdr-page {
+        padding: 16px 12px 24px;
+    }
+
+    .wdr-page-head {
+        gap: 9px;
+        align-items: center;
+    }
+
+    .wdr-title-accent {
+        height: 44px;
+    }
+
+    .wdr-page-head h2 {
+        font-size: 21px;
+        line-height: 1.2;
+    }
+
+    .wdr-page-head p {
+        margin-top: 4px;
+        font-size: 11px;
+    }
+
+    .wdr-methods {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:7px;
+    }
+
+    .wdr-method {
+        padding: 10px;
+        gap: 10px;
+    }
+
+        .wdr-method > i {
+            width: 23px;
+            flex-basis: 23px;
+            font-size: 18px;
+        }
+
+    .wdr-method-copy strong {
+        font-size: 13px;
+    }
+
+    .wdr-method-copy small {
+        font-size: 11px;
+    }
+
+    .wdr-method.is-active::after {
+        right: 12px;
+        width: 6px;
+        height: 6px;
+    }
+
+    .wdr-panel {
+        border-radius: 8px;
+    }
+
+    .wdr-panel-head {
+        padding: 15px 12px 12px;
+        gap: 9px;
+        align-items: flex-start;
+    }
+
+    .wdr-heading {
+        gap: 8px;
+    }
+
+        .wdr-heading h2 {
+            font-size: 16px;
+        }
+
+        .wdr-heading p {
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+    .wdr-outline-btn {
+        min-height: 34px;
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    .wdr-bank-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        padding: 0 12px 13px;
+    }
+
+    .wdr-bank-row {
+        padding: 9px 8px;
+        gap: 7px;
+        border-radius: 7px;
+    }
+
+    .wdr-bank-logo {
+        width: 28px;
+        height: 28px;
+        flex-basis: 28px;
+    }
+
+        .wdr-bank-logo img {
+            width: 26px;
+            max-height: 26px;
+        }
+
+    .wdr-bank-data p {
+        font-size: 11px;
+    }
+
+    .wdr-bank-data span,
+    .wdr-bank-data small {
+        font-size: 9px;
+    }
+
+    .wdr-radio {
+        width: 13px;
+        height: 13px;
+        flex-basis: 13px;
+    }
+
+    .wdr-bank-row.is-selected .wdr-radio {
+        border-width: 3px;
+    }
+
+    .wdr-withdraw-top {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        padding: 15px 12px 0;
+    }
+
+    .wdr-rollover {
+        padding: 10px 11px;
+    }
+
+        .wdr-rollover span {
+            font-size: 11px;
+        }
+
+        .wdr-rollover strong {
+            font-size: 13px;
+        }
+
+    .wdr-money-input {
+        height: 42px;
+    }
+
+        .wdr-money-input > span {
+            width: 54px;
+            padding-left: 11px;
+            font-size: 12px;
+        }
+
+        .wdr-money-input input {
+            padding: 0 10px;
+            font-size: 13px;
+        }
+
+    .wdr-field label {
+        font-size: 12px;
+    }
+
+    .wdr-field > small,
+    .wdr-amount-note {
+        font-size: 10px;
+        line-height: 1.45;
+    }
+
+    .wdr-amount-note {
+        padding: 6px 12px 0;
+    }
+
+    .wdr-quick,
+    .wdr-crypto-withdraw .wdr-quick {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        padding: 12px;
+    }
+
+        .wdr-quick button {
+            padding: 9px 5px;
+            font-size: 11px;
+        }
+
+    .wdr-summary {
+        margin: 0 12px;
+    }
+
+    .wdr-summary-row {
+        padding: 9px 0;
+        gap: 10px;
+        font-size: 11px;
+    }
+
+        .wdr-summary-row > span {
+            min-width: 0;
+        }
+
+        .wdr-summary-row > b {
+            max-width: 58%;
+            overflow-wrap: anywhere;
+        }
+
+    .wdr-summary-bank > strong {
+        font-size: 11px;
+    }
+
+    .wdr-summary-bank small {
+        font-size: 10px;
+        text-align: right;
+        overflow-wrap: anywhere;
+    }
+
+    .wdr-submit {
+        width: calc(100% - 24px);
+        min-height: 42px;
+        margin: 12px 12px 0;
+        font-size: 12px;
+    }
+
+    .wdr-bank-announcement-grid,
+    .wdr-bank-columns > .wdr-bank-announcement .wdr-bank-announcement-grid {
+        grid-template-columns: 1fr;
+        margin: 0 12px 13px;
+    }
+
+    .wdr-bank-columns > .wdr-bank-announcement .wdr-steps,
+    .wdr-steps {
+        padding: 10px 12px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+        .wdr-steps > div {
+            min-height: 34px;
+            gap: 9px;
+            font-size: 11px;
+        }
+
+        .wdr-steps b {
+            width: 22px;
+            height: 22px;
+            flex-basis: 22px;
+            font-size: 11px;
+        }
+
+    .wdr-notes {
+        padding: 12px;
+        gap: 10px;
+    }
+
+        .wdr-notes > div {
+            gap: 8px;
+            font-size: 11px;
+        }
+
+    .wdr-wallet-alert,
+    .wdr-ewallet-info-box {
+        margin-right: 12px;
+        margin-left: 12px;
+        padding: 11px;
+        gap: 9px;
+    }
+
+        .wdr-wallet-alert strong,
+        .wdr-ewallet-info-box strong {
+            font-size: 12px;
+        }
+
+        .wdr-wallet-alert p,
+        .wdr-ewallet-info-box p {
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
+    .wdr-alert-icon,
+    .wdr-info-circle {
+        width: 26px;
+        height: 26px;
+        flex-basis: 26px;
+        font-size: 12px;
+    }
+
+    .wdr-subtitle {
+        margin: 12px;
+        font-size: 13px;
+    }
+
+    .wdr-how-list {
+        padding: 0 12px;
+        gap: 9px;
+    }
+
+        .wdr-how-list > div {
+            gap: 9px;
+            font-size: 11px;
+        }
+
+        .wdr-how-list b {
+            width: 23px;
+            height: 23px;
+            flex-basis: 23px;
+            font-size: 11px;
+        }
+
+    .wdr-divider {
+        margin: 15px 12px 0;
+    }
+
+    .wdr-ewallet-notes {
+        padding: 0 12px 14px;
+    }
+
+    .wdr-crypto-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        padding: 0 12px 13px;
+    }
+
+    .wdr-crypto-row {
+        padding: 9px 8px;
+        gap: 7px;
+        border-radius: 7px;
+    }
+
+    .wdr-crypto-symbol {
+        width: 30px;
+        height: 30px;
+        flex-basis: 30px;
+        padding: 4px;
+    }
+
+    .wdr-crypto-copy {
+        gap: 3px;
+    }
+
+        .wdr-crypto-copy strong {
+            font-size: 11px;
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
+
+        .wdr-crypto-copy small {
+            font-size: 9px;
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
+
+    .wdr-crypto-row .wdr-radio {
+        width: 12px;
+        height: 12px;
+        flex-basis: 12px;
+    }
+
+    .wdr-crypto-row.is-selected .wdr-radio {
+        border-width: 3px;
+    }
+
+    .wdr-crypto-address-box {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 9px;
+        margin: 0 12px 13px;
+        padding: 12px;
+    }
+
+        .wdr-crypto-address-box label {
+            font-size: 11px;
+        }
+
+    .wdr-crypto-address-content {
+        gap: 9px;
+    }
+
+    .wdr-crypto-address-symbol {
+        width: 30px;
+        height: 30px;
+        flex-basis: 30px;
+    }
+
+    .wdr-crypto-address-value {
+        font-size: 11px;
+        overflow-wrap: anywhere;
+    }
+
+    .wdr-crypto-address-box .wdr-outline-btn {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: stretch;
+    }
+
+    .wdr-modal {
+        padding: 12px;
+    }
+
+    .wdr-modal-box {
+        max-width: 100%;
+        padding: 20px 16px 16px;
+    }
+
+        .wdr-modal-box h3 {
+            padding-right: 20px;
+            font-size: 17px;
+        }
+
+        .wdr-modal-box > p {
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .wdr-modal-box label {
+            font-size: 12px;
+        }
+
+    .wdr-toast {
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        min-width: 0;
+        max-width: none;
+        font-size: 12px;
+    }
+
+    .game-fav-btn {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
+
+
+/* =====================================
+   FAVOURITE GAMES - MOBILE SPACING
+===================================== */
+
+@media (max-width: 1024px) {
+
+    .hot-games.fav-games .games-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px !important;
+        overflow-x: auto;
+        overflow-y: visible;
+        padding: 8px 0 12px;
+        margin: 0;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+        .hot-games.fav-games .games-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hot-games.fav-games .games-grid .game-card {
+            flex: 0 0 84px !important;
+            width: 84px !important;
+            min-width: 84px !important;
+            margin: 0;
+        }
+
+    .hot-games.fav-games .game-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    .main-header,
+    .header-inner,
+    .header-right {
+        overflow: visible !important;
+    }
+
+    .mobile-more-wrap {
+        display: flex !important;
+        position: relative;
+        flex: 0 0 43px;
+        visibility: visible !important;
+    }
+
+    .mobile-more-btn {
+        display: flex !important;
+        visibility: visible !important;
+        cursor: pointer;
+    }
+
+    .mobile-more-menu {
+        position: fixed !important;
+        top: 60px;
+        right: 12px;
+        width: 300px;
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 130px);
+        overflow-y: auto;
+        background: #000;
+        z-index: 10002 !important;
+    }
+
+        .mobile-more-menu.active {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+            .mobile-more-menu.active .user-dropdown {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
+                transform: none !important;
+            }
+
+}
+

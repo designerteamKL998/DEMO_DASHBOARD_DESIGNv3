@@ -711,7 +711,7 @@
 }
 
 i.dci-terms-arrow {
-    display:none;
+    display: none;
 }
 
 .dci-terms-list.dci-lang-content.active {
@@ -735,7 +735,7 @@ i.dci-terms-arrow {
     min-height: 100%;
     padding: 0 20px 24px;
     background: url(imgs/checkin/bgcheckin.jpg)no-repeat;
-    background-size:cover;
+    background-size: cover;
 }
 
 
@@ -749,28 +749,28 @@ i.dci-terms-arrow {
     align-items: center;
 }
 
-.dci-hero::before {
-    content: "";
-    position: absolute;
-    top: 12px;
-    left: 36%;
-    color: rgba(255, 221, 72, .78);
-    letter-spacing: 22px;
-    white-space: nowrap;
-}
+    .dci-hero::before {
+        content: "";
+        position: absolute;
+        top: 12px;
+        left: 36%;
+        color: rgba(255, 221, 72, .78);
+        letter-spacing: 22px;
+        white-space: nowrap;
+    }
 
-.dci-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
+    .dci-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
 
 .dci-hero-copy img {
 }
 
 .dci-hero-gifts img {
-    display:none;
+    display: none;
 }
 
 dci-hero-note img {
@@ -782,7 +782,7 @@ dci-hero-note img {
     display: flex;
     align-items: center;
     gap: 18px;
-    top:20px
+    top: 20px
 }
 
 .dci-hero-calendar {
@@ -808,11 +808,11 @@ dci-hero-note img {
     text-shadow: 4px 4px 0 #183e9e;
 }
 
-.dci-hero-text h1 span {
-    display: block;
-    color: #ffd326;
-    text-shadow: 4px 4px 0 #9b320e;
-}
+    .dci-hero-text h1 span {
+        display: block;
+        color: #ffd326;
+        text-shadow: 4px 4px 0 #9b320e;
+    }
 
 .dci-hero-text p {
     width: fit-content;
@@ -839,13 +839,13 @@ dci-hero-note img {
     filter: drop-shadow(0 8px 8px rgba(0,0,0,.35));
 }
 
-.dci-hero-gifts span:nth-child(2) {
-    transform: translateY(-12px);
-}
+    .dci-hero-gifts span:nth-child(2) {
+        transform: translateY(-12px);
+    }
 
-.dci-hero-gifts span:nth-child(3) {
-    transform: translateY(4px);
-}
+    .dci-hero-gifts span:nth-child(3) {
+        transform: translateY(4px);
+    }
 
 .dci-hero-note {
     position: absolute;
@@ -862,20 +862,19 @@ dci-hero-note img {
     line-height: 1.1;
 }
 
-.dci-hero-note strong {
-    color: #8f321b;
-}
+    .dci-hero-note strong {
+        color: #8f321b;
+    }
 
-.dci-hero-note span {
-    color: #df3e18;
-    font-weight: 900;
-}
+    .dci-hero-note span {
+        color: #df3e18;
+        font-weight: 900;
+    }
 
 /* CALENDAR */
 .dci-calendar-card,
 .dci-reward-card {
-    background:
-        linear-gradient(145deg, rgba(22,24,31,.98), rgba(9,11,16,.98));
+    background: linear-gradient(145deg, rgba(22,24,31,.98), rgba(9,11,16,.98));
     border-color: rgba(234,216,125,.24);
     box-shadow: 0 12px 30px rgba(0,0,0,.28);
 }
@@ -901,10 +900,10 @@ dci-hero-note img {
         box-shadow: 0 6px 14px rgba(0,0,0,.35), 0 0 10px rgba(190,70,210,.12);
     }
 
-.dci-day.dci-reward {
-    background: linear-gradient(145deg, #ffe66c, #d0aa36);
-    border-color: #ffe57a;
-}
+    .dci-day.dci-reward {
+        background: linear-gradient(145deg, #ffe66c, #d0aa36);
+        border-color: #ffe57a;
+    }
 
     .dci-day.dci-selected {
         border-color: #e7c7ff;
@@ -974,7 +973,7 @@ dci-hero-note img {
     color: #fff;
 }
 
-.dci-reward-item p span{
+.dci-reward-item p span {
     color: #ffd700;
 }
 
@@ -989,10 +988,10 @@ dci-hero-note img {
     box-shadow: 0 4px 0 #9e6900;
 }
 
-.dci-checkin-button:active:not(:disabled) {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #9e6900;
-}
+    .dci-checkin-button:active:not(:disabled) {
+        transform: translateY(2px);
+        box-shadow: 0 2px 0 #9e6900;
+    }
 
 /* =========================================
    TERMS & CONDITIONS
@@ -1192,10 +1191,409 @@ dci-hero-note img {
 }
 
 .dci-page h2 {
-    font-size:17px;
+    font-size: 17px;
 }
 
 .dci-day.dci-checked.dci-selected {
     border-color: #22c77a !important;
     box-shadow: inset 0 0 0 1px rgba(34, 199, 122, 0.18);
 }
+
+
+/* =========================================================
+   BOSS COMPARISON VARIANT
+   Checked days = grayscale; next sequential day = focus color.
+   Successful check-in popup shows coin image +1.
+========================================================= */
+
+/* Completed days: grayscale only, while keeping the check mark visible */
+.dci-page .dci-day.dci-checked,
+.dci-page .dci-day.dci-reward.dci-checked {
+    filter: grayscale(1);
+    background: linear-gradient(145deg, #45464a, #24262a) !important;
+    border-color: #66696f !important;
+    color: #d0d2d6 !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05) !important;
+}
+
+    .dci-page .dci-day.dci-checked .dci-day-label,
+    .dci-page .dci-day.dci-checked .dci-day-number,
+    .dci-page .dci-day.dci-checked .dci-day-symbol {
+        color: #d0d2d6 !important;
+        text-shadow: none !important;
+    }
+
+    /* Keep the completed tick visible but grayscale */
+    .dci-page .dci-day.dci-checked::after {
+        background: #777b82 !important;
+        color: #f4f4f4 !important;
+        box-shadow: none !important;
+    }
+
+/* Distinct focus styling for the next sequential check-in day */
+.dci-page .dci-day.dci-next-checkin:not(.dci-checked) {
+    border: 2px solid #2EE6C6 !important;
+    background: linear-gradient(145deg, #164e4b, #102c35) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 2px rgba(46,230,198,.14), 0 0 18px rgba(46,230,198,.22) !important;
+    animation: dci-next-focus 1.8s ease-in-out infinite alternate;
+}
+
+    .dci-page .dci-day.dci-next-checkin:not(.dci-checked) .dci-day-label,
+    .dci-page .dci-day.dci-next-checkin:not(.dci-checked) .dci-day-number,
+    .dci-page .dci-day.dci-next-checkin:not(.dci-checked) .dci-day-symbol {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+        .dci-page .dci-day.dci-next-checkin:not(.dci-checked) .dci-day-symbol img {
+           
+        }
+
+.dci-page .dci-day.dci-next-checkin.dci-selected:not(.dci-checked) {
+    border-color: #fff !important;
+    box-shadow: 0 0 0 3px rgba(46,230,198,.22), 0 0 22px rgba(46,230,198,.32) !important;
+}
+
+@keyframes dci-next-focus {
+    from {
+        box-shadow: 0 0 0 1px rgba(46,230,198,.10), 0 0 8px rgba(46,230,198,.12);
+    }
+
+    to {
+        box-shadow: 0 0 0 3px rgba(46,230,198,.20), 0 0 18px rgba(46,230,198,.30);
+    }
+}
+
+/* Floating +1 popup with coin image */
+.dci-points-popup {
+    position: fixed;
+    z-index: 99999;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    pointer-events: none;
+    color: #ffe66c;
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 900;
+    white-space: nowrap;
+    text-shadow: 0 2px 4px rgba(0,0,0,.75), 0 0 12px rgba(255,215,0,.4);
+    transform: translate(-50%, -50%) scale(.35);
+    animation: dci-points-zoom-float 1.25s cubic-bezier(.16,.8,.3,1) forwards;
+}
+
+    .dci-points-popup img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 5px rgba(0,0,0,.45));
+    }
+
+@keyframes dci-points-zoom-float {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -35%) scale(.35);
+    }
+
+    18% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+
+    35% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -145%) scale(1.08);
+    }
+}
+
+
+/*-----------------------------------------------------1024--------------------------------------------------*/
+
+@media (max-width: 1024px) {
+    /*-------------------  DAILY CHECKIN PAGE  ------------------*/
+    .dci-page {
+        padding: 16px;
+    }
+
+    .dci-main {
+        grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.9fr);
+        gap: 12px;
+    }
+
+    .dci-calendar-card,
+    .dci-reward-card {
+        padding: 16px;
+    }
+
+    .dci-header {
+        gap: 16px;
+    }
+
+    .dci-brand-text h1 {
+        font-size: 26px;
+    }
+
+    .dci-brand-text p {
+        font-size: 13px;
+    }
+
+    .dci-header-badge {
+        padding: 8px 12px;
+    }
+
+    .dci-days-grid {
+        grid-template-columns: repeat(7, minmax(55px, 1fr));
+        gap: 6px;
+    }
+
+    .dci-day {
+        min-height: 95px;
+        padding: 8px 6px;
+    }
+
+    .dci-day-number {
+        font-size: 24px;
+    }
+
+    .dci-day-symbol {
+        font-size: 19px;
+    }
+
+    .dci-day-label {
+        font-size: 12px;
+    }
+
+    .dci-progress-wrap {
+        min-width: 120px;
+    }
+
+    .dci-progress-track {
+        width: 120px;
+    }
+
+    .dci-reward-content {
+        min-height: 180px;
+    }
+
+    .dci-terms-card {
+        padding: 16px 18px;
+        margin-bottom: 50px;
+    }
+}
+
+/*-----------------------------------------------------  768  --------------------------------------------------*/
+@media (max-width: 768px) {
+    /*-------------------  DAILY CHECK IN PAGE ----------------*/
+    .dci-page {
+        padding: 12px;
+    }
+
+    .dci-header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 0 4px 12px;
+        gap: 12px;
+    }
+
+    .dci-brand {
+        width: 100%;
+    }
+
+    .dci-brand-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 23px;
+    }
+
+    .dci-brand-text h1 {
+        font-size: 24px;
+    }
+
+    .dci-brand-text p {
+        margin-top: 4px;
+        font-size: 12px;
+    }
+
+    .dci-header-badge {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .dci-main {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .dci-day-symbol img {
+        width: 36px;
+        height: 35px;
+        object-fit: contain;
+    }
+
+    .dci-calendar-card,
+    .dci-reward-card {
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .dci-calendar-top {
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+
+    .dci-section-label {
+        font-size: 12px;
+    }
+
+    .dci-calendar-heading h2 {
+        font-size: 17px;
+    }
+
+    .dci-progress-wrap {
+        min-width: 105px;
+    }
+
+        .dci-progress-wrap > span {
+            font-size: 12px;
+        }
+
+    .dci-progress-track {
+        width: 105px;
+    }
+
+    .dci-days-grid {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 5px;
+    }
+
+    .dci-day {
+        min-height: 70px;
+        padding: 7px 5px;
+        border-radius: 8px;
+    }
+
+    .dci-day-number {
+        font-size: 18px;
+        margin-top: 3px;
+    }
+
+    .dci-day-symbol {
+        font-size: 18px;
+        min-height: auto;
+    }
+
+    .dci-day-label {
+        font-size: 10px;
+    }
+
+    .dci-day.dci-checked::after {
+        top: 5px;
+        right: 5px;
+        width: 19px;
+        height: 19px;
+        font-size: 11px;
+    }
+
+    .dci-calendar-footer {
+        font-size: 12px;
+    }
+
+    .dci-reward-header {
+        padding-bottom: 12px;
+    }
+
+    .dci-reward-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .dci-reward-heading h2 {
+        font-size: 16px;
+    }
+
+    .dci-reward-content {
+        min-height: 160px;
+    }
+
+    .dci-eligibility {
+        margin-top: 10px;
+    }
+
+    .dci-checkin-button {
+        min-height: 46px;
+        font-size: 14px;
+    }
+
+    .dci-terms-card {
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 14px;
+        margin-bottom: 50px;
+    }
+
+    .dci-terms-header {
+        cursor: pointer;
+    }
+
+    .dci-terms-arrow {
+        margin-left: auto;
+        flex-shrink: 0;
+        color: var(--dci-accent);
+        font-size: 14px;
+        transition: transform 0.25s ease;
+    }
+
+    /* CLOSED */
+    .dci-terms-list {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.35s ease, opacity 0.25s ease;
+    }
+
+    /* OPEN */
+    .dci-terms-card.dci-open .dci-terms-list {
+        max-height: 1000px;
+        opacity: 1;
+    }
+
+    /* ARROW */
+    .dci-terms-card.dci-open .dci-terms-arrow {
+        transform: rotate(180deg);
+    }
+
+    i.dci-terms-arrow {
+        display: none;
+    }
+
+    .dci-mobile-checkin {
+        display: block;
+        margin-top: 12px;
+    }
+
+        .dci-mobile-checkin .dci-checkin-wrap {
+            display: block;
+        }
+
+        .dci-mobile-checkin .dci-checkin-button {
+            margin-top: 0;
+        }
+
+        .dci-mobile-checkin .dci-status {
+            padding-top: 8px;
+        }
+}
+
+
+
+
+
+

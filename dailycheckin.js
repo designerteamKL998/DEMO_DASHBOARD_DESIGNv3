@@ -38,14 +38,18 @@
 
     let selectedDay = null;
 
+    // TEMPORARY DEMO MODE: bypass the 12-hour/next-day waiting rule.
+    // Sequential order is still enforced (Day 1, then Day 2, etc.).
+    const DCI_TEST_MODE = true;
+
     // New storage key = starts fresh from Day 1
     let checkedDays = new Set(
-        JSON.parse(localStorage.getItem("dciCheckedDays_v3") || "[]")
+        JSON.parse(localStorage.getItem("dciCheckedDays_bossDemo_v1") || "[]")
     );
 
     // Store the exact check-in time of each day.
     let checkinTimes = JSON.parse(
-        localStorage.getItem("dciCheckinTimes_v3") || "{}"
+        localStorage.getItem("dciCheckinTimes_bossDemo_v1") || "{}"
     );
 
     /* =========================
@@ -105,7 +109,7 @@
             return false;
         }
 
-        return Date.now() >= getUnlockTime(day);
+        return DCI_TEST_MODE || Date.now() >= getUnlockTime(day);
     }
 
     function getTimeText(timestamp) {
@@ -149,6 +153,12 @@
                 button.classList.add("dci-checked");
             } else if (!canCheck(day)) {
                 button.classList.add("dci-locked");
+            }
+
+            // Highlight the next sequential day the user should focus on,
+            // even if it is waiting for its unlock time.
+            if (day === getNextDay() && day <= 28 && !checkedDays.has(day)) {
+                button.classList.add("dci-next-checkin");
             }
 
             button.innerHTML = `
@@ -207,7 +217,9 @@
 
             const unlock = getUnlockTime(day);
 
-            if (unlock === Infinity) {
+            if (DCI_TEST_MODE) {
+                setStatus(`Test mode: complete Day ${getNextDay()} first.`);
+            } else if (unlock === Infinity) {
                 setStatus(
                     `Day ${day} will unlock after Day ${day - 1} is checked in.`
                 );
@@ -227,6 +239,30 @@
     }
 
     /* =========================
+       +1 POINT POPUP
+    ========================= */
+
+    function dciShowPointsPopup(dayElement, points) {
+        const rect = dayElement.getBoundingClientRect();
+        const popup = document.createElement("div");
+        popup.className = "dci-points-popup";
+
+        const coin = document.createElement("img");
+        coin.src = "imgs/checkin/coinch.png";
+        coin.alt = "";
+
+        const value = document.createElement("span");
+        value.textContent = `+${points}`;
+
+        popup.append(coin, value);
+        popup.style.left = `${rect.left + rect.width / 2}px`;
+        popup.style.top = `${rect.top + rect.height / 2}px`;
+        document.body.appendChild(popup);
+
+        popup.addEventListener("animationend", () => popup.remove(), { once: true });
+    }
+
+    /* =========================
        CHECK-IN
     ========================= */
 
@@ -237,18 +273,24 @@
         }
 
         const completedDay = selectedDay;
+        const dayElement = document.querySelector(`.dci-day[data-day="${completedDay}"]`);
         const now = Date.now();
+
+        // Show the popup only after validation confirms this check-in can succeed.
+        if (dayElement) {
+            dciShowPointsPopup(dayElement, 1);
+        }
 
         checkedDays.add(completedDay);
         checkinTimes[completedDay] = new Date(now).toISOString();
 
         localStorage.setItem(
-            "dciCheckedDays_v3",
+            "dciCheckedDays_bossDemo_v1",
             JSON.stringify([...checkedDays])
         );
 
         localStorage.setItem(
-            "dciCheckinTimes_v3",
+            "dciCheckinTimes_bossDemo_v1",
             JSON.stringify(checkinTimes)
         );
 
@@ -260,11 +302,14 @@
         const nextDay = completedDay + 1;
 
         if (nextDay <= 28) {
-            const unlock = getUnlockTime(nextDay);
-
-            setStatus(
-                `Day ${completedDay} checked in. Day ${nextDay} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`
-            );
+            if (DCI_TEST_MODE) {
+                setStatus(`Day ${completedDay} checked in. Day ${nextDay} is ready for testing.`);
+            } else {
+                const unlock = getUnlockTime(nextDay);
+                setStatus(
+                    `Day ${completedDay} checked in. Day ${nextDay} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`
+                );
+            }
         } else {
             setStatus("All 28 days completed!");
         }
