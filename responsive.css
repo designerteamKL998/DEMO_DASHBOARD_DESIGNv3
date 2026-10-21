@@ -1141,20 +1141,6 @@
         height: 28px;
     }
 
-    .page-hot .games-grid,
-    .new-page .games-grid,
-    .fav-games .games-grid {
-        display: grid;
-        grid-template-columns: repeat(8, minmax(0, 1fr));
-        gap: 12px;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 8px;
-        padding-right: 8px;
-        box-sizing: border-box;
-        justify-items: center;
-    }
 
     .slot-section-title {
         display: flex;
@@ -1170,6 +1156,14 @@
         width: 180px;
     }
 
+    .page-hot .games-grid, .new-page .games-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        column-gap: 20px;
+        row-gap: 20px;
+        margin-top: 15px;
+        margin-bottom: 40px;
+    }
     /*------------------  LEVELPROGRAM PAGE  -------------*/
     .lp-page {
         margin: 0px;
@@ -6048,20 +6042,6 @@
 
 @media (max-width: 480px) {
 
-    .page-hot .games-grid,
-    .new-page .games-grid,
-    .fav-games .games-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 12px;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 8px;
-        padding-right: 8px;
-        box-sizing: border-box;
-        justify-items: center;
-    }
     .main-header {
         padding: 6px 8px;
     }
@@ -6145,7 +6125,11 @@
         margin-bottom: 10px;
     }
 
-    .game-card {
+    .page-hot .games-grid, .new-page .games-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+        .game-card {
         border-radius: 6px;
     }
 
@@ -7034,19 +7018,6 @@
 
 @media (max-width: 1024px) {
 
-    .hot-games.fav-games .games-grid {
-        display: flex !important;
-        grid-template-columns: none !important;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 20px !important;
-        overflow-x: auto;
-        overflow-y: visible;
-        padding: 8px 0 12px;
-        margin: 0;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
-    }
 
         .hot-games.fav-games .games-grid::-webkit-scrollbar {
             display: none;
@@ -7112,4 +7083,6 @@
             }
 
 }
+
+
 
