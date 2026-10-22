@@ -923,6 +923,23 @@
     font-size: 12px;
 }
 
+/* Warna teks tarikh untuk Chrome / Android */
+.date-input::-webkit-datetime-edit {
+    color: #fff;
+}
+
+/* Warna bahagian bulan, hari dan tahun */
+.date-input::-webkit-datetime-edit-month-field,
+.date-input::-webkit-datetime-edit-day-field,
+.date-input::-webkit-datetime-edit-year-field {
+    color: #fff;
+}
+
+/* Warna separator / slash */
+.date-input::-webkit-datetime-edit-text {
+    color: #fff;
+}
+
 .go-btn {
     padding: 12px 22px;
     border: 1px solid #ffeb92;
