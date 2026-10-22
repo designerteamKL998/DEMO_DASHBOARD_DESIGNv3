@@ -2552,7 +2552,9 @@
         font-size: 9px;
     }
 
-
+    .bets-page {
+        padding:0px;
+    }
 
 
 
@@ -4164,6 +4166,7 @@
         width: calc(100% - 14px);
         max-width: 100%;
         overflow: hidden;
+        padding: 10px 5px;
     }
 
     .mb-table-head,
