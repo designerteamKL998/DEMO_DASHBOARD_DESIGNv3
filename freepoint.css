@@ -913,7 +913,7 @@
     max-width: 260px;
     width: 35%;
     padding: 12px 13px;
-    color: #fff;
+    color: #fff !important;
     background: #0a0c0d;
     border: 1px solid #202228;
     border-radius: 9px;
@@ -921,6 +921,8 @@
     color-scheme: dark;
     font-family: var(--font-main);
     font-size: 12px;
+    opacity:1;
+    -webkit-text-fill-color: #fff;
 }
 
 /* Warna teks tarikh untuk Chrome / Android */
@@ -937,6 +939,11 @@
 
 /* Warna separator / slash */
 .date-input::-webkit-datetime-edit-text {
+    color: #fff;
+}
+/* Safari date input */
+.date-input::-webkit-date-and-time-value {
+    text-align: left;
     color: #fff;
 }
 
