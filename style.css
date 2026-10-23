@@ -2339,3 +2339,183 @@ body {
     max-width: 1320px;
     margin: 22px auto 20px;
 }
+
+
+
+/* ========================================
+   HALLOWEEN FLOATING BUTTON
+======================================== */
+a.rainMiniLauncher {
+    text-decoration: none;
+    color: #fff;
+}
+.rainMiniLauncher {
+    position: fixed;
+    left: max(18px, env(safe-area-inset-left));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    z-index: 10001;
+    display: grid;
+    justify-items: center;
+    width: 124px;
+    padding: 0 5px 3px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(18px) scale(.9);
+    transition: opacity .25s ease, visibility .25s ease, transform .3s cubic-bezier(.2,.8,.2,1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+    .rainMiniLauncher.is-show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+    }
+
+.rainMiniLauncher__circle {
+    position: relative;
+    display: block;
+    width: 106px;
+    height: 92px;
+    border-radius: 50%;
+    background: url(imgs/floatingpopup/float-bg.png)no-repeat;
+    background-size:cover;
+    box-shadow: inset 0 0 18px rgba(0,0,0,.58), 0 8px 18px rgba(0,0,0,.3);
+}
+
+.rainMiniLauncher__packet {
+    position: absolute;
+    bottom: 8px;
+    width: 58px;
+    height: 66px;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,.32));
+    pointer-events: none;
+}
+
+.rainMiniLauncher__packet--one {
+    left: 12px;
+    animation: miniPacketFloatOne 2.8s ease-in-out infinite;
+}
+
+.rainMiniLauncher__packet--two {
+    right: 10px;
+    animation: miniPacketFloatTwo 3.2s ease-in-out .25s infinite;
+}
+
+.rainMiniLauncher__close {
+    position: absolute;
+    right: -8px;
+    top: -9px;
+    display: grid;
+    place-items: center;
+    width: 23px;
+    height: 23px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: #ef4b4b;
+    box-shadow: 0 3px 7px rgba(0,0,0,.35);
+    color: #fff;
+    font: 800 15px/1 Arial, sans-serif;
+}
+
+.rainMiniLauncher__title {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100px;
+    margin-top: -16px;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 4px rgba(0,0,0,.45));
+    pointer-events: none;
+    transform: scale(1.25);
+}
+
+.rainMiniLauncher__countdown {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 74px;
+    min-height: 24px;
+    margin-top: 2px;
+    padding: 4px 10px;
+    border: 2px solid #b98623;
+    border-radius: 999px;
+    background: #110f0c;
+    box-shadow: 0 4px 8px rgba(0,0,0,.32);
+    color: #ffe185;
+    font: 800 12px/1 Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .06em;
+}
+
+    .rainMiniLauncher__countdown i {
+        width: 5px;
+        height: 5px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: #ffc928;
+        box-shadow: 0 0 6px rgba(255,201,40,.75);
+    }
+
+/* Packet animations */
+@keyframes miniPacketFloatOne {
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-7px) rotate(2deg);
+    }
+}
+
+@keyframes miniPacketFloatTwo {
+    0%, 100% {
+        transform: translateY(0) rotate(5deg);
+    }
+
+    50% {
+        transform: translateY(-9px) rotate(-2deg);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .rainMiniLauncher {
+        left: auto;
+        right: max(10px, env(safe-area-inset-right));
+        bottom: max(120px, env(safe-area-inset-bottom));
+        width: 100px;
+    }
+
+    .rainMiniLauncher__circle {
+        width: 86px;
+        height: 86px;
+    }
+
+    .rainMiniLauncher__packet {
+        width: 48px;
+        height: 56px;
+    }
+
+    .rainMiniLauncher__packet--one {
+        left: 8px;
+    }
+
+    .rainMiniLauncher__packet--two {
+        right: 6px;
+    }
+
+    .rainMiniLauncher__title {
+        width: 90px;
+    }
+}
+

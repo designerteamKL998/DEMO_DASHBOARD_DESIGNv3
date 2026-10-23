@@ -450,3 +450,147 @@
 
 
 
+
+
+
+/* =========================================================
+   HOMEPAGE FAVOURITE SWITCH — isolated classes only
+   UI only for now; vendor-favourite rendering will be wired
+   when the vendor favourite data is added.
+========================================================= */
+.fav-home-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-left: auto;
+    flex: 0 0 auto;
+}
+
+.fav-home-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px;
+    border: 1px solid rgba(234, 216, 125, 0.24);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.035);
+    flex: 0 0 auto;
+}
+
+.fav-home-switch {
+    position: relative;
+    margin-right: 12px;
+}
+
+    .fav-home-switch::after {
+        content: "";
+        position: absolute;
+        right: -14px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 24px;
+        background: rgba(234, 216, 125, 0.35);
+    }
+
+.fav-home-switch__games,
+.fav-home-switch__vendors {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    padding: 0 14px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fav-home-switch__games--active {
+    background: #ead87d;
+    color: #111;
+    border-color: #ead87d;
+}
+
+
+
+.fav-home-actions .view-more-btn {
+    margin-left: 0;
+}
+
+
+
+
+/* =========================================================
+   FAVOURITE VENDORS — isolated vendor-only classes
+========================================================= */
+.fav-home-vendors-grid[hidden],
+.fav-home-games-grid[hidden] {
+    display: none !important;
+}
+
+.fav-home-vendors-grid .fav-home-vendors-empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 18px 10px;
+}
+
+.fav-home-switch__vendors--active {
+    background: #ead87d;
+    color: #111;
+    border-color: #ead87d;
+}
+
+/* This class is only for vendor favourites, not game favourites. */
+.vendor-fav-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 20;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    background: rgba(15, 15, 15, 0.82);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.lc-games .slot-card:hover .vendor-fav-btn,
+.lc-games .slot-card:focus-within .vendor-fav-btn,
+.lc-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+.fav-home-vendors-grid .slot-card .vendor-fav-btn {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.lc-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+.fav-home-vendors-grid .slot-card.is-vendor-favourite .vendor-fav-btn {
+    background: #252525;
+    color: #ff4b65;
+    border-color: #ff4b65;
+}
+
+.vendor-fav-btn:hover {
+    background: #ff4b65;
+    color: #fff;
+    border-color: #ff4b65;
+}
+
+

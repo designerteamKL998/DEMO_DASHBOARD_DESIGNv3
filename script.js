@@ -562,3 +562,52 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const launcher = document.getElementById("rainMiniLauncher");
+    const countdown = document.getElementById("rainMiniCountdown");
+
+    if (!launcher) return;
+
+    // Show floating button
+    launcher.classList.add("is-show");
+    launcher.setAttribute("aria-hidden", "false");
+
+    // Close floating button
+    const closeBtn = launcher.querySelector(".rainMiniLauncher__close");
+
+    if (closeBtn) {
+        closeBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            launcher.classList.remove("is-show");
+            launcher.setAttribute("aria-hidden", "true");
+        });
+    }
+
+    // Countdown: 04 minutes 18 seconds
+    if (countdown) {
+        let remaining = (4 * 60) + 18;
+
+        function updateCountdown() {
+            const minutes = Math.floor(remaining / 60);
+            const seconds = remaining % 60;
+
+            countdown.textContent =
+                String(minutes).padStart(2, "0") + ":" +
+                String(seconds).padStart(2, "0");
+
+            if (remaining > 0) {
+                remaining--;
+            } else {
+                clearInterval(timer);
+            }
+        }
+
+        updateCountdown();
+
+        const timer = setInterval(updateCountdown, 1000);
+    }
+});

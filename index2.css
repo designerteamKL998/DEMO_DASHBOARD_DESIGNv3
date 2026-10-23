@@ -1,0 +1,148 @@
+/* =========================================================
+   LAST PLAYED — isolated styles only
+   Reuses the site's game-card visual language without changing
+   Hot Games, New Games, or Favourite Games selectors.
+========================================================= */
+
+.last-played-section {
+    width: calc(100% - 30px);
+    max-width: 1320px;
+    margin: 22px auto 20px;
+    color: var(--text-main, #fff);
+
+}
+
+.last-played-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.last-played-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 8px;
+}
+
+.last-played-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    line-height: 1;
+}
+
+.last-played-title-text h2 {
+    margin: 0 0 3px;
+    color: var(--primary, #ead87d);
+    font-family: var(--font-main, "Poppins", sans-serif);
+    font-size: var(--font-lg, 12px);
+    font-weight: var(--weight-bold, 700);
+    line-height: 1.2;
+}
+
+.last-played-title-text p {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-main, "Poppins", sans-serif);
+    font-size: var(--font-sm, 9px);
+    line-height: 1.3;
+}
+
+.last-played-grid {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    column-gap: 35px;
+    row-gap: 0;
+    align-items: start;
+}
+
+.last-played-grid .last-played-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+    border-radius: var(--radius-sm, 5px);
+    background: var(--bg-white, #121418);
+    text-decoration: none;
+    transition: transform var(--transition-fast, .2s ease),
+                box-shadow var(--transition-fast, .2s ease);
+}
+
+.last-played-grid .last-played-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.last-played-grid .last-played-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .45);
+}
+
+.last-played-empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 8px 0;
+    color: rgba(255, 255, 255, .65);
+    font-family: var(--font-main, "Poppins", sans-serif);
+    font-size: var(--font-sm, 9px);
+}
+
+@media (max-width: 1024px) {
+    .last-played-section {
+        width: calc(100% - 30px);
+        margin: 10px auto;
+        overflow: hidden;
+    }
+
+    .last-played-header {
+        margin-bottom: 8px;
+    }
+
+    .last-played-grid {
+        display: flex;
+        gap: 20px;
+        overflow: hidden;
+        padding: 8px 0 12px;
+    }
+
+    .last-played-grid .last-played-card {
+        flex: 0 0 84px;
+        width: 84px;
+        min-width: 84px;
+    }
+
+    .last-played-grid .last-played-card img {
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .last-played-title-wrap {
+        gap: 6px;
+        margin-left: 4px;
+    }
+
+    .last-played-icon {
+        font-size: 17px;
+    }
+}
+
+
+/* Keep a clear gap between Last Played and the next homepage section. */
+.last-played-section {
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1024px) {
+    .last-played-section {
+        margin-bottom: 28px;
+    }
+}
