@@ -24,6 +24,10 @@
    RESET
 ========================================================= */
 
+.dci-month-nav {
+    display:none !important;
+}
+
 .dci-page *,
 .dci-page *::before,
 .dci-page *::after {

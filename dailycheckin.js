@@ -110,6 +110,16 @@ function setStatus(message) {
         }
     }
 
+    function getOrdinalSuffix(day) {
+        if (day % 100 >= 11 && day % 100 <= 13) return "th";
+        switch (day % 10) {
+            case 1: return "st";
+            case 2: return "nd";
+            case 3: return "rd";
+            default: return "th";
+        }
+    }
+
     function renderCalendar() {
         dciDays.innerHTML = "";
         dciMonthLabel.textContent = new Date(viewYear, viewMonth, 1).toLocaleDateString("en-MY", {
@@ -156,7 +166,7 @@ function setStatus(message) {
             button.innerHTML = `
                 <span class="dci-day-top">
                     <span class="dci-day-label">${new Date(viewYear, viewMonth, day).toLocaleDateString("en-MY", { weekday: "short" })}</span>
-                    <span class="dci-day-date">${day}hb</span>
+                    <span class="dci-day-date">${day}${getOrdinalSuffix(day)}</span>
                 </span>
                 <strong class="dci-day-number">+${day}</strong>
                 <span class="dci-day-symbol">
