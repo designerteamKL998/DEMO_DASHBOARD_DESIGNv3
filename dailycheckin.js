@@ -11,6 +11,26 @@ const STORAGE_KEY = "dciCheckedDates_v1";
         JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")
     );
 
+    // AUTO-MARK all past dates in the current year as checked.
+    // This is stored in this browser's localStorage.
+    function autoMarkPastDates() {
+        const todayKey = malaysiaTodayKey();
+        const currentYear = Number(todayKey.slice(0, 4));
+        const today = new Date(
+            currentYear,
+            Number(todayKey.slice(5, 7)) - 1,
+            Number(todayKey.slice(8, 10))
+        );
+
+        for (let date = new Date(currentYear, 0, 1); date < today; date.setDate(date.getDate() + 1)) {
+            checkedDates.add(dateKey(date.getFullYear(), date.getMonth(), date.getDate()));
+        }
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...checkedDates].sort()));
+    }
+
+    autoMarkPastDates();
+
     const icons = [
         "imgs/checkin/coinch.png",
         "imgs/checkin/diamondch.png",
@@ -155,10 +175,11 @@ function setStatus(message) {
                 day: "numeric", month: "long", year: "numeric"
             }));
 
-            if (isRewardDay) button.classList.add("dci-reward");
-            // Apply past styling regardless of whether the date was checked in.
+            // Past dates are always grey, including reward dates.
+            // Only today's checked-in date receives the turquoise checked style.
+            if (isRewardDay && !isPast) button.classList.add("dci-reward");
             if (isPast) button.classList.add("dci-past");
-            if (isChecked) button.classList.add("dci-checked");
+            if (isChecked && isToday) button.classList.add("dci-checked");
             if (isFuture) button.classList.add("dci-locked");
             if (isToday) button.classList.add("dci-today");
             if (selectedDateKey === key) button.classList.add("dci-selected");
@@ -200,7 +221,7 @@ function setStatus(message) {
         }
 
         if (key < todayKey) {
-            setStatus("Past dates are unavailable for check-in.");
+            setStatus("Past dates are automatically marked as completed.");
             return;
         }
 
