@@ -1,354 +1,249 @@
 ﻿document.addEventListener("DOMContentLoaded", () => {
-
     const dciDays = document.getElementById("dciDays");
-    // Support both the mobile and desktop Check-in buttons/status labels.
-    const dciCheckinButtons = document.querySelectorAll("#dciCheckinButton");
-    const dciStatuses = document.querySelectorAll("#dciStatus");
-
-    function setCheckinDisabled(disabled) {
-        dciCheckinButtons.forEach(button => {
-            button.disabled = disabled;
-        });
-    }
-
-    function setStatus(message) {
-        dciStatuses.forEach(status => {
-            status.textContent = message;
-        });
-    }
+    const dciStatus = document.getElementById("dciStatus");
     const dciProgressText = document.getElementById("dciProgressText");
     const dciProgressBar = document.getElementById("dciProgressBar");
-
-    const rewards = {
-        7:  { amount: "$5.00",  date: "2026-09-29 12:00" },
-        14: { amount: "$5.00",  date: "2026-10-06 12:00" },
-        21: { amount: "$5.00",  date: "2026-10-13 12:00" },
-        28: { amount: "$15.00", date: "2026-10-20 12:00" }
-    };
+    const dciMonthLabel = document.getElementById("dciMonthLabel");
+    const dciPrevMonth = document.getElementById("dciPrevMonth");
+    const dciNextMonth = document.getElementById("dciNextMonth");
+const STORAGE_KEY = "dciCheckedDates_v1";
+    const checkedDates = new Set(
+        JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")
+    );
 
     const icons = [
-    "imgs/checkin/coinch.png",
-    "imgs/checkin/diamondch.png",
-    "imgs/checkin/ticketch.png",
-    "imgs/checkin/heartcs.png",
-    "imgs/checkin/coinchs.png",
-    "imgs/checkin/diamondchs.png",
-    "imgs/checkin/giftch.png"
-];
+        "imgs/checkin/coinch.png",
+        "imgs/checkin/diamondch.png",
+        "imgs/checkin/ticketch.png",
+        "imgs/checkin/heartcs.png",
+        "imgs/checkin/coinchs.png",
+        "imgs/checkin/diamondchs.png",
+        "imgs/checkin/giftch.png"
+    ];
 
-    let selectedDay = null;
+    const rewardDays = new Set([7, 14, 21, 28]);
+    const now = new Date();
+    let viewYear = now.getFullYear();
+    let viewMonth = now.getMonth(); // 0-based
+    let selectedDateKey = null;
 
-    // TEMPORARY DEMO MODE: bypass the 12-hour/next-day waiting rule.
-    // Sequential order is still enforced (Day 1, then Day 2, etc.).
-    const DCI_TEST_MODE = true;
-
-    // New storage key = starts fresh from Day 1
-    let checkedDays = new Set(
-        JSON.parse(localStorage.getItem("dciCheckedDays_bossDemo_v1") || "[]")
-    );
-
-    // Store the exact check-in time of each day.
-    let checkinTimes = JSON.parse(
-        localStorage.getItem("dciCheckinTimes_bossDemo_v1") || "{}"
-    );
-
-    /* =========================
-       TIME
-    ========================= */
-
-    function getNextDay() {
-        let day = 1;
-
-        while (checkedDays.has(day) && day <= 28) {
-            day++;
-        }
-
-        return day;
-    }
-
-    // Day 1 = available immediately.
-    // Day 2+ = available at 12:00 PM on the calendar day
-    // AFTER the previous day was checked in.
-    function getUnlockTime(day) {
-        if (day === 1) {
-            return 0;
-        }
-
-        const previousCheckin = checkinTimes[day - 1];
-
-        if (!previousCheckin) {
-            return Infinity;
-        }
-
-        const previous = new Date(previousCheckin);
-
-        // Get the next calendar day in Malaysia time.
-        const malaysiaDate = new Intl.DateTimeFormat("en-CA", {
+    function malaysiaTodayKey() {
+        const parts = new Intl.DateTimeFormat("en-CA", {
             timeZone: "Asia/Kuala_Lumpur",
             year: "numeric",
             month: "2-digit",
             day: "2-digit"
-        }).format(previous);
+        }).formatToParts(new Date());
 
-        const [year, month, dayNumber] = malaysiaDate.split("-").map(Number);
-
-        // Normalize the next date safely, including month/year boundaries.
-        const nextDate = new Date(Date.UTC(year, month - 1, dayNumber + 1));
-        const nextYear = nextDate.getUTCFullYear();
-        const nextMonth = String(nextDate.getUTCMonth() + 1).padStart(2, "0");
-        const nextDay = String(nextDate.getUTCDate()).padStart(2, "0");
-
-        // 12:00 PM Malaysia time (GMT+08:00) on the next calendar day.
-        return new Date(
-            `${nextYear}-${nextMonth}-${nextDay}T12:00:00+08:00`
-        ).getTime();
+        const values = {};
+        parts.forEach(part => {
+            if (part.type !== "literal") values[part.type] = part.value;
+        });
+        return `${values.year}-${values.month}-${values.day}`;
     }
 
-    function canCheck(day) {
-        if (day !== getNextDay() || day > 28) {
-            return false;
+    function dateKey(year, month, day) {
+        return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    }
+
+    function parseKey(key) {
+        const [year, month, day] = key.split("-").map(Number);
+        return new Date(year, month - 1, day);
+    }
+
+function setStatus(message) {
+    if (dciStatus) {
+        dciStatus.textContent = message;
+    }
+}
+
+    function showPointsPopup(dayElement, points) {
+        if (!dayElement) return;
+
+        if (!document.getElementById("dci-points-popup-style")) {
+            const style = document.createElement("style");
+            style.id = "dci-points-popup-style";
+            style.textContent = `
+                .dci-points-popup {
+                    position: fixed;
+                    z-index: 999999;
+                    pointer-events: none;
+                    color: #FFD700;
+                    font-size: 24px;
+                    font-weight: 900;
+                    white-space: nowrap;
+                    text-shadow: 0 2px 4px rgba(0,0,0,.8), 0 0 14px rgba(255,215,0,.45);
+                    transform-origin: center;
+                    animation: dci-points-float 1.2s ease-out forwards;
+                }
+                @keyframes dci-points-float {
+                    0% { opacity: 0; transform: translate(-50%, 10px) scale(.4); }
+                    20% { opacity: 1; transform: translate(-50%, 0) scale(1.25); }
+                    35% { opacity: 1; transform: translate(-50%, -5px) scale(1); }
+                    100% { opacity: 0; transform: translate(-50%, -75px) scale(.85); }
+                }
+            `;
+            document.head.appendChild(style);
         }
 
-        return DCI_TEST_MODE || Date.now() >= getUnlockTime(day);
+        const rect = dayElement.getBoundingClientRect();
+        const popup = document.createElement("div");
+        popup.className = "dci-points-popup";
+        popup.textContent = `+${points}`;
+        popup.style.left = `${rect.left + rect.width / 2}px`;
+        popup.style.top = `${rect.top + rect.height / 2}px`;
+        document.body.appendChild(popup);
+        popup.addEventListener("animationend", () => popup.remove(), { once: true });
+        window.setTimeout(() => popup.remove(), 1800);
     }
 
-    function getTimeText(timestamp) {
-        return new Date(timestamp).toLocaleTimeString("en-MY", {
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: true,
-            timeZone: "Asia/Kuala_Lumpur"
-        });
+    function updateProgress() {
+        const year = new Date().getFullYear();
+        const daysInYear = ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) ? 366 : 365;
+        const completedThisYear = [...checkedDates].filter(key => key.startsWith(`${year}-`)).length;
+
+        if (dciProgressText) {
+            dciProgressText.textContent = `${completedThisYear} / ${daysInYear} DAYS`;
+        }
+        if (dciProgressBar) {
+            dciProgressBar.style.width = `${Math.min((completedThisYear / daysInYear) * 100, 100)}%`;
+        }
     }
 
-    function getDateText(timestamp) {
-        return new Date(timestamp).toLocaleDateString("en-MY", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-            timeZone: "Asia/Kuala_Lumpur"
-        });
-    }
-
-    /* =========================
-       RENDER DAYS
-    ========================= */
-
-    function renderDays() {
+    function renderCalendar() {
         dciDays.innerHTML = "";
+        dciMonthLabel.textContent = new Date(viewYear, viewMonth, 1).toLocaleDateString("en-MY", {
+            month: "long",
+            year: "numeric"
+        });
 
-        for (let day = 1; day <= 28; day++) {
+        const firstWeekday = new Date(viewYear, viewMonth, 1).getDay();
+        const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+        const todayKey = malaysiaTodayKey();
 
+        // Sunday-first calendar spacing.
+        for (let i = 0; i < firstWeekday; i++) {
+            const empty = document.createElement("div");
+            empty.className = "dci-calendar-empty";
+            empty.setAttribute("aria-hidden", "true");
+            dciDays.appendChild(empty);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const key = dateKey(viewYear, viewMonth, day);
             const button = document.createElement("button");
+            const isChecked = checkedDates.has(key);
+            const isPast = key < todayKey;
+            const isToday = key === todayKey;
+            const isFuture = key > todayKey;
+            const isRewardDay = rewardDays.has(day);
 
             button.type = "button";
             button.className = "dci-day";
-            button.dataset.day = day;
+            button.dataset.date = key;
+            button.setAttribute("aria-label", new Date(viewYear, viewMonth, day).toLocaleDateString("en-MY", {
+                day: "numeric", month: "long", year: "numeric"
+            }));
 
-            if (rewards[day]) {
-                button.classList.add("dci-reward");
-            }
-
-            if (checkedDays.has(day)) {
-                button.classList.add("dci-checked");
-            } else if (!canCheck(day)) {
-                button.classList.add("dci-locked");
-            }
-
-            // Highlight the next sequential day the user should focus on,
-            // even if it is waiting for its unlock time.
-            if (day === getNextDay() && day <= 28 && !checkedDays.has(day)) {
-                button.classList.add("dci-next-checkin");
-            }
+            if (isRewardDay) button.classList.add("dci-reward");
+            // Apply past styling regardless of whether the date was checked in.
+            if (isPast) button.classList.add("dci-past");
+            if (isChecked) button.classList.add("dci-checked");
+            if (isFuture) button.classList.add("dci-locked");
+            if (isToday) button.classList.add("dci-today");
+            if (selectedDateKey === key) button.classList.add("dci-selected");
 
             button.innerHTML = `
-    <span class="dci-day-label">DAY</span>
+                <span class="dci-day-top">
+                    <span class="dci-day-label">${new Date(viewYear, viewMonth, day).toLocaleDateString("en-MY", { weekday: "short" })}</span>
+                    <span class="dci-day-date">${day}hb</span>
+                </span>
+                <strong class="dci-day-number">+${day}</strong>
+                <span class="dci-day-symbol">
+                    ${isChecked
+                        ? '<span class="dci-check-mark">✓</span>'
+                        : '<span class="dci-empty-circle" aria-hidden="true"></span>'}
+                </span>
+            `;
 
-    <strong class="dci-day-number">
-        ${day}
-    </strong>
-
-    <span class="dci-day-symbol">
-        <img
-            src="${rewards[day]
-                ? "imgs/checkin/giftch.png"
-                : icons[(day - 1) % icons.length]}"
-            alt=""
-        >
-    </span>
-`;
-            button.addEventListener("click", () => selectDay(day));
-
+            button.addEventListener("click", () => handleDateClick(key, button));
             dciDays.appendChild(button);
         }
+
+        // Past and future months can be browsed; past dates stay grey and cannot be claimed.
+        dciPrevMonth.disabled = false;
 
         updateProgress();
     }
 
-    /* =========================
-       SELECT DAY
-    ========================= */
-
-    function selectDay(day) {
-        selectedDay = day;
-
-        document.querySelectorAll(".dci-day").forEach(button => {
-            button.classList.toggle(
-                "dci-selected",
-                Number(button.dataset.day) === day
-            );
+    function handleDateClick(key, button) {
+        selectedDateKey = key;
+        document.querySelectorAll(".dci-day").forEach(dayButton => {
+            dayButton.classList.toggle("dci-selected", dayButton.dataset.date === key);
         });
 
-        if (checkedDays.has(day)) {
-            setCheckinDisabled(true);
-            setStatus(`Day ${day} already checked in.`);
+        const todayKey = malaysiaTodayKey();
+
+        if (checkedDates.has(key)) {
+            setStatus(`You have already checked in on ${key}.`);
             return;
         }
 
-        if (!canCheck(day)) {
-            setCheckinDisabled(true);
-
-            if (day !== getNextDay()) {
-                setStatus(
-                    `Please complete Day ${getNextDay()} first.`
-                );
-                return;
-            }
-
-            const unlock = getUnlockTime(day);
-
-            if (DCI_TEST_MODE) {
-                setStatus(`Test mode: complete Day ${getNextDay()} first.`);
-            } else if (unlock === Infinity) {
-                setStatus(
-                    `Day ${day} will unlock after Day ${day - 1} is checked in.`
-                );
-            } else {
-                setStatus(
-                    `Day ${day} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`
-                );
-            }
-
+        if (key < todayKey) {
+            setStatus("Past dates are unavailable for check-in.");
             return;
         }
 
-        setCheckinDisabled(false);
-        setStatus(
-            `Day ${day} selected. Click Check-in.`
-        );
-    }
-
-    /* =========================
-       +1 POINT POPUP
-    ========================= */
-
-    function dciShowPointsPopup(dayElement, points) {
-        const rect = dayElement.getBoundingClientRect();
-        const popup = document.createElement("div");
-        popup.className = "dci-points-popup";
-
-        const coin = document.createElement("img");
-        coin.src = "imgs/checkin/coinch.png";
-        coin.alt = "";
-
-        const value = document.createElement("span");
-        value.textContent = `+${points}`;
-
-        popup.append(coin, value);
-        popup.style.left = `${rect.left + rect.width / 2}px`;
-        popup.style.top = `${rect.top + rect.height / 2}px`;
-        document.body.appendChild(popup);
-
-        popup.addEventListener("animationend", () => popup.remove(), { once: true });
-    }
-
-    /* =========================
-       CHECK-IN
-    ========================= */
-
-    function handleCheckin() {
-
-        if (!selectedDay || !canCheck(selectedDay)) {
+        if (key > todayKey) {
+            setStatus("This date is not available yet. Please check in on the actual date.");
             return;
         }
 
-        const completedDay = selectedDay;
-        const dayElement = document.querySelector(`.dci-day[data-day="${completedDay}"]`);
-        const now = Date.now();
-
-        // Show the popup only after validation confirms this check-in can succeed.
-        if (dayElement) {
-            dciShowPointsPopup(dayElement, 1);
-        }
-
-        checkedDays.add(completedDay);
-        checkinTimes[completedDay] = new Date(now).toISOString();
-
-        localStorage.setItem(
-            "dciCheckedDays_bossDemo_v1",
-            JSON.stringify([...checkedDays])
-        );
-
-        localStorage.setItem(
-            "dciCheckinTimes_bossDemo_v1",
-            JSON.stringify(checkinTimes)
-        );
-
-        renderDays();
-        selectDay(completedDay);
-
-        setCheckinDisabled(true);
-
-        const nextDay = completedDay + 1;
-
-        if (nextDay <= 28) {
-            if (DCI_TEST_MODE) {
-                setStatus(`Day ${completedDay} checked in. Day ${nextDay} is ready for testing.`);
-            } else {
-                const unlock = getUnlockTime(nextDay);
-                setStatus(
-                    `Day ${completedDay} checked in. Day ${nextDay} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`
-                );
-            }
-        } else {
-            setStatus("All 28 days completed!");
-        }
+        // Check in only for today's date.
+        checkedDates.add(key);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...checkedDates].sort()));
+        showPointsPopup(button, 1);
+        renderCalendar();
+        setStatus(`Check-in successful for ${key}! +1 POINT`);
     }
 
-    dciCheckinButtons.forEach(button => {
-        button.addEventListener("click", handleCheckin);
+    dciPrevMonth.addEventListener("click", () => {
+        if (dciPrevMonth.disabled) return;
+        viewMonth--;
+        if (viewMonth < 0) {
+            viewMonth = 11;
+            viewYear--;
+        }
+        selectedDateKey = null;
+        renderCalendar();
+        setStatus("Click today's date to check in.");
     });
 
-    /* =========================
-       PROGRESS
-    ========================= */
-
-    function updateProgress() {
-        const completed = checkedDays.size;
-
-        dciProgressText.textContent =
-            `${completed} / 28 DAYS`;
-
-        dciProgressBar.style.width =
-            `${Math.min((completed / 28) * 100, 100)}%`;
-    }
-
-    /* =========================
-       AUTO UPDATE
-    ========================= */
-
-    renderDays();
-
-    setInterval(() => {
-        renderDays();
-
-        if (selectedDay) {
-            selectDay(selectedDay);
+    dciNextMonth.addEventListener("click", () => {
+        viewMonth++;
+        if (viewMonth > 11) {
+            viewMonth = 0;
+            viewYear++;
         }
-    }, 30000);
+        selectedDateKey = null;
+        renderCalendar();
+        setStatus("Future dates unlock on the actual date.");
+    });
 
+    renderCalendar();
+    setStatus("Click today's date to check in.");
+
+    // Refresh the calendar automatically if the date changes while the page is open.
+    window.setInterval(() => {
+        const current = new Date();
+        if (current.getFullYear() !== now.getFullYear() || current.getMonth() !== now.getMonth()) {
+            now.setTime(current.getTime());
+            viewYear = current.getFullYear();
+            viewMonth = current.getMonth();
+        }
+        renderCalendar();
+    }, 60000);
 });
-
 
 
 document.addEventListener("DOMContentLoaded", () => {

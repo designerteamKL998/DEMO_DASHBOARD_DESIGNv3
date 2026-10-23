@@ -921,31 +921,31 @@
     color-scheme: dark;
     font-family: var(--font-main);
     font-size: 12px;
-    opacity:1;
+    opacity: 1;
     -webkit-text-fill-color: #fff;
 }
 
-/* Warna teks tarikh untuk Chrome / Android */
-.date-input::-webkit-datetime-edit {
-    color: #fff;
-}
+    /* Warna teks tarikh untuk Chrome / Android */
+    .date-input::-webkit-datetime-edit {
+        color: #fff;
+    }
 
-/* Warna bahagian bulan, hari dan tahun */
-.date-input::-webkit-datetime-edit-month-field,
-.date-input::-webkit-datetime-edit-day-field,
-.date-input::-webkit-datetime-edit-year-field {
-    color: #fff;
-}
+    /* Warna bahagian bulan, hari dan tahun */
+    .date-input::-webkit-datetime-edit-month-field,
+    .date-input::-webkit-datetime-edit-day-field,
+    .date-input::-webkit-datetime-edit-year-field {
+        color: #fff;
+    }
 
-/* Warna separator / slash */
-.date-input::-webkit-datetime-edit-text {
-    color: #fff;
-}
-/* Safari date input */
-.date-input::-webkit-date-and-time-value {
-    text-align: left;
-    color: #fff;
-}
+    /* Warna separator / slash */
+    .date-input::-webkit-datetime-edit-text {
+        color: #fff;
+    }
+    /* Safari date input */
+    .date-input::-webkit-date-and-time-value {
+        text-align: left;
+        color: #fff;
+    }
 
 .go-btn {
     padding: 12px 22px;

@@ -1,7 +1,9 @@
-﻿
-/* =====================================
+﻿/* =====================================
    FAVOURITE GAME BUTTON
 ===================================== */
+.fav-pages .fav-home-switch::after {
+    display:none;
+}
 
 .game-card {
     position: relative;
@@ -21,7 +23,7 @@
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 50%;
     background: rgba(15, 15, 15, 0.8);
-    color: #ffffff;
+    color: #fff;
     font-size: 13px;
     cursor: pointer;
     opacity: 0;
@@ -30,7 +32,6 @@
     transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
-/* Favourite Games - Empty Message */
 .fav-games .fav-empty-message {
     grid-column: 1 / -1;
     width: 100%;
@@ -40,7 +41,6 @@
     box-sizing: border-box;
 }
 
-/* Show icon on hover */
 .game-card:hover .game-fav-btn,
 .game-card:focus-within .game-fav-btn {
     opacity: 1;
@@ -48,7 +48,6 @@
     pointer-events: auto;
 }
 
-/* Keep icon visible after favourite is selected */
 .game-card.is-favourite .game-fav-btn {
     opacity: 1;
     visibility: visible;
@@ -58,10 +57,117 @@
     border-color: #ff4b65;
 }
 
-/* Hover effect */
 .game-fav-btn:hover {
     background: #ff4b65;
-    color: #ffffff;
+    color: #fff;
     border-color: #ff4b65;
 }
 
+/* =====================================
+   VENDOR FAVOURITE BUTTON
+   Battle + Lottery + Poker + Sports
+===================================== */
+.slot-games .slot-card,
+.lc-games .slot-card,
+.lottery-games .slot-card,
+.poker-games .slot-card,
+.sport-games .slot-card,
+.fav-home-vendors-grid .slot-card {
+    position: relative;
+}
+
+    .slot-games .slot-card .vendor-fav-btn,
+    .lc-games .slot-card .vendor-fav-btn,
+    .lottery-games .slot-card .vendor-fav-btn,
+    .poker-games .slot-card .vendor-fav-btn,
+    .sport-games .slot-card .vendor-fav-btn,
+    .fav-home-vendors-grid .slot-card .vendor-fav-btn {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        z-index: 20;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        background: rgba(15, 15, 15, 0.8);
+        color: #fff;
+        font-size: 13px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .slot-games .slot-card:hover .vendor-fav-btn,
+    .slot-games .slot-card:focus-within .vendor-fav-btn,
+    .slot-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .lc-games .slot-card:hover .vendor-fav-btn,
+    .lc-games .slot-card:focus-within .vendor-fav-btn,
+    .lc-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .lottery-games .slot-card:hover .vendor-fav-btn,
+    .lottery-games .slot-card:focus-within .vendor-fav-btn,
+    .lottery-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .poker-games .slot-card:hover .vendor-fav-btn,
+    .poker-games .slot-card:focus-within .vendor-fav-btn,
+    .poker-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .sport-games .slot-card:hover .vendor-fav-btn,
+    .sport-games .slot-card:focus-within .vendor-fav-btn,
+    .sport-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .fav-home-vendors-grid .slot-card .vendor-fav-btn {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .slot-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .lc-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .lottery-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .poker-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .sport-games .slot-card.is-vendor-favourite .vendor-fav-btn,
+    .fav-home-vendors-grid .slot-card.is-vendor-favourite .vendor-fav-btn {
+        background: #252525;
+        color: #ff4b65;
+        border-color: #ff4b65;
+    }
+
+    .slot-games .slot-card .vendor-fav-btn:hover,
+    .lc-games .slot-card .vendor-fav-btn:hover,
+    .lottery-games .slot-card .vendor-fav-btn:hover,
+    .poker-games .slot-card .vendor-fav-btn:hover,
+    .sport-games .slot-card .vendor-fav-btn:hover,
+    .fav-home-vendors-grid .slot-card .vendor-fav-btn:hover {
+        background: #ff4b65;
+        color: #fff;
+        border-color: #ff4b65;
+    }
+
+/* Favourite Games / Vendors tab visibility */
+.fav-games .fav-home-games-grid[hidden],
+.fav-games .fav-home-vendors-grid[hidden] {
+    display: none !important;
+}
+
+.fav-games .fav-home-games-grid:not([hidden]),
+.fav-games .fav-home-vendors-grid:not([hidden]) {
+    display: grid;
+}
+
+@media (hover: none) {
+    .game-card .game-fav-btn,
+    .slot-games .slot-card .vendor-fav-btn,
+    .lc-games .slot-card .vendor-fav-btn,
+    .lottery-games .slot-card .vendor-fav-btn,
+    .poker-games .slot-card .vendor-fav-btn,
+    .sport-games .slot-card .vendor-fav-btn,
+    .fav-home-vendors-grid .slot-card .vendor-fav-btn {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
