@@ -1433,6 +1433,7 @@ dci-hero-note img {
         color: var(--dci-primary);
         text-align: center;
         font-size: 16px;
+       text-transform: uppercase;
     }
 
 .dci-month-nav {
