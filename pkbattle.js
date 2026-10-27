@@ -1,9 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================
-       ELEMENTS
-    ========================================== */
+    /* ===========  ELEMENTS  ============ */
 
     const autoMatchBtn = document.getElementById("autoMatchBtn");
     const pkFriendBtn = document.getElementById("pkFriendBtn");
@@ -24,9 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const matchSpinner = document.getElementById("matchSpinner");
 
 
-    /* =========================================
-       OPEN MODAL
-    ========================================== */
+    /* ============  OPEN MODAL  ============= */
 
     function openModal(modal) {
         if (!modal) return;
@@ -36,9 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       CLOSE MODAL
-    ========================================== */
+    /* ===========  CLOSE MODAL  ============ */
 
     function closeModal(modal) {
         if (!modal) return;
@@ -55,9 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       AUTO MATCH TIMER
-    ========================================== */
+    /* ============  AUTO MATCH TIMER  ============ */
 
     let matchTimer = null;
     let matchCountdownTimer = null;
@@ -73,9 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       FORMAT COUNTDOWN
-    ========================================== */
+    /* ===========  FORMAT COUNTDOWN  ============= */
 
     function formatMatchTime(seconds) {
         const minutes = Math.floor(seconds / 60);
@@ -90,9 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       RESET AUTO MATCH
-    ========================================== */
+    /* ===========  RESET AUTO MATCH  ============ */
 
     function resetAutoMatch() {
         stopMatchTimers();
@@ -127,9 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       START COUNTDOWN
-    ========================================== */
+    /* ============  START COUNTDOWN  ============= */
 
     function startMatchCountdown() {
         clearInterval(matchCountdownTimer);
@@ -179,9 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       AUTO MATCH BUTTON
-    ========================================== */
+    /* =============  AUTO MATCH BUTTON  ============ */
 
     if (autoMatchBtn && autoMatchModal) {
 
@@ -209,9 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       CANCEL MATCH
-    ========================================== */
+    /* ===========  CANCEL MATCH  =========== */
 
     if (cancelMatchBtn && autoMatchModal) {
 
@@ -228,9 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       PK FRIEND
-    ========================================== */
+    /* ============  PK FRIEND  =========== */
 
     if (pkFriendBtn && friendModal) {
 
@@ -241,9 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       LEADERBOARD
-    ========================================== */
+    /* ============  LEADERBOARD  ============= */
 
     if (leaderboardBtn && leaderboardModal) {
 
@@ -254,9 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       HISTORY
-    ========================================== */
+    /* ==========  HISTORY  =========== */
 
     if (historyBtn && historyModal) {
 
@@ -267,9 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       CLOSE BUTTONS
-    ========================================== */
+    /* ============  CLOSE BUTTONS  ============ */
 
     document.querySelectorAll("[data-close]")
         .forEach(button => {
@@ -292,9 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-    /* =========================================
-       CLOSE WHEN CLICK OUTSIDE
-    ========================================== */
+    /* ==========  CLOSE WHEN CLICK OUTSIDE  ============ */
 
     document.querySelectorAll(".pk-modal")
         .forEach(modal => {
@@ -315,9 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-    /* =========================================
-       ESCAPE KEY
-    ========================================== */
+    /* ===========  ESCAPE KEY  =========== */
 
     document.addEventListener("keydown", event => {
 
@@ -338,9 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* =========================================
-       FRIEND CHALLENGE
-    ========================================== */
+    /* ===========  FRIEND CHALLENGE  ============ */
 
     document.querySelectorAll(".pk-friend-item")
         .forEach(friend => {

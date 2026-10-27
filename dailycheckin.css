@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    DAILY CHECK-IN PAGE
    ALL CLASSES ARE PREFIXED WITH dci-
 ========================================================= */
@@ -20,9 +20,7 @@
 }
 
 
-/* =========================================================
-   RESET
-========================================================= */
+/* =========  RESET  ========== */
 
 .dci-month-nav {
     display:none !important;
@@ -44,9 +42,7 @@
 }
 
 
-/* =========================================================
-   CONTAINER
-========================================================= */
+/* ==========  CONTAINER  ========== */
 
 .dci-container {
     width: 100%;
@@ -54,9 +50,7 @@
 }
 
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* ========  HEADER  ======== */
 
 .dci-header {
     display: flex;
@@ -149,9 +143,7 @@
     }
 
 
-/* =========================================================
-   MAIN
-========================================================= */
+/* =========  MAIN  ========== */
 
 .dci-main {
     display: grid;
@@ -160,9 +152,7 @@
 }
 
 
-/* =========================================================
-   CALENDAR CARD
-========================================================= */
+/* ========  CALENDAR CARD  ======== */
 
 .dci-calendar-card {
     padding: 20px;
@@ -186,7 +176,7 @@
 .dci-section-label {
     color: var(--dci-muted);
     font-weight: 700;
-    letter-spacing: 1.2px;
+    font-size: 17px;
 }
 
 
@@ -196,9 +186,7 @@
 }
 
 
-/* =========================================================
-   PROGRESS
-========================================================= */
+/* ==========  PROGRESS  ========== */
 
 .dci-progress-wrap {
     min-width: 145px;
@@ -232,9 +220,7 @@
     }
 
 
-/* =========================================================
-   DAYS GRID
-========================================================= */
+/* ========  DAYS GRID  ========== */
 
 .dci-days-grid {
     display: grid;
@@ -372,7 +358,6 @@
     line-height: 1;
     font-weight: 600;
     font-size: 28px;
-    text-shadow: 2px 2px 0 #151020, 0 3px 5px rgba(0,0,0,.4);
 }
 
 
@@ -393,9 +378,7 @@
 }
 
 
-/* =========================================================
-   CALENDAR FOOTER
-========================================================= */
+/* ==========  CALENDAR FOOTER  =========== */
 
 .dci-calendar-footer {
     align-items: center;
@@ -414,9 +397,7 @@
     }
 
 
-/* =========================================================
-   REWARD CARD
-========================================================= */
+/* ========  REWARD CARD  ========= */
 
 .dci-reward-card {
     min-height: 100%;
@@ -465,9 +446,7 @@
 }
 
 
-/* =========================================================
-   REWARD CONTENT
-========================================================= */
+/* =========  REWARD CONTENT  ========== */
 
 .dci-reward-content {
     min-height: 200px;
@@ -506,9 +485,7 @@
     }
 
 
-/* =========================================================
-   REWARD DETAILS
-========================================================= */
+/* ==========  REWARD DETAILS  =========== */
 
 .dci-reward-list {
     display: flex;
@@ -548,9 +525,7 @@
 
 
 
-/* =========================================================
-   ELIGIBILITY
-========================================================= */
+/* =========  ELIGIBILITY  ========= */
 
 .dci-eligibility {
     margin-top: 12px;
@@ -586,9 +561,7 @@
 }
 
 
-/* =========================================================
-   CHECK-IN BUTTON
-========================================================= */
+/* ========  CHECK-IN BUTTON  ========= */
 
 .dci-checkin-button {
     width: 100%;
@@ -629,9 +602,7 @@
 }
 
 
-/* =========================================================
-   TERMS
-========================================================= */
+/* ========  TERMS  ========= */
 
 .dci-terms-card {
     margin-top: 14px;
@@ -894,7 +865,7 @@ dci-hero-note img {
 }
 
 .dci-day {
-    min-height: 94px;
+    min-height: 110px;
     background: linear-gradient(145deg, #302940, #161821);
     border-color: rgba(201, 192, 224, .28);
 }
@@ -996,9 +967,7 @@ dci-hero-note img {
         box-shadow: 0 2px 0 #9e6900;
     }
 
-/* =========================================
-   TERMS & CONDITIONS
-========================================= */
+/* =========  TERMS & CONDITIONS  ========= */
 
 .dci-terms-card {
     position: relative;
@@ -1059,9 +1028,7 @@ dci-hero-note img {
     }
 
 
-/* =========================================
-   LANGUAGE SWITCHER
-========================================= */
+/* =========  LANGUAGE SWITCHER  ========= */
 
 .dci-language-switcher {
     display: flex;
@@ -1110,9 +1077,7 @@ dci-hero-note img {
 }
 
 
-/* =========================================
-   TERM CONTENT
-========================================= */
+/* ==========  TERM CONTENT  ========= */
 
 .dci-terms-list {
     padding: 0 22px;
@@ -1284,8 +1249,6 @@ dci-hero-note img {
 .dci-day.dci-past,
 .dci-day.dci-checked.dci-reward,
 .dci-day.dci-past.dci-reward,
-.dci-day.dci-checked:hover,
-.dci-day.dci-past:hover,
 .dci-day.dci-checked.dci-selected,
 .dci-day.dci-past.dci-selected {
     background: linear-gradient(145deg, #123D3A, #172522) !important;
@@ -1341,8 +1304,20 @@ dci-hero-note img {
     box-shadow: none !important;
     border-color: #2EE6C6 !important;
     box-shadow: inset 0 0 0 1px rgba(46, 230, 198, .2), 0 0 12px rgba(46, 230, 198, .15) !important;
+    filter:none;
 }
 
+.dci-day.dci-missed,
+.dci-day.dci-missed:hover,
+.dci-day.dci-missed.dci-selected {
+    background: linear-gradient(145deg, #4a171d 0%, #291116 100%) !important;
+    border-color: #735c5e !important;
+    color: #ffb8bd !important;
+    box-shadow: inset 0 0 0 1px rgba(255,77,90,.18), 0 3px 10px rgba(120,0,12,.2) !important;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+}
 
 /* Keep the same border colour on hover/click as the tile's normal state. */
 .dci-day:not(.dci-checked):not(.dci-past):hover,
@@ -1355,23 +1330,10 @@ dci-hero-note img {
     border-color: #ffe57a !important;
 }
 
-
-
-/* Highlight the day that is available for check-in */
-.dci-day:not(.dci-checked):not(.dci-locked):not(.dci-reward) {
-    background: linear-gradient(145deg, #123D3A, #172522) !important;
-    border-color: #555a64 !important;
-}
-
-    /* Make the available day number stand out */
-    .dci-day:not(.dci-checked):not(.dci-locked):not(.dci-reward) .dci-day-number {
-        color: #2EE6C6 !important;
-        text-shadow: none !important;
-    }
-
 /* Keep the empty circle visible */
 .dci-day:not(.dci-checked) .dci-day-symbol::after {
-    border-color: #2EE6C6;
+    background: linear-gradient(145deg, #123D3A, #172522) !important;
+    border-color: #555a64 !important;
 }
 
 
@@ -1416,11 +1378,9 @@ dci-hero-note img {
 
 
 
-/* =========================================================
-   YEAR-ROUND MONTHLY CHECK-IN CALENDAR
-========================================================= */
+/* =========  YEAR-ROUND MONTHLY CHECK-IN CALENDAR  ========== */
 .dci-month-navigation {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 12px;
     margin-top: 12px;
@@ -1488,6 +1448,7 @@ dci-hero-note img {
 .dci-day.dci-today:not(.dci-checked) {
     border-color: #2EE6C6 !important;
     box-shadow: inset 0 0 0 1px rgba(46,230,198,.2), 0 0 12px rgba(46,230,198,.15) !important;
+    background: linear-gradient(145deg, #174a4a 0%, #112529 100%) !important;
 }
 
     .dci-day.dci-today:not(.dci-checked) .dci-day-number {
@@ -1661,9 +1622,7 @@ dci-hero-note img {
 
 
 /*==============================================media===================================================*/
-/* =========================================================
-   RESPONSIVE: 1024px / 768px / 480px
-========================================================= */
+/* =========  RESPONSIVE: 1024px / 768px / 480px  ========= */
 
 /* Laptop / small desktop */
 @media (max-width: 1024px) {
@@ -2042,41 +2001,3 @@ dci-hero-note img {
     }
 }
 
-/* Past dates: grayscale only if NOT checked in */
-.dci-day.dci-past:not(.dci-checked),
-.dci-day.dci-past:not(.dci-checked):hover {
-    border-color: #555a64 !important;
-    color: #aeb3bc !important;
-    box-shadow: none !important;
-    filter: grayscale(1) !important;
-    transform: none !important;
-}
-
-    /* Past unchecked date text */
-    .dci-day.dci-past:not(.dci-checked) .dci-day-label,
-    .dci-day.dci-past:not(.dci-checked) .dci-day-date,
-    .dci-day.dci-past:not(.dci-checked) .dci-day-number {
-        color: #aeb3bc !important;
-        text-shadow: none !important;
-    }
-
-/* Checked-in dates ALWAYS stay turquoise */
-.dci-day.dci-checked,
-.dci-day.dci-checked.dci-past,
-.dci-day.dci-checked.dci-reward,
-.dci-day.dci-checked:hover {
-    background: linear-gradient(145deg, #173D38, #12302D) !important;
-    border-color: #2EE6C6 !important;
-    color: #2EE6C6 !important;
-    filter: none !important;
-    box-shadow: inset 0 0 0 1px rgba(46, 230, 198, .2) !important;
-    transform: none !important;
-}
-
-    .dci-day.dci-checked .dci-day-label,
-    .dci-day.dci-checked .dci-day-date,
-    .dci-day.dci-checked .dci-day-number {
-        color: #2EE6C6 !important;
-        text-shadow: none !important;
-        filter: none !important;
-    }

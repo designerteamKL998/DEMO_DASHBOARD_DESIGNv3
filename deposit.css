@@ -2715,3 +2715,210 @@ body.light .bonus-info-dialog {
         font-size: 10px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* Clickable deposit help icon and popup */
+.deposit-title-row {
+    position:relative;
+    border:0px solid red;
+}
+
+span.deposit-gift-icon {
+    font-size: 20px;
+}
+
+span.deposit-gift-icon a{
+    color:#fff;
+}
+
+.deposit-gift-icon img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
+}
+
+.deposit-help-icon {
+    padding: 0;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    border:0px solid yellow;
+    top:0px;
+    right:-25px;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+}
+
+.deposit-help-icon {
+    background: #343538;
+    border: 1px solid #717171;
+    color: #fff;
+}
+
+.deposit-help-dialog {
+    width: min(650px, calc(100% - 32px));
+    max-width: 650px;
+    padding: 24px;
+    margin: auto;
+    color: var(--text, #fff);
+    background: #202228;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+}
+
+    .deposit-help-dialog::backdrop {
+        background: rgba(0,0,0,0.72);
+        backdrop-filter: blur(3px);
+    }
+
+.deposit-help-dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+    .deposit-help-dialog-head h2 {
+        margin: 0;
+        font-size: 21px;
+    }
+
+.deposit-help-close {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    padding: 0;
+    border: 1px solid var(--line, rgba(255,255,255,0.08));
+    border-radius: 8px;
+    background: #111;
+    color: var(--text, #fff);
+    font-size: 24px;
+    line-height: 1;
+}
+
+.deposit-help-dialog-content {
+    margin-bottom: 22px;
+    line-height: 1.7;
+}
+
+    .deposit-help-dialog-content p + p {
+        margin-top: 8px;
+    }
+
+.deposit-help-dialog-content img {
+    width:100%;
+}
+
+.deposit-help-dialog > .primary {
+    width: 100%;
+}
+
+/* Universal Tooltip */
+.custom-tooltip {
+    position: relative;
+}
+
+    /* Tooltip box */
+    .custom-tooltip::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 6px 10px;
+        background: #ffffff;
+        color: #111;
+        font-family: var(--font-main);
+        font-size: 11px;
+        font-weight: 500;
+        white-space: nowrap;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: 0.2s ease;
+        z-index: 9999;
+    }
+
+    /* Show tooltip on hover */
+    .custom-tooltip:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+/* Main tutorial image */
+.deposit-help-dialog-content {
+    margin-bottom: 22px;
+}
+
+.deposit-help-slides {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.deposit-help-slide {
+    display: none;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+    .deposit-help-slide.active {
+        display: block;
+    }
+
+/* Thumbnail row */
+.deposit-help-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.deposit-help-thumb {
+    width: 64px;
+    height: 42px;
+    flex: 0 0 64px;
+    padding: 2px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 5px;
+    background: #202228;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, border-color 0.2s;
+}
+
+    .deposit-help-thumb img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 3px;
+    }
+
+    .deposit-help-thumb:hover {
+        opacity: 1;
+    }
+
+    .deposit-help-thumb.active {
+        opacity: 1;
+        border: 2px solid #EAD87D;
+    }

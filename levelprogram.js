@@ -1,146 +1,10 @@
+/* Level Program only — no changes to header, navigation, or global styles. */
+(function () {
+const lpRoot = document.querySelector(".lp-page");
+if (!lpRoot) return;
 /* =========================================================
    LEVEL PROGRAM JAVASCRIPT
 ========================================================= */
-
-
-/* =========================================================
-   REWARD DATA
-========================================================= */
-
-const lpRewardData = [
-
-    {
-        level: 1,
-        reward: "MYR/SGD 9"
-    },
-
-    {
-        level: 2,
-        reward: "MYR/SGD 19"
-    },
-
-    {
-        level: 3,
-        reward: "MYR/SGD 39"
-    },
-
-    {
-        level: 4,
-        reward: "MYR/SGD 99"
-    },
-
-    {
-        level: 5,
-        reward: "MYR/SGD 199"
-    },
-
-    {
-        level: 6,
-        reward: "MYR/SGD 219"
-    },
-
-    {
-        level: 7,
-        reward: "MYR/SGD 269"
-    },
-
-    {
-        level: 8,
-        reward: "5 STAR HOTEL<br>ROOM 4D3N"
-    },
-
-    {
-        level: 9,
-        reward: "MYR/SGD 319"
-    },
-
-    {
-        level: 10,
-        reward: "MYR/SGD 1,999"
-    }
-
-];
-
-
-/* =========================================================
-   DOM
-========================================================= */
-
-const lpRewardGrid =
-    document.getElementById(
-        "lpRewardGrid"
-    );
-
-
-/* =========================================================
-   RENDER REWARDS
-========================================================= */
-
-function lpRenderRewards() {
-
-    if (!lpRewardGrid) {
-        return;
-    }
-
-
-    lpRewardGrid.innerHTML = "";
-
-
-    lpRewardData.forEach(
-        function (item) {
-
-            const lpCard =
-                document.createElement(
-                    "div"
-                );
-
-
-            lpCard.className =
-                "lp-reward-card";
-
-
-            lpCard.dataset.lpLevel =
-                item.level;
-
-
-            lpCard.innerHTML = `
-
-                <div class="lp-reward-level">
-                    Lv. ${item.level}
-                </div>
-
-
-                <div class="lp-reward-value">
-                    ${item.reward}
-                </div>
-
-
-                <div class="lp-reward-lock">
-
-                    <i class="fa-solid fa-lock"></i>
-
-                    <span>
-                        Locked
-                    </span>
-
-                </div>
-
-            `;
-
-
-            lpRewardGrid.appendChild(
-                lpCard
-            );
-
-        }
-    );
-
-}
-
-
-/* INITIALIZE */
-
-lpRenderRewards();
 
 
 /* =========================================================
@@ -151,8 +15,10 @@ const lpMaxXP = 1000;
 
 let lpCurrentXP = 0;
 
+let lpCurrentLevel = 0;
 
-function lpUpdateProgress(xp) {
+
+function lpUpdateProgress(xp, percentageOverride) {
 
     /*
         Keep XP between 0 and 1000
@@ -169,23 +35,25 @@ function lpUpdateProgress(xp) {
 
 
     const lpPercentage =
-        (lpCurrentXP / lpMaxXP) * 100;
+        percentageOverride === undefined || percentageOverride === null
+            ? (lpCurrentXP / lpMaxXP) * 100
+            : Math.min(Math.max(Number(percentageOverride) || 0, 0), 100);
 
 
     const lpProgressFill =
-        document.querySelector(
+        lpRoot.querySelector(
             ".lp-progress-fill"
         );
 
 
     const lpPercentageText =
-        document.querySelector(
+        lpRoot.querySelector(
             ".lp-progress-percent"
         );
 
 
     const lpXPText =
-        document.querySelector(
+        lpRoot.querySelector(
             ".lp-xp-value"
         );
 
@@ -216,9 +84,7 @@ function lpUpdateProgress(xp) {
 }
 
 
-/* Initial XP */
-
-lpUpdateProgress(0);
+/* Initial XP is applied when the selected category loads. */
 
 
 /* =========================================================
@@ -226,7 +92,7 @@ lpUpdateProgress(0);
 ========================================================= */
 
 const lpSideItems =
-    document.querySelectorAll(
+    lpRoot.querySelectorAll(
         ".lp-side-item"
     );
 
@@ -239,6 +105,9 @@ const lpCategoryData = {
 
     sport: {
         name: "Sport",
+        level: 1,
+        xp: 450,
+        percent: 30,
         icon: "imgs/icon/header/head_0007_sports-ich.png",
         label: "PLAY MORE  EARN MORE",
         title: "LEVEL",
@@ -249,6 +118,8 @@ const lpCategoryData = {
 
     casino: {
         name: "Casino",
+        level: 2,
+        xp: 600,
         icon: "imgs/icon/header/head_0006_casino-ich.png",
         label: "PLAY MORE  EARN MORE",
         title: "CASINO",
@@ -259,6 +130,8 @@ const lpCategoryData = {
 
     lottery: {
         name: "Lottery",
+        level: 0,
+        xp: 150,
         icon: "imgs/icon/header/lotteryiconhead.png",
         label: "PLAY MORE  EARN MORE",
         title: "LOTTERY",
@@ -269,6 +142,8 @@ const lpCategoryData = {
 
     games: {
         name: "Games",
+        level: 3,
+        xp: 800,
         icon: "imgs/icon/header/head_0005_slot-ich.png",
         label: "PLAY MORE  EARN MORE",
         title: "GAMES",
@@ -279,6 +154,8 @@ const lpCategoryData = {
 
     p2p: {
         name: "P2P",
+        level: 1,
+        xp: 450,
         icon: "imgs/icon/header/head_0002_poker-ich.png",
         label: "PLAY MORE  EARN MORE",
         title: "P2P",
@@ -305,25 +182,25 @@ function lpChangeCategory(category) {
 
 
     const lpCategoryIcon =
-        document.getElementById("lpCategoryIcon");
+        lpRoot.querySelector("#lpCategoryIcon");
 
     const lpCategory =
-        document.getElementById("lpCategory");
+        lpRoot.querySelector("#lpCategory");
 
     const lpHeroLabel =
-        document.getElementById("lpHeroLabel");
+        lpRoot.querySelector("#lpHeroLabel");
 
     const lpHeroTitle =
-        document.getElementById("lpHeroTitle");
+        lpRoot.querySelector("#lpHeroTitle");
 
     const lpHeroHighlight =
-        document.getElementById("lpHeroHighlight");
+        lpRoot.querySelector("#lpHeroHighlight");
 
     const lpHeroSubtitle =
-        document.getElementById("lpHeroSubtitle");
+        lpRoot.querySelector("#lpHeroSubtitle");
 
     const lpHeroButtonText =
-        document.getElementById("lpHeroButtonText");
+        lpRoot.querySelector("#lpHeroButtonText");
 
 
     if (lpCategoryIcon) {
@@ -335,6 +212,22 @@ function lpChangeCategory(category) {
     if (lpCategory) {
         lpCategory.textContent = data.name;
     }
+
+
+    /* Update level and XP for the selected category */
+    const lpLevelNumber = lpRoot.querySelector(".lp-level-number");
+    const lpNextLevel = lpRoot.querySelector("#lpNextLevel");
+
+    if (lpLevelNumber) {
+        lpLevelNumber.textContent = `Lv. ${data.level}`;
+    }
+
+    if (lpNextLevel) {
+        lpNextLevel.textContent = `Lv.${data.level + 1}`;
+    }
+
+    lpCurrentLevel = data.level;
+    lpUpdateProgress(data.xp, data.percent);
 
 
     if (lpHeroLabel) {
@@ -366,7 +259,7 @@ function lpChangeCategory(category) {
        CHANGE REWARD SECTION
     ========================================= */
 
-    document.querySelectorAll(".lp-rewards-section").forEach(section => {
+    lpRoot.querySelectorAll(".lp-rewards-section").forEach(section => {
 
         section.style.display =
             section.dataset.category === category
@@ -430,13 +323,13 @@ lpChangeCategory("sport");
 ========================================================= */
 
 const lpEarningButton =
-    document.querySelector(
+    lpRoot.querySelector(
         ".lp-earning-button"
     );
 
 
 const lpHeroButton =
-    document.querySelector(
+    lpRoot.querySelector(
         ".lp-hero-button"
     );
 
@@ -511,7 +404,7 @@ function lpSetXP(xp) {
 function lpSetLevel(level) {
 
     const lpLevelElement =
-        document.querySelector(
+        lpRoot.querySelector(
             ".lp-level-number"
         );
 
@@ -534,7 +427,7 @@ function lpSetLevel(level) {
 function lpSetCategory(category) {
 
     const lpCategoryElement =
-        document.querySelector(
+        lpRoot.querySelector(
             ".lp-member-category"
         );
 
@@ -547,3 +440,7 @@ function lpSetCategory(category) {
     }
 
 }
+window.lpSetXP = lpSetXP;
+window.lpSetLevel = lpSetLevel;
+window.lpSetCategory = lpSetCategory;
+})();

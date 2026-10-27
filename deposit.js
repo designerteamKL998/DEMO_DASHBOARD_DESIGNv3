@@ -615,3 +615,49 @@ $('drop-zone').addEventListener('drop', e => {
 	acceptReceipt(e.dataTransfer.files[0])
 });
 render();
+
+(() => {
+    const helpDialog = document.getElementById('depositHelpDialog');
+    const openHelp = document.getElementById('depositHelpOpen');
+    const closeHelp = document.getElementById('depositHelpClose');
+    const doneHelp = document.getElementById('depositHelpDone');
+
+    if (!helpDialog || !openHelp) return;
+
+    const slides = helpDialog.querySelectorAll('.deposit-help-slide');
+    const thumbs = helpDialog.querySelectorAll('.deposit-help-thumb');
+
+    function showSlide(index) {
+        if (!slides.length) return;
+
+        index = Math.max(0, Math.min(index, slides.length - 1));
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+
+        thumbs.forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === index);
+        });
+    }
+
+    thumbs.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => showSlide(index));
+    });
+
+    openHelp.addEventListener('click', () => {
+        showSlide(0);
+        helpDialog.showModal();
+    });
+
+    closeHelp?.addEventListener('click', () => helpDialog.close());
+    doneHelp?.addEventListener('click', () => helpDialog.close());
+
+    helpDialog.addEventListener('click', event => {
+        if (event.target === helpDialog) {
+            helpDialog.close();
+        }
+    });
+
+    showSlide(0);
+})();

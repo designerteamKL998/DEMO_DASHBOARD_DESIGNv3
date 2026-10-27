@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Gaming Website</title>
-
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="deposit.css" />
     <link rel="stylesheet" href="responsive.css" />
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-
     <!-- JQuery -->
     <script src="deposit.js" defer></script>
     <script src="script.js" defer></script>
@@ -204,7 +200,7 @@
                                     <img src="imgs/icon/fpointich.png" alt="" />
                                     <span>Free Point</span>
                                 </a>
-                                <a href="#" class="profile-feature-item">
+                                <a href="redeemcode.html" class="profile-feature-item">
                                     <img src="imgs/icon/redeemich.png" alt="" />
                                     <span>Redeem</span>
                                 </a>
@@ -367,12 +363,39 @@
     <button class="floating-menu-btn mob-view" type="button">
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
+
     <main>
-        <div class="heading">
-            <div>
-                <h1 id="page-title">Make a deposit</h1>
-                <p id="page-description">Choose how you’d like to add funds.</p>
+        <div class="heading deposit-page-heading">
+            <div class="deposit-heading-copy">
+                <div class="deposit-title-row">
+                    <h1 id="page-title">Make a deposit</h1>
+
+
+                        <button class="deposit-help-icon"
+                                id="depositHelpOpen"
+                                type="button"
+                                aria-label="Deposit help"
+                                aria-haspopup="dialog"
+                                aria-controls="depositHelpDialog"
+                                data-tooltip="Deposit Help">
+                            <span class="custom-tooltip" data-tooltip="Deposit Tutorial">?</span>
+                        </button>      
+                </div>
+
+                <p id="page-description">
+                    Choose how you’d like to add funds.
+                </p>
             </div>
+
+            <span class="custom-tooltip" data-tooltip="Redeem">
+                <span class="deposit-gift-icon" aria-hidden="true">
+                    <a href="redeemcode.html">
+                        <img src="imgs/assets/icn-redeem.svg"
+                             alt="Help"
+                             class="help-icon">
+                    </a>
+                </span>
+            </span>
         </div>
         <div class="workspace">
             <nav class="rail" aria-label="Payment method">
@@ -566,8 +589,51 @@
         <p id="dialog-copy"></p>
         <button class="primary" id="close">Back to request</button>
     </dialog>
+    <!-- Deposit help popup -->
+    <dialog id="depositHelpDialog" class="deposit-help-dialog" aria-labelledby="depositHelpTitle">
+        <div class="deposit-help-dialog-head">
+            <button type="button" class="deposit-help-close" id="depositHelpClose" aria-label="Close help">&times;</button>
+        </div>
+        <div class="deposit-help-dialog-content">
 
+            <div class="deposit-help-slides">
+                <img src="imgs/depopopup/default-deposit-tutorial-d-1.jpg"
+                     class="deposit-help-slide active"
+                     alt="Deposit tutorial 1" />
 
+                <img src="imgs/depopopup/default-deposit-tutorial-d-2.jpg"
+                     class="deposit-help-slide"
+                     alt="Deposit tutorial 2" />
+
+                <img src="imgs/depopopup/default-deposit-tutorial-d-3.jpg"
+                     class="deposit-help-slide"
+                     alt="Deposit tutorial 3" />
+
+                <img src="imgs/depopopup/default-deposit-tutorial-d-4.jpg"
+                     class="deposit-help-slide"
+                     alt="Deposit tutorial 4" />
+            </div>
+
+            <div class="deposit-help-thumbnails">
+                <button type="button" class="deposit-help-thumb active" data-slide="0">
+                    <img src="imgs/depopopup/default-deposit-tutorial-d-1.jpg" alt="Slide 1">
+                </button>
+
+                <button type="button" class="deposit-help-thumb" data-slide="1">
+                    <img src="imgs/depopopup/default-deposit-tutorial-d-2.jpg" alt="Slide 2">
+                </button>
+
+                <button type="button" class="deposit-help-thumb" data-slide="2">
+                    <img src="imgs/depopopup/default-deposit-tutorial-d-3.jpg" alt="Slide 3">
+                </button>
+
+                <button type="button" class="deposit-help-thumb" data-slide="3">
+                    <img src="imgs/depopopup/default-deposit-tutorial-d-4.jpg" alt="Slide 4">
+                </button>
+            </div>
+
+        </div>
+    </dialog>
 
 
     <!-- LANGUAGE POPUP -->
@@ -579,23 +645,19 @@
                     <div class="language-globe">
                         <i class="fa-solid fa-globe"></i>
                     </div>
-
                     <div class="language-title-content">
                         <h3>Language</h3>
                         <span>Choose your preferred language</span>
                     </div>
                 </div>
-
                 <button type="button" class="language-close" id="languageClose" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
             <!-- Decorative line -->
             <div class="language-divider">
                 <span></span>
             </div>
-
             <!-- Language List -->
             <div class="language-list">
                 <button class="language-item active" data-language="English">
@@ -605,10 +667,8 @@
                         </span>
                         <span class="language-name">English</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ភាសាខ្មែរ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -616,10 +676,8 @@
                         </span>
                         <span class="language-name">ភាសាខ្មែរ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="简体中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -627,10 +685,8 @@
                         </span>
                         <span class="language-name">简体中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="မြန်မာ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -638,10 +694,8 @@
                         </span>
                         <span class="language-name">မြန်မာ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="繁體中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -649,10 +703,8 @@
                         </span>
                         <span class="language-name">繁體中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ジャパン">
                     <div class="language-info">
                         <span class="language-flag">
@@ -660,10 +712,8 @@
                         </span>
                         <span class="language-name">ジャパン</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ภาษาไทย">
                     <div class="language-info">
                         <span class="language-flag">
@@ -671,10 +721,8 @@
                         </span>
                         <span class="language-name">ภาษาไทย</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Français">
                     <div class="language-info">
                         <span class="language-flag">
@@ -682,10 +730,8 @@
                         </span>
                         <span class="language-name">Français</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="한국어">
                     <div class="language-info">
                         <span class="language-flag">
@@ -693,10 +739,8 @@
                         </span>
                         <span class="language-name">한국어</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Español">
                     <div class="language-info">
                         <span class="language-flag">
@@ -704,10 +748,8 @@
                         </span>
                         <span class="language-name">Español</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Tiếng Việt">
                     <div class="language-info">
                         <span class="language-flag">
@@ -715,10 +757,8 @@
                         </span>
                         <span class="language-name">Tiếng Việt</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Português">
                     <div class="language-info">
                         <span class="language-flag">
@@ -726,10 +766,8 @@
                         </span>
                         <span class="language-name">Português</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Indonesia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -737,10 +775,8 @@
                         </span>
                         <span class="language-name">Indonesia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="বাংলা">
                     <div class="language-info">
                         <span class="language-flag">
@@ -748,10 +784,8 @@
                         </span>
                         <span class="language-name">বাংলা</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="इंडिया">
                     <div class="language-info">
                         <span class="language-flag">
@@ -759,10 +793,8 @@
                         </span>
                         <span class="language-name">इंडिया</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Malaysia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -770,17 +802,14 @@
                         </span>
                         <span class="language-name">Malaysia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
             </div>
-
             <!-- Footer -->
             <div class="language-footer">
                 <div class="language-footer-icon">
                     <i class="fa-solid fa-check"></i>
                 </div>
-
                 <div class="language-footer-text">
                     <strong>Applied instantly</strong>
                     <span>Your language preference will be saved automatically.</span>
@@ -788,14 +817,10 @@
             </div>
         </div>
     </div>
-
     <!-- BACK TO TOP -->
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
-
-
 
 
 </body>
