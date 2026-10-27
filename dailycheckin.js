@@ -58,7 +58,7 @@
     // Past checked days show a tick but are grayscale. Day 18 is red with no tick.
     // Day 23 stays unchecked on refresh so today's check-in is still pending.
     // Cycle starts 6 Oct 2026; Day 18 = 23 Oct; Day 23 = 28 Oct.
-    const DEMO_MISSED_DAY = 18;
+    const DEMO_MISSED_DAYS = [3, 4, 18, 20];
     const DEMO_TODAY_DAY = 23;
     const DEMO_TODAY_KEY = dateKey(addDays(CYCLE_START, DEMO_TODAY_DAY - 1));
 
@@ -66,11 +66,11 @@
     // Today's check-in remains empty every time the page refreshes.
     for (let day = 1; day < DEMO_TODAY_DAY; day++) {
         const key = dateKey(addDays(CYCLE_START, day - 1));
-        if (day === DEMO_MISSED_DAY) {
-            checkedDates.delete(key);
-        } else {
-            checkedDates.add(key);
-        }
+if (DEMO_MISSED_DAYS.includes(day)) {
+    checkedDates.delete(key);
+} else {
+    checkedDates.add(key);
+}
     }
     checkedDates.delete(DEMO_TODAY_KEY);
     localStorage.setItem(STORAGE_KEY, JSON.stringify([...checkedDates].sort()));

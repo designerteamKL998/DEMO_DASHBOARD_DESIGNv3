@@ -1,16 +1,12 @@
 
-/* =====================================
-   FAVOURITE GAMES SYSTEM
-===================================== */
+/* ===========  FAVOURITE GAMES SYSTEM  ============ */
 
 (() => {
     "use strict";
 
     const STORAGE_KEY = "cm8FavouriteGames";
 
-    /* =====================================
-       GET SAVED FAVOURITES
-    ===================================== */
+    /* ===========  GET SAVED FAVOURITES  ============ */
 
     function getFavourites() {
         try {
@@ -25,9 +21,7 @@
         }
     }
 
-    /* =====================================
-       SAVE FAVOURITES
-    ===================================== */
+    /* ==========  SAVE FAVOURITES  ========== */
 
     function saveFavourites(favourites) {
         try {
@@ -43,10 +37,7 @@
         }
     }
 
-    /* =====================================
-       GET GAME DATA
-       HOT / NEW DEPENDS ON SOURCE SECTION
-    ===================================== */
+    /* =========  GET GAME DATA HOT / NEW DEPENDS ON SOURCE SECTION  ========= */
 
     function getGameData(card) {
         const img = card.querySelector("img");
@@ -108,7 +99,7 @@
     ===================================== */
 
     function initFavouriteButtons() {
-        document.querySelectorAll(".game-card").forEach(card => {
+        document.querySelectorAll(".game-card:not(.favourite-vendor-card)").forEach(card => {
             if (card.querySelector(".game-fav-btn")) return;
 
             const button = document.createElement("button");
@@ -132,9 +123,7 @@
         updateFavouriteStates();
     }
 
-    /* =====================================
-       UPDATE HEART STATE
-    ===================================== */
+    /* ==========  UPDATE HEART STATE  ========== */
 
     function updateFavouriteStates() {
         const favourites = getFavourites();
@@ -143,7 +132,7 @@
             favourites.map(game => game.id)
         );
 
-        document.querySelectorAll(".game-card").forEach(card => {
+        document.querySelectorAll(".game-card:not(.favourite-vendor-card)").forEach(card => {
             const button = card.querySelector(".game-fav-btn");
             const game = getGameData(card);
 
@@ -174,75 +163,102 @@
         });
     }
 
-    /* =====================================
-       RENDER FAVOURITE GAMES
-       HOMEPAGE + FAVOURITE PAGE
-    ===================================== */
+    /* ========== RENDER MIXED FAVOURITE GAMES + VENDORS ========== */
+
+    function createFavouriteGameCard(game) {
+        const card = document.createElement("a");
+        card.className = "game-card";
+        card.href = game.url || "#";
+        card.dataset.gameId = game.id;
+
+        (game.badges || []).forEach(badgeData => {
+            if (badgeData.className !== "hot-badge" &&
+                badgeData.className !== "new-badge") return;
+
+            const badge = document.createElement("div");
+            badge.className = badgeData.className;
+            badge.textContent = badgeData.text;
+            card.appendChild(badge);
+        });
+
+        const img = document.createElement("img");
+        img.src = game.image;
+        img.alt = game.name || "Game";
+        img.loading = "lazy";
+        card.appendChild(img);
+
+        return card;
+    }
+
+    function createFavouriteVendorCard(vendor) {
+        const card = document.createElement("a");
+        // game-card ensures vendor artwork uses the same size and grid layout as games.
+        card.className = "game-card slot-card favourite-vendor-card";
+        card.href = vendor.url || "#";
+        card.dataset.vendorId = vendor.id;
+
+        const img = document.createElement("img");
+        img.src = vendor.image;
+        img.alt = vendor.name || "Vendor";
+        img.loading = "lazy";
+        card.appendChild(img);
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "vendor-fav-btn";
+        button.setAttribute("aria-label", "Remove vendor from favourites");
+        button.setAttribute("aria-pressed", "true");
+        button.innerHTML = '<i class="fa-solid fa-heart"></i>';
+        card.appendChild(button);
+
+        return card;
+    }
+
+    function renderMixedFavouriteGrid(grid) {
+        if (!grid) return;
+
+        const games = getFavourites();
+        const vendors = getFavouriteVendors();
+        grid.replaceChildren();
+
+        if (!games.length && !vendors.length) {
+            const empty = document.createElement("p");
+            empty.className = "fav-empty-message";
+            empty.textContent =
+                "No favourites yet. Click the heart on a game or vendor to add it here.";
+            grid.appendChild(empty);
+            return;
+        }
+
+        // Alternate game and vendor cards so both types appear in one mixed grid.
+        const mixedItems = [];
+        const total = Math.max(games.length, vendors.length);
+
+        for (let i = 0; i < total; i++) {
+            if (games[i]) mixedItems.push({ type: "game", item: games[i] });
+            if (vendors[i]) mixedItems.push({ type: "vendor", item: vendors[i] });
+        }
+
+        mixedItems.forEach(entry => {
+            grid.appendChild(
+                entry.type === "game"
+                    ? createFavouriteGameCard(entry.item)
+                    : createFavouriteVendorCard(entry.item)
+            );
+        });
+    }
 
     function renderFavouriteSections() {
-        const favourites = getFavourites();
-
-        document.querySelectorAll(
-            ".fav-games .games-grid"
-        ).forEach(grid => {
-            grid.replaceChildren();
-
-            // Empty state
-            if (favourites.length === 0) {
-                const empty = document.createElement("p");
-
-                empty.className = "fav-empty-message";
-
-                empty.textContent =
-                    "No favourite games yet. Hover over a game and click the heart icon.";
-
-                grid.appendChild(empty);
-                return;
-            }
-
-            // Render saved games
-            favourites.forEach(game => {
-                const card = document.createElement("a");
-
-                card.className = "game-card";
-                card.href = game.url || "#";
-                card.dataset.gameId = game.id;
-
-                // Restore original HOT / NEW badge
-                (game.badges || []).forEach(badgeData => {
-                    if (
-                        badgeData.className !== "hot-badge" &&
-                        badgeData.className !== "new-badge"
-                    ) {
-                        return;
-                    }
-
-                    const badge = document.createElement("div");
-
-                    badge.className = badgeData.className;
-                    badge.textContent = badgeData.text;
-
-                    card.appendChild(badge);
-                });
-
-                // Game image
-                const img = document.createElement("img");
-
-                img.src = game.image;
-                img.alt = game.name;
-                img.loading = "lazy";
-
-                card.appendChild(img);
-                grid.appendChild(card);
-            });
+        document.querySelectorAll(".fav-games .games-grid").forEach(grid => {
+            renderMixedFavouriteGrid(grid);
         });
 
         initFavouriteButtons();
+        updateFavouriteStates();
+        updateVendorFavouriteStates();
     }
 
-    /* =====================================
-       HANDLE HEART CLICK
-    ===================================== */
+    /* =========  HANDLE HEART CLICK  ======== */
 
     document.addEventListener("click", event => {
         const target = event.target;
@@ -436,104 +452,8 @@
     }
 
     function renderFavouriteVendors() {
-        const grid = document.querySelector(".fav-home-vendors-grid");
-        if (!grid) return;
-
-        const vendors = getFavouriteVendors();
-        grid.replaceChildren();
-
-        if (!vendors.length) {
-            const empty = document.createElement("p");
-            empty.className = "fav-home-vendors-empty";
-            empty.textContent =
-                "No favourite vendors yet. Open Battle and click the heart on a vendor.";
-            grid.appendChild(empty);
-            return;
-        }
-
-        vendors.forEach(vendor => {
-            const card = document.createElement("a");
-            card.className = "slot-card";
-            card.href = vendor.url || "#";
-            card.dataset.vendorId = vendor.id;
-
-            const img = document.createElement("img");
-            img.src = vendor.image;
-            img.alt = vendor.name || "Vendor";
-            img.loading = "lazy";
-            card.appendChild(img);
-
-            const button = document.createElement("button");
-            button.type = "button";
-            button.className = "vendor-fav-btn";
-            button.setAttribute("aria-label", "Remove vendor from favourites");
-            button.setAttribute("aria-pressed", "true");
-            button.innerHTML = '<i class="fa-solid fa-heart"></i>';
-            card.appendChild(button);
-
-            grid.appendChild(card);
-        });
-
-        updateVendorFavouriteStates();
-    }
-
-    function initFavouriteHomeSwitch() {
-        const section = document.querySelector(".fav-games");
-        if (!section) return;
-
-        const gamesButton = section.querySelector(".fav-home-switch__games");
-        const vendorsButton = section.querySelector(".fav-home-switch__vendors");
-        const gamesGrid = section.querySelector(".fav-home-games-grid");
-        const vendorsGrid = section.querySelector(".fav-home-vendors-grid");
-        const title = section.querySelector(".slot-section-text h2");
-        const subtitle = section.querySelector(".slot-section-text p");
-
-        if (!gamesButton || !vendorsButton || !gamesGrid || !vendorsGrid) return;
-
-        const originalTitle = title ? title.textContent : "Favourite Games";
-        const originalSubtitle = subtitle ? subtitle.textContent : "Most loved games";
-
-        function selectType(type) {
-            const showGames = type === "games";
-
-            // Set both hidden and inline display so existing grid CSS
-            // cannot force the inactive panel to remain visible.
-            gamesGrid.hidden = !showGames;
-            vendorsGrid.hidden = showGames;
-
-            gamesGrid.style.setProperty(
-                "display",
-                showGames ? "" : "none",
-                showGames ? "" : "important"
-            );
-            vendorsGrid.style.setProperty(
-                "display",
-                showGames ? "none" : "",
-                showGames ? "important" : ""
-            );
-
-            gamesButton.classList.toggle(
-                "fav-home-switch__games--active", showGames
-            );
-            vendorsButton.classList.toggle(
-                "fav-home-switch__vendors--active", !showGames
-            );
-            gamesButton.setAttribute("aria-pressed", String(showGames));
-            vendorsButton.setAttribute("aria-pressed", String(!showGames));
-
-            if (title) title.textContent = showGames
-                ? originalTitle
-                : "Favourite Vendors";
-            if (subtitle) subtitle.textContent = showGames
-                ? originalSubtitle
-                : "Your preferred providers";
-
-            if (!showGames) renderFavouriteVendors();
-        }
-
-        gamesButton.addEventListener("click", () => selectType("games"));
-        vendorsButton.addEventListener("click", () => selectType("vendors"));
-        selectType("games");
+        // Compatibility wrapper: games and vendors now render together in one grid.
+        renderFavouriteSections();
     }
 
     document.addEventListener("click", event => {
@@ -559,13 +479,11 @@
 
         if (!saveFavouriteVendors(vendors)) return;
 
-        renderFavouriteVendors();
+        renderFavouriteSections();
         updateVendorFavouriteStates();
     });
 
-    /* =====================================
-       INITIALISE
-    ===================================== */
+    /* ========  INITIALISE  ======== */
 
     function init() {
         migrateLegacyVendorFavourites();
@@ -574,10 +492,10 @@
         updateFavouriteStates();
         initVendorFavouriteButtons();
         renderFavouriteVendors();
-        initFavouriteHomeSwitch();
         window.addEventListener("storage", event => {
-            if (event.key === VENDOR_STORAGE_KEY) {
-                renderFavouriteVendors();
+            if (event.key === VENDOR_STORAGE_KEY || event.key === STORAGE_KEY) {
+                renderFavouriteSections();
+                updateFavouriteStates();
                 updateVendorFavouriteStates();
             }
         });
