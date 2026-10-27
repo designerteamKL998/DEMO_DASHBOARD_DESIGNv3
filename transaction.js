@@ -112,88 +112,120 @@
 const cashHistoryPage = document.getElementById("cashHistoryPage");
 const transactionsBtn = document.getElementById("transactionsBtn");
 const cashHistoryForm = document.getElementById("cashHistoryForm");
-
 const cashFrom = document.getElementById("cashFrom");
 const cashTo = document.getElementById("cashTo");
-
 const cashHistoryBody = document.getElementById("cashHistoryBody");
 
-// Buka Cash History apabila klik Transactions
-transactionsBtn.addEventListener("click", function () {
+function getCashHistoryRedeemRecords() {
+  try {
+    const records = JSON.parse(localStorage.getItem("cashHistoryRedeems") || "[]");
+    return Array.isArray(records) ? records : [];
+  } catch (error) {
+    return [];
+  }
+}
 
-  // Sorok paparan Statement
-  document.getElementById("dashboardPage")
-    .classList.add("hidden");
+function renderRedeemRecords() {
+  if (!cashHistoryBody) return;
 
-  // Sorok paparan details jika ada
-  const detailsPage = document.getElementById("detailsPage");
+  const fromDate = cashFrom?.value || "";
+  const toDate = cashTo?.value || "";
+  const records = getCashHistoryRedeemRecords().filter(record =>
+    (!fromDate || record.date >= fromDate) &&
+    (!toDate || record.date <= toDate)
+  );
 
-  if (detailsPage) {
-    detailsPage.classList.add("hidden");
+  cashHistoryBody.replaceChildren();
+
+  if (records.length === 0) {
+    const row = cashHistoryBody.insertRow();
+    const cell = row.insertCell();
+    cell.colSpan = 7;
+    cell.className = "no-record";
+    cell.textContent = "No Record.";
+    return;
   }
 
-  // Paparkan Cash History
-  cashHistoryPage.classList.remove("hidden");
+  records.slice().reverse().forEach(record => {
+    const row = cashHistoryBody.insertRow();
+    const values = [
+      record.dateTime || record.date || "-",
+      record.transactionNo || "-",
+      record.description || record.giftCardName || "-",
+      record.type || "Redemption",
+      record.status || "Pending",
+      record.amount ?? "0.00",
+      record.bonus ?? "-"
+    ];
 
-  // Set tarikh hari ini
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
+    values.forEach(value => {
+      const cell = row.insertCell();
+      cell.textContent = String(value);
+    });
+  });
+}
 
+function setCashHistoryDatesToToday() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
   const todayDate = `${year}-${month}-${day}`;
 
-  cashFrom.value = todayDate;
-  cashTo.value = todayDate;
+  if (cashFrom) cashFrom.value = todayDate;
+  if (cashTo) cashTo.value = todayDate;
+}
 
-});
+function openCashHistory() {
+  document.getElementById("dashboardPage")?.classList.add("hidden");
+  document.getElementById("detailsPage")?.classList.add("hidden");
+  cashHistoryPage?.classList.remove("hidden");
 
-// Button Go
-cashHistoryForm.addEventListener("submit", function (event) {
+  if (cashFrom && !cashFrom.value) setCashHistoryDatesToToday();
+  if (cashTo && !cashTo.value) setCashHistoryDatesToToday();
 
-  event.preventDefault();
+  renderRedeemRecords();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-  const fromDate = cashFrom.value;
-  const toDate = cashTo.value;
-
-  if (!fromDate || !toDate) {
-    alert("Please select both dates.");
-    return;
-  }
-
-  if (fromDate > toDate) {
-    alert("From date cannot be later than To date.");
-    return;
-  }
-
-  // Paparan kosong sementara tiada data transaksi
-  cashHistoryBody.innerHTML = `
-    <tr>
-      <td colspan="7" class="no-record">
-        No Record.
-      </td>
-    </tr>
-  `;
-
-});
-
-
-
-document.getElementById("cashBackBtn").addEventListener("click", function () {
-
-  // Tutup Cash History
-  document.getElementById("cashHistoryPage")
-    .classList.add("hidden");
-
-  // Kembali ke Statement
-  document.getElementById("dashboardPage")
-    .classList.remove("hidden");
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+// Transactions button -> Cash History
+if (transactionsBtn) {
+  transactionsBtn.addEventListener("click", function () {
+    setCashHistoryDatesToToday();
+    openCashHistory();
   });
+}
 
+// Filter records when Go is clicked
+if (cashHistoryForm) {
+  cashHistoryForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const fromDate = cashFrom?.value || "";
+    const toDate = cashTo?.value || "";
+
+    if (!fromDate || !toDate) {
+      window.alert("Please select both dates.");
+      return;
+    }
+
+    if (fromDate > toDate) {
+      window.alert("From date cannot be later than To date.");
+      return;
+    }
+
+    renderRedeemRecords();
+  });
+}
+
+// Back button
+document.getElementById("cashBackBtn")?.addEventListener("click", function () {
+  cashHistoryPage?.classList.add("hidden");
+  document.getElementById("dashboardPage")?.classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-
+// Direct link from Redeem Save: transaction.html#cashHistoryPage
+if (window.location.hash === "#cashHistoryPage") {
+  openCashHistory();
+}

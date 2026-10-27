@@ -1,0 +1,411 @@
+﻿
+/* =====================================================
+   REDEEM CODE PAGE
+   Theme: Black / Gold
+   Prefix: rdm-
+===================================================== */
+
+:root {
+    --rdm-primary: #EAD87D;
+    --rdm-secondary: #202228;
+    --rdm-accent: #FFD700;
+    --rdm-surface: #121418;
+    --rdm-text: #FFFFFF;
+    --rdm-background: #000000;
+    --rdm-highlight: #FFF1A8;
+    --rdm-on-primary: #111111;
+    --rdm-success: #43C07A;
+    --rdm-error: #FF5B5B;
+    --rdm-live: #2EE6C6;
+    --rdm-border: rgba(234, 216, 125, 0.18);
+    --rdm-border-muted: rgba(255, 255, 255, 0.10);
+    --rdm-text-muted: #AEB5C0;
+    --rdm-radius: 8px;
+    --rdm-transition: 0.2s ease;
+}
+
+/* =====================================================
+   BASE
+===================================================== */
+
+.rdm-page,
+.rdm-page * {
+    box-sizing: border-box;
+}
+
+.rdm-page {
+    width: calc(100% - 40px);
+    max-width: 1440px;
+    margin: 14px auto;
+    padding: 20px;
+    background: #121418;
+    border: 1px solid var(--rdm-border-muted);
+    border-radius: var(--rdm-radius);
+    color: var(--rdm-text);
+}
+
+    .rdm-page button,
+    .rdm-page input {
+        font-family: inherit;
+    }
+
+    .rdm-page button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .rdm-page [hidden] {
+        display: none !important;
+    }
+
+/* =====================================================
+   STEP INDICATOR
+===================================================== */
+
+.rdm-step-indicator {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.rdm-main-steps {
+    margin-bottom: 20px;
+}
+
+.rdm-step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    min-width: 58px;
+    color: var(--rdm-text-muted);
+    text-align: center;
+}
+
+.rdm-step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    border: 1px solid #454B55;
+    border-radius: 5px;
+    background: var(--rdm-surface);
+    color: var(--rdm-text-muted);
+    font-weight: 700;
+    transition: background var(--rdm-transition), color var(--rdm-transition), border-color var(--rdm-transition);
+}
+
+.rdm-step-label {
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.rdm-step-item.rdm-active {
+    color: var(--rdm-primary);
+}
+
+    .rdm-step-item.rdm-active .rdm-step-number {
+        background: var(--rdm-primary);
+        border-color: var(--rdm-primary);
+        color: var(--rdm-on-primary);
+    }
+
+.rdm-step-item.rdm-completed {
+    color: var(--rdm-primary);
+}
+
+    .rdm-step-item.rdm-completed .rdm-step-number {
+        background: var(--rdm-surface);
+        border-color: var(--rdm-primary);
+        color: var(--rdm-primary);
+    }
+
+.rdm-step-line {
+    flex: 0 1 70px;
+    height: 2px;
+    margin-top: 13px;
+    background: #454B55;
+    border-radius: 2px;
+}
+
+    .rdm-step-line.rdm-line-completed {
+        background: var(--rdm-accent);
+    }
+
+/* =====================================================
+   CONTENT CARDS
+===================================================== */
+
+.rdm-card {
+    width: 100%;
+    min-width: 0;
+    padding: 40px;
+    background: transparent;
+    border: 1px solid #252525;
+    border-radius: var(--rdm-radius);
+}
+
+.rdm-code-card {
+    margin: 0;
+}
+
+.rdm-summary-card {
+    margin-top: 20px;
+    padding: 40px;
+}
+
+/* =====================================================
+   REDEEM FORM
+===================================================== */
+
+.rdm-form-row {
+    display: grid;
+    grid-template-columns: 145px minmax(0, 1fr) 190px;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+}
+
+.rdm-code-label {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    min-height: 50px;
+    padding: 0 16px;
+    background: var(--rdm-surface);
+    border: 1px solid #28292b;
+    border-radius: 5px 0 0 5px;
+    color: var(--rdm-text);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+    .rdm-code-label span {
+        margin-left: 3px;
+        color: var(--rdm-error);
+    }
+
+.rdm-code-input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 40px;
+    padding: 0 14px;
+    background: var(--rdm-surface);
+    border: 1px solid #28292b;
+    border-left: 0;
+    border-radius: 0 5px 5px 0;
+    outline: none;
+    color: var(--rdm-text);
+    transition: border-color var(--rdm-transition), box-shadow var(--rdm-transition);
+}
+
+    .rdm-code-input::placeholder {
+        color: #858D99;
+        opacity: 1;
+    }
+
+    .rdm-code-input:focus-visible {
+        outline: none;
+    }
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.rdm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 0;
+    min-height: 40px;
+    padding: 0 18px;
+    border: 1px solid var(--rdm-primary);
+    border-radius: 5px;
+    background: var(--rdm-primary);
+    color: var(--rdm-on-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background var(--rdm-transition), border-color var(--rdm-transition), filter var(--rdm-transition), transform var(--rdm-transition);
+}
+
+    .rdm-btn:hover {
+        background: var(--rdm-highlight);
+        border-color: var(--rdm-highlight);
+    }
+
+    .rdm-btn:active {
+        transform: translateY(1px);
+    }
+
+    .rdm-btn:focus-visible {
+        outline: 2px solid var(--rdm-highlight);
+        outline-offset: 3px;
+    }
+
+    .rdm-btn:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+.rdm-next-btn {
+    margin-left: 12px;
+}
+
+.rdm-arrow {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* =====================================================
+   WARNING NOTICE
+===================================================== */
+
+.rdm-notice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 36px;
+    margin-top: 11px;
+    padding: 8px 12px;
+    background: rgba(234, 216, 125, 0.09);
+    border: 1px solid rgba(234, 216, 125, 0.28);
+    border-radius: 5px;
+    color: var(--rdm-text);
+    line-height: 1.5;
+}
+
+.rdm-notice-icon {
+    display: flex;
+    flex: 0 0 20px;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--rdm-primary);
+    color: var(--rdm-on-primary);
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* =====================================================
+   ERROR MESSAGE
+===================================================== */
+
+.rdm-error {
+    margin: 9px 0 0;
+    color: var(--rdm-error);
+    line-height: 1.5;
+}
+
+/* =====================================================
+   SUMMARY HEADER
+===================================================== */
+
+.rdm-summary-steps {
+    margin-bottom: 20px;
+}
+
+.rdm-summary-heading {
+    margin: 0 0 12px;
+}
+
+    .rdm-summary-heading h2 {
+        margin: 0 0 7px;
+        color: var(--rdm-text);
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .rdm-summary-heading p {
+        margin: 0;
+        color: var(--rdm-text-muted);
+        line-height: 1.5;
+    }
+
+/* =====================================================
+   SUMMARY TABLE
+===================================================== */
+
+.rdm-summary-table {
+    width: 100%;
+    overflow: hidden;
+    background: var(--rdm-surface);
+    border: 1px solid var(--rdm-border-muted);
+    border-radius: 5px;
+}
+
+.rdm-summary-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 35px;
+    background: var(--rdm-secondary);
+}
+
+    .rdm-summary-row + .rdm-summary-row {
+        border-top: 1px solid var(--rdm-border-muted);
+    }
+
+.rdm-summary-label,
+.rdm-summary-value {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    padding: 15px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.rdm-summary-label {
+    color: var(--rdm-primary);
+    font-weight: 700;
+}
+
+.rdm-summary-value {
+    border-left: 1px solid var(--rdm-border-muted);
+    color: var(--rdm-text);
+}
+
+/* =====================================================
+   SUMMARY ACTIONS / SAVE
+===================================================== */
+
+.rdm-summary-actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.rdm-save-btn {
+    width: 172px;
+    min-height: 50px;
+}
+
+/* =====================================================
+   SUCCESS / STATUS COLORS
+   Use these classes if needed for status messages.
+===================================================== */
+
+.rdm-status-success {
+    color: var(--rdm-success);
+}
+
+.rdm-status-error {
+    color: var(--rdm-error);
+}
+
+.rdm-status-live {
+    color: var(--rdm-live);
+}
+
+

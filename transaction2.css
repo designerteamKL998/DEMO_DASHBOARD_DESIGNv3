@@ -823,7 +823,6 @@ th {
 .cash-history-table {
     width: 100%;
     min-width: 760px;
-    border-collapse: separate;
     border-spacing: 0;
     background: transparent;
     color: #f4f5f6;
@@ -1327,12 +1326,20 @@ th {
         background: #121418;
         color: #FFFFFF;
         font-size: 13px;
-        border-color: rgba(255,255,255,0.08);
+
     }
 
-    .st-page .st-table tbody tr:hover td,
-    .stment-page .table-wrap tbody tr:hover td,
-    .stment-page .cash-history-table tbody tr:hover td {
+.cash-history-table tr {
+    border-bottom: 1px solid #2d2a2a !important;
+}
+
+    .cash-history-table tr:last-child {
+        border-bottom: 0px solid #2d2a2a !important;
+    }
+
+
+
+        .st-page .st-table tbody tr:hover td, .stment-page .table-wrap tbody tr:hover td, .stment-page .cash-history-table tbody tr:hover td {
         background: #202228;
     }
 

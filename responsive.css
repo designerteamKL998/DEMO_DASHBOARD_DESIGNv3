@@ -2598,6 +2598,34 @@
         height: 20px;
     }
 
+    /*-------------  REDEEM CODE  ------------*/
+    .rdm-page {
+        width: calc(100% - 32px);
+        padding: 18px;
+    }
+
+    .rdm-card,
+    .rdm-summary-card {
+        padding: 28px;
+    }
+
+    .rdm-form-row {
+        grid-template-columns: 135px minmax(0, 1fr) 150px;
+    }
+
+    .rdm-code-label {
+        padding: 0 12px;
+    }
+
+    .rdm-next-btn {
+        margin-left: 10px;
+    }
+
+    .rdm-summary-label,
+    .rdm-summary-value {
+        padding: 12px;
+    }
+
 
 }
 
@@ -6081,6 +6109,66 @@
         grid-template-columns: repeat(7, minmax(0, 1fr));
     }
 
+    /*----------  REDEEM CODE  -------------*/
+    .rdm-page {
+        width: calc(100% - 24px);
+        margin: 12px auto;
+        padding: 16px;
+    }
+
+    .rdm-card,
+    .rdm-summary-card {
+        padding: 20px 16px;
+    }
+
+    .rdm-main-steps,
+    .rdm-summary-steps {
+        margin-bottom: 18px;
+    }
+
+    .rdm-form-row {
+        grid-template-columns: 125px minmax(0, 1fr);
+        gap: 10px 0;
+    }
+
+    .rdm-code-label {
+        min-height: 44px;
+        padding: 0 12px;
+    }
+
+    .rdm-code-input {
+        min-height: 44px;
+        border-left: 0;
+    }
+
+    .rdm-next-btn {
+        grid-column: 1 / -1;
+        width: 100%;
+        min-height: 44px;
+        margin: 2px 0 0;
+    }
+
+    .rdm-notice {
+        align-items: flex-start;
+        font-size: 12px;
+    }
+
+    .rdm-summary-heading h2 {
+        font-size: 23px;
+    }
+
+    .rdm-summary-label,
+    .rdm-summary-value {
+        padding: 12px;
+    }
+
+    .rdm-save-btn {
+        width: 180px;
+        min-height: 44px;
+    }
+
+
+
 }
 
 /*===========================================================================================  MOBILE 480PX  ======================================================================================================*/
@@ -7049,6 +7137,139 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
+    .deposit-help-icon {
+        right: -45px;
+    }
+
+    .deposit-help-dialog {
+        padding: 10px;
+    }
+
+
+    /*-----------  redeem page  --------------*/
+    .rdm-page {
+        width: calc(100% - 16px);
+        margin: 8px auto;
+        padding: 12px 8px;
+        border-radius: 6px;
+    }
+
+    .rdm-card,
+    .rdm-summary-card {
+        padding: 14px 10px;
+        border-radius: 6px;
+    }
+
+    .rdm-step-indicator {
+        gap: 8px;
+    }
+
+    .rdm-step-item {
+        min-width: 54px;
+        gap: 6px;
+    }
+
+    .rdm-step-number {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+
+    .rdm-step-label {
+        font-size: 10px;
+    }
+
+    .rdm-step-line {
+        flex: 0 1 42px;
+        margin-top: 12px;
+    }
+
+    .rdm-main-steps,
+    .rdm-summary-steps {
+        margin-bottom: 15px;
+    }
+
+    .rdm-form-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .rdm-code-label {
+        min-height: 38px;
+        padding: 0 10px;
+        border: 1px solid #28292b;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+
+    .rdm-code-input {
+        min-height: 42px;
+        padding: 0 10px;
+        border: 1px solid #28292b;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+
+    .rdm-next-btn {
+        grid-column: auto;
+        min-height: 42px;
+        margin: 0;
+    }
+
+    .rdm-notice {
+        gap: 8px;
+        padding: 9px;
+        font-size: 11px;
+        line-height: 1.45;
+    }
+
+    .rdm-notice-icon {
+        flex-basis: 19px;
+        width: 19px;
+        height: 19px;
+        margin-top: 1px;
+    }
+
+    .rdm-summary-heading {
+        margin-bottom: 10px;
+    }
+
+        .rdm-summary-heading h2 {
+            font-size: 20px;
+        }
+
+        .rdm-summary-heading p {
+            font-size: 12px;
+        }
+
+    .rdm-summary-row {
+        grid-template-columns: 42% 58%;
+        min-height: 38px;
+    }
+
+    .rdm-summary-label,
+    .rdm-summary-value {
+        padding: 10px 8px;
+        font-size: 11px;
+        overflow-wrap: anywhere;
+    }
+
+    .rdm-summary-actions {
+        margin-top: 12px;
+    }
+
+    .rdm-save-btn {
+        width: 100%;
+        min-height: 42px;
+    }
+
+
+
+
+
+
+
+}
 
 /* =====================================
    FAVOURITE GAMES - MOBILE SPACING
