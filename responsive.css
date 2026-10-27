@@ -2626,8 +2626,14 @@
         padding: 12px;
     }
 
+    .fav-games .favourite-vendor-card .vendor-fav-btn, .fav-pages .favourite-vendor-card .vendor-fav-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
+    }
 
-}
+
+    }
 
 /*===========================================================================================================  MOBILE 768PX  =======================================================================================*/
 @media (max-width: 768px) {
@@ -7376,7 +7382,6 @@
 
     .fav-games .games-grid,
     .fav-games .fav-home-vendors-grid {
-        margin-top: 50px;
         margin-bottom:10px;
     }
 
@@ -7393,10 +7398,6 @@
         font-size: 9px;
         width: 20px;
         height: 20px;
-    }
-
-    .fav-pages .fav-games .fav-home-games-grid:not([hidden]), .fav-games .fav-home-vendors-grid:not([hidden]) {
-        margin-top:50px;
     }
 
 
