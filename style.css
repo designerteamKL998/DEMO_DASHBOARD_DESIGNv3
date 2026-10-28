@@ -1212,17 +1212,17 @@ body {
 /* ==================================================
    NOTIFICATION
 ================================================== */
-    .notification-btn a {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        line-height: 0;
-    }
+.notification-btn a {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 0;
+}
 
 .notification-dot {
     position: absolute;
@@ -1259,63 +1259,63 @@ body {
         width: 27px;
     }
 
-.notification-btn img {
-    display: block;
-    width: 27px;
-    height: 27px;
-    object-fit: contain;
-}
+    .notification-btn img {
+        display: block;
+        width: 27px;
+        height: 27px;
+        object-fit: contain;
+    }
 
-.notification-btn .notification-dot {
-    position: absolute;
-    top: 11px;
-    right: 9px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: red;
-}
+    .notification-btn .notification-dot {
+        position: absolute;
+        top: 11px;
+        right: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: red;
+    }
 
-.btn-deposit::after, .notification-btn::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 6px 10px;
-    background: #ffffff;
-    color: #111;
-    font-family: var(--font-main);
-    font-size: 11px;
-    font-weight: 500;
-    white-space: nowrap;
-    border-radius: 5px;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: 0.2s ease;
-    z-index: 9999;
-}
+    .btn-deposit::after, .notification-btn::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 6px 10px;
+        background: #ffffff;
+        color: #111;
+        font-family: var(--font-main);
+        font-size: 11px;
+        font-weight: 500;
+        white-space: nowrap;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: 0.2s ease;
+        z-index: 9999;
+    }
 
     .btn-deposit:hover::after, .notification-btn:hover::after {
         opacity: 1;
         visibility: visible;
     }
 
-.btn-deposit a {
-    position: relative;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ead87d;
-    text-decoration: none;
-}
+    .btn-deposit a {
+        position: relative;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ead87d;
+        text-decoration: none;
+    }
 
-.btn-deposit i {
-    font-size: 25px;
-}
+    .btn-deposit i {
+        font-size: 25px;
+    }
 
 .deposit-plus {
     position: absolute;
@@ -2307,7 +2307,9 @@ body {
     font-weight: 700;
 }
 
-.package-btn a{color:#000;}
+.package-btn a {
+    color: #000;
+}
 /* =========================================================
    RIGHT IMAGE
 ========================================================= */
@@ -2349,6 +2351,7 @@ a.rainMiniLauncher {
     text-decoration: none;
     color: #fff;
 }
+
 .rainMiniLauncher {
     position: fixed;
     left: max(18px, env(safe-area-inset-left));
@@ -2384,7 +2387,7 @@ a.rainMiniLauncher {
     height: 92px;
     border-radius: 50%;
     background: url(imgs/floatingpopup/float-bg.png)no-repeat;
-    background-size:cover;
+    background-size: cover;
     box-shadow: inset 0 0 18px rgba(0,0,0,.58), 0 8px 18px rgba(0,0,0,.3);
 }
 
@@ -2410,7 +2413,7 @@ a.rainMiniLauncher {
 
 .rainMiniLauncher__close {
     position: absolute;
-    right: -8px;
+    left: -8px;
     top: -9px;
     display: grid;
     place-items: center;
@@ -2519,3 +2522,81 @@ a.rainMiniLauncher {
     }
 }
 
+
+
+/* =========================================================
+   REUSABLE RED DOT NOTIFICATION
+   Add class="red-dot" to any notification dot.
+   Use data-notification only when JavaScript needs to identify it.
+========================================================= */
+
+.red-dot {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    z-index: 20;
+    display: block;
+    width: 9px;
+    height: 9px;
+    min-width: 9px;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #111;
+    border-radius: 50%;
+    background: #ff3434;
+    box-shadow: 0 0 0 1px rgba(255, 52, 52, 0.18);
+    pointer-events: none;
+}
+
+    .red-dot.is-hidden {
+        display: none !important;
+    }
+
+/* Profile menu notification dots */
+.profile-feature-item {
+    position: relative;
+}
+
+    .profile-feature-item > .red-dot {
+        top: 8px;
+        right: 10px;
+    }
+
+/* Floating Angpow launcher notification dot */
+.rainMiniLauncher__circle {
+    position: relative;
+}
+
+    .rainMiniLauncher__circle > .red-dot {
+        top: 2px;
+        right: 2px;
+    }
+
+/* Example reusable placement for other clickable items:
+   give the parent position: relative, then add .red-dot inside it.
+*/
+
+
+/* Ensure the Daily Check-In dot remains visible inside the profile feature tile. */
+.profile-feature-item > span.red-dot {
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 9px;
+    height: 9px;
+    min-width: 9px;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #111;
+    border-radius: 50%;
+    background: #ff3434;
+    z-index: 30;
+    pointer-events: none;
+}
+
+    .profile-feature-item > span.red-dot.is-hidden {
+        display: none !important;
+    }

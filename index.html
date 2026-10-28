@@ -162,9 +162,10 @@
                                     <img src="imgs/icon/sidebar/lucky-ich.png" alt="" />
                                     <span>Lucky Draw</span>
                                 </a>
-                                <a href="dailycheckin.html" class="profile-feature-item">
+                                <a href="dailycheckin.html" class="profile-feature-item daily-checkin-menu-item">
                                     <img src="imgs/icon/sidebar/checkin.png" alt="" />
                                     <span>Daily Check-In</span>
+                                    <span class="red-dot" data-notification="daily-checkin" aria-label="Daily check-in available" title="Daily check-in available"></span>
                                 </a>
                                 <a href="invitefren.html" class="profile-feature-item">
                                     <img src="imgs/icon/invitefrenich.png" alt="" />
@@ -185,6 +186,7 @@
                                 <a href="./jpt_rain-main/index__halloween.html" class="profile-feature-item">
                                     <img src="imgs/icon/angpowrainich.png" alt="" />
                                     <span>Angpow Rain</span>
+                                    <span class="red-dot" data-notification="angpow-rain" aria-label="Angpow Rain unread" title="Angpow Rain unread"></span>
                                 </a>
                             </div>
                         </div>
@@ -938,9 +940,6 @@
             </div>
         </section>
     </div>
-
-
-
     <div class="reward-modal" id="rewardModal">
         <div class="reward-modal-box">
             <!-- LEFT : CONTENT -->
@@ -965,7 +964,6 @@
             </button>
         </div>
     </div>
-
     <!-- LANGUAGE POPUP -->
     <div class="language-overlay" id="languagePopup">
         <div class="language-popup">
@@ -1157,6 +1155,7 @@
        id="rainMiniLauncher"
        aria-label="Open Halloween Treats">
         <span class="rainMiniLauncher__circle">
+            <span class="red-dot" data-notification="angpow-rain" aria-label="Angpow Rain notification belum dibaca" title="Angpow Rain notification belum dibaca"></span>
             <img src="imgs/floatingpopup/item1.png"
                  class="rainMiniLauncher__packet rainMiniLauncher__packet--one"
                  alt="">

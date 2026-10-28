@@ -611,3 +611,137 @@ document.addEventListener("DOMContentLoaded", function () {
         const timer = setInterval(updateCountdown, 1000);
     }
 });
+
+
+/* =========================================================
+   DAILY CHECK-IN RED DOT
+   Create the dot on index.html if the HTML does not contain it.
+   Hide only after the current check-in has been completed.
+========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    const dailyCheckinLink = document.querySelector(
+        'a.profile-feature-item[href*="dailycheckin.html"]'
+    );
+
+    if (!dailyCheckinLink) return;
+
+    let reminderDot = dailyCheckinLink.querySelector(
+        '.red-dot[data-notification="daily-checkin"]'
+    );
+
+    // Create the dot automatically if index.html is missing the span.
+    if (!reminderDot) {
+        reminderDot = document.createElement("span");
+        reminderDot.className = "red-dot";
+        reminderDot.dataset.notification = "daily-checkin";
+        reminderDot.setAttribute("aria-label", "Daily check-in available");
+        reminderDot.setAttribute("title", "Daily check-in available");
+        dailyCheckinLink.appendChild(reminderDot);
+    }
+
+    const DCI_STORAGE_KEYS = [
+        "dci_demo_1min_streak_v1",
+        "dci_demo_3min_streak_v1",
+        "dci_demo_5min_streak_v1"
+    ];
+
+    function updateDailyCheckinDot() {
+        // Default visible; Angpow Rain state never affects this dot.
+        let showDot = true;
+
+        try {
+            let state = null;
+
+            for (const key of DCI_STORAGE_KEYS) {
+                const raw = localStorage.getItem(key);
+                if (!raw) continue;
+
+                const parsed = JSON.parse(raw);
+                if (parsed && Array.isArray(parsed.checkedDays) &&
+                    Number.isInteger(parsed.activeDay)) {
+                    state = parsed;
+                    break;
+                }
+            }
+
+            if (state) {
+                const currentDayChecked = state.checkedDays.includes(state.activeDay);
+                const checkInDone = currentDayChecked || state.phase === "waiting";
+                const allDaysCompleted = state.activeDay > 28;
+                showDot = !checkInDone && !allDaysCompleted;
+            }
+        } catch (error) {
+            showDot = true;
+        }
+
+        reminderDot.classList.toggle("is-hidden", !showDot);
+        reminderDot.setAttribute("aria-hidden", String(!showDot));
+    }
+
+    updateDailyCheckinDot();
+    window.setInterval(updateDailyCheckinDot, 1000);
+    window.addEventListener("storage", updateDailyCheckinDot);
+});
+
+
+/* =========================================================
+   ANGPOW RAIN RED DOT (SAME DOT STYLE AS DAILY CHECK-IN)
+   Shared read state for the profile menu and floating launcher.
+========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    const STORAGE_KEY = "angpowRainNotificationRead_v1";
+    const angpowLink = document.querySelector(
+        'a.profile-feature-item[href*="jpt_rain-main/index__halloween.html"]'
+    );
+    const launcher = document.querySelector("#rainMiniLauncher");
+
+    // Find or create the same red-dot element for the profile menu.
+    let menuDot = angpowLink?.querySelector('.red-dot[data-notification="angpow-rain"]');
+    if (angpowLink && !menuDot) {
+        menuDot = document.createElement("span");
+        menuDot.className = "red-dot";
+        menuDot.dataset.notification = "angpow-rain";
+        menuDot.setAttribute("aria-label", "Angpow Rain notification belum dibaca");
+        menuDot.setAttribute("title", "Angpow Rain notification belum dibaca");
+        angpowLink.appendChild(menuDot);
+    }
+
+    // Use the same dot class on the floating launcher.
+    let launcherDot = launcher?.querySelector('.red-dot[data-notification="angpow-rain"]');
+    if (launcher && !launcherDot) {
+        launcherDot = document.createElement("span");
+        launcherDot.className = "red-dot";
+        launcherDot.dataset.notification = "angpow-rain";
+        launcherDot.setAttribute("aria-label", "Angpow Rain notification belum dibaca");
+        launcherDot.setAttribute("title", "Angpow Rain notification belum dibaca");
+        launcher.querySelector(".rainMiniLauncher__circle")?.appendChild(launcherDot);
+    }
+
+    function setAngpowDotsHidden(hidden) {
+        [menuDot, launcherDot].forEach(dot => {
+            if (!dot) return;
+            dot.classList.toggle("is-hidden", hidden);
+            dot.setAttribute("aria-hidden", String(hidden));
+        });
+    }
+
+    let hasRead = false;
+    try {
+        hasRead = localStorage.getItem(STORAGE_KEY) === "1";
+    } catch (error) {
+        // If storage is unavailable, clicking still hides the dots for this view.
+    }
+    setAngpowDotsHidden(hasRead);
+
+    function markAngpowAsRead() {
+        try {
+            localStorage.setItem(STORAGE_KEY, "1");
+        } catch (error) {
+            // Continue normally if localStorage is unavailable.
+        }
+        setAngpowDotsHidden(true);
+    }
+
+    angpowLink?.addEventListener("click", markAngpowAsRead);
+    launcher?.addEventListener("click", markAngpowAsRead);
+});
