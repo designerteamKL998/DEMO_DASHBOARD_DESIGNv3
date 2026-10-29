@@ -1604,6 +1604,10 @@ dci-hero-note img {
     border-color: #4d3405;
 }
 
+.main-header {
+    margin-top: -20px;
+}
+
 
 
 
@@ -1625,6 +1629,7 @@ dci-hero-note img {
 
 /* Laptop / small desktop */
 @media (max-width: 1024px) {
+    
     .dci-terms-card {
         margin-bottom: 40px;
     }
