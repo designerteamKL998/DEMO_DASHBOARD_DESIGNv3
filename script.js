@@ -614,134 +614,78 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /* =========================================================
-   DAILY CHECK-IN RED DOT
-   Create the dot on index.html if the HTML does not contain it.
-   Hide only after the current check-in has been completed.
+   ALERT REMINDERS
+   Daily Check-In reads the same state key used by dailycheckin.js.
+   Only this alert logic is changed; the check-in script stays untouched.
 ========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const dailyCheckinLink = document.querySelector(
-        'a.profile-feature-item[href*="dailycheckin.html"]'
-    );
+(() => {
+    "use strict";
 
-    if (!dailyCheckinLink) return;
+    const REMINDER_INTERVAL = 24 * 60 * 60 * 1000;
+    const DCI_STORAGE_KEY = "dci_demo_1min_streak_v1";
+    const DAILY_SELECTOR = 'a.profile-feature-item.daily-checkin-menu-item, a.profile-feature-item[href="dailycheckin.html"]';
 
-    let reminderDot = dailyCheckinLink.querySelector(
-        '.red-dot[data-notification="daily-checkin"]'
-    );
-
-    // Create the dot automatically if index.html is missing the span.
-    if (!reminderDot) {
-        reminderDot = document.createElement("span");
-        reminderDot.className = "red-dot";
-        reminderDot.dataset.notification = "daily-checkin";
-        reminderDot.setAttribute("aria-label", "Daily check-in available");
-        reminderDot.setAttribute("title", "Daily check-in available");
-        dailyCheckinLink.appendChild(reminderDot);
-    }
-
-    const DCI_STORAGE_KEYS = [
-        "dci_demo_1min_streak_v1",
-        "dci_demo_3min_streak_v1",
-        "dci_demo_5min_streak_v1"
-    ];
-
-    function updateDailyCheckinDot() {
-        // Default visible; Angpow Rain state never affects this dot.
-        let showDot = true;
-
+    function isDailyCheckinDone() {
         try {
-            let state = null;
-
-            for (const key of DCI_STORAGE_KEYS) {
-                const raw = localStorage.getItem(key);
-                if (!raw) continue;
-
-                const parsed = JSON.parse(raw);
-                if (parsed && Array.isArray(parsed.checkedDays) &&
-                    Number.isInteger(parsed.activeDay)) {
-                    state = parsed;
-                    break;
-                }
+            const state = JSON.parse(localStorage.getItem(DCI_STORAGE_KEY) || "null");
+            if (!state || !Array.isArray(state.checkedDays) || !Number.isInteger(state.activeDay)) {
+                return false;
             }
 
-            if (state) {
-                const currentDayChecked = state.checkedDays.includes(state.activeDay);
-                const checkInDone = currentDayChecked || state.phase === "waiting";
-                const allDaysCompleted = state.activeDay > 28;
-                showDot = !checkInDone && !allDaysCompleted;
-            }
+            // Keep the alert hidden after the active day is checked.
+            // When the next day unlocks, activeDay advances and its alert can show again.
+            return state.checkedDays.includes(state.activeDay);
         } catch (error) {
-            showDot = true;
+            return false;
         }
-
-        reminderDot.classList.toggle("is-hidden", !showDot);
-        reminderDot.setAttribute("aria-hidden", String(!showDot));
     }
 
-    updateDailyCheckinDot();
-    window.setInterval(updateDailyCheckinDot, 1000);
-    window.addEventListener("storage", updateDailyCheckinDot);
-});
-
-
-/* =========================================================
-   ANGPOW RAIN RED DOT (SAME DOT STYLE AS DAILY CHECK-IN)
-   Shared read state for the profile menu and floating launcher.
-========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const STORAGE_KEY = "angpowRainNotificationRead_v1";
-    const angpowLink = document.querySelector(
-        'a.profile-feature-item[href*="jpt_rain-main/index__halloween.html"]'
-    );
-    const launcher = document.querySelector("#rainMiniLauncher");
-
-    // Find or create the same red-dot element for the profile menu.
-    let menuDot = angpowLink?.querySelector('.red-dot[data-notification="angpow-rain"]');
-    if (angpowLink && !menuDot) {
-        menuDot = document.createElement("span");
-        menuDot.className = "red-dot";
-        menuDot.dataset.notification = "angpow-rain";
-        menuDot.setAttribute("aria-label", "Angpow Rain notification belum dibaca");
-        menuDot.setAttribute("title", "Angpow Rain notification belum dibaca");
-        angpowLink.appendChild(menuDot);
-    }
-
-    // Use the same dot class on the floating launcher.
-    let launcherDot = launcher?.querySelector('.red-dot[data-notification="angpow-rain"]');
-    if (launcher && !launcherDot) {
-        launcherDot = document.createElement("span");
-        launcherDot.className = "red-dot";
-        launcherDot.dataset.notification = "angpow-rain";
-        launcherDot.setAttribute("aria-label", "Angpow Rain notification belum dibaca");
-        launcherDot.setAttribute("title", "Angpow Rain notification belum dibaca");
-        launcher.querySelector(".rainMiniLauncher__circle")?.appendChild(launcherDot);
-    }
-
-    function setAngpowDotsHidden(hidden) {
-        [menuDot, launcherDot].forEach(dot => {
-            if (!dot) return;
-            dot.classList.toggle("is-hidden", hidden);
-            dot.setAttribute("aria-hidden", String(hidden));
+    function refreshDailyCheckinAlert() {
+        const checkedIn = isDailyCheckinDone();
+        document.querySelectorAll(DAILY_SELECTOR).forEach(element => {
+            element.classList.toggle("alert-reminder-target", !checkedIn);
         });
     }
 
-    let hasRead = false;
-    try {
-        hasRead = localStorage.getItem(STORAGE_KEY) === "1";
-    } catch (error) {
-        // If storage is unavailable, clicking still hides the dots for this view.
-    }
-    setAngpowDotsHidden(hasRead);
+    function initAlertReminders() {
+        refreshDailyCheckinAlert();
 
-    function markAngpowAsRead() {
-        try {
-            localStorage.setItem(STORAGE_KEY, "1");
-        } catch (error) {
-            // Continue normally if localStorage is unavailable.
-        }
-        setAngpowDotsHidden(true);
+        // Re-read state because dailycheckin.js saves it in the same tab.
+        window.setInterval(refreshDailyCheckinAlert, 250);
+        window.addEventListener("storage", refreshDailyCheckinAlert);
+
+        // Keep Angpow Rain and Notification timer behaviour unchanged.
+        const reminders = [
+            {
+                selector: 'a.profile-feature-item[href*="index__halloween.html"]',
+                key: "alertReminder_angpowRain_lastClick"
+            },
+            {
+                selector: ".notification-btn > a, .notification-btn a",
+                key: "alertReminder_notification_lastClick"
+            }
+        ];
+
+        reminders.forEach(({ selector, key }) => {
+            const elements = document.querySelectorAll(selector);
+            if (!elements.length) return;
+
+            const lastClick = Number(localStorage.getItem(key) || 0);
+            const shouldShow = !lastClick || (Date.now() - lastClick >= REMINDER_INTERVAL);
+
+            elements.forEach(element => {
+                element.classList.toggle("alert-reminder-target", shouldShow);
+                element.addEventListener("click", () => {
+                    localStorage.setItem(key, String(Date.now()));
+                    element.classList.remove("alert-reminder-target");
+                }, { capture: true });
+            });
+        });
     }
 
-    angpowLink?.addEventListener("click", markAngpowAsRead);
-    launcher?.addEventListener("click", markAngpowAsRead);
-});
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAlertReminders, { once: true });
+    } else {
+        initAlertReminders();
+    }
+})();

@@ -1224,16 +1224,6 @@ body {
     line-height: 0;
 }
 
-.notification-dot {
-    position: absolute;
-    top: 13px;
-    right: 7px;
-    width: 7px;
-    height: 7px;
-    border: 1px solid #000;
-    border-radius: 50%;
-    background: #ff5b5b;
-}
 
 /* ==================================================
    DEPOSIT
@@ -1264,16 +1254,6 @@ body {
         width: 27px;
         height: 27px;
         object-fit: contain;
-    }
-
-    .notification-btn .notification-dot {
-        position: absolute;
-        top: 11px;
-        right: 9px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: red;
     }
 
     .btn-deposit::after, .notification-btn::after {
@@ -2523,80 +2503,63 @@ a.rainMiniLauncher {
 }
 
 
-
 /* =========================================================
-   REUSABLE RED DOT NOTIFICATION
-   Add class="red-dot" to any notification dot.
-   Use data-notification only when JavaScript needs to identify it.
+   24-HOUR ALERT REMINDERS
+   Isolated styles: Daily Check-In, Angpow Rain, Notification
 ========================================================= */
+.alert-reminder-target {
+    position: relative !important;
+}
 
-.red-dot {
+.profile-feature-item.alert-reminder-target::after,
+.notification-btn a.alert-reminder-target::after {
+    content: "!";
     position: absolute;
-    top: 8px;
-    right: 10px;
-    z-index: 20;
-    display: block;
-    width: 9px;
-    height: 9px;
-    min-width: 9px;
-    max-width: none;
+    top: -5px;
+    right: -5px;
+    z-index: 50;
+    display: grid;
+    place-items: center;
+    width: 19px;
+    height: 19px;
     padding: 0;
-    margin: 0;
-    border: 1px solid #111;
+    border: 1.5px solid #fff;
     border-radius: 50%;
-    background: #ff3434;
-    box-shadow: 0 0 0 1px rgba(255, 52, 52, 0.18);
+    background: #ff3038;
+    color: #fff;
+    font: 900 12px/1 Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0 0 0 0 rgba(255, 48, 56, .7);
+    animation: alertReminderPulse 1.8s ease-out infinite;
     pointer-events: none;
 }
 
-    .red-dot.is-hidden {
-        display: none !important;
-    }
-
-/* Profile menu notification dots */
-.profile-feature-item {
-    position: relative;
+.notification-btn a.alert-reminder-target::after {
+    top: -5px;
+    right: -5px;
+    width: 19px;
+    height: 19px;
 }
 
-    .profile-feature-item > .red-dot {
-        top: 8px;
-        right: 10px;
+@keyframes alertReminderPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 48, 56, .65);
     }
 
-/* Floating Angpow launcher notification dot */
-.rainMiniLauncher__circle {
-    position: relative;
+    65% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 7px rgba(255, 48, 56, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 48, 56, 0);
+    }
 }
 
-    .rainMiniLauncher__circle > .red-dot {
-        top: 2px;
-        right: 2px;
+@media (prefers-reduced-motion: reduce) {
+    .alert-reminder-target::after {
+        animation: none !important;
     }
-
-/* Example reusable placement for other clickable items:
-   give the parent position: relative, then add .red-dot inside it.
-*/
-
-
-/* Ensure the Daily Check-In dot remains visible inside the profile feature tile. */
-.profile-feature-item > span.red-dot {
-    display: block;
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    width: 9px;
-    height: 9px;
-    min-width: 9px;
-    max-width: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #111;
-    border-radius: 50%;
-    background: #ff3434;
-    z-index: 30;
-    pointer-events: none;
 }
-
-    .profile-feature-item > span.red-dot.is-hidden {
-        display: none !important;
-    }
