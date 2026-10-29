@@ -1,8 +1,7 @@
-﻿/* =========================================================
+﻿﻿ /* =========================================================
    DAILY CHECK-IN PAGE
    ALL CLASSES ARE PREFIXED WITH dci-
 ========================================================= */
-
 :root {
     --dci-primary: #EAD87D;
     --dci-secondary: #202228;
@@ -23,7 +22,7 @@
 /* =========  RESET  ========== */
 
 .dci-month-nav {
-    display:none !important;
+    display: none !important;
 }
 
 .dci-page *,
@@ -1304,7 +1303,7 @@ dci-hero-note img {
     box-shadow: none !important;
     border-color: #2EE6C6 !important;
     box-shadow: inset 0 0 0 1px rgba(46, 230, 198, .2), 0 0 12px rgba(46, 230, 198, .15) !important;
-    filter:none;
+    filter: none;
 }
 
 .dci-day.dci-missed,
@@ -1391,7 +1390,7 @@ dci-hero-note img {
         color: var(--dci-primary);
         text-align: center;
         font-size: 16px;
-        text-transform:uppercase;
+        text-transform: uppercase;
     }
 
 .dci-month-nav {
@@ -1432,7 +1431,8 @@ dci-hero-note img {
     padding: 10px;
     border-top: 0.5px dashed #5b5b5b;
 }
-    .dci-day.dci-past, .dci-day.dci-checked, .dci-day.dci-past.dci-reward, .dci-day.dci-checked.dci-reward {
+
+.dci-day.dci-past, .dci-day.dci-checked, .dci-day.dci-past.dci-reward, .dci-day.dci-checked.dci-reward {
     color: #aeb3bc !important;
     box-shadow: none !important;
     cursor: default;
@@ -1459,7 +1459,6 @@ dci-hero-note img {
 
 /* ===== Approved Daily Check-In tile layout ===== */
 .dci-day {
-
     padding: 7px 10px 6px !important;
     display: flex !important;
     flex-direction: column !important;
@@ -1525,15 +1524,15 @@ dci-hero-note img {
 /* Past ordinary dates stay grayscale; reward milestones remain gold. */
 
 
-    .dci-day.dci-past:not(.dci-reward) .dci-day-label,
-    .dci-day.dci-past:not(.dci-reward) .dci-day-date,
-    .dci-day.dci-past:not(.dci-reward) .dci-day-number,
-    .dci-day.dci-checked:not(.dci-reward) .dci-day-label,
-    .dci-day.dci-checked:not(.dci-reward) .dci-day-date,
-    .dci-day.dci-checked:not(.dci-reward) .dci-day-number {
-        color: #b8bbc2 !important;
-        text-shadow: none !important;
-    }
+.dci-day.dci-past:not(.dci-reward) .dci-day-label,
+.dci-day.dci-past:not(.dci-reward) .dci-day-date,
+.dci-day.dci-past:not(.dci-reward) .dci-day-number,
+.dci-day.dci-checked:not(.dci-reward) .dci-day-label,
+.dci-day.dci-checked:not(.dci-reward) .dci-day-date,
+.dci-day.dci-checked:not(.dci-reward) .dci-day-number {
+    color: #b8bbc2 !important;
+    text-shadow: none !important;
+}
 
 /* Keep the calendar's approved left-aligned date flow. */
 .dci-calendar-empty {
@@ -1627,19 +1626,22 @@ dci-hero-note img {
 /* Laptop / small desktop */
 @media (max-width: 1024px) {
     .dci-terms-card {
-        margin-bottom:40px;
+        margin-bottom: 40px;
     }
-    
+
     .dci-hero-note {
         display: none;
     }
+
     .dci-hero {
-        display:none;
+        display: none;
         min-height: 90px;
     }
-        .dci-hero-copy img {
-        width:50%;
+
+    .dci-hero-copy img {
+        width: 50%;
     }
+
     .dci-page {
         padding: 0 14px 20px;
     }
@@ -2000,4 +2002,3 @@ dci-hero-note img {
         line-height: 1.5;
     }
 }
-

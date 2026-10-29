@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+﻿﻿document.addEventListener("DOMContentLoaded", () => {
     const dciDays = document.getElementById("dciDays");
     const dciStatus = document.getElementById("dciStatus");
     const dciProgressText = document.getElementById("dciProgressText");
