@@ -666,7 +666,7 @@ body {
 .user-dropdown {
     position: absolute;
     top: calc(100% + 0px);
-    right: 12px;
+    right: 0px;
     width: 300px;
     padding: 0px;
     background: #000000;
