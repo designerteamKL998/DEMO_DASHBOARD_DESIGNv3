@@ -52,6 +52,10 @@ body {
     color: #ead87d;
 }
 
+.titlepromo h2 {
+    font-size: 18px;
+}
+
 .reward-info-row {
     width: 100%;
     display: flex;
