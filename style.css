@@ -556,7 +556,7 @@ body {
 
 .user-box {
     height: 100%;
-    min-width: auto;
+    min-width: 300px;
     padding: 0 15px;
     display: flex;
     align-items: center;
