@@ -67,7 +67,7 @@
 
 .reward-small-image {
     width: 90px;
-    height: 180px;
+    height: 160px;
     flex: 0 0 90px;
     display: flex;
     align-items: center;
@@ -264,6 +264,7 @@
         background-size: 100% 100%;
         color: #fff;
         padding: 15px 20px;
+        display:none;
     }
 
     .status.eligibility {
@@ -272,6 +273,7 @@
         color: #fff;
         color: var(--text);
         padding: 15px 20px;
+        display: none;
     }
 
 /* =========================
@@ -370,7 +372,7 @@
 }
     .reward-content .gold-btn {
     width: 100%;
-    margin-top: auto;
+    margin-top: 10px;
 }
 
 .gold-btn i {

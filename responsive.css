@@ -2633,6 +2633,9 @@
     }
 
 
+
+
+
     }
 
 /*===========================================================================================================  MOBILE 768PX  =======================================================================================*/
@@ -2733,9 +2736,9 @@
         height: auto;
     }
 
-    .balance-label {
+    .balance-label, .balance-header-value .balance-amount {
         margin-bottom: 0;
-        font-size: 12px;
+        font-size: 14px !important;
     }
 
     .balance-value {
@@ -7144,7 +7147,7 @@
     }
 
     .deposit-help-icon {
-        right: -45px;
+        right: 0px;
     }
 
     .deposit-help-dialog {
