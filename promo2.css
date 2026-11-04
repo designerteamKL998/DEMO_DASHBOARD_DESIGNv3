@@ -46,10 +46,19 @@ body {
     background: rgba(32, 34, 40, 0.8);
 }
 
-.titlepromo, .slot-section-text {
+.titlepromo {
     border-bottom: 0px solid #30333d;
     padding-bottom: 10px;
     color: #ead87d;
+}
+
+.titlepromo h2 {
+    margin: 0 0 4px;
+    color: var(--primary);
+    font-family: var(--font-main);
+    font-size: 18px;
+    font-weight: var(--weight-bold);
+    line-height: 1;
 }
 
 .reward-info-row {
