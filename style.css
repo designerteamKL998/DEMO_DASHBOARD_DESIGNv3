@@ -2528,10 +2528,9 @@ a.rainMiniLauncher {
     z-index: 50;
     display: grid;
     place-items: center;
-    width: 19px;
-    height: 19px;
+    width: 14px;
+    height: 14px;
     padding: 0;
-    border: 1.5px solid #fff;
     border-radius: 50%;
     background: #ff3038;
     color: #fff;
