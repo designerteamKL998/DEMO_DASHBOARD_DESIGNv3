@@ -39,15 +39,15 @@
                     Math.floor((width + gap) / (cardWidth + gap))
                 );
 
-                // Tablet: show as many cards as fit in one row, up to 9.
-                return Math.min(9, fittingCount);
+                // Tablet/mobile: 4 columns x 2 rows.
+                return 8;
             }
 
-            // Desktop follows the existing 8-column Hot/New Games layout.
+            // Desktop follows the existing 8-column layout: 2 rows.
             const columns = getComputedStyle(grid).gridTemplateColumns
                 .split(/\s+/)
                 .filter(Boolean).length;
-            return Math.min(8, Math.max(1, columns || 8));
+            return Math.min(16, Math.max(1, columns || 8) * 2);
         }
         function render() {
             const seen = new Set();

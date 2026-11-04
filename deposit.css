@@ -41,7 +41,8 @@ select {
     height: 24px;
     object-fit: contain;
     display: block;
-} 
+}
+
 button,
 select {
     cursor: pointer;
@@ -490,7 +491,7 @@ dialog {
     padding: 30px;
     max-width: 450px;
     width: calc(100% - 32px);
-    margin:auto;
+    margin: auto;
 }
 
     dialog::backdrop {
@@ -579,152 +580,11 @@ body.compact main {
     margin-top: 28px;
 }
 
-@media (max-width: 1100px) {
-    .workspace {
-        grid-template-columns: 190px 1fr;
-    }
 
-    .review {
-        grid-column: 2;
-        position: static;
-    }
 
-    .rail {
-        grid-row: 1/3;
-    }
 
-    .review dl {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0 28px;
-    }
 
-    .review .total strong {
-        margin-bottom: 15px;
-    }
 
-    body.compact .workspace {
-        grid-template-columns: 190px 1fr;
-    }
-}
-
-@media (max-width: 700px) {
-    header {
-        padding: 17px 22px;
-    }
-
-    main {
-        margin: 30px auto;
-        padding: 0 20px;
-    }
-
-    h1 {
-        font-size: 32px;
-    }
-
-    .heading {
-        margin-bottom: 25px;
-        align-items: start;
-        gap: 10px;
-    }
-
-        .heading > p {
-            font-size: 13px;
-        }
-
-        .heading .quiet {
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-    .workspace,
-    body.compact .workspace {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .rail {
-        width: 100%;
-    }
-
-        .rail .eyebrow {
-            margin-bottom: 10px;
-        }
-
-    .methods {
-        display: flex;
-        gap: 8px;
-        overflow-x: auto;
-        padding-bottom: 5px;
-    }
-
-    .method {
-        min-width: 145px;
-        max-width: 145px;
-        display: block;
-        padding: 13px;
-        margin: 0;
-        border-color: var(--line);
-    }
-
-        .method .icon {
-            display: block;
-            text-align: left;
-            margin-bottom: 8px;
-        }
-
-        .method strong {
-            font-size: 12px;
-        }
-
-        .method small {
-            font-size: 10px;
-        }
-
-    .indicator,
-    .rail-note {
-        display: none;
-    }
-
-    .form,
-    .review {
-        width: 100%;
-        padding: 22px;
-    }
-
-        .review dl {
-            display: block;
-        }
-
-    .foot {
-        gap: 20px;
-    }
-
-    .tag {
-        font-size: 9px;
-    }
-
-    .presets {
-        gap: 6px;
-    }
-
-    .preset {
-        padding: 10px 5px;
-    }
-
-    .tweaks {
-        position: static;
-        text-align: right;
-        margin: 0 20px 15px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-    }
-}
 
 /* Expanded layout: payment methods and every choice stay visible. */
 .workspace {
@@ -867,120 +727,9 @@ body.compact main {
     margin-right: auto;
 }
 
-@media (max-width: 1000px) {
-    .workspace {
-        grid-template-columns: minmax(0, 1fr) 280px;
-        gap: 20px;
-    }
 
-    .method {
-        padding: 12px;
-    }
 
-        .method strong {
-            font-size: 12px;
-        }
 
-        .method small {
-            font-size: 10px;
-        }
-
-    .provider-options {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .bonus-options {
-        grid-template-columns: 1fr;
-    }
-
-    .review {
-        padding: 20px;
-    }
-
-    .rail {
-        grid-row: auto;
-    }
-
-    .review {
-        grid-column: auto;
-    }
-}
-
-@media (max-width: 700px) {
-    .workspace {
-        display: flex;
-        gap: 20px;
-    }
-
-    .methods {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        overflow: visible;
-        gap: 8px;
-        padding: 0;
-    }
-
-    .method {
-        min-width: 0;
-        max-width: none;
-        width: 100%;
-        height: 98px;
-        padding: 13px;
-        display: flex;
-    }
-
-        .method:last-child {
-            grid-column: 1/-1;
-            height: 80px;
-            flex-wrap: nowrap;
-            gap: 12px;
-        }
-
-            .method:last-child > span:nth-child(2) {
-                flex-basis: auto;
-            }
-
-        .method .icon {
-            margin: 0;
-            display: block;
-        }
-
-        .method strong {
-            font-size: 13px;
-        }
-
-        .method small {
-            font-size: 11px;
-        }
-
-        .method .indicator {
-            display: block;
-        }
-
-    .workspace > aside {
-        width: 100%;
-    }
-
-    .review {
-        position: static;
-    }
-
-    .provider-options {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .bonus-options {
-        grid-template-columns: 1fr;
-    }
-
-    .heading {
-        align-items: start;
-    }
-
-    .form {
-        padding: 20px;
-    }
-}
 
 .gateway-section {
     margin-top: 24px;
@@ -1044,39 +793,9 @@ main {
     line-height: 1.4;
 }
 
-@media (max-width: 1000px) {
-    .workspace {
-        grid-template-columns: minmax(0, 1fr) 270px;
-    }
 
-    .bank-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 
-    .presets {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
 
-@media (max-width: 700px) {
-    .bank-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .channel-options {
-        gap: 6px;
-    }
-
-        .channel-options .choice {
-            padding: 10px 8px;
-            font-size: 11px;
-        }
-
-        .channel-options .radio-dot {
-            width: 12px;
-            height: 12px;
-        }
-}
 
 /* Two horizontal rows: method navigation, then two compact content panels. */
 main {
@@ -1091,7 +810,7 @@ main {
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 23px;
     margin-bottom: 4px;
 }
 
@@ -1277,124 +996,9 @@ h2 {
     margin: 17px 0;
 }
 
-@media (max-width: 1000px) {
-    .workspace {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-    }
 
-    .method {
-        padding: 10px;
-        gap: 7px;
-    }
 
-        .method .icon {
-            display: none;
-        }
 
-        .method strong {
-            font-size: 11px;
-        }
-
-        .method small {
-            font-size: 9px;
-        }
-
-    .form {
-        padding: 16px;
-    }
-
-    .bank-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .provider-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .bonus-choice > span:first-child {
-        display: block;
-    }
-
-    .bonus-choice small {
-        margin-top: 3px;
-    }
-
-    .presets {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 700px) {
-    main {
-        margin-top: 22px;
-        padding: 0 16px;
-    }
-
-    .workspace {
-        display: flex;
-        gap: 14px;
-    }
-
-    .methods {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .method,
-    .method:last-child {
-        height: 62px;
-        padding: 11px;
-    }
-
-        .method .icon {
-            display: block;
-        }
-
-        .method .indicator {
-            position: static;
-        }
-
-        .method strong {
-            font-size: 12px;
-        }
-
-        .method small {
-            font-size: 10px;
-        }
-
-    .form {
-        width: 100%;
-        padding: 18px;
-    }
-
-    .provider-options {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-        .provider-options .choice {
-            font-size: 10px;
-        }
-
-    .bonus-choice > span:first-child {
-        display: flex;
-    }
-
-    .bonus-choice small {
-        margin: 0;
-    }
-
-    .heading p {
-        font-size: 12px;
-    }
-
-    .foot {
-        margin-top: 20px;
-    }
-
-    .bank-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
 
 .receipt-section {
     margin-top: 20px;
@@ -1618,14 +1222,7 @@ h2 {
     padding-top: 14px;
 }
 
-@media (max-width: 700px) {
-    .account-list > div {
-        grid-template-columns: 96px 1fr;
-    }
 
-    .account-source {
-    }
-}
 
 .wallet-limit-note {
     padding: 11px 13px;
@@ -1710,16 +1307,7 @@ h2 {
     height: 29px;
 }
 
-@media (max-width: 1000px) {
-    .provider-options .bank-identity {
-        flex-wrap: wrap;
-    }
 
-    .bank-logo {
-        width: 28px;
-        height: 28px;
-    }
-}
 
 .bank-logo[src$="rhb-wordmark.png"] {
     width: 42px;
@@ -1761,16 +1349,7 @@ h2 {
     padding: 10px 12px;
 }
 
-@media (max-width: 700px) {
-    .channel-options:has(.channel-logo) {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 
-    .channel-logo {
-        max-width: 100px;
-        height: 30px;
-    }
-}
 
 .submit-errors {
     padding: 11px 13px;
@@ -1922,124 +1501,11 @@ h2 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-@media (min-width: 701px) and (max-width: 1100px) {
-    .bank-options {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
 
-@media (max-width: 700px) {
-    .methods {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 6px;
-        overflow: visible;
-    }
 
-        .methods .method,
-        .methods .method:last-child {
-            grid-column: auto;
-            aspect-ratio: 1;
-            width: 100%;
-            height: auto;
-            min-height: 0;
-            min-width: 0;
-            max-width: none;
-            padding: 7px 3px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            text-align: center;
-            position: relative;
-            border-radius: 8px;
-        }
 
-            .methods .method .icon {
-                display: block;
-                width: auto;
-                line-height: 1;
-                margin: 0;
-            }
 
-            .methods .method > span:nth-child(2),
-            .methods .method:last-child > span:nth-child(2) {
-                flex-basis: auto;
-            }
 
-            .methods .method strong {
-                line-height: 1.15;
-                font-weight: 600;
-            }
-
-            .methods .method small {
-                display: none;
-            }
-
-            .methods .method .indicator {
-                position: absolute;
-                top: 3px;
-                right: 5px;
-                margin: 0;
-            }
-
-    .method-name-full {
-        display: none;
-    }
-
-    .method-name-short {
-        display: inline;
-    }
-
-    .bank-options {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 6px;
-    }
-
-        .bank-options .choice,
-        .receiving-bank-options .choice {
-            min-height: 95px;
-            padding: 11px 4px 7px;
-        }
-
-    .bank-logo-frame,
-    .bank-logo-frame .bank-logo,
-    .provider-options .bank-logo-frame .bank-logo,
-    .bank-logo-frame .bank-logo[src$="rhb-wordmark.png"],
-    .bank-logo-frame .bank-logo[src$="cimb-current.svg"] {
-        width: 34px;
-        height: 34px;
-    }
-
-    .bank-logo-frame {
-        flex-basis: 34px;
-    }
-
-    .bank-options .bank-identity,
-    .receiving-bank-options .bank-identity {
-        gap: 7px;
-    }
-
-        .bank-options .bank-identity > span:last-child,
-        .receiving-bank-options .bank-identity > span:last-child {
-            min-height: 25px;
-        }
-}
-
-@media (max-width: 359px) {
-    .methods {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-        .methods .method strong {
-        }
-
-    .bank-options {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
 
 .compact-summary {
     display: flex;
@@ -2089,17 +1555,7 @@ h2 {
     margin-top: 13px;
 }
 
-@media (max-width: 359px) {
-    .compact-summary {
-        gap: 10px;
-    }
 
-    .summary-value > strong {
-    }
-
-    .summary-details > span {
-    }
-}
 
 /* Consistent compact square choices across bank, wallet and network options. */
 .bank-options,
@@ -2273,108 +1729,15 @@ h2 {
     padding: 24px;
 }
 
-@media (min-width: 701px) and (max-width: 1100px) {
-    .bank-options,
-    .receiving-bank-options,
-    .wallet-provider-options,
-    .channel-options.wallet-tiles,
-    .choices.network-tiles {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
 
-@media (max-width: 700px) {
-    .bank-options,
-    .receiving-bank-options,
-    .wallet-provider-options,
-    .channel-options.wallet-tiles,
-    .choices.network-tiles {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 6px;
-    }
 
-        .bank-options .choice,
-        .receiving-bank-options .choice,
-        .wallet-provider-options .choice,
-        .wallet-tiles .choice,
-        .network-tiles .choice {
-            min-height: 0;
-            padding: 7px 3px;
-            gap: 3px;
-        }
 
-        .bank-options .bank-identity > span:last-child,
-        .receiving-bank-options .bank-identity > span:last-child {
-            min-height: 20px;
-        }
 
-        .bank-options .bank-identity,
-        .receiving-bank-options .bank-identity {
-            gap: 3px;
-        }
 
-        .wallet-provider-options .choice {
-        }
 
-    .network-tiles strong {
-    }
 
-    .network-tiles small {
-    }
 
-    .wallet-tiles .channel-logo {
-        height: 34px;
-    }
 
-    .qr-image-button {
-        width: 80px;
-        height: 80px;
-        flex-basis: 80px;
-    }
-}
-
-@media (max-width: 359px) {
-    .bank-options,
-    .receiving-bank-options,
-    .wallet-provider-options,
-    .channel-options.wallet-tiles,
-    .choices.network-tiles {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (min-width: 701px) and (max-width: 900px) {
-    .bank-options,
-    .receiving-bank-options,
-    .wallet-provider-options,
-    .channel-options.wallet-tiles,
-    .choices.network-tiles {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 700px) {
-    .bank-options .choice,
-    .receiving-bank-options .choice,
-    .wallet-provider-options .choice,
-    .wallet-tiles .choice,
-    .network-tiles .choice {
-        padding: 3px;
-    }
-
-    .bank-logo-frame,
-    .bank-logo-frame .bank-logo,
-    .provider-options .bank-logo-frame .bank-logo,
-    .bank-logo-frame .bank-logo[src$="rhb-wordmark.png"],
-    .bank-logo-frame .bank-logo[src$="cimb-current.svg"] {
-        width: 28px;
-        height: 28px;
-    }
-
-    .bank-logo-frame {
-        flex-basis: 28px;
-    }
-}
 /* Promo activation feedback. */
 .promo-active input {
     border-color: var(--gold);
@@ -2684,38 +2047,7 @@ body.light .bonus-info-dialog {
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
 }
 
-@media (max-width: 700px) {
-    .bonus-info-dialog {
-        width: 320px;
-        padding: 14px 12px 13px;
-    }
 
-    .bonus-info-title {
-        font-size: 12px;
-    }
-
-    .bonus-info-stats {
-        padding: 8px 2px;
-    }
-
-    .bonus-info-section h3 {
-        font-size: 10px;
-    }
-
-    .bonus-info-item {
-        font-size: 8px;
-    }
-
-        .bonus-info-item img {
-            width: 22px;
-            height: 22px;
-            flex-basis: 18px;
-        }
-
-    .bonus-info-terms p {
-        font-size: 10px;
-    }
-}
 
 
 
@@ -2729,17 +2061,17 @@ body.light .bonus-info-dialog {
 
 /* Clickable deposit help icon and popup */
 .deposit-title-row {
-    position:relative;
-    border:0px solid red;
+    position: relative;
+    border: 0px solid red;
 }
 
 span.deposit-gift-icon {
     font-size: 20px;
 }
 
-span.deposit-gift-icon a{
-    color:#fff;
-}
+    span.deposit-gift-icon a {
+        color: #fff;
+    }
 
 .deposit-gift-icon img {
     width: 18px;
@@ -2755,17 +2087,17 @@ span.deposit-gift-icon a{
     appearance: none;
     -webkit-appearance: none;
     position: absolute;
-    border:0px solid yellow;
-    top:0px;
-    right:-25px;
-    width:25px;
-    height:25px;
-    border-radius:50%;
+    border: 0px solid yellow;
+    top: 0px;
+    right: -25px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
 }
 
 .deposit-help-icon {
-background: #121418;
-    border: 1px solid #4c4d4f;
+    background: #343538;
+    border: 1px solid #717171;
     color: #fff;
 }
 
@@ -2821,9 +2153,9 @@ background: #121418;
         margin-top: 8px;
     }
 
-.deposit-help-dialog-content img {
-    width:100%;
-}
+    .deposit-help-dialog-content img {
+        width: 100%;
+    }
 
 .deposit-help-dialog > .primary {
     width: 100%;
@@ -2923,3 +2255,772 @@ background: #121418;
         opacity: 1;
         border: 2px solid #EAD87D;
     }
+
+
+/* Deposit page heading action icons */
+.deposit-heading-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex: 0 0 auto;
+}
+
+    .deposit-heading-actions .deposit-withdraw-icon,
+    .deposit-heading-actions .deposit-gift-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .deposit-heading-actions .deposit-withdraw-icon a,
+        .deposit-heading-actions .deposit-gift-icon a {
+            display: inline-flex;
+            width: 20px;
+            height: 24px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .deposit-heading-actions .deposit-withdraw-icon img,
+        .deposit-heading-actions .deposit-gift-icon img {
+            display: block;
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+.withdraw-icon img,
+.deposit-icon img {
+}
+
+.linecenter {
+    width: 1px;
+    height: 16px;
+    color: #fff;
+    background: #fff;
+}
+
+@media (max-width: 1100px) {
+    .workspace {
+        grid-template-columns: 190px 1fr;
+    }
+
+    .review {
+        grid-column: 2;
+        position: static;
+    }
+
+    .rail {
+        grid-row: 1/3;
+    }
+
+    .review dl {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 28px;
+    }
+
+    .review .total strong {
+        margin-bottom: 15px;
+    }
+
+    body.compact .workspace {
+        grid-template-columns: 190px 1fr;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+    .bank-options {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+    .bank-options,
+    .receiving-bank-options,
+    .wallet-provider-options,
+    .channel-options.wallet-tiles,
+    .choices.network-tiles {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1000px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr) 280px;
+        gap: 20px;
+    }
+
+    .method {
+        padding: 12px;
+    }
+
+        .method strong {
+            font-size: 12px;
+        }
+
+        .method small {
+            font-size: 10px;
+        }
+
+    .provider-options {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bonus-options {
+        grid-template-columns: 1fr;
+    }
+
+    .review {
+        padding: 20px;
+    }
+
+    .rail {
+        grid-row: auto;
+    }
+
+    .review {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 1000px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr) 270px;
+    }
+
+    .bank-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .presets {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1000px) {
+    .workspace {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .method {
+        padding: 10px;
+        gap: 7px;
+    }
+
+        .method .icon {
+            display: none;
+        }
+
+        .method strong {
+            font-size: 11px;
+        }
+
+        .method small {
+            font-size: 9px;
+        }
+
+    .form {
+        padding: 16px;
+    }
+
+    .bank-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .provider-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bonus-choice > span:first-child {
+        display: block;
+    }
+
+    .bonus-choice small {
+        margin-top: 3px;
+    }
+
+    .presets {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1000px) {
+    .provider-options .bank-identity {
+        flex-wrap: wrap;
+    }
+
+    .bank-logo {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .bank-options,
+    .receiving-bank-options,
+    .wallet-provider-options,
+    .channel-options.wallet-tiles,
+    .choices.network-tiles {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    header {
+        padding: 17px 22px;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 0 20px;
+    }
+
+    .bank-options .bank-identity > span:last-child, .receiving-bank-options .bank-identity > span:last-child {
+        font-size: 10px;
+    }
+
+    .heading {
+        margin-bottom: 25px;
+        align-items: start;
+        gap: 4px;
+    }
+
+    .deposit-heading-copy {
+        margin-left: -19px;
+    }
+
+        .heading > p {
+            font-size: 13px;
+        }
+
+        .heading .quiet {
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+    .workspace,
+    body.compact .workspace {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .rail {
+        width: 100%;
+    }
+
+        .rail .eyebrow {
+            margin-bottom: 10px;
+        }
+
+    .methods {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .method {
+        min-width: 145px;
+        max-width: 145px;
+        display: block;
+        padding: 13px;
+        margin: 0;
+        border-color: var(--line);
+    }
+
+        .method .icon {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        .method strong {
+            font-size: 12px;
+        }
+
+        .method small {
+            font-size: 10px;
+        }
+
+    .indicator,
+    .rail-note {
+        display: none;
+    }
+
+    .form,
+    .review {
+        width: 100%;
+        padding: 22px;
+    }
+
+        .review dl {
+            display: block;
+        }
+
+    .foot {
+        gap: 20px;
+    }
+
+    .tag {
+        font-size: 9px;
+    }
+
+    .presets {
+        gap: 6px;
+    }
+
+    .preset {
+        padding: 10px 5px;
+    }
+
+    .tweaks {
+        position: static;
+        text-align: right;
+        margin: 0 20px 15px;
+    }
+}
+
+@media (max-width: 700px) {
+    .workspace {
+        display: flex;
+        gap: 20px;
+    }
+
+    .methods {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow: visible;
+        gap: 8px;
+        padding: 0;
+    }
+
+    .method {
+        min-width: 0;
+        max-width: none;
+        width: 100%;
+        height: 98px;
+        padding: 13px;
+        display: flex;
+    }
+
+        .method:last-child {
+            grid-column: 1/-1;
+            height: 80px;
+            flex-wrap: nowrap;
+            gap: 12px;
+        }
+
+            .method:last-child > span:nth-child(2) {
+                flex-basis: auto;
+            }
+
+        .method .icon {
+            margin: 0;
+            display: block;
+        }
+
+        .method strong {
+            font-size: 13px;
+        }
+
+        .method small {
+            font-size: 11px;
+        }
+
+        .method .indicator {
+            display: block;
+        }
+
+    .workspace > aside {
+        width: 100%;
+    }
+
+    .review {
+        position: static;
+    }
+
+    .provider-options {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bonus-options {
+        grid-template-columns: 1fr;
+    }
+
+    .heading {
+        align-items: start;
+    }
+
+    .form {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .bank-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .channel-options {
+        gap: 6px;
+    }
+
+        .channel-options .choice {
+            padding: 10px 8px;
+            font-size: 11px;
+        }
+
+        .channel-options .radio-dot {
+            width: 12px;
+            height: 12px;
+        }
+}
+
+@media (max-width: 700px) {
+    main {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .workspace {
+        display: flex;
+        gap: 5px;
+        max-width: 100%;
+    }
+
+    .heading {
+        max-width:100%;
+        justify-content:space-around;
+    }
+
+    .methods {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .method,
+    .method:last-child {
+        height: 62px;
+        padding: 11px;
+    }
+
+        .method .icon {
+            display: block;
+        }
+
+        .method .indicator {
+            position: static;
+        }
+
+        .method strong {
+            font-size: 12px;
+        }
+
+        .method small {
+            font-size: 10px;
+        }
+
+    .form {
+        width: 100%;
+        padding: 18px;
+    }
+
+    .provider-options {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+        .provider-options .choice {
+            font-size: 10px;
+        }
+
+    .bonus-choice > span:first-child {
+        display: flex;
+    }
+
+    .bonus-choice small {
+        margin: 0;
+    }
+
+    .heading p {
+        font-size: 12px;
+    }
+
+    .foot {
+        margin-top: 20px;
+    }
+
+    .bank-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .account-list > div {
+        grid-template-columns: 96px 1fr;
+    }
+
+    .account-source {
+    }
+}
+
+@media (max-width: 700px) {
+    .channel-options:has(.channel-logo) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .channel-logo {
+        max-width: 100px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 700px) {
+    .methods {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+        overflow: visible;
+    }
+
+        .methods .method,
+        .methods .method:last-child {
+            grid-column: auto;
+            aspect-ratio: 1;
+            width: 100%;
+            height: auto;
+            min-height: 0;
+            min-width: 0;
+            max-width: none;
+            padding: 7px 3px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            text-align: center;
+            position: relative;
+            border-radius: 8px;
+        }
+
+            .methods .method .icon {
+                display: block;
+                width: auto;
+                line-height: 1;
+                margin: 0;
+            }
+
+            .methods .method > span:nth-child(2),
+            .methods .method:last-child > span:nth-child(2) {
+                flex-basis: auto;
+            }
+
+            .methods .method strong {
+                line-height: 1.15;
+                font-weight: 600;
+            }
+
+            .methods .method small {
+                display: none;
+            }
+
+            .methods .method .indicator {
+                position: absolute;
+                top: 3px;
+                right: 5px;
+                margin: 0;
+            }
+
+    .method-name-full {
+        display: none;
+    }
+
+    .method-name-short {
+        display: inline;
+    }
+
+    .bank-options {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+        .bank-options .choice,
+        .receiving-bank-options .choice {
+            min-height: 95px;
+            padding: 11px 4px 7px;
+        }
+
+    .bank-logo-frame,
+    .bank-logo-frame .bank-logo,
+    .provider-options .bank-logo-frame .bank-logo,
+    .bank-logo-frame .bank-logo[src$="rhb-wordmark.png"],
+    .bank-logo-frame .bank-logo[src$="cimb-current.svg"] {
+        width: 34px;
+        height: 34px;
+    }
+
+    .bank-logo-frame {
+        flex-basis: 34px;
+    }
+
+    .bank-options .bank-identity,
+    .receiving-bank-options .bank-identity {
+        gap: 7px;
+    }
+
+        .bank-options .bank-identity > span:last-child,
+        .receiving-bank-options .bank-identity > span:last-child {
+            min-height: 25px;
+        }
+}
+
+@media (max-width: 700px) {
+    .bank-options,
+    .receiving-bank-options,
+    .wallet-provider-options,
+    .channel-options.wallet-tiles,
+    .choices.network-tiles {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+        .bank-options .choice,
+        .receiving-bank-options .choice,
+        .wallet-provider-options .choice,
+        .wallet-tiles .choice,
+        .network-tiles .choice {
+            min-height: 0;
+            padding: 7px 3px;
+            gap: 3px;
+        }
+
+        .bank-options .bank-identity > span:last-child,
+        .receiving-bank-options .bank-identity > span:last-child {
+            min-height: 20px;
+        }
+
+        .bank-options .bank-identity,
+        .receiving-bank-options .bank-identity {
+            gap: 3px;
+        }
+
+        .wallet-provider-options .choice {
+        }
+
+    .network-tiles strong {
+    }
+
+    .network-tiles small {
+    }
+
+    .wallet-tiles .channel-logo {
+        height: 34px;
+    }
+
+    .qr-image-button {
+        width: 80px;
+        height: 80px;
+        flex-basis: 80px;
+    }
+}
+
+@media (max-width: 700px) {
+    .bank-options .choice,
+    .receiving-bank-options .choice,
+    .wallet-provider-options .choice,
+    .wallet-tiles .choice,
+    .network-tiles .choice {
+        padding: 3px;
+    }
+
+    .bank-logo-frame,
+    .bank-logo-frame .bank-logo,
+    .provider-options .bank-logo-frame .bank-logo,
+    .bank-logo-frame .bank-logo[src$="rhb-wordmark.png"],
+    .bank-logo-frame .bank-logo[src$="cimb-current.svg"] {
+        width: 28px;
+        height: 28px;
+    }
+
+    .bank-logo-frame {
+        flex-basis: 28px;
+    }
+}
+
+@media (max-width: 700px) {
+    .bonus-info-dialog {
+        width: 320px;
+        padding: 14px 12px 13px;
+    }
+
+    .bonus-info-title {
+        font-size: 12px;
+    }
+
+    .bonus-info-stats {
+        padding: 8px 2px;
+    }
+
+    .bonus-info-section h3 {
+        font-size: 10px;
+    }
+
+    .bonus-info-item {
+        font-size: 8px;
+    }
+
+        .bonus-info-item img {
+            width: 22px;
+            height: 22px;
+            flex-basis: 18px;
+        }
+
+    .bonus-info-terms p {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 359px) {
+    .methods {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+        .methods .method strong {
+        }
+
+    .bank-options {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 359px) {
+    .compact-summary {
+        gap: 10px;
+    }
+
+    .summary-value > strong {
+    }
+
+    .summary-details > span {
+    }
+}
+
+@media (max-width: 359px) {
+    .bank-options,
+    .receiving-bank-options,
+    .wallet-provider-options,
+    .channel-options.wallet-tiles,
+    .choices.network-tiles {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

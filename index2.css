@@ -9,7 +9,6 @@
     max-width: 1320px;
     margin: 22px auto 20px;
     color: var(--text-main, #fff);
-
 }
 
 .last-played-header {
@@ -55,36 +54,35 @@
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     column-gap: 35px;
-    row-gap: 0;
+    row-gap: 20px;
     align-items: start;
 }
 
-.last-played-grid .last-played-card {
-    position: relative;
-    display: block;
-    width: 100%;
-    min-width: 0;
-    overflow: visible;
-    border-radius: var(--radius-sm, 5px);
-    background: var(--bg-white, #121418);
-    text-decoration: none;
-    transition: transform var(--transition-fast, .2s ease),
-                box-shadow var(--transition-fast, .2s ease);
-}
+    .last-played-grid .last-played-card {
+        position: relative;
+        display: block;
+        width: 100%;
+        min-width: 0;
+        overflow: visible;
+        border-radius: var(--radius-sm, 5px);
+        background: var(--bg-white, #121418);
+        text-decoration: none;
+        transition: transform var(--transition-fast, .2s ease), box-shadow var(--transition-fast, .2s ease);
+    }
 
-.last-played-grid .last-played-card img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 15px;
-}
+        .last-played-grid .last-played-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 15px;
+        }
 
-.last-played-grid .last-played-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .45);
-}
+        .last-played-grid .last-played-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .45);
+        }
 
 .last-played-empty {
     grid-column: 1 / -1;
@@ -107,21 +105,25 @@
     }
 
     .last-played-grid {
-        display: flex;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
         overflow: hidden;
         padding: 8px 0 12px;
     }
 
-    .last-played-grid .last-played-card {
-        flex: 0 0 84px;
-        width: 84px;
-        min-width: 84px;
-    }
+        .last-played-grid .last-played-card {
+            width: 100%;
+            min-width: 0;
+        }
 
-    .last-played-grid .last-played-card img {
-        border-radius: 12px;
-    }
+        .last-played-grid > :nth-child(n + 9) {
+            display: none !important;
+        }
+
+        .last-played-grid .last-played-card img {
+            border-radius: 12px;
+        }
 }
 
 @media (max-width: 480px) {

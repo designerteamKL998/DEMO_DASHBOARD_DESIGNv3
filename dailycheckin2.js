@@ -1,380 +1,434 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const dciDays = document.getElementById("dciDays");
-    // Support both the mobile and desktop Check-in buttons/status labels.
-    const dciCheckinButtons = document.querySelectorAll("#dciCheckinButton");
-    const dciStatuses = document.querySelectorAll("#dciStatus");
+    const dciStatus = document.getElementById("dciStatus");
+    const dciMonthLabel = document.getElementById("dciMonthLabel");
+    const dciPrevMonth = document.getElementById("dciPrevMonth");
+    const dciNextMonth = document.getElementById("dciNextMonth");
+    const treasureWrap = document.querySelector(".dci-treasure-wrap");
 
-    function setCheckinDisabled(disabled) {
-        dciCheckinButtons.forEach(button => {
-            button.disabled = disabled;
-        });
+    // TEMPORARY TEST MODE: each successful check-in unlocks the next day after 2 seconds.
+    // Change TEST_MODE to false when testing is finished to restore the normal midnight schedule.
+    const TEST_MODE = true;
+    const STORAGE_KEY = TEST_MODE ? "dci_daily_streak_treasure_test_v2" : "dci_daily_streak_treasure_v4";
+    const TEST_DATE_KEY = "dci_daily_streak_test_date_v2";
+    const TEST_TIMER_KEY = "dci_daily_streak_test_timer_v2";
+    let testTimer = null;
+    const CYCLE_LENGTH = 28;
+    const CHECKPOINTS = [7, 14, 21, 28];
+    const CHECKPOINT_REWARDS = { 7: 20, 14: 60, 21: 70, 28: 100 };
+
+    // Missed-day appearance: replace the grayscale look with a red missed state.
+    const missedStyle = document.createElement("style");
+    missedStyle.textContent = `
+        .dci-day.dci-missed {
+            filter: none !important;
+            -webkit-filter: none !important;
+            opacity: 1 !important;
+            border-color: #d93636 !important;
+            background-color: rgba(217, 54, 54, 0.10) !important;
+        }
+        .dci-day.dci-missed .dci-missed-cross {
+            color: #e53935 !important;
+            opacity: 1 !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+        }
+        .dci-day.dci-missed .dci-day-label,
+        .dci-day.dci-missed .dci-day-number,
+        .dci-day.dci-missed * {
+            color: #e53935 !important;
+            opacity: 1 !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+        }
+        .dci-day.dci-missed .dci-missed-cross {
+            color: #e53935 !important;
+            font-weight: 900 !important;
+            font-size: 30px !important;
+        }
+    `;
+    document.head.appendChild(missedStyle);
+
+    function dateKey(date) {
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    }
+
+    function parseKey(key) {
+        const [year, month, day] = key.split("-").map(Number);
+        return new Date(year, month - 1, day);
+    }
+
+    function addDays(date, amount) {
+        const result = new Date(date);
+        result.setDate(result.getDate() + amount);
+        return result;
+    }
+
+    function dayDifference(from, to) {
+        const a = new Date(from.getFullYear(), from.getMonth(), from.getDate());
+        const b = new Date(to.getFullYear(), to.getMonth(), to.getDate());
+        return Math.round((b - a) / 86400000);
+    }
+
+    function todayDate() {
+        if (TEST_MODE) {
+            const savedTestDate = localStorage.getItem(TEST_DATE_KEY);
+            if (savedTestDate) return parseKey(savedTestDate);
+        }
+
+        const now = new Date();
+        return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    }
+
+    function readTestTimer() {
+        try {
+            return JSON.parse(localStorage.getItem(TEST_TIMER_KEY) || "null");
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function saveTestTimer(phase, at) {
+        localStorage.setItem(TEST_TIMER_KEY, JSON.stringify({ phase, at }));
+    }
+
+    function scheduleTestTimer() {
+        if (!TEST_MODE) return;
+        if (testTimer) window.clearTimeout(testTimer);
+
+        let timerData = readTestTimer();
+        if (!timerData || !timerData.phase || !timerData.at) {
+            timerData = { phase: "expire", at: Date.now() + 2000 };
+            saveTestTimer(timerData.phase, timerData.at);
+        }
+
+        const delay = Math.max(0, timerData.at - Date.now());
+        testTimer = window.setTimeout(() => {
+            const current = readTestTimer();
+            if (!current) return;
+
+            if (current.phase === "next") {
+                // Two seconds after a successful check-in, unlock the next day.
+                const nextDate = addDays(todayDate(), 1);
+                localStorage.setItem(TEST_DATE_KEY, dateKey(nextDate));
+                saveTestTimer("expire", Date.now() + 2000);
+                renderCalendar();
+                scheduleTestTimer();
+                return;
+            }
+
+            // The current day expired without a check-in. Advancing the virtual
+            // date makes syncMissedDays() mark that day with a red X.
+            const nextDate = addDays(todayDate(), 1);
+            localStorage.setItem(TEST_DATE_KEY, dateKey(nextDate));
+            saveTestTimer("expire", Date.now() + 2000);
+            renderCalendar();
+            scheduleTestTimer();
+        }, delay);
     }
 
     function setStatus(message) {
-        dciStatuses.forEach(status => {
-            status.textContent = message;
+        if (dciStatus) dciStatus.textContent = message;
+    }
+
+    function freshState(startDate = todayDate()) {
+        return {
+            cycleStart: dateKey(startDate),
+            checkedDates: [],
+            missedDates: [],
+            streak: 0,
+            streakStart: null,
+            completedMilestones: [],
+            failedMilestones: []
+        };
+    }
+
+    function loadState() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+            if (saved && saved.cycleStart && Array.isArray(saved.checkedDates)) {
+                saved.missedDates = Array.isArray(saved.missedDates) ? saved.missedDates : [];
+                saved.completedMilestones = Array.isArray(saved.completedMilestones) ? saved.completedMilestones : [];
+                saved.failedMilestones = Array.isArray(saved.failedMilestones) ? saved.failedMilestones : [];
+                saved.streak = Number(saved.streak) || 0;
+                saved.streakStart = saved.streakStart || null;
+                return saved;
+            }
+        } catch (error) {}
+        return freshState();
+    }
+
+    let state = loadState();
+
+    function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function cycleStartDate() {
+        return parseKey(state.cycleStart);
+    }
+
+    function currentCycleDay() {
+        return dayDifference(cycleStartDate(), todayDate()) + 1;
+    }
+
+    // Missed days do not reduce earned check-ins or treasure progress.
+    // Progress is based on the total number of successful check-ins in this cycle.
+    function syncMissedDays() {
+        const today = todayDate();
+        let cycleDay = dayDifference(cycleStartDate(), today) + 1;
+
+        if (cycleDay > CYCLE_LENGTH) {
+            const nextStart = addDays(cycleStartDate(), CYCLE_LENGTH);
+            state = freshState(nextStart);
+            cycleDay = 1;
+        }
+
+        if (cycleDay < 1) {
+            state = freshState(today);
+            cycleDay = 1;
+        }
+
+        for (let i = 1; i < cycleDay; i++) {
+            const key = dateKey(addDays(cycleStartDate(), i - 1));
+            if (!state.checkedDates.includes(key) && !state.missedDates.includes(key)) {
+                state.missedDates.push(key);
+            }
+        }
+
+        saveState();
+        return cycleDay;
+    }
+
+    function buildTreasureBar() {
+        if (!treasureWrap) return;
+        treasureWrap.innerHTML = `
+            <div class="dci-checkin-notice" role="status" aria-live="polite">
+                <span class="dci-checkin-notice-star" aria-hidden="true">★</span>
+                <span class="dci-checkin-notice-title">Check-in Successful!</span>
+                <span class="dci-checkin-notice-divider" aria-hidden="true"></span>
+                <span class="dci-checkin-notice-message">Great job! Keep it up and collect your rewards along the way.</span>
+            </div>
+            <div class="dci-treasure-track">
+                <div class="dci-treasure-line">
+                    <span class="dci-treasure-fill"></span>
+                </div>
+                ${CHECKPOINTS.map((day, index) => `
+                    <div class="dci-treasure-stop treasure-stop-${day} chest-${index + 1}"
+                         data-checkpoint="${day}"
+                         style="--treasure-point:${8 + (index + 1) * 21}%">
+                        <div class="dci-treasure-chest chest-${index + 1}" aria-hidden="true">
+                            <img
+                                class="dci-treasure-chest-img"
+                                src="${[
+                                    'imgs/checkin/7.png',
+                                    'imgs/checkin/14.png',
+                                    'imgs/checkin/21.png',
+                                    'imgs/checkin/28.png'
+                                ][index]}"
+                                alt=""
+                                draggable="false"
+                                style="display:block;width:100%;height:100%;object-fit:contain;"
+                            />
+                        </div>
+                        <span class="dci-treasure-checkpoint">${day}</span>
+                        <span class="dci-treasure-reward">MYR${CHECKPOINT_REWARDS[day]}</span>
+                        <span class="dci-treasure-state" aria-hidden="true"></span>
+                    </div>
+                `).join("")}
+            </div>`;
+    }
+
+    function showCheckinNotice(reachedCheckpoint = null) {
+        if (!treasureWrap) return;
+        const notice = treasureWrap.querySelector(".dci-checkin-notice");
+        if (!notice) return;
+
+        const message = notice.querySelector(".dci-checkin-notice-message");
+        const rewardMessages = {
+            7: "Congratulations! You've reached Day 7 and unlocked a MYR 20 reward.",
+            14: "Congratulations! You've reached Day 14 and unlocked a MYR 60 reward.",
+            21: "Congratulations! You've reached Day 21 and unlocked a MYR 70 reward.",
+            28: "Congratulations! You've reached Day 28 and unlocked the grand reward of MYR 100."
+        };
+
+        if (message) {
+            message.textContent = rewardMessages[reachedCheckpoint]
+                || "Great job! Your check-in has been recorded. Keep going to unlock your next reward.";
+        }
+
+        notice.classList.add("is-visible");
+        if (notice._hideTimer) window.clearTimeout(notice._hideTimer);
+        notice._hideTimer = window.setTimeout(() => {
+            notice.classList.remove("is-visible");
+        }, 60000);
+    }
+
+    function updateTreasureBar() {
+        if (!treasureWrap) return;
+        const fill = treasureWrap.querySelector(".dci-treasure-fill");
+        const totalCheckIns = state.checkedDates.length;
+        const progress = Math.min(totalCheckIns / CYCLE_LENGTH, 1) * 100;
+        if (fill) fill.style.width = `${progress}%`;
+
+        treasureWrap.querySelectorAll(".dci-treasure-stop").forEach(stop => {
+            const checkpoint = Number(stop.dataset.checkpoint);
+            const done = state.completedMilestones.includes(checkpoint);
+            const failed = state.failedMilestones.includes(checkpoint);
+            stop.classList.toggle("is-complete", done);
+            // A missed day never fails a reward checkpoint; progress remains earned.
+            stop.classList.toggle("is-failed", false);
+            stop.classList.toggle("is-next", !done && totalCheckIns > 0);
+            const icon = stop.querySelector(".dci-treasure-state");
+            if (icon) icon.textContent = done ? "✓" : (!done && failed ? "×" : "");
+            stop.setAttribute("aria-label", `Day ${checkpoint}: ${done ? "reward unlocked" : "not yet reached"}`);
         });
     }
-    const dciProgressText = document.getElementById("dciProgressText");
-    const dciProgressBar = document.getElementById("dciProgressBar");
 
-    const rewards = {
-        7:  { amount: "$5.00",  date: "2026-09-29 12:00" },
-        14: { amount: "$5.00",  date: "2026-10-06 12:00" },
-        21: { amount: "$5.00",  date: "2026-10-13 12:00" },
-        28: { amount: "$15.00", date: "2026-10-20 12:00" }
-    };
-
-    const icons = [
-    "imgs/checkin/coinch.png",
-    "imgs/checkin/diamondch.png",
-    "imgs/checkin/ticketch.png",
-    "imgs/checkin/heartcs.png",
-    "imgs/checkin/coinchs.png",
-    "imgs/checkin/diamondchs.png",
-    "imgs/checkin/giftch.png"
-];
-
-    let selectedDay = null;
-
-    // New storage key = starts fresh from Day 1
-    let checkedDays = new Set(
-        JSON.parse(localStorage.getItem("dciCheckedDays_v3") || "[]")
-    );
-
-    // Store the exact check-in time of each day.
-    let checkinTimes = JSON.parse(
-        localStorage.getItem("dciCheckinTimes_v3") || "{}"
-    );
-
-    /* =========================
-       TIME
-    ========================= */
-
-    function getNextDay() {
-        let day = 1;
-
-        while (checkedDays.has(day) && day <= 28) {
-            day++;
-        }
-
-        return day;
-    }
-
-    // Day 1 = available immediately.
-    // Day 2+ = available at 12:00 PM on the calendar day
-    // AFTER the previous day was checked in.
-    function getUnlockTime(day) {
-        if (day === 1) {
-            return 0;
-        }
-
-        const previousCheckin = checkinTimes[day - 1];
-
-        if (!previousCheckin) {
-            return Infinity;
-        }
-
-        const previous = new Date(previousCheckin);
-
-        // Get the next calendar day in Malaysia time.
-        const malaysiaDate = new Intl.DateTimeFormat("en-CA", {
-            timeZone: "Asia/Kuala_Lumpur",
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit"
-        }).format(previous);
-
-        const [year, month, dayNumber] = malaysiaDate.split("-").map(Number);
-
-        // Normalize the next date safely, including month/year boundaries.
-        const nextDate = new Date(Date.UTC(year, month - 1, dayNumber + 1));
-        const nextYear = nextDate.getUTCFullYear();
-        const nextMonth = String(nextDate.getUTCMonth() + 1).padStart(2, "0");
-        const nextDay = String(nextDate.getUTCDate()).padStart(2, "0");
-
-        // 12:00 PM Malaysia time (GMT+08:00) on the next calendar day.
-        return new Date(
-            `${nextYear}-${nextMonth}-${nextDay}T12:00:00+08:00`
-        ).getTime();
-    }
-
-   
-
-    // TEMPORARY TEST MODE: skips the waiting time only.
-    // Check-ins must still be completed in order, from Day 1 to Day 28.
-    const DCI_TEST_MODE = true;
-
-    // Floating "+1 POINT" popup. Styles are added here so the effect works
-    // even if the popup CSS has not been added to the stylesheet yet.
-    function dciShowPointsPopup(dayElement, points) {
+    function showPointsPopup(dayElement) {
         if (!dayElement) return;
-
-        if (!document.getElementById("dci-points-popup-style")) {
-            const style = document.createElement("style");
-            style.id = "dci-points-popup-style";
-            style.textContent = `
-                .dci-points-popup {
-                    position: fixed;
-                    z-index: 999999;
-                    pointer-events: none;
-                    color: #FFD700;
-                    font-size: 24px;
-                    font-weight: 900;
-                    white-space: nowrap;
-                    text-shadow: 0 2px 4px rgba(0,0,0,.8),
-                                 0 0 14px rgba(255,215,0,.45);
-                    transform-origin: center;
-                    animation: dci-points-float 1.2s ease-out forwards;
-                }
-                @keyframes dci-points-float {
-                    0%   { opacity: 0; transform: translate(-50%, 10px) scale(.4); }
-                    20%  { opacity: 1; transform: translate(-50%, 0) scale(1.25); }
-                    35%  { opacity: 1; transform: translate(-50%, -5px) scale(1); }
-                    100% { opacity: 0; transform: translate(-50%, -75px) scale(.85); }
-                }
-                @media (prefers-reduced-motion: reduce) {
-                    .dci-points-popup { animation-duration: .3s; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-
         const rect = dayElement.getBoundingClientRect();
         const popup = document.createElement("div");
         popup.className = "dci-points-popup";
-        popup.textContent = `+${points}`;
+        popup.textContent = "+1";
         popup.style.left = `${rect.left + rect.width / 2}px`;
         popup.style.top = `${rect.top + rect.height / 2}px`;
         document.body.appendChild(popup);
-
         popup.addEventListener("animationend", () => popup.remove(), { once: true });
-        // Fallback cleanup if animationend does not fire.
-        window.setTimeout(() => popup.remove(), 1800);
+        window.setTimeout(() => popup.remove(), 1500);
     }
 
-function canCheck(day) {
-    if (day !== getNextDay() || day > 28) {
-        return false;
+    function updateStatus(cycleDay) {
+        const todayKey = dateKey(todayDate());
+        if (state.checkedDates.includes(todayKey)) {
+            setStatus(`Day ${cycleDay} checked in successfully. Total check-ins: ${state.checkedDates.length}.`);
+        } else if (state.missedDates.length) {
+            setStatus(`Day ${cycleDay} is available. Your progress is saved (${state.checkedDates.length} check-ins). Check in to continue earning rewards.`);
+        } else {
+            setStatus(`Day ${cycleDay} is available for check-in. Check in once today to earn +1.`);
+        }
     }
 
-    // TEST MODE: bypass tempoh menunggu 24 jam
-    if (DCI_TEST_MODE) {
-        return true;
-    }
-
-    return Date.now() >= getUnlockTime(day);
-}
-
-    function getTimeText(timestamp) {
-        return new Date(timestamp).toLocaleTimeString("en-MY", {
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: true,
-            timeZone: "Asia/Kuala_Lumpur"
-        });
-    }
-
-    function getDateText(timestamp) {
-        return new Date(timestamp).toLocaleDateString("en-MY", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-            timeZone: "Asia/Kuala_Lumpur"
-        });
-    }
-
-    /* =========================
-       RENDER DAYS
-    ========================= */
-
-    function renderDays() {
+    function renderCalendar() {
+        if (!dciDays) return;
+        const cycleDay = syncMissedDays();
         dciDays.innerHTML = "";
 
-        for (let day = 1; day <= 28; day++) {
+        const start = cycleStartDate();
+        const end = addDays(start, CYCLE_LENGTH - 1);
+
+        if (dciMonthLabel) {
+            dciMonthLabel.textContent = `${start.toLocaleDateString("en-MY", { day: "numeric", month: "short" })} – ${end.toLocaleDateString("en-MY", { day: "numeric", month: "short", year: "numeric" })}`;
+        }
+
+        for (let index = 0; index < CYCLE_LENGTH; index++) {
+            const day = index + 1;
+            const date = addDays(start, index);
+            const key = dateKey(date);
+            const isChecked = state.checkedDates.includes(key);
+            const isMissed = state.missedDates.includes(key);
+            const isToday = key === dateKey(todayDate());
+            const isFuture = day > cycleDay;
 
             const button = document.createElement("button");
-
             button.type = "button";
             button.className = "dci-day";
-            button.dataset.day = day;
+            button.dataset.date = key;
+            button.dataset.day = String(day);
+            button.setAttribute("aria-label", `Day ${day}${isChecked ? ", checked in" : isMissed ? ", missed" : ""}`);
 
-            if (rewards[day]) {
-                button.classList.add("dci-reward");
-            }
-
-            if (checkedDays.has(day)) {
-                button.classList.add("dci-checked");
-            } else if (!canCheck(day)) {
-                button.classList.add("dci-locked");
-            }
+            if (isChecked) button.classList.add("dci-checked");
+            if (isMissed) button.classList.add("dci-missed");
+            if (isToday) button.classList.add("dci-today");
+            if (isFuture) button.classList.add("dci-locked");
 
             button.innerHTML = `
-    <span class="dci-day-label">DAY ${day}</span>
+                <span class="dci-day-top"><span class="dci-day-label">Day</span></span>
+${isChecked ? '<img class="dci-checked-tick" src="imgs/checkin/RIGHTCLICK.png" alt="" aria-hidden="true" />' : ""}
+${isMissed ? '<img class="dci-missed-cross" src="imgs/checkin/MISSEDCLICK.png" alt="" aria-hidden="true" />' : ""}
+                <strong class="dci-day-number">${day}</strong>`;
 
-    <strong class="dci-day-number">
-        +${day}
-    </strong>
-
-    <span class="dci-day-symbol">
-        <img
-            src="${rewards[day]
-                ? "imgs/checkin/giftch.png"
-                : icons[(day - 1) % icons.length]}"
-            alt=""
-        >
-    </span>
-`;
-            button.addEventListener("click", () => selectDay(day));
+            if (isToday && !isChecked) {
+                button.addEventListener("click", () => handleCheckIn(button, cycleDay));
+            } else {
+                button.addEventListener("click", () => {
+                    if (isChecked) setStatus(`Day ${day} has already been checked in.`);
+                    else if (isMissed) setStatus(`Day ${day} was missed. Continue your new streak from today.`);
+                    else setStatus("Future check-in days are locked.");
+                });
+            }
 
             dciDays.appendChild(button);
         }
 
-        updateProgress();
+        if (dciPrevMonth) dciPrevMonth.disabled = true;
+        if (dciNextMonth) dciNextMonth.disabled = true;
+
+        updateTreasureBar();
+        updateStatus(cycleDay);
     }
 
-    /* =========================
-       SELECT DAY
-    ========================= */
+    function getNextRewardText() {
+        const nextCheckpoint = CHECKPOINTS.find(point => point > state.checkedDates.length);
+        if (!nextCheckpoint) return "all rewards unlocked";
+        return `MYR${CHECKPOINT_REWARDS[nextCheckpoint]} at ${nextCheckpoint} check-ins`;
+    }
 
-    function selectDay(day) {
-        selectedDay = day;
+    function handleCheckIn(button, cycleDay) {
+        const todayKey = dateKey(todayDate());
+        if (state.checkedDates.includes(todayKey)) {
+            setStatus("You have already checked in today.");
+            return;
+        }
 
-        document.querySelectorAll(".dci-day").forEach(button => {
-            button.classList.toggle(
-                "dci-selected",
-                Number(button.dataset.day) === day
-            );
+        // Count every successful check-in, even if one or more days were missed.
+        state.streak = state.checkedDates.length + 1;
+        if (!state.streakStart) state.streakStart = todayKey;
+        state.checkedDates.push(todayKey);
+
+        CHECKPOINTS.forEach(point => {
+            if (state.streak >= point) {
+                if (!state.completedMilestones.includes(point)) state.completedMilestones.push(point);
+                state.failedMilestones = state.failedMilestones.filter(item => item !== point);
+            }
         });
 
-        if (checkedDays.has(day)) {
-            setCheckinDisabled(true);
-            setStatus(`Day ${day} already checked in.`);
-            return;
+        state.completedMilestones.sort((a, b) => a - b);
+        state.failedMilestones.sort((a, b) => a - b);
+        saveState();
+
+        const reached = CHECKPOINTS.find(point => point === state.checkedDates.length);
+
+        showPointsPopup(button);
+        showCheckinNotice(reached);
+        renderCalendar();
+
+        // In test mode, wait 2 seconds before unlocking the next day.
+        // Once unlocked, that day has its own 2-second check-in window.
+        if (TEST_MODE) {
+            saveTestTimer("next", Date.now() + 2000);
+            scheduleTestTimer();
         }
 
-        if (!canCheck(day)) {
-            setCheckinDisabled(true);
-
-            if (day !== getNextDay()) {
-                setStatus(
-                    `Please complete Day ${getNextDay()} first.`
-                );
-                return;
-            }
-
-            const unlock = getUnlockTime(day);
-
-            if (unlock === Infinity) {
-                setStatus(
-                    `Day ${day} will unlock after Day ${day - 1} is checked in.`
-                );
-            } else {
-                setStatus(
-                    `Day ${day} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`
-                );
-            }
-
-            return;
-        }
-
-        setCheckinDisabled(false);
-        setStatus(
-            `Day ${day} selected. Click Check-in.`
-        );
-    }
-
-    /* =========================
-       CHECK-IN
-    ========================= */
-
-    function handleCheckin() {
-
-        if (!selectedDay || !canCheck(selectedDay)) {
-            return;
-        }
-
-        const completedDay = selectedDay;
-        const now = Date.now();
-
-const dayElement = document.querySelector(
-            `.dci-day[data-day="${completedDay}"]`
-        );
-
-        // Visual test effect: show "+1 POINT" after the check-in is accepted.
-        if (dayElement) {
-            dciShowPointsPopup(dayElement, 1);
-        }
-
-        checkedDays.add(completedDay);
-        checkinTimes[completedDay] = new Date(now).toISOString();
-
-        localStorage.setItem(
-            "dciCheckedDays_v3",
-            JSON.stringify([...checkedDays])
-        );
-
-        localStorage.setItem(
-            "dciCheckinTimes_v3",
-            JSON.stringify(checkinTimes)
-        );
-
-        renderDays();
-        selectDay(completedDay);
-
-        setCheckinDisabled(true);
-
-        const nextDay = completedDay + 1;
-
-        if (nextDay <= 28) {
-            if (DCI_TEST_MODE) {
-                setStatus(`Day ${completedDay} checked in (TEST MODE). Select Day ${nextDay} to test again.`);
-            } else {
-                const unlock = getUnlockTime(nextDay);
-                setStatus(
-                    `Day ${completedDay} checked in. Day ${nextDay} unlocks on ${getDateText(unlock)} at ${getTimeText(unlock)} (GMT+08:00).`
-                );
-            }
+        if (reached) {
+            const reward = CHECKPOINT_REWARDS[reached];
+            setStatus(`Check-in successful! ${reached} successful check-ins reached — MYR${reward} reward unlocked!`);
         } else {
-            setStatus("All 28 days completed!");
+            setStatus(`Check-in successful! +1. Total check-ins: ${state.checkedDates.length}. Next reward: ${getNextRewardText()}.`);
         }
     }
 
-    dciCheckinButtons.forEach(button => {
-        button.addEventListener("click", handleCheckin);
+    buildTreasureBar();
+    renderCalendar();
+    if (TEST_MODE) scheduleTestTimer();
+
+    // Refresh at the next local date and when the tab becomes active.
+    window.setInterval(renderCalendar, 60000);
+    document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) renderCalendar();
     });
-
-    /* =========================
-       PROGRESS
-    ========================= */
-
-    function updateProgress() {
-        const completed = checkedDays.size;
-
-        dciProgressText.textContent =
-            `${completed} / 28 DAYS`;
-
-        dciProgressBar.style.width =
-            `${Math.min((completed / 28) * 100, 100)}%`;
-    }
-
-    /* =========================
-       AUTO UPDATE
-    ========================= */
-
-    renderDays();
-
-    setInterval(() => {
-        renderDays();
-
-        if (selectedDay) {
-            selectDay(selectedDay);
-        }
-    }, 30000);
-
+    window.addEventListener("focus", renderCalendar);
 });
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
