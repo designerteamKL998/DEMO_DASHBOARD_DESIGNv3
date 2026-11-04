@@ -388,6 +388,7 @@
                     <div class="dci-calendar-top">
                         <div class="dci-calendar-heading">
                             <span class="dci-section-label">DAILY CHECK-IN</span>
+                            <button type="button" class="dci-tnc-trigger" id="dciTncOpen" aria-label="View Daily Check-in Terms and Conditions" title="Terms and Conditions"><i class="fa-solid fa-info"></i></button>
                         </div>
                         <div class="dci-progress-wrap">
                             <div class="dci-month-navigation">
@@ -418,167 +419,96 @@
                     </div>
                     <div class="dci-mobile-checkin"></div>
                 </section>
-                <!-- =====================================
-                     REWARD PANEL
-                ====================================== -->
-                <aside class="dci-reward-card">
-                    <div class="dci-reward-header">
-                        <div class="dci-reward-icon">
-                            <i class="fa-solid fa-gift"></i>
-                        </div>
-                        <div class="dci-reward-heading">
-                            <span>
-                                REWARD CLAIM MESSAGE
-                            </span>
-                            <h2 id="dciRewardTitle">
-                                Select a day
-                            </h2>
-                        </div>
-                    </div>
-                    <!-- Reward content changes when
-                         user clicks a day -->
-                    <div class="dci-reward-content" id="dciRewardContent">
-                        <div class="dci-reward-list">
-                            <div class="dci-reward-item">
-                                <h2>Day 7 - <span>MYR 20</span></h2>
-                            </div>
-                            <div class="dci-reward-item">
-                                <h2>Day 14 - <span>MYR 60</span></h2>
-                            </div>
-                            <div class="dci-reward-item">
-                                <h2>Day 21 - <span>MYR 70</span></h2>
-                            </div>
-                            <div class="dci-reward-item">
-                                <h2>Day 28 - <span>MYR 100</span></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- =================================
-                         ELIGIBILITY
-                    ================================== -->
-                    <div class="dci-eligibility">
-                        <div class="dci-eligibility-title">
-                            <i class="fa-solid fa-circle-info"></i>
-                            <span>
-                                Eligibility to claim reward
-                            </span>
-                        </div>
-                        <p>
-                            One-time deposit package with minimum
-                            <strong> 21 MYR</strong>
-                            and must claim within 3 days if not claim will be considered an immediate waiver.
-                        </p>
-                        <div class="dci-streak-notice">
-                            <div class="dci-streak-notice-title">*IMPORTANT NOTICE</div>
-                            <p class="dci-streak-rule">
-                                Members must check in within every 24-hour period to maintain their consecutive-day streak.
-
-                                Missing a check-in will automatically reset your progress back to Day 1.
-
-                                Make sure to check in daily to keep your streak active.
-
-                            </p>
-                        </div>
-                    </div>
-                    <div class="dci-calendar-footer deks-view">
-                        <i class="fa-regular fa-clock"></i>
-                        <span>
-                            Check in daily to build your consecutive-day rewards
-                        </span>
-                        <div class="dci-status dci-calendar-status">
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                            <span id="dciStatus">Click today's date to check in.</span>
-                        </div>
-                    </div>
-                    <!-- =================================
-                         CHECK-IN BUTTON
-                    ================================== -->
-                </aside>
             </section>
-            <!-- =========================================
-                 TERMS & CONDITIONS
-            ========================================== -->
-            <section class="dci-terms-card">
-                <div class="dci-terms-header">
-                    <div class="dci-terms-icon">
-                        <i class="fa-solid fa-list"></i>
-                    </div>
-                    <div class="dci-terms-title">
-                        <span>IMPORTANT</span>
-                        <h2>Terms and Conditions</h2>
-                    </div>
-                    <!-- LANGUAGE SWITCHER -->
-                    <div class="dci-language-switcher">
-                        <button class="dci-lang active" data-lang="en">
-                            EN
+            <!-- DAILY CHECK-IN INFORMATION + TERMS POPUP -->
+            <div class="dci-tnc-overlay" id="dciTncOverlay" aria-hidden="true">
+                <div class="dci-tnc-dialog" role="dialog" aria-modal="true" aria-labelledby="dciTncTitle">
+                    <section class="dci-terms-card dci-tnc-modal-card">
+                        <button type="button" class="dci-tnc-close" id="dciTncClose" aria-label="Close popup">
+                            <i class="fa-solid fa-xmark"></i>
                         </button>
-                        <button class="dci-lang" data-lang="cn">
-                            中文
-                        </button>
-                        <button class="dci-lang" data-lang="hi">
-                            हिन्दी
-                        </button>
-                    </div>
-                    <i class="fa-solid fa-chevron-down dci-terms-arrow"></i>
+                        <div class="dci-terms-header">
+                            <div class="dci-terms-icon">
+                                <i class="fa-solid fa-list"></i>
+                            </div>
+                            <div class="dci-terms-title">
+                                <span>DAILY CHECK-IN</span>
+                                <h2 id="dciTncTitle">Information &amp; Terms</h2>
+                            </div>
+                        </div>
+
+                        <div class="dci-popup-section">
+                            <h3>1. ELIGIBILITY TO CLAIM REWARD</h3>
+                            <ul>
+                                <li>One-time deposit package with minimum <strong>MYR 21</strong>.</li>
+                                <li>Must claim within 3 days; otherwise, the reward will be considered immediately waived.</li>
+                            </ul>
+                        </div>
+
+                        <div class="dci-popup-section">
+                            <h3>2. IMPORTANT NOTICE</h3>
+                            <ul>
+                                <li>Members must check in within every 24-hour period to maintain their consecutive-day streak.</li>
+                                <li>Missing a check-in will automatically reset progress to Day 1.</li>
+                                <li>Make sure to check in daily to keep the streak active.</li>
+                            </ul>
+                        </div>
+
+                        <div class="dci-popup-section">
+                            <h3>3. DAILY CHECK-IN REMINDER</h3>
+                            <ul>
+                                <li>Check in daily to build your consecutive-day rewards.</li>
+                                <li>Click today's date to check in.</li>
+                            </ul>
+                        </div>
+
+                        <div class="dci-popup-section dci-popup-tnc-section">
+                            <h3>4. TERMS &amp; CONDITIONS</h3>
+                            <div class="dci-language-switcher">
+                                <button class="dci-lang active" data-lang="en">EN</button>
+                                <button class="dci-lang" data-lang="cn">中文</button>
+                                <button class="dci-lang" data-lang="hi">हिन्दी</button>
+                            </div>
+
+                            <!-- ENGLISH -->
+                            <div class="dci-terms-list dci-lang-content active" data-content="en">
+                                <div class="dci-term-row">
+                                    <div class="dci-term-number">1</div>
+                                    <p>Company reserves the right, at any time and without prior notice, to remove or disable eligibility of any user at its sole discretion.</p>
+                                </div>
+                                <div class="dci-term-row">
+                                    <div class="dci-term-number">2</div>
+                                    <p>In order to claim the sign-in bonus, each member must deposit at least 4 times within the specified week before withdrawing the received bonus, otherwise all bonuses will be forfeited.</p>
+                                </div>
+                            </div>
+
+                            <!-- CHINESE -->
+                            <div class="dci-terms-list dci-lang-content" data-content="cn">
+                                <div class="dci-term-row">
+                                    <div class="dci-term-number">1</div>
+                                    <p>公司保留随时在无需事先通知的情况下，自行决定取消或禁用任何用户领取奖励资格的权利。</p>
+                                </div>
+                                <div class="dci-term-row">
+                                    <div class="dci-term-number">2</div>
+                                    <p>如需领取签到奖励，每位会员必须在指定的一周内至少存款4次后方可提款，否则所有奖金及奖励将被没收。</p>
+                                </div>
+                            </div>
+
+                            <!-- HINDI -->
+                            <div class="dci-terms-list dci-lang-content" data-content="hi">
+                                <div class="dci-term-row">
+                                    <div class="dci-term-number">1</div>
+                                    <p>कंपनी को बिना किसी पूर्व सूचना के, अपने विवेक के अनुसार किसी भी उपयोगकर्ता की पात्रता को हटाने या निष्क्रिय करने का अधिकार सुरक्षित है।</p>
+                                </div>
+                                <div class="dci-term-row">
+                                    <div class="dci-term-number">2</div>
+                                    <p>साइन-इन बोनस का दावा करने के लिए, प्रत्येक सदस्य को प्राप्त बोनस को निकालने से पहले निर्धारित सप्ताह के भीतर कम से कम 4 बार जमा करना होगा, अन्यथा सभी बोनस और पुरस्कार जब्त कर लिए जाएंगे।</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-                <!-- ENGLISH -->
-                <div class="dci-terms-list dci-lang-content active" data-content="en">
-                    <div class="dci-term-row">
-                        <div class="dci-term-number">1</div>
-                        <p>
-                            Company reserves the right, at any time and without
-                            prior notice, to remove or disable eligibility of any
-                            user at its sole discretion.
-                        </p>
-                    </div>
-                    <div class="dci-term-row">
-                        <div class="dci-term-number">2</div>
-                        <p>
-                            In order to claim the sign-in bonus, each member must
-                            deposit at least 4 times within the specified week
-                            before withdrawing the received bonus, otherwise all
-                            bonuses will be forfeited.
-                        </p>
-                    </div>
-                </div>
-                <!-- CHINESE -->
-                <div class="dci-terms-list dci-lang-content" data-content="cn">
-                    <div class="dci-term-row">
-                        <div class="dci-term-number">1</div>
-                        <p>
-                            公司保留随时在无需事先通知的情况下，自行决定取消或
-                            禁用任何用户领取奖励资格的权利。
-                        </p>
-                    </div>
-                    <div class="dci-term-row">
-                        <div class="dci-term-number">2</div>
-                        <p>
-                            如需领取签到奖励，每位会员必须在指定的一周内至少
-                            存款4次后方可提款，否则所有奖金及奖励将被没收。
-                        </p>
-                    </div>
-                </div>
-                <!-- HINDI -->
-                <div class="dci-terms-list dci-lang-content" data-content="hi">
-                    <div class="dci-term-row">
-                        <div class="dci-term-number">1</div>
-                        <p>
-                            कंपनी को बिना किसी पूर्व सूचना के, अपने विवेक के अनुसार
-                            किसी भी उपयोगकर्ता की पात्रता को हटाने या निष्क्रिय करने
-                            का अधिकार सुरक्षित है।
-                        </p>
-                    </div>
-                    <div class="dci-term-row">
-                        <div class="dci-term-number">2</div>
-                        <p>
-                            साइन-इन बोनस का दावा करने के लिए, प्रत्येक सदस्य को
-                            प्राप्त बोनस को निकालने से पहले निर्धारित सप्ताह के
-                            भीतर कम से कम 4 बार जमा करना होगा, अन्यथा सभी बोनस
-                            और पुरस्कार जब्त कर लिए जाएंगे।
-                        </p>
-                    </div>
-                </div>
-            </section>
+            </div>
             <!-- LANGUAGE POPUP -->
             <div class="language-overlay" id="languagePopup">
                 <div class="language-popup">

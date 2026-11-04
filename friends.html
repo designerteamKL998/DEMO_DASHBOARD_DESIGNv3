@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -399,7 +399,7 @@
             <nav class="fr-tabs">
 
                 <button class="fr-tab active" data-tab="all">
-                    ALL FRIENDS <span>(0)</span>
+                    ALL FRIENDS <span id="frAllFriendsTabCount">(5)</span>
                 </button>
 
                 <button class="fr-tab" data-tab="request">
@@ -433,40 +433,40 @@
                             </div>
                             <div class="fr-collection-count">
                                 <span class="fr-dot"></span>
-                                5 Cards Collection
+                                <span id="frCollectionCount">5</span> Cards Available
                             </div>
                         </div>
 
                         <div class="fr-cards-grid">
                             <!-- CARD 1 -->
-                            <div class="fr-card fr-card-diamond">
-                                <img src="imgs/icon/1f9bc74631154e18baa71b5381d940e9_A1.jpg" />
-                                <div class="fr-card-symbol">0</div>
+                            <div class="fr-card fr-card-diamond" data-card-id="card1" data-card-name="Card 1">
+                                <img src="imgs/icon/1f9bc74631154e18baa71b5381d940e9_A1.jpg" alt="Card 1" />
+                                <div class="fr-card-symbol">1</div>
 
                             </div>
 
                             <!-- CARD 2 -->
-                            <div class="fr-card fr-card-diamond">
-                                <img src="imgs/icon/3f992f81edb94e0baf5c3cd6706a5f33_A2.jpg" />
-                                <div class="fr-card-symbol">0</div>
+                            <div class="fr-card fr-card-diamond" data-card-id="card2" data-card-name="Card 2">
+                                <img src="imgs/icon/3f992f81edb94e0baf5c3cd6706a5f33_A2.jpg" alt="Card 2" />
+                                <div class="fr-card-symbol">1</div>
                             </div>
 
                             <!-- CARD 3 -->
-                            <div class="fr-card fr-card-diamond">
-                                <img src="imgs/icon/251a5078a763462e8e97a0956d929fee_A3.jpg" />
-                                <div class="fr-card-symbol">0</div>
+                            <div class="fr-card fr-card-diamond" data-card-id="card3" data-card-name="Card 3">
+                                <img src="imgs/icon/251a5078a763462e8e97a0956d929fee_A3.jpg" alt="Card 3" />
+                                <div class="fr-card-symbol">1</div>
                             </div>
 
                             <!-- CARD 4 -->
-                            <div class="fr-card fr-card-diamond">
-                                <img src="imgs/icon/d4ac8eee09fe4a568c2ae123c071aa82_A4.jpg" />
-                                <div class="fr-card-symbol">0</div>
+                            <div class="fr-card fr-card-diamond" data-card-id="card4" data-card-name="Card 4">
+                                <img src="imgs/icon/d4ac8eee09fe4a568c2ae123c071aa82_A4.jpg" alt="Card 4" />
+                                <div class="fr-card-symbol">1</div>
                             </div>
 
                             <!-- CARD 5 -->
-                            <div class="fr-card fr-card-black">
-                                <img src="imgs/icon/284e65a304324bc087fdcf06b9160d8d_A5.jpg" />
-                                <div class="fr-card-symbol">0</div>
+                            <div class="fr-card fr-card-black" data-card-id="card5" data-card-name="Card 5">
+                                <img src="imgs/icon/284e65a304324bc087fdcf06b9160d8d_A5.jpg" alt="Card 5" />
+                                <div class="fr-card-symbol">1</div>
                             </div>
                         </div>
                     </section>
@@ -475,48 +475,63 @@
                          REWARD SYSTEM
                     ====================================== -->
                     <section class="fr-section fr-reward">
-                        <div class="fr-section-header">
+                        <div class="fr-section-header fr-reward-header">
                             <div class="fr-section-title">
                                 <i class="fa-solid fa-gift"></i>
-                                <span>REWARD SYSTEM</span>
+                                <span>REWARD</span>
+                            </div>
+                            <div class="fr-tnc-wrap">
+                                <button type="button" class="fr-tnc-trigger" aria-label="Reward terms and conditions">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                <div class="fr-tnc-tooltip" role="dialog" aria-label="Reward terms and conditions">
+                                    <div class="fr-tnc-title">
+                                        <span><i class="fa-solid fa-circle-info"></i> REWARD TERMS &amp; CONDITIONS</span>
+                                        <button type="button" class="fr-tnc-close" aria-label="Close terms and conditions"><i class="fa-solid fa-xmark"></i></button>
+                                    </div>
+                                    <div class="fr-tnc-block">
+                                        <strong>1. Play any game to get free random card(s).</strong>
+                                        <div class="fr-tnc-games">
+                                            <span><i class="fa-solid fa-futbol"></i> Sport</span>
+                                            <span><i class="fa-solid fa-dice"></i> Casino</span>
+                                            <span><i class="fa-solid fa-ticket"></i> Lottery</span>
+                                            <span><i class="fa-solid fa-clover"></i> Slot</span>
+                                            <span><i class="fa-solid fa-users"></i> P2P</span>
+                                        </div>
+                                    </div>
+                                    <div class="fr-tnc-block">
+                                        <strong>2. Your cards can be exchanged or sent to friends.</strong>
+                                        <div class="fr-tnc-rewards">
+                                            <div><span>Collect 3 different cards</span><b>FREE 88</b></div>
+                                            <div><span>Collect 4 different cards</span><b>FREE 888</b></div>
+                                            <div><span>Collect 5 different cards</span><b>FREE 8,888</b></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="fr-reward-list">
                             <div class="fr-reward-item">
                                 <div class="fr-reward-info">
-                                    <img src="imgs/friend/treasurefren_0000_Layer-3.png" />
-                                    <strong>3 Cards</strong>
-                                    <span>→</span>
-                                    <b>Bonus</b>
+                                    <img src="imgs/friend/treasurefren_0000_Layer-3.png" alt="3 card reward" />
+                                    <strong>3 Cards</strong><span>→</span><b>88</b>
                                 </div>
-                                <button class="fr-claim" data-reward="3 Cards">
-                                    CLAIM
-                                </button>
+                                <button class="fr-claim" data-reward="3 Cards">CLAIM</button>
                             </div>
-
                             <div class="fr-reward-item">
                                 <div class="fr-reward-info">
-                                    <img src="imgs/friend/treasurefren_0001_Layer-2.png" />
-                                    <strong>4 Cards</strong>
-                                    <span>→</span>
-                                    <b>Bonus</b>
+                                    <img src="imgs/friend/treasurefren_0001_Layer-2.png" alt="4 card reward" />
+                                    <strong>4 Cards</strong><span>→</span><b>888</b>
                                 </div>
-                                <button class="fr-claim" data-reward="4 Cards">
-                                    CLAIM
-                                </button>
+                                <button class="fr-claim" data-reward="4 Cards">CLAIM</button>
                             </div>
-
                             <div class="fr-reward-item">
                                 <div class="fr-reward-info">
-                                    <img src="imgs/friend/treasurefren_0002_Layer-1.png" />
-                                    <strong>5 Cards</strong>
-                                    <span>→</span>
-                                    <b>Bonus</b>
+                                    <img src="imgs/friend/treasurefren_0002_Layer-1.png" alt="5 card reward" />
+                                    <strong>5 Cards</strong><span>→</span><b>8,888</b>
                                 </div>
-                                <button class="fr-claim" data-reward="5 Cards">
-                                    CLAIM
-                                </button>
+                                <button class="fr-claim" data-reward="5 Cards">CLAIM</button>
                             </div>
                         </div>
                     </section>
@@ -534,25 +549,111 @@
                     </div>
                 </div>
                 <!-- =====================================
-                     RECORDS
+                     FRIENDS SECTION
                 ====================================== -->
-                <section class="fr-section fr-records">
+                <section class="fr-section fr-friends-section">
                     <div class="fr-section-header">
                         <div class="fr-section-title">
-                            <i class="fa-regular fa-file-lines"></i>
-                            <span>RECORDS</span>
+                            <i class="fa-solid fa-user-group"></i>
+                            <span>FRIENDS</span>
                         </div>
+                        <span class="fr-friends-total"><span id="frFriendsCount">5</span> Friends</span>
                     </div>
-                    <div class="fr-records-body" id="recordsBody">
-                        <div class="fr-empty-record">
-                            <div class="fr-empty-icon">
-                                <i class="fa-regular fa-clipboard"></i>
+
+                    <div class="fr-friends-list" id="frFriendsList">
+                        <article class="fr-friend-row" data-username="me too">
+                            <div class="fr-friend-profile">
+                                <div class="fr-friend-avatar avatar-blue">MT</div>
+                                <div class="fr-friend-name">
+                                    <strong>me too</strong>
+                                    <span>testkhmyr2</span>
+                                </div>
                             </div>
-                            <h3>No records has been added yet.</h3>
-                            <p>
-                                Add a new record by simply clicking the button on top right side.
-                            </p>
-                        </div>
+                            <div class="fr-friend-levels">
+                                <span><small>Sport</small>lv.0</span>
+                                <span><small>Casino</small>lv.0</span>
+                                <span><small>Lottery</small>lv.0</span>
+                                <span><small>Games</small>lv.0</span>
+                                <span><small>P2P</small>lv.0</span>
+                            </div>
+                            <div class="fr-friend-actions">
+                                <button type="button" class="fr-friend-gift"><i class="fa-solid fa-gift"></i><span>Gift</span></button>
+                                <button type="button" class="fr-friend-remove"><i class="fa-solid fa-user-minus"></i><span>Remove</span></button>
+                                <a class="fr-friend-pk" href="pkbattle.html"><i class="fa-solid fa-hand-fist"></i> PK</a>
+                            </div>
+                        </article>
+
+                        <article class="fr-friend-row" data-username="Salvador Felipe Jacinto Dali y Domenech">
+                            <div class="fr-friend-profile">
+                                <div class="fr-friend-avatar avatar-purple">SD</div>
+                                <div class="fr-friend-name">
+                                    <strong>Salvador Felipe Jacinto Dali y Domenech</strong>
+                                    <span>testkhsbo</span>
+                                </div>
+                            </div>
+                            <div class="fr-friend-levels">
+                                <span><small>Sport</small>lv.1</span>
+                                <span><small>Casino</small>lv.0</span>
+                                <span><small>Lottery</small>lv.0</span>
+                                <span><small>Games</small>lv.0</span>
+                                <span><small>P2P</small>lv.0</span>
+                            </div>
+                            <div class="fr-friend-actions">
+                                <button type="button" class="fr-friend-gift"><i class="fa-solid fa-gift"></i><span>Gift</span></button>
+                                <button type="button" class="fr-friend-remove"><i class="fa-solid fa-user-minus"></i><span>Remove</span></button>
+                                <a class="fr-friend-pk" href="pkbattle.html"><i class="fa-solid fa-hand-fist"></i> PK</a>
+                            </div>
+                        </article>
+
+                        <article class="fr-friend-row" data-username="testkhm8">
+                            <div class="fr-friend-profile">
+                                <div class="fr-friend-avatar avatar-green">T8</div>
+                                <div class="fr-friend-name"><strong>testkhm8</strong><span>Online</span></div>
+                            </div>
+                            <div class="fr-friend-levels">
+                                <span><small>Sport</small>lv.0</span><span><small>Casino</small>lv.0</span><span><small>Lottery</small>lv.0</span><span><small>Games</small>lv.0</span><span><small>P2P</small>lv.0</span>
+                            </div>
+                            <div class="fr-friend-actions">
+                                <button type="button" class="fr-friend-gift"><i class="fa-solid fa-gift"></i><span>Gift</span></button>
+                                <button type="button" class="fr-friend-remove"><i class="fa-solid fa-user-minus"></i><span>Remove</span></button>
+                                <a class="fr-friend-pk" href="pkbattle.html"><i class="fa-solid fa-hand-fist"></i> PK</a>
+                            </div>
+                        </article>
+
+                        <article class="fr-friend-row" data-username="testkhmyr4">
+                            <div class="fr-friend-profile">
+                                <div class="fr-friend-avatar avatar-orange">T4</div>
+                                <div class="fr-friend-name"><strong>testkhmyr4</strong><span>Offline</span></div>
+                            </div>
+                            <div class="fr-friend-levels">
+                                <span><small>Sport</small>lv.0</span><span><small>Casino</small>lv.0</span><span><small>Lottery</small>lv.0</span><span><small>Games</small>lv.0</span><span><small>P2P</small>lv.0</span>
+                            </div>
+                            <div class="fr-friend-actions">
+                                <button type="button" class="fr-friend-gift"><i class="fa-solid fa-gift"></i><span>Gift</span></button>
+                                <button type="button" class="fr-friend-remove"><i class="fa-solid fa-user-minus"></i><span>Remove</span></button>
+                                <a class="fr-friend-pk" href="pkbattle.html"><i class="fa-solid fa-hand-fist"></i> PK</a>
+                            </div>
+                        </article>
+
+                        <article class="fr-friend-row" data-username="testkhnew3">
+                            <div class="fr-friend-profile">
+                                <div class="fr-friend-avatar avatar-pink">TN</div>
+                                <div class="fr-friend-name"><strong>testkhnew3</strong><span>Offline</span></div>
+                            </div>
+                            <div class="fr-friend-levels">
+                                <span><small>Sport</small>lv.0</span><span><small>Casino</small>lv.0</span><span><small>Lottery</small>lv.0</span><span><small>Games</small>lv.0</span><span><small>P2P</small>lv.0</span>
+                            </div>
+                            <div class="fr-friend-actions">
+                                <button type="button" class="fr-friend-gift"><i class="fa-solid fa-gift"></i><span>Gift</span></button>
+                                <button type="button" class="fr-friend-remove"><i class="fa-solid fa-user-minus"></i><span>Remove</span></button>
+                                <a class="fr-friend-pk" href="pkbattle.html"><i class="fa-solid fa-hand-fist"></i> PK</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="fr-friends-empty fr-hidden" id="frFriendsEmpty">
+                        <i class="fa-solid fa-user-group"></i>
+                        <strong>No friends yet</strong>
+                        <span>Add friends to see them here.</span>
                     </div>
                 </section>
             </main>
@@ -754,49 +855,6 @@
 
                 </section>
 
-            </div>
-        </div>
-        <!-- =========================================
-             ADD RECORD MODAL
-        ========================================== -->
-        <div class="fr-modal-overlay" id="recordModal">
-            <div class="fr-record-modal">
-                <div class="fr-modal-header">
-                    <h3>Add Record</h3>
-                    <button class="fr-modal-close" id="closeModal">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-                <div class="fr-modal-body">
-                    <label>
-                        Record Type
-                    </label>
-                    <select id="recordType">
-                        <option value="Card Collection">
-                            Card Collection
-                        </option>
-                        <option value="Card Exchange">
-                            Card Exchange
-                        </option>
-                        <option value="Friend Activity">
-                            Friend Activity
-                        </option>
-                    </select>
-                    <label>
-                        Description
-                    </label>
-                    <input type="text"
-                           id="recordDescription"
-                           placeholder="Enter description...">
-                </div>
-                <div class="fr-modal-footer">
-                    <button class="fr-cancel" id="cancelModal">
-                        Cancel
-                    </button>
-                    <button class="fr-save" id="saveRecord">
-                        Add Record
-                    </button>
-                </div>
             </div>
         </div>
 

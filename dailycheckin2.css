@@ -761,7 +761,9 @@ dci-hero-note img {
     display: flex;
     align-items: center;
     gap: 18px;
-    top: 20px
+    top: 105px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .dci-hero-calendar {
@@ -1811,7 +1813,7 @@ dci-hero-note img {
     .dci-calendar-card, .dci-reward-card {
         padding: 10px 8px;
         border-radius: 12px;
-        margin-top: 20px;
+        margin-top: 125px;
     }
 
     .dci-calendar-top {
@@ -2663,17 +2665,17 @@ dci-hero-note img {
 }
 
 .dci-treasure-reward {
-    top: 88px;
+    top: 82px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 3px 8px;
-    border: 1px solid rgba(232,189,67,.75);
+    padding: 5px 8px;
+    border: 1px solid rgba(232, 189, 67, .75);
     border-radius: 12px;
     color: #f0c84f;
-    background: rgba(24,20,18,.88);
-    font-size: 10px;
+    background: rgba(24, 20, 18, .88);
+    font-size: 12px;
     line-height: 1.1;
-    font-weight: 900;
+    font-weight: bold;
     white-space: nowrap;
 }
 
@@ -2878,4 +2880,455 @@ dci-hero-note img {
     .dci-checkin-notice-star {
         font-size: 18px;
     }
+}
+
+
+/* ===== Daily Check-in refinements ===== */
+.dci-main {
+    display: block !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.dci-treasure-track {
+    width: 70%;
+    margin: 0 auto;
+}
+
+/* Smaller, cleaner day labels and numbers */
+.dci-day .dci-day-label {
+    font-size: 11px !important;
+    letter-spacing: 0 !important;
+}
+
+.dci-day .dci-day-number {
+    font-size: 24px !important;
+}
+
+/* Compact success confirmation shown after a successful check-in */
+.dci-checkin-notice,
+.dci-checkin-notice.is-visible {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 0;
+    padding: 12px 16px;
+    margin: 0 0 14px;
+    border: 1px solid rgba(67, 192, 122, .38);
+    border-radius: 12px;
+    background: linear-gradient(110deg, rgba(22, 75, 53, .96), rgba(15, 43, 37, .96));
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .2);
+    text-align: left;
+    transform: translateY(-5px);
+}
+
+.dci-checkin-notice {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-width: 0;
+    transition: opacity .25s ease, transform .25s ease, max-height .25s ease,
+                margin .25s ease, padding .25s ease, visibility 0s linear .25s;
+}
+
+.dci-checkin-notice.is-visible {
+    opacity: 1;
+    visibility: visible;
+    max-height: 100px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    border-width: 1px;
+    transform: translateY(0);
+    transition: opacity .25s ease, transform .25s ease, max-height .25s ease,
+                margin .25s ease, padding .25s ease, visibility 0s;
+}
+
+.dci-checkin-notice-icon {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #43c07a;
+    color: #082216;
+    font-size: 15px;
+}
+
+.dci-checkin-notice-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.dci-checkin-notice-title {
+    color: #eafff1;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: normal;
+}
+
+.dci-checkin-notice-message {
+    color: #c4e8d2;
+    font-size: 12px;
+    line-height: 1.45;
+    font-weight: 500;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+.dci-calendar-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.dci-calendar-footer .dci-calendar-status {
+    flex-basis: 100%;
+    padding-top: 4px;
+}
+
+@media (max-width: 700px) {
+    .dci-treasure-track {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .dci-day .dci-day-label {
+        font-size: 9px !important;
+    }
+    .dci-day .dci-day-number {
+        font-size: 20px !important;
+    }
+    .dci-checkin-notice,
+    .dci-checkin-notice.is-visible {
+        gap: 9px;
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+    .dci-checkin-notice-icon {
+        flex-basis: 28px;
+        width: 28px;
+        height: 28px;
+        font-size: 13px;
+    }
+    .dci-checkin-notice-title {
+        font-size: 12px;
+    }
+    .dci-checkin-notice-message {
+        font-size: 10px;
+    }
+}
+
+
+/* Restore the right information panel; only the repeated milestone list is removed. */
+.dci-main {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, .85fr) !important;
+    gap: 14px;
+    align-items: stretch;
+}
+.dci-reward-card {
+    display: flex !important;
+    flex-direction: column;
+    min-width: 0;
+}
+.dci-reward-content {
+    min-height: 0 !important;
+    margin-top: 12px;
+}
+@media (max-width: 768px) {
+    .dci-main {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+
+/* ===== Mobile check-in grid: 4 days per row ===== */
+@media (max-width: 700px) {
+    .dci-days-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+    }
+
+    .dci-days-grid .dci-day {
+        height: 82px !important;
+        min-height: 82px !important;
+        padding: 7px 5px 6px !important;
+        border-radius: 9px;
+    }
+
+    .dci-days-grid .dci-day .dci-day-label,
+    .dci-days-grid .dci-day .dci-day-date {
+        font-size: 10px !important;
+        letter-spacing: 0 !important;
+    }
+
+    .dci-days-grid .dci-day .dci-day-number {
+        font-size: 22px !important;
+        letter-spacing: 0 !important;
+    }
+
+    .dci-days-grid .dci-day .dci-day-symbol {
+        min-height: 18px !important;
+        height: 18px !important;
+        margin: 2px 0 !important;
+    }
+}
+
+
+/* ===== Daily Check-in: centered single calendar + combined T&C popup ===== */
+.dci-main {
+    display: flex !important;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+.dci-calendar-card {
+    width: 100%;
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dci-calendar-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+.dci-tnc-trigger {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(234,216,125,.65);
+    border-radius: 50%;
+    background: rgba(234,216,125,.10);
+    color: #ead87d;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+.dci-tnc-trigger:hover { background: rgba(234,216,125,.22); transform: translateY(-1px); }
+.dci-tnc-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,.76);
+    backdrop-filter: blur(4px);
+}
+.dci-tnc-overlay.is-open { display: flex; }
+.dci-tnc-dialog {
+    width: min(100%, 620px);
+    max-height: min(82vh, 720px);
+    overflow-y: auto;
+    border-radius: 16px;
+    box-shadow: 0 24px 70px rgba(0,0,0,.55);
+}
+.dci-tnc-modal-card { width: 100%; margin: 0; }
+.dci-tnc-modal-card .dci-terms-header { position: sticky; top: 0; z-index: 2; background: #11141b; }
+.dci-tnc-modal-card .dci-terms-list { padding-bottom: 18px; }
+.dci-tnc-close {
+    width: 34px; height: 34px; flex: 0 0 34px; margin-left: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,.14); border-radius: 9px;
+    background: rgba(255,255,255,.06); color: #fff; font-size: 16px; cursor: pointer;
+}
+.dci-tnc-close:hover { background: rgba(255,255,255,.14); }
+body.dci-tnc-open { overflow: hidden; }
+@media (max-width: 700px) {
+    .dci-calendar-card { max-width: 940px; }
+    .dci-days-grid { justify-content: center; }
+    .dci-tnc-overlay { padding: 12px; }
+    .dci-tnc-dialog { max-height: 88vh; }
+    .dci-tnc-modal-card .dci-terms-header { padding: 14px; gap: 9px; }
+    .dci-tnc-modal-card .dci-terms-title h2 { font-size: 15px; }
+    .dci-tnc-modal-card .dci-terms-list { padding-left: 14px; padding-right: 14px; }
+}
+
+/* =========================================================
+   MOBILE HERO + TREASURE TRACK VISIBILITY FIX
+   Keep the desktop artwork visible on tablet and mobile.
+========================================================= */
+@media (max-width: 1024px) {
+    .dci-hero {
+        display: flex !important;
+        position: relative;
+        width: 100%;
+        min-height: 0;
+        height: auto;
+        margin: 0 auto 8px;
+        padding: 8px 0 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dci-hero-copy {
+        position: relative;
+        top: auto;
+        left: auto;
+        z-index: 2;
+        display: block;
+        width: 100%;
+        max-width: 820px;
+        margin: 0 auto;
+        transform: none;
+    }
+
+    .dci-hero-copy img {
+           display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: 75px;
+    }
+
+    .dci-hero-note,
+    .dci-hero-gifts {
+        display: none;
+    }
+
+    .dci-treasure-wrap {
+        display: block !important;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .dci-treasure-track {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .dci-page {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .dci-hero {
+        padding-top: 6px;
+        margin-bottom: 4px;
+    }
+
+    .dci-calendar-card {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .dci-treasure-wrap {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
+/* =========================================================
+   COMBINED DAILY CHECK-IN POPUP
+   Ordered information sections + existing multilingual T&C
+========================================================= */
+.dci-tnc-dialog {
+    width: min(100%, 680px);
+    max-height: min(88vh, 820px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #b99124 rgba(255,255,255,.08);
+}
+.dci-tnc-dialog::-webkit-scrollbar { width: 7px; }
+.dci-tnc-dialog::-webkit-scrollbar-thumb { background: #b99124; border-radius: 10px; }
+.dci-tnc-modal-card { position: relative; padding: 22px; }
+.dci-tnc-modal-card .dci-terms-header {
+    position: sticky;
+    top: -22px;
+    z-index: 5;
+    background: #11141b;
+    padding: 4px 48px 16px 0;
+    margin-bottom: 4px;
+}
+.dci-tnc-modal-card .dci-terms-title h2 { font-size: 20px; }
+.dci-tnc-modal-card > .dci-tnc-close {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    margin: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    z-index: 10;
+}
+.dci-tnc-modal-card .dci-terms-header {
+    padding-right: 48px; /* keep the title clear of the top-right close button */
+}
+.dci-popup-section {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,.09);
+}
+.dci-popup-section h3 {
+    margin: 0 0 10px;
+    color: #f2c94c;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 900;
+    letter-spacing: .35px;
+}
+.dci-popup-section ul {
+    margin: 0;
+    padding-left: 21px;
+    color: #c2c7d0;
+}
+.dci-popup-section li {
+    padding: 3px 0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+.dci-popup-section li::marker { color: #f2c94c; }
+.dci-popup-section li strong { color: #fff; }
+.dci-popup-tnc-section { border-bottom: 0; padding-bottom: 0; }
+.dci-popup-tnc-section > h3 { margin-bottom: 12px; }
+.dci-popup-tnc-section .dci-language-switcher {
+    display: flex;
+    gap: 7px;
+    margin: 0 0 10px;
+}
+.dci-popup-tnc-section .dci-lang-content { display: none; }
+.dci-popup-tnc-section .dci-lang-content.active { display: block; }
+.dci-popup-tnc-section .dci-terms-list { padding: 0; }
+.dci-popup-tnc-section .dci-term-row { padding: 10px 0; }
+.dci-popup-tnc-section .dci-term-row p { color: #c2c7d0; }
+
+@media (max-width: 700px) {
+    .dci-tnc-overlay { padding: 10px; }
+    .dci-tnc-dialog { width: 100%; max-height: 90vh; border-radius: 13px; }
+    .dci-tnc-modal-card { padding: 16px; }
+    .dci-tnc-modal-card .dci-terms-header {
+        top: -16px;
+        padding: 2px 44px 13px 0;
+        gap: 9px;
+    }
+    .dci-tnc-modal-card .dci-terms-icon { width: 34px; height: 34px; flex: 0 0 34px; }
+    .dci-tnc-modal-card .dci-terms-title h2 { font-size: 16px; }
+    .dci-tnc-modal-card .dci-terms-title span { font-size: 10px; }
+    .dci-tnc-modal-card > .dci-tnc-close { top: 16px; right: 16px; width: 32px; height: 32px; }
+    .dci-popup-section { padding: 13px 0; }
+    .dci-popup-section h3 { font-size: 12px; }
+    .dci-popup-section li { font-size: 12px; line-height: 1.55; }
+    .dci-popup-tnc-section .dci-terms-list { padding: 0; }
 }
