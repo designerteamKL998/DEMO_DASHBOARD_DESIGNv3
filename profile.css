@@ -1,4 +1,4 @@
-﻿
+
 /* =========================================
    MAIN PAGE
 ========================================= */
@@ -472,4 +472,158 @@
 .outstanding .info-value {
     color: #2ee6c6;
     font-size: var(--font-icon-lg);
+}
+/* =========================================
+   PROFILE POLISH + PASSWORD UX IMPROVEMENTS
+========================================= */
+.profile-user {
+    background: linear-gradient(135deg, #252831 0%, #191b21 100%);
+    border-color: #38342a;
+}
+.avatar {
+    background: linear-gradient(145deg, #f8e9a6, #b88a25 70%, #6d4b0b);
+    color: #171717;
+    border: 3px solid #ead87d;
+    box-shadow: 0 0 0 4px rgba(234,216,125,.10), 0 5px 18px rgba(0,0,0,.35);
+}
+.balance-summary span { color: #c3c3c3; }
+.balance-summary { border-left-color: #514a31; }
+.profile-grid { background: #202228; }
+.info-box { min-width: 0; }
+.info-value { overflow-wrap: anywhere; }
+.empty-box { display: none; }
+.copy-text-btn {
+    border: 0; background: transparent; color: #ead87d; cursor: pointer;
+    padding: 4px 6px; border-radius: 6px; font-size: 13px;
+}
+.copy-text-btn:hover, .copy-text-btn.copied { background: rgba(234,216,125,.14); color: #fff0a8; }
+.info-status-value { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+.status-pill { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: .02em; }
+.status-neutral { color: #d6d6d6; background: #343840; border: 1px solid #4a4e57; }
+.password-input-wrap { position: relative; }
+.password-input-wrap input { padding-right: 46px; }
+.password-toggle {
+    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border: 0; border-radius: 50%;
+    background: transparent; color: #c7b66e; cursor: pointer;
+}
+.password-toggle:hover { background: rgba(234,216,125,.12); color: #fff0a8; }
+.password-strength { margin-top: 9px; color: #c9c9c9; font-size: 11px; }
+.strength-track { height: 4px; background: #3b3e46; border-radius: 10px; overflow: hidden; margin-bottom: 6px; }
+.strength-track span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #b98726, #ead87d); border-radius: inherit; transition: width .2s ease; }
+.password-checklist { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; padding: 0; margin: 8px 0 0; color: #8f949e; font-size: 11px; line-height: 1.4; }
+.password-checklist li::before { content: "○"; margin-right: 6px; color: #777; }
+.password-checklist li.valid { color: #74d6a8; }
+.password-checklist li.valid::before { content: "✓"; color: #74d6a8; }
+.password-message { color: #fff; }
+.password-message.error { color: #ff8585; background: rgba(220,53,69,.10); border-color: rgba(220,53,69,.35); margin: 0 30px 12px; }
+.password-message.success { color: #8be0b6; background: rgba(12,155,104,.10); border-color: rgba(12,155,104,.35); margin: 0 30px 12px; }
+.change-password-btn { width: calc(100% - 60px); background: linear-gradient(135deg, #f4df8b, #c49a36); box-shadow: 0 5px 16px rgba(196,154,54,.16); }
+.change-password-btn:hover { box-shadow: 0 8px 20px rgba(196,154,54,.25); }
+.form-group input:focus { border-color: #ead87d; box-shadow: 0 0 0 3px rgba(234,216,125,.12); }
+@media (max-width: 768px) {
+    .profile-user { flex-wrap: wrap; padding: 14px; gap: 12px; }
+    .avatar { width: 66px; height: 66px; flex-basis: 66px; }
+    .profile-user .user-info { min-width: 0; }
+    .profile-user .user-info h3 { font-size: 16px; }
+    .balance-summary { flex: 0 0 100%; border-left: 0; border-top: 1px solid #514a31; padding: 10px 0 0; min-width: 0; }
+    .balance-summary span { margin-bottom: 3px; }
+    .profile-grid { grid-template-columns: 1fr; }
+    .info-box { border-right: 0 !important; min-height: 50px; padding: 12px 14px; }
+    .info-box:nth-last-child(-n + 2) { border-bottom: 1px solid #30333d; }
+    .info-box:last-child { border-bottom: 0; }
+    .info-label { width: 94px; }
+    .form-group { padding: 0 12px; }
+    .password-message.error, .password-message.success { margin-left: 12px; margin-right: 12px; }
+    .change-password-btn { width: calc(100% - 24px); }
+    .password-checklist { grid-template-columns: 1fr; }
+}
+
+/* Collapsible Account Security / Change Password section */
+.password-section-toggle {
+    width: 100%; display: flex; align-items: center; gap: 12px;
+    padding: 16px 20px; border: 1px solid rgba(234,216,125,.24);
+    border-radius: 12px; background: linear-gradient(135deg, #242424, #181818);
+    color: #f5f5f5; text-align: left; cursor: pointer;
+    transition: border-color .2s ease, background .2s ease;
+}
+.password-section-toggle:hover,
+.password-section-toggle[aria-expanded="true"] { border-color: rgba(234,216,125,.65); }
+.password-toggle-icon { width: 38px; height: 38px; flex: 0 0 38px; display:flex; align-items:center; justify-content:center; border-radius:10px; color:#ead87d; background:rgba(234,216,125,.10); }
+.password-toggle-copy { display:flex; flex:1; min-width:0; flex-direction:column; gap:4px; }
+.password-toggle-copy strong { font-size:14px; font-weight:700; }
+.password-toggle-copy small { color:#a6a6a6; font-size:11px; line-height:1.4; }
+.password-chevron { color:#ead87d; transition:transform .25s ease; }
+.password-section-toggle[aria-expanded="true"] .password-chevron { transform:rotate(180deg); }
+.password-collapse-panel { padding-top:16px; animation:passwordPanelIn .24s ease both; }
+.password-collapse-panel[hidden] { display:none !important; }
+@keyframes passwordPanelIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+@media (max-width: 768px) {
+  .password-section-toggle { padding:13px 14px; gap:10px; }
+  .password-toggle-copy strong { font-size:13px; }
+  .password-toggle-copy small { font-size:10px; }
+}
+@media (prefers-reduced-motion: reduce) { .password-collapse-panel, .password-chevron { animation:none; transition:none; } }
+
+/* Profile layout: Player Profile first, then Profile Information with Account Security inside */
+.player-profile-card { margin-bottom: 18px; }
+.player-profile-card .profile-user { margin-top: 0; }
+.profile-card > .account-security-section {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(234,216,125,.20);
+    background: transparent;
+    box-shadow: none;
+}
+.profile-card > .account-security-section .password-section-toggle {
+    border-radius: 10px;
+}
+.profile-card > .account-security-section .password-collapse-panel {
+    padding-top: 16px;
+}
+@media (max-width: 768px) {
+    .player-profile-card { margin-bottom: 14px; }
+    .profile-card > .account-security-section { margin-top: 16px; padding-top: 14px; }
+}
+/* Stack the two profile cards in one centered content column on desktop */
+.deks-view .account-content {
+    grid-template-columns: minmax(0, 1fr);
+}
+.deks-view .account-content > .profile-card {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* Account page width and revised profile layout */
+.account-page { max-width: 1440px; }
+.profile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.profile-grid .info-box { border-right: 0; }
+.profile-grid .info-box:nth-child(odd) { border-right: 1px solid #30333d; }
+.profile-grid .info-box:nth-last-child(-n + 2) { border-bottom: 0; }
+.profile-user .avatar { width: 50px; height: 50px; flex: 0 0 50px; font-size: 18px; border-width: 2px; }
+.profile-balance-group { margin-left: auto; display: flex; align-items: stretch; gap: 0; }
+.profile-balance-group .balance-summary { min-width: 170px; }
+.profile-balance-group .outstanding-summary { border-left: 1px solid #514a31; padding-left: 20px; margin-left: 20px; }
+.outstanding-summary strong { color: #2ee6c6; }
+.contact-info-section { margin-top: 22px; border: 1px solid #30333d; border-radius: 12px; overflow: hidden; background: #202228; }
+.contact-info-section h3 { margin: 0; padding: 15px 18px; color: #ead87d; font-size: 15px; border-bottom: 1px solid #30333d; }
+.contact-info-row { min-height: 64px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; border-bottom: 1px solid #30333d; }
+.contact-info-row:last-child { border-bottom: 0; }
+.contact-info-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.contact-info-copy > span { color: #c6c6c6; font-size: 12px; }
+.contact-info-copy strong { color: #ead87d; font-size: 13px; overflow-wrap: anywhere; }
+.contact-info-copy em { font-style: normal; margin-left: 5px; }
+.contact-edit-btn { border: 1px solid rgba(234,216,125,.38); border-radius: 7px; background: rgba(234,216,125,.08); color: #ead87d; padding: 7px 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.contact-edit-btn:hover { background: #ead87d; color: #171717; }
+@media (max-width: 768px) {
+ .profile-grid { grid-template-columns: 1fr; }
+ .profile-grid .info-box:nth-child(odd) { border-right: 0; }
+ .profile-grid .info-box:nth-last-child(-n + 2) { border-bottom: 1px solid #30333d; }
+ .profile-grid .info-box:last-child { border-bottom: 0; }
+ .profile-balance-group { flex: 0 0 100%; width: 100%; margin: 8px 0 0; padding-top: 10px; border-top: 1px solid #514a31; }
+ .profile-balance-group .balance-summary { flex: 1; min-width: 0; border: 0; padding: 0 10px 0 0; margin: 0; }
+ .profile-balance-group .outstanding-summary { border-left: 1px solid #514a31; padding: 0 0 0 14px; margin-left: 10px; }
+ .contact-info-section { margin-top: 16px; }
+ .contact-info-row { padding: 11px 13px; }
 }

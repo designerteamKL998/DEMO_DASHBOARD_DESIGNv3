@@ -1,219 +1,139 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const forms = document.querySelectorAll(".password-form");
 
-    const form = document.getElementById("passwordForm");
-
-    const currentPassword =
-        document.getElementById("currentPassword");
-
-    const newPassword =
-        document.getElementById("newPassword");
-
-    const confirmPassword =
-        document.getElementById("confirmPassword");
-
-    const message =
-        document.getElementById("passwordMessage");
-
-
-    /* =========================================
-       PASSWORD VALIDATION
-    ========================================= */
+    // Keep Change Password optional and collapsed until the player requests it.
+    document.querySelectorAll(".password-section-toggle").forEach(function (toggle) {
+        const panel = toggle.nextElementSibling;
+        if (!panel || !panel.classList.contains("password-collapse-panel")) return;
+        toggle.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+        toggle.addEventListener("click", function () {
+            const isOpen = toggle.getAttribute("aria-expanded") === "true";
+            toggle.setAttribute("aria-expanded", String(!isOpen));
+            panel.hidden = isOpen;
+        });
+    });
 
     function validatePassword(password) {
-
-        /*
-         * 8 - 15 characters
-         * At least one letter
-         * At least one number
-         * At least one special character
-         */
-
-        const lengthValid =
-            password.length >= 8 &&
-            password.length <= 15;
-
-        const letterValid =
-            /[A-Za-z]/.test(password);
-
-        const numberValid =
-            /[0-9]/.test(password);
-
-        const specialValid =
-            /[!@_?#]/.test(password);
-
-        return (
-            lengthValid &&
-            letterValid &&
-            numberValid &&
-            specialValid
-        );
+        return {
+            length: password.length >= 8 && password.length <= 15,
+            letter: /[A-Za-z]/.test(password),
+            number: /[0-9]/.test(password),
+            special: /[!@_?#]/.test(password)
+        };
     }
 
+    function addPasswordToggle(input) {
+        const wrap = document.createElement("div");
+        wrap.className = "password-input-wrap";
+        input.parentNode.insertBefore(wrap, input);
+        wrap.appendChild(input);
 
-    /* =========================================
-       SHOW MESSAGE
-    ========================================= */
-
-    function showMessage(type, text) {
-
-        message.className =
-            "password-message " + type;
-
-        message.textContent = text;
+        const toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "password-toggle";
+        toggle.setAttribute("aria-label", "Show password");
+        toggle.innerHTML = '<i class="fa-regular fa-eye"></i>';
+        toggle.addEventListener("click", function () {
+            const showing = input.type === "text";
+            input.type = showing ? "password" : "text";
+            toggle.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+            toggle.innerHTML = showing ? '<i class="fa-regular fa-eye"></i>' : '<i class="fa-regular fa-eye-slash"></i>';
+        });
+        wrap.appendChild(toggle);
     }
 
+    forms.forEach(function (form) {
+        const current = form.querySelector('[name="currentPassword"]');
+        const newPass = form.querySelector('[name="newPassword"]');
+        const confirmPass = form.querySelector('[name="confirmPassword"]');
+        const message = form.querySelector(".password-message");
+        if (!current || !newPass || !confirmPass || !message) return;
 
-    /* =========================================
-       FORM SUBMIT
-    ========================================= */
+        [current, newPass, confirmPass].forEach(addPasswordToggle);
 
-    form.addEventListener("submit", function (e) {
+        const strength = document.createElement("div");
+        strength.className = "password-strength";
+        strength.innerHTML = '<div class="strength-track"><span></span></div><small>Password strength: <b>Not entered</b></small>';
+        newPass.closest(".form-group").appendChild(strength);
 
-        e.preventDefault();
+        const checklist = document.createElement("ul");
+        checklist.className = "password-checklist";
+        checklist.innerHTML = '<li data-rule="length">8–15 characters</li><li data-rule="letter">At least one letter</li><li data-rule="number">At least one number</li><li data-rule="special">At least one special character (! @ _ ? #)</li>';
+        strength.appendChild(checklist);
 
-        const current =
-            currentPassword.value.trim();
-
-        const newPass =
-            newPassword.value;
-
-        const confirmPass =
-            confirmPassword.value;
-
-
-        /* Current password */
-
-        if (!current) {
-
-            showMessage(
-                "error",
-                "Please enter your current password."
-            );
-
-            currentPassword.focus();
-
-            return;
-        }
-
-
-        /* New password */
-
-        if (!newPass) {
-
-            showMessage(
-                "error",
-                "Please enter your new password."
-            );
-
-            newPassword.focus();
-
-            return;
-        }
-
-
-        /* Password policy */
-
-        if (!validatePassword(newPass)) {
-
-            showMessage(
-                "error",
-                "Password must contain 8-15 characters, letters, numbers and at least one special character (! @ _ ? #)."
-            );
-
-            newPassword.focus();
-
-            return;
-        }
-
-
-        /* Confirm */
-
-        if (!confirmPass) {
-
-            showMessage(
-                "error",
-                "Please confirm your new password."
-            );
-
-            confirmPassword.focus();
-
-            return;
-        }
-
-
-        /* Match */
-
-        if (newPass !== confirmPass) {
-
-            showMessage(
-                "error",
-                "New password and confirmation password do not match."
-            );
-
-            confirmPassword.focus();
-
-            return;
-        }
-
-
-        /* Same password */
-
-        if (current === newPass) {
-
-            showMessage(
-                "error",
-                "New password must be different from your current password."
-            );
-
-            newPassword.focus();
-
-            return;
-        }
-
-
-        /* SUCCESS */
-
-        showMessage(
-            "success",
-            "Password meets all requirements."
-        );
-
-
-        /*
-         * Backend/API boleh dipanggil di sini.
-         *
-         * Contoh:
-         *
-         * fetch('/change-password', {
-         *     method: 'POST',
-         *     body: new FormData(form)
-         * });
-         */
-
-
-        console.log("Password validation successful.");
-
-    });
-
-
-    /* =========================================
-       NAVIGATION ACTIVE STATE
-    ========================================= */
-
-const navItems = document.querySelectorAll(".nav-item");
-
-navItems.forEach(function (item) {
-
-    item.addEventListener("click", function () {
-
-        navItems.forEach(function (nav) {
-            nav.classList.remove("active");
+        newPass.addEventListener("input", function () {
+            const rules = validatePassword(newPass.value);
+            const passed = Object.values(rules).filter(Boolean).length;
+            const labels = ["Not entered", "Weak", "Fair", "Good", "Strong"];
+            strength.querySelector(".strength-track span").style.width = (passed * 25) + "%";
+            strength.querySelector("small b").textContent = newPass.value ? labels[passed] : labels[0];
+            Object.keys(rules).forEach(function (key) {
+                checklist.querySelector('[data-rule="' + key + '"]').classList.toggle("valid", rules[key]);
+            });
         });
 
-        item.classList.add("active");
+        function showMessage(type, text) {
+            message.className = "password-message " + type;
+            message.textContent = text;
+        }
 
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const currentValue = current.value.trim();
+            const newValue = newPass.value;
+            const confirmValue = confirmPass.value;
+
+            if (!currentValue) return showMessage("error", "Please enter your current password.");
+            if (!newValue) return showMessage("error", "Please enter your new password.");
+            const rules = validatePassword(newValue);
+            if (!Object.values(rules).every(Boolean)) return showMessage("error", "Please meet all password requirements before continuing.");
+            if (!confirmValue) return showMessage("error", "Please confirm your new password.");
+            if (newValue !== confirmValue) return showMessage("error", "Your new passwords do not match.");
+            if (currentValue === newValue) return showMessage("error", "Your new password must be different from your current password.");
+
+            // Front-end prototype only: a secure backend/API is required to actually change the password.
+            showMessage("success", "All checks passed. Connect this form to your account service to update the password.");
+        });
     });
 
+    document.querySelectorAll(".copy-text-btn").forEach(function (button) {
+        button.addEventListener("click", async function () {
+            const value = button.getAttribute("data-copy") || "";
+            try {
+                await navigator.clipboard.writeText(value);
+                button.classList.add("copied");
+                button.title = "Copied";
+                window.setTimeout(function () {
+                    button.classList.remove("copied");
+                    button.title = "Copy username";
+                }, 1400);
+            } catch (error) {
+                button.title = "Copy not available";
+            }
+        });
+    });
+
+    document.querySelectorAll(".nav-item").forEach(function (item) {
+        item.addEventListener("click", function () {
+            document.querySelectorAll(".nav-item").forEach(function (nav) { nav.classList.remove("active"); });
+            item.classList.add("active");
+        });
+    });
 });
 
+
+// Contact edit prototype. Replace prompt with a verified account API in production.
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("[data-contact-edit]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const row = button.closest(".contact-info-row");
+      const value = row && row.querySelector(".contact-info-copy strong");
+      if (!value) return;
+      const current = value.textContent.trim().replace(/\s+(Not provided|Masked)$/, "");
+      const label = button.getAttribute("data-contact-edit") === "email" ? "email address" : "contact number";
+      const updated = window.prompt("Enter your new " + label + ":", current === "--" ? "" : current);
+      if (updated !== null && updated.trim()) { value.textContent = updated.trim(); }
+    });
+  });
 });
