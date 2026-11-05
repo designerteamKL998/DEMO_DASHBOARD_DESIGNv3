@@ -301,7 +301,7 @@ body {
 .btn-deposit:hover,
 .notification-btn:hover {
     color: var(--primary);
-    border: 1px solid #ffd700;
+    /*border: 1px solid #ffd700;*/
     background: linear-gradient(189deg, #202228 0%, #121418 100%);
     transform: translateY(0px);
 }
@@ -569,6 +569,7 @@ body {
 }
 
     .user-box:hover {
+        background: #202228;
     }
 
 /* AVATAR */
@@ -1241,7 +1242,7 @@ body {
     position: relative;
     overflow: visible !important;
     z-index: 10;
-    border: 1px solid #ead87d;
+    /*border: 1px solid #ead87d;*/
     border-radius: 39px;
     margin: 5px;
 }
