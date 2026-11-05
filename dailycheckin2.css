@@ -830,7 +830,7 @@ dci-hero-note img {
 
 .dci-hero-note {
     position: absolute;
-    right: 3%;
+    right: 20%;
     top: 18px;
     z-index: 3;
     display: flex;
@@ -3331,4 +3331,64 @@ body.dci-tnc-open { overflow: hidden; }
     .dci-popup-section h3 { font-size: 12px; }
     .dci-popup-section li { font-size: 12px; line-height: 1.55; }
     .dci-popup-tnc-section .dci-terms-list { padding: 0; }
+}
+
+/* Boss testing controls: only injected when ?dciTest=1 is present. */
+.dci-test-panel {
+    width: min(100% - 24px, 760px);
+    margin: 18px auto 24px;
+    padding: 14px 16px;
+    border: 1px dashed rgba(234, 216, 125, .65);
+    border-radius: 12px;
+    background: rgba(18, 20, 24, .88);
+    color: #fff;
+    box-sizing: border-box;
+}
+.dci-test-panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+.dci-test-panel-heading span {
+    color: #c9bd83;
+    font-size: 11px;
+}
+.dci-test-panel-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.dci-test-panel-actions button {
+    min-height: 36px;
+    padding: 8px 12px;
+    border: 1px solid rgba(234, 216, 125, .55);
+    border-radius: 8px;
+    background: rgba(234, 216, 125, .12);
+    color: #fff;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+.dci-test-panel-actions button:hover {
+    background: rgba(234, 216, 125, .24);
+}
+.dci-test-panel-actions button[data-test-action="miss"] {
+    border-color: rgba(229, 57, 53, .75);
+    background: rgba(229, 57, 53, .12);
+}
+@media (max-width: 600px) {
+    .dci-test-panel { padding: 12px; }
+    .dci-test-panel-heading { align-items: flex-start; flex-direction: column; gap: 4px; }
+    .dci-test-panel-actions { display: grid; grid-template-columns: 1fr; }
+    .dci-test-panel-actions button { width: 100%; }
+}
+
+/* Mobile: hide the bottom reminder and live check-in status message. */
+@media (max-width: 700px) {
+    .dci-calendar-footer.mob-view {
+        display: none !important;
+    }
 }

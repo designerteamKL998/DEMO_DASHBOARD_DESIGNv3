@@ -6,13 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const dciNextMonth = document.getElementById("dciNextMonth");
     const treasureWrap = document.querySelector(".dci-treasure-wrap");
 
-    // TEMPORARY TEST MODE: each successful check-in unlocks the next day after 2 seconds.
-    // Change TEST_MODE to false when testing is finished to restore the normal midnight schedule.
-    const TEST_MODE = true;
+    // Test tools are enabled only when the URL includes ?dciTest=1.
+    // Normal visitors always use the real local calendar.
+    const TEST_MODE = new URLSearchParams(window.location.search).get("dciTest") === "1";
     const STORAGE_KEY = TEST_MODE ? "dci_daily_streak_treasure_test_v2" : "dci_daily_streak_treasure_v4";
     const TEST_DATE_KEY = "dci_daily_streak_test_date_v2";
-    const TEST_TIMER_KEY = "dci_daily_streak_test_timer_v2";
-    let testTimer = null;
     const CYCLE_LENGTH = 28;
     const CHECKPOINTS = [7, 14, 21, 28];
     const CHECKPOINT_REWARDS = { 7: 20, 14: 60, 21: 70, 28: 100 };
@@ -24,11 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
             filter: none !important;
             -webkit-filter: none !important;
             opacity: 1 !important;
-            border-color: #d93636 !important;
-            background-color: rgba(217, 54, 54, 0.10) !important;
+            border: 2px solid #ff3b45 !important;
+            background: linear-gradient(145deg, rgba(255, 59, 69, .24), rgba(120, 12, 22, .28)) !important;
+            box-shadow: inset 0 0 0 1px rgba(255, 59, 69, .28), 0 0 10px rgba(255, 59, 69, .22) !important;
         }
         .dci-day.dci-missed .dci-missed-cross {
-            color: #e53935 !important;
+            color: #ff3b45 !important;
             opacity: 1 !important;
             filter: none !important;
             -webkit-filter: none !important;
@@ -36,15 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
         .dci-day.dci-missed .dci-day-label,
         .dci-day.dci-missed .dci-day-number,
         .dci-day.dci-missed * {
-            color: #e53935 !important;
+            color: #ff3b45 !important;
             opacity: 1 !important;
             filter: none !important;
             -webkit-filter: none !important;
         }
         .dci-day.dci-missed .dci-missed-cross {
-            color: #e53935 !important;
+            color: #ff3b45 !important;
             font-weight: 900 !important;
             font-size: 30px !important;
+            opacity: 1 !important;
+            filter: none !important;
         }
     `;
     document.head.appendChild(missedStyle);
@@ -80,55 +81,70 @@ document.addEventListener("DOMContentLoaded", () => {
         return new Date(now.getFullYear(), now.getMonth(), now.getDate());
     }
 
-    function readTestTimer() {
-        try {
-            return JSON.parse(localStorage.getItem(TEST_TIMER_KEY) || "null");
-        } catch (error) {
-            return null;
-        }
-    }
-
-    function saveTestTimer(phase, at) {
-        localStorage.setItem(TEST_TIMER_KEY, JSON.stringify({ phase, at }));
-    }
-
-    function scheduleTestTimer() {
-        if (!TEST_MODE) return;
-        if (testTimer) window.clearTimeout(testTimer);
-
-        let timerData = readTestTimer();
-        if (!timerData || !timerData.phase || !timerData.at) {
-            timerData = { phase: "expire", at: Date.now() + 2000 };
-            saveTestTimer(timerData.phase, timerData.at);
-        }
-
-        const delay = Math.max(0, timerData.at - Date.now());
-        testTimer = window.setTimeout(() => {
-            const current = readTestTimer();
-            if (!current) return;
-
-            if (current.phase === "next") {
-                // Two seconds after a successful check-in, unlock the next day.
-                const nextDate = addDays(todayDate(), 1);
-                localStorage.setItem(TEST_DATE_KEY, dateKey(nextDate));
-                saveTestTimer("expire", Date.now() + 2000);
-                renderCalendar();
-                scheduleTestTimer();
-                return;
-            }
-
-            // The current day expired without a check-in. Advancing the virtual
-            // date makes syncMissedDays() mark that day with a red X.
-            const nextDate = addDays(todayDate(), 1);
-            localStorage.setItem(TEST_DATE_KEY, dateKey(nextDate));
-            saveTestTimer("expire", Date.now() + 2000);
-            renderCalendar();
-            scheduleTestTimer();
-        }, delay);
-    }
-
     function setStatus(message) {
         if (dciStatus) dciStatus.textContent = message;
+    }
+
+    function advanceTestDate({ missed = false } = {}) {
+        if (!TEST_MODE) return;
+        const currentDate = todayDate();
+        const currentKey = dateKey(currentDate);
+        const nextDate = addDays(currentDate, 1);
+
+        if (missed && !state.checkedDates.includes(currentKey)) {
+            // Simulate a missed day without removing earned check-ins or treasure progress.
+            // The missed calendar tile stays visible with a red X and red highlight.
+            const missedDay = currentCycleDay();
+            if (!state.missedDates.includes(currentKey)) state.missedDates.push(currentKey);
+            localStorage.setItem(TEST_DATE_KEY, dateKey(nextDate));
+            saveState();
+            renderCalendar();
+            setStatus(`Test result: Day ${missedDay} was missed. Your ${state.checkedDates.length} successful check-ins and treasure progress are preserved. Continue with Day ${missedDay + 1}.`);
+            return;
+        }
+
+        if (!state.checkedDates.includes(currentKey)) {
+            setStatus("This day has not been checked in. Use ‘Simulate missed check-in’ to test the streak reset, or check in first to advance.");
+            return;
+        }
+        localStorage.setItem(TEST_DATE_KEY, dateKey(nextDate));
+        renderCalendar();
+        setStatus("Test day advanced. You can now check in for the next day.");
+    }
+
+    function resetTestDemo() {
+        if (!TEST_MODE) return;
+        const start = new Date();
+        const today = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+        localStorage.setItem(TEST_DATE_KEY, dateKey(today));
+        state = freshState(today);
+        saveState();
+        renderCalendar();
+        setStatus("Demo reset. You are back at Day 1.");
+    }
+
+    function buildTestPanel() {
+        if (!TEST_MODE || document.getElementById("dciTestPanel")) return;
+        const panel = document.createElement("div");
+        panel.id = "dciTestPanel";
+        panel.className = "dci-test-panel";
+        panel.innerHTML = `
+            <div class="dci-test-panel-heading"><strong>Boss Testing Tools</strong><span>Visible only with ?dciTest=1</span></div>
+            <div class="dci-test-panel-actions">
+                <button type="button" data-test-action="advance">Advance to next day</button>
+                <button type="button" data-test-action="miss">Simulate missed check-in</button>
+                <button type="button" data-test-action="reset">Reset demo</button>
+            </div>
+        `;
+        const status = dciStatus?.closest(".dci-status") || dciStatus?.parentElement;
+        const anchor = status?.closest(".dci-calendar-footer") || dciDays?.parentElement;
+        if (anchor?.parentElement) anchor.insertAdjacentElement("afterend", panel);
+        panel.addEventListener("click", event => {
+            const action = event.target.closest("button")?.dataset.testAction;
+            if (action === "advance") advanceTestDate();
+            if (action === "miss") advanceTestDate({ missed: true });
+            if (action === "reset") resetTestDemo();
+        });
     }
 
     function freshState(startDate = todayDate()) {
@@ -204,10 +220,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!treasureWrap) return;
         treasureWrap.innerHTML = `
             <div class="dci-checkin-notice" role="status" aria-live="polite">
-                <span class="dci-checkin-notice-star" aria-hidden="true">★</span>
-                <span class="dci-checkin-notice-title">Check-in Successful!</span>
-                <span class="dci-checkin-notice-divider" aria-hidden="true"></span>
-                <span class="dci-checkin-notice-message">Great job! Keep it up and collect your rewards along the way.</span>
+                <span class="dci-checkin-notice-icon" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+                <div class="dci-checkin-notice-copy">
+                    <span class="dci-checkin-notice-title">Check-in Successful!</span>
+                    <span class="dci-checkin-notice-message">Your check-in has been recorded. Keep going to unlock your next reward.</span>
+                </div>
             </div>
             <div class="dci-treasure-track">
                 <div class="dci-treasure-line">
@@ -261,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (notice._hideTimer) window.clearTimeout(notice._hideTimer);
         notice._hideTimer = window.setTimeout(() => {
             notice.classList.remove("is-visible");
-        }, 60000);
+        }, 5000);
     }
 
     function updateTreasureBar() {
@@ -403,13 +420,6 @@ ${isMissed ? '<img class="dci-missed-cross" src="imgs/checkin/MISSEDCLICK.png" a
         showCheckinNotice(reached);
         renderCalendar();
 
-        // In test mode, wait 2 seconds before unlocking the next day.
-        // Once unlocked, that day has its own 2-second check-in window.
-        if (TEST_MODE) {
-            saveTestTimer("next", Date.now() + 2000);
-            scheduleTestTimer();
-        }
-
         if (reached) {
             const reward = CHECKPOINT_REWARDS[reached];
             setStatus(`Check-in successful! ${reached} successful check-ins reached — MYR${reward} reward unlocked!`);
@@ -419,8 +429,8 @@ ${isMissed ? '<img class="dci-missed-cross" src="imgs/checkin/MISSEDCLICK.png" a
     }
 
     buildTreasureBar();
+    buildTestPanel();
     renderCalendar();
-    if (TEST_MODE) scheduleTestTimer();
 
     // Refresh at the next local date and when the tab becomes active.
     window.setInterval(renderCalendar, 60000);
@@ -471,4 +481,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+});
+
+// Daily Check-in Terms & Conditions popup
+document.addEventListener("DOMContentLoaded", () => {
+    const openButton = document.getElementById("dciTncOpen");
+    const closeButton = document.getElementById("dciTncClose");
+    const overlay = document.getElementById("dciTncOverlay");
+    if (!openButton || !closeButton || !overlay) return;
+
+    const openTnc = () => {
+        overlay.classList.add("is-open");
+        overlay.setAttribute("aria-hidden", "false");
+        document.body.classList.add("dci-tnc-open");
+        closeButton.focus();
+    };
+    const closeTnc = () => {
+        overlay.classList.remove("is-open");
+        overlay.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("dci-tnc-open");
+        openButton.focus();
+    };
+
+    openButton.addEventListener("click", openTnc);
+    closeButton.addEventListener("click", closeTnc);
+    overlay.addEventListener("click", event => {
+        if (event.target === overlay) closeTnc();
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && overlay.classList.contains("is-open")) closeTnc();
+    });
 });
