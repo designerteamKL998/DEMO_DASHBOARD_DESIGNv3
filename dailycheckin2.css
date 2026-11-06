@@ -2002,7 +2002,7 @@ dci-hero-note img {
     }
 
        .dci-hero-copy {
-        margin-bottom: 0px;
+        margin-bottom: 0px !important;
     }
 }
 
