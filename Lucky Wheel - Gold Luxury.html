@@ -1,105 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!-- saved from url=(0034)https://a111w2q3.github.io/LWheel/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucky Wheel - Gold Luxury</title>
 
     <style>
-        :root { /* Theme images */
-            --lw-bg-image: url('./Lucky Wheel - Gold Luxury_files/wheel_bg.jpg');
-            --lw-wheel-base-image: url('./Lucky Wheel - Gold Luxury_files/wheel_base.png');
-            --lw-wheel-shell-image: url('./Lucky Wheel - Gold Luxury_files/wheel_shell.png');
-            --lw-pointer-image: url('./Lucky Wheel - Gold Luxury_files/wheel_pointer.png'); /* Fonts */
-            --lw-font-base: Arial, sans-serif;
-            --lw-font-display: Georgia, "Times New Roman", serif; /* Main theme colors */
-            --lw-bg: #12070b;
-            --lw-bg-deep: #050203;
-            --lw-bg-panel: rgba(22, 7, 11, .64);
-            --lw-bg-card: rgba(30, 12, 16, .62);
-            --lw-bg-tnc: rgba(16, 5, 8, .74);
-            --lw-overlay: rgba(0, 0, 0, .68);
-            --lw-text: #fff;
-            --lw-text-strong: rgba(255, 255, 255, .95);
-            --lw-text-soft: rgba(255, 255, 255, .82);
-            --lw-muted: rgba(255, 255, 255, .68);
-            --lw-muted-2: rgba(255, 255, 255, .72);
-            --lw-muted-3: rgba(255, 255, 255, .74);
-            --lw-gold-pale: #fffbe1;
-            --lw-gold-cream: #fff8cd;
-            --lw-gold-soft: #fff0a8;
-            --lw-gold-light: #ffe9a8;
-            --lw-gold: #f5ce6c;
-            --lw-gold-rgb: 245, 206, 108;
-            --lw-gold-warm: #c88b2e;
-            --lw-gold-button: #c77b1e;
-            --lw-gold-dark: #b87924;
-            --lw-gold-deep: #8d4b12;
-            --lw-red: #a73447;
-            --lw-red-bright: #cf3a50;
-            --lw-red-button-top: #c83245;
-            --lw-red-button-mid: #9f1f35;
-            --lw-red-button-bottom: #68101f;
-            --lw-red-deep: #4b101b;
-            --lw-red-ribbon-side: #8c1c2e;
-            --lw-red-ribbon-side-dark: #5c0f1d;
-            --lw-ink: #1a0a0a;
-            --lw-ink-gold: #351506;
-            --lw-ink-button: #3a1603;
-            --lw-wheel-dark-text: #271104;
-            --lw-lose-light: #777;
-            --lw-lose-mid: #555;
-            --lw-lose-dark: #3d3d3d;
-            --lw-lose-deep: #262626;
-            --lw-lose-purple-1: #766d80;
-            --lw-lose-purple-2: #51495c;
-            --lw-lose-purple-3: #292532; /* Transparent theme tokens */
-            --lw-border: rgba(245, 206, 108, .35);
-            --lw-border-soft: rgba(245, 206, 108, .18);
-            --lw-border-mid: rgba(245, 206, 108, .38);
-            --lw-border-strong: rgba(245, 206, 108, .5);
-            --lw-border-light: rgba(255, 244, 190, .72);
-            --lw-border-bright: rgba(255, 244, 190, .82);
-            --lw-white-02: rgba(255, 255, 255, .02);
-            --lw-white-03: rgba(255, 255, 255, .03);
-            --lw-white-05: rgba(255, 255, 255, .05);
-            --lw-white-08: rgba(255, 255, 255, .08);
-            --lw-white-10: rgba(255, 255, 255, .10);
-            --lw-white-12: rgba(255, 255, 255, .12);
-            --lw-white-14: rgba(255, 255, 255, .14);
-            --lw-white-18: rgba(255, 255, 255, .18);
-            --lw-white-20: rgba(255, 255, 255, .20);
-            --lw-white-45: rgba(255, 255, 255, .45); /* Gradients */
-            --lw-title-gradient: linear-gradient(180deg, var(--lw-gold-pale) 0%, #ffeaa3 25%, var(--lw-gold) 52%, var(--lw-gold-warm) 78%, var(--lw-gold-soft) 100%);
-            --lw-panel-bg: linear-gradient(180deg, var(--lw-white-10), rgba(255, 255, 255, .035)), var(--lw-bg-panel);
-            --lw-card-bg: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .028)), var(--lw-bg-card);
-            --lw-gold-button-bg: radial-gradient(circle at 38% 18%, rgba(255, 255, 255, .46), transparent 28%), linear-gradient(180deg, var(--lw-gold-soft), var(--lw-gold) 48%, var(--lw-gold-button));
-            --lw-red-button-bg: linear-gradient(180deg, var(--lw-white-18), transparent 34%), linear-gradient(180deg, var(--lw-red-button-top) 0%, var(--lw-red-button-mid) 48%, var(--lw-red-button-bottom) 100%);
-            --lw-center-button-bg: radial-gradient(circle at 35% 25%, var(--lw-gold-cream), transparent 28%), linear-gradient(180deg, var(--lw-gold-light), var(--lw-gold) 48%, var(--lw-gold-dark));
-            --lw-chance-bg: linear-gradient(180deg, var(--lw-white-20), transparent 34%), linear-gradient(180deg, var(--lw-red-bright) 0%, #a32036 50%, #6d1222 100%);
-            --lw-popup-title-bg: linear-gradient(180deg, var(--lw-gold-soft) 0%, var(--lw-gold) 24%, var(--lw-gold-dark) 58%, var(--lw-gold-soft) 100%);
-            --lw-popup-card-bg: linear-gradient(180deg, rgba(255, 255, 255, .075), transparent 18%) padding-box, radial-gradient(circle at 50% 0%, var(--lw-white-10), transparent 34%) padding-box, radial-gradient(circle at 50% 105%, rgba(255, 255, 255, .045), transparent 36%) padding-box, linear-gradient(180deg, #120806 0%, #090403 52%, #000 100%) padding-box, linear-gradient(135deg, #fff7cf 0%, var(--lw-gold) 18%, var(--lw-gold-dark) 38%, var(--lw-gold-soft) 52%, var(--lw-gold-deep) 72%, var(--lw-gold) 100%) border-box;
-            --lw-lose-button-bg: linear-gradient(180deg, var(--lw-lose-light), var(--lw-lose-dark)); /* Effects and layout */
-            --lw-radius: 24px;
-            --lw-radius-panel-inner: 16px;
-            --lw-radius-pill: 999px;
-            --lw-shadow-gold: 0 0 28px rgba(245, 206, 108, .45);
-            --lw-shadow-panel: 0 24px 70px rgba(0, 0, 0, .38), inset 0 1px 0 var(--lw-white-14), inset 0 0 26px rgba(245, 206, 108, .055);
-            --lw-shadow-card: inset 0 1px 0 var(--lw-white-08), 0 8px 18px rgba(0, 0, 0, .18);
-            --lw-shadow-button: 0 12px 26px rgba(0, 0, 0, .34), 0 0 22px rgba(245, 206, 108, .26), inset 0 2px 0 rgba(255, 255, 255, .42), inset 0 -5px 12px rgba(112, 51, 0, .24);
-            --lw-transition-fast: .16s ease;
-            --lw-transition-normal: .18s ease;
-            --lw-spin-duration: 4s;
-            --lw-spin-all-duration: 1.2s; /* Wheel segments */
-            --lw-wheel-seg-1-start: #033f1e;
-            --lw-wheel-seg-1-end: #001508;
-            --lw-wheel-seg-2-start: #895710;
-            --lw-wheel-seg-2-end: #895710;
-            --lw-wheel-seg-3-start: #152123;
-            --lw-wheel-seg-3-end: #01354e;
-            --lw-wheel-lose-seg-start: #1f1e17;
-            --lw-wheel-lose-seg-end: #080303;
-        }
+        :root { /* Theme images */ --lw-bg-image: url('image/Lucky Wheel - Gold Luxury_files/wheel_bg.jpg'); --lw-wheel-base-image: url('image/Lucky Wheel - Gold Luxury_files/wheel_base.png'); --lw-wheel-shell-image: url('image/Lucky Wheel - Gold Luxury_files/wheel_shell.png'); --lw-pointer-image: url('image/Lucky Wheel - Gold Luxury_files/wheel_pointer.png'); /* Fonts */ --lw-font-base: Arial, sans-serif; --lw-font-display: Georgia, "Times New Roman", serif; /* Main theme colors */ --lw-bg: #12070b; --lw-bg-deep: #050203; --lw-bg-panel: rgba(22, 7, 11, .64); --lw-bg-card: rgba(30, 12, 16, .62); --lw-bg-tnc: rgba(16, 5, 8, .74); --lw-overlay: rgba(0, 0, 0, .68); --lw-text: #fff; --lw-text-strong: rgba(255, 255, 255, .95); --lw-text-soft: rgba(255, 255, 255, .82); --lw-muted: rgba(255, 255, 255, .68); --lw-muted-2: rgba(255, 255, 255, .72); --lw-muted-3: rgba(255, 255, 255, .74); --lw-gold-pale: #fffbe1; --lw-gold-cream: #fff8cd; --lw-gold-soft: #fff0a8; --lw-gold-light: #ffe9a8; --lw-gold: #f5ce6c; --lw-gold-rgb: 245, 206, 108; --lw-gold-warm: #c88b2e; --lw-gold-button: #c77b1e; --lw-gold-dark: #b87924; --lw-gold-deep: #8d4b12; --lw-red: #a73447; --lw-red-bright: #cf3a50; --lw-red-button-top: #c83245; --lw-red-button-mid: #9f1f35; --lw-red-button-bottom: #68101f; --lw-red-deep: #4b101b; --lw-red-ribbon-side: #8c1c2e; --lw-red-ribbon-side-dark: #5c0f1d; --lw-ink: #1a0a0a; --lw-ink-gold: #351506; --lw-ink-button: #3a1603; --lw-wheel-dark-text: #271104; --lw-lose-light: #777; --lw-lose-mid: #555; --lw-lose-dark: #3d3d3d; --lw-lose-deep: #262626; --lw-lose-purple-1: #766d80; --lw-lose-purple-2: #51495c; --lw-lose-purple-3: #292532; /* Transparent theme tokens */ --lw-border: rgba(245, 206, 108, .35); --lw-border-soft: rgba(245, 206, 108, .18); --lw-border-mid: rgba(245, 206, 108, .38); --lw-border-strong: rgba(245, 206, 108, .5); --lw-border-light: rgba(255, 244, 190, .72); --lw-border-bright: rgba(255, 244, 190, .82); --lw-white-02: rgba(255, 255, 255, .02); --lw-white-03: rgba(255, 255, 255, .03); --lw-white-05: rgba(255, 255, 255, .05); --lw-white-08: rgba(255, 255, 255, .08); --lw-white-10: rgba(255, 255, 255, .10); --lw-white-12: rgba(255, 255, 255, .12); --lw-white-14: rgba(255, 255, 255, .14); --lw-white-18: rgba(255, 255, 255, .18); --lw-white-20: rgba(255, 255, 255, .20); --lw-white-45: rgba(255, 255, 255, .45); /* Gradients */ --lw-title-gradient: linear-gradient(180deg, var(--lw-gold-pale) 0%, #ffeaa3 25%, var(--lw-gold) 52%, var(--lw-gold-warm) 78%, var(--lw-gold-soft) 100%); --lw-panel-bg: linear-gradient(180deg, var(--lw-white-10), rgba(255, 255, 255, .035)), var(--lw-bg-panel); --lw-card-bg: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .028)), var(--lw-bg-card); --lw-gold-button-bg: radial-gradient(circle at 38% 18%, rgba(255, 255, 255, .46), transparent 28%), linear-gradient(180deg, var(--lw-gold-soft), var(--lw-gold) 48%, var(--lw-gold-button)); --lw-red-button-bg: linear-gradient(180deg, var(--lw-white-18), transparent 34%), linear-gradient(180deg, var(--lw-red-button-top) 0%, var(--lw-red-button-mid) 48%, var(--lw-red-button-bottom) 100%); --lw-center-button-bg: radial-gradient(circle at 35% 25%, var(--lw-gold-cream), transparent 28%), linear-gradient(180deg, var(--lw-gold-light), var(--lw-gold) 48%, var(--lw-gold-dark)); --lw-chance-bg: linear-gradient(180deg, var(--lw-white-20), transparent 34%), linear-gradient(180deg, var(--lw-red-bright) 0%, #a32036 50%, #6d1222 100%); --lw-popup-title-bg: linear-gradient(180deg, var(--lw-gold-soft) 0%, var(--lw-gold) 24%, var(--lw-gold-dark) 58%, var(--lw-gold-soft) 100%); --lw-popup-card-bg: linear-gradient(180deg, rgba(255, 255, 255, .075), transparent 18%) padding-box, radial-gradient(circle at 50% 0%, var(--lw-white-10), transparent 34%) padding-box, radial-gradient(circle at 50% 105%, rgba(255, 255, 255, .045), transparent 36%) padding-box, linear-gradient(180deg, #120806 0%, #090403 52%, #000 100%) padding-box, linear-gradient(135deg, #fff7cf 0%, var(--lw-gold) 18%, var(--lw-gold-dark) 38%, var(--lw-gold-soft) 52%, var(--lw-gold-deep) 72%, var(--lw-gold) 100%) border-box; --lw-lose-button-bg: linear-gradient(180deg, var(--lw-lose-light), var(--lw-lose-dark)); /* Effects and layout */ --lw-radius: 24px; --lw-radius-panel-inner: 16px; --lw-radius-pill: 999px; --lw-shadow-gold: 0 0 28px rgba(245, 206, 108, .45); --lw-shadow-panel: 0 24px 70px rgba(0, 0, 0, .38), inset 0 1px 0 var(--lw-white-14), inset 0 0 26px rgba(245, 206, 108, .055); --lw-shadow-card: inset 0 1px 0 var(--lw-white-08), 0 8px 18px rgba(0, 0, 0, .18); --lw-shadow-button: 0 12px 26px rgba(0, 0, 0, .34), 0 0 22px rgba(245, 206, 108, .26), inset 0 2px 0 rgba(255, 255, 255, .42), inset 0 -5px 12px rgba(112, 51, 0, .24); --lw-transition-fast: .16s ease; --lw-transition-normal: .18s ease; --lw-spin-duration: 4s; --lw-spin-all-duration: 1.2s; /* Wheel segments */ --lw-wheel-seg-1-start: #033f1e; --lw-wheel-seg-1-end: #001508; --lw-wheel-seg-2-start: #895710; --lw-wheel-seg-2-end: #895710; --lw-wheel-seg-3-start: #152123; --lw-wheel-seg-3-end: #01354e; --lw-wheel-lose-seg-start: #1f1e17; --lw-wheel-lose-seg-end: #080303; }
         * { box-sizing: border-box }
         html, body { width: 100%; min-height: 100%; overflow-x: hidden }
         body { margin: 0; font-family: var(--lw-font-base); color: var(--lw-text); background-image: var(--lw-bg-image); background-position: center top; background-size: cover; }
@@ -214,12 +123,7 @@
         .lwPopup__title { position: absolute; left: 50%; top: -26px; min-width: 174px; margin: 0; padding: 12px 34px; transform: translateX(-50%); isolation: isolate; color: var(--lw-text)1b8; font-family: var(--lw-font-display); font-size: 16px; font-weight: 900; line-height: 1; text-align: center; text-transform: uppercase; white-space: nowrap; background: var(--lw-popup-title-bg); clip-path: polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px); box-shadow: 0 10px 24px rgba(0,0,0,.4),0 0 16px rgba(245,206,108,.26); text-shadow: 0 1px 0 rgba(90,34,0,.75),0 0 10px rgba(245,206,108,.28) }
             .lwPopup__title::before { content: ""; position: absolute; inset: 2px; z-index: -1; background: var(--lw-red-button-bg); clip-path: inherit; box-shadow: inset 0 1px 0 var(--lw-white-12),inset 0 -4px 10px rgba(0,0,0,.22) }
         .lwPopup.is-win .lwPopup__title::before, .lwPopup.is-win .lwPopup__title::after { box-shadow: 0 0 8px rgba(245,206,108,.45) }
-        .lwPopup.is-lose .lwPopup__title { 
-            background: linear-gradient(180deg,var(--lw-white-10),transparent 40%),linear-gradient(180deg,var(--lw-lose-mid),var(--lw-lose-deep)); 
-            color: var(--lw-text-soft); 
-            border-color: rgba(255,255,255,.22) 
-
-        }
+        .lwPopup.is-lose .lwPopup__title { background: linear-gradient(180deg,var(--lw-white-10),transparent 40%),linear-gradient(180deg,var(--lw-lose-mid),var(--lw-lose-deep)); color: var(--lw-text-soft); border-color: rgba(255,255,255,.22) }
             .lwPopup.is-lose .lwPopup__title::before { background: linear-gradient(180deg,var(--lw-white-14),transparent 34%),linear-gradient(180deg,var(--lw-lose-purple-1) 0%,var(--lw-lose-purple-2) 48%,var(--lw-lose-purple-3) 100%); box-shadow: inset 0 1px 0 var(--lw-white-12),inset 0 -4px 10px rgba(0,0,0,.26) }
         .lwPopup__close { position: absolute; right: 8px; top: 8px; width: 38px; height: 38px; border: 1px solid rgba(255,224,137,.45); border-radius: 50%; color: var(--lw-gold-light); background: var(--lw-red-button-bg); box-shadow: 0 8px 18px rgba(0,0,0,.34),inset 0 1px 0 var(--lw-white-14); cursor: pointer; font-size: 34px; display: flex; justify-content: center; align-items: center }
         .lwPopup__body { position: relative; z-index: 2; padding: 4px 40px 38px }
@@ -401,535 +305,548 @@
             .lwSpinActions { width: 94vw; gap: 8px }
             .lwSpinAction { min-height: 44px; font-size: 11px }
         }
+
+
+        /* =========================================================
+   TURBO PANEL
+   Paste this at the bottom of your existing CSS
+========================================================= */
+
+        .lwTurbo { position: relative; z-index: 4; width: min(560px, 92%); margin: 16px auto 0; overflow: hidden; opacity: 1; visibility: visible; transform: translateY(0); transform-origin: top center; transition: max-height .32s cubic-bezier(.22, .8, .22, 1), opacity .24s ease, transform .32s cubic-bezier(.22, .8, .22, 1), margin .32s ease, visibility 0s linear 0s; }
+
+            /*
+JS 使用 hidden 时，浏览器本身会 display:none。
+这一行确保 hidden 状态绝对不会占位置。
+*/
+            .lwTurbo[hidden] { display: none !important; }
+
+
+            /* =========================================================
+   SLIDE IN
+   JS 打开 Turbo 时加入 .is-selecting
+========================================================= */
+
+            .lwTurbo.is-selecting { animation: lwTurboSlideIn .34s cubic-bezier(.18, .86, .32, 1.12) both; }
+
+
+            /* =========================================================
+   SLIDE OUT
+   JS 关闭 Turbo 时加入 .is-closing
+========================================================= */
+
+            .lwTurbo.is-closing { pointer-events: none; animation: lwTurboSlideOut .26s ease-in both; }
+
+
+        /* =========================================================
+   TURBO SPEED ROW
+========================================================= */
+
+        .lwTurbo__speeds { position: relative; display: grid; grid-template-columns: auto repeat(4, minmax(56px, 1fr)); align-items: center; gap: 9px; min-height: 62px; padding: 9px 12px; border: 1px solid rgba(245, 206, 108, .42); border-radius: 18px; background: radial-gradient( circle at 18% 0%, rgba(245, 206, 108, .18), transparent 35% ), linear-gradient( 180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .025) ), rgba(7, 16, 12, .88); box-shadow: 0 15px 28px rgba(0, 0, 0, .36), 0 0 20px rgba(245, 206, 108, .10), inset 0 1px 0 rgba(255, 255, 255, .12); backdrop-filter: blur(12px); }
+
+            .lwTurbo__speeds::before { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(245, 206, 108, .10); border-radius: 13px; pointer-events: none; }
+
+
+        /* =========================================================
+   TURBO LABEL
+========================================================= */
+
+        .lwTurbo__label { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 42px; padding: 0 10px; color: #ffe580; font-size: 14px; font-weight: 1000; line-height: 1; letter-spacing: .05em; white-space: nowrap; text-shadow: 0 2px 0 rgba(0, 0, 0, .45), 0 0 12px rgba(245, 206, 108, .30); }
+
+        .lwTurbo__bolt { display: inline-block; color: #ffdc55; font-size: 18px; filter: drop-shadow(0 0 5px rgba(255, 218, 80, .65)); animation: lwTurboBoltPulse 1.2s ease-in-out infinite; }
+
+
+        /* =========================================================
+   X1 / X2 / X4 / X8 BUTTONS
+========================================================= */
+
+        .lwTurbo__speed { position: relative; z-index: 1; min-width: 0; min-height: 42px; padding: 0 8px; border: 1px solid rgba(255, 231, 155, .34); border-radius: 12px; color: rgba(255, 255, 255, .92); background: linear-gradient( 180deg, rgba(255, 255, 255, .10), transparent 38% ), linear-gradient( 180deg, #213426 0%, #102318 52%, #07130d 100% ); box-shadow: 0 7px 14px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .13); font-size: 15px; font-weight: 1000; line-height: 1; letter-spacing: .02em; cursor: pointer; transition: transform .16s ease, filter .16s ease, border-color .16s ease, box-shadow .16s ease, color .16s ease; }
+
+            .lwTurbo__speed:hover:not(:disabled) { transform: translateY(-1px); color: #fff7cf; border-color: rgba(245, 206, 108, .65); filter: brightness(1.1); box-shadow: 0 10px 18px rgba(0, 0, 0, .34), 0 0 15px rgba(245, 206, 108, .15), inset 0 1px 0 rgba(255, 255, 255, .18); }
+
+            .lwTurbo__speed:active:not(:disabled) { transform: translateY(1px) scale(.97); }
+
+            .lwTurbo__speed.is-active { color: #171006; border-color: rgba(255, 243, 185, .88); background: radial-gradient( circle at 38% 18%, rgba(255, 255, 255, .52), transparent 30% ), linear-gradient( 180deg, #fff0a8 0%, #f5ce6c 48%, #b87924 100% ); box-shadow: 0 9px 20px rgba(0, 0, 0, .34), 0 0 22px rgba(245, 206, 108, .38), inset 0 2px 0 rgba(255, 255, 255, .42), inset 0 -4px 9px rgba(80, 40, 0, .22); }
+
+            .lwTurbo__speed:disabled { cursor: not-allowed; opacity: .56; filter: grayscale(.2) brightness(.74); }
+
+
+        /* =========================================================
+   CANCEL / STOP / SKIP ALL
+========================================================= */
+
+        .lwTurbo__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+
+        .lwTurbo__stop,
+        .lwTurbo__skip { position: relative; min-height: 50px; padding: 0 18px; border-radius: 999px; color: #fff; font-size: 15px; font-weight: 1000; line-height: 1; letter-spacing: .045em; text-transform: uppercase; cursor: pointer; transition: transform .16s ease, filter .16s ease, opacity .16s ease, box-shadow .16s ease; }
+
+        .lwTurbo__stop { border: 1px solid rgba(255, 228, 150, .66); background: linear-gradient( 180deg, rgba(255, 255, 255, .16), transparent 34% ), linear-gradient( 180deg, #e13d49 0%, #b8142b 50%, #620510 100% ); box-shadow: 0 12px 22px rgba(0, 0, 0, .32), 0 0 16px rgba(190, 20, 50, .18), inset 0 1px 0 rgba(255, 255, 255, .18); }
+
+        .lwTurbo__skip { border: 1px solid rgba(255, 231, 155, .62); background: linear-gradient( 180deg, rgba(255, 255, 255, .15), transparent 34% ), linear-gradient( 180deg, #42794a 0%, #20542c 50%, #0b2914 100% ); box-shadow: 0 12px 22px rgba(0, 0, 0, .32), 0 0 16px rgba(45, 130, 65, .16), inset 0 1px 0 rgba(255, 255, 255, .16); }
+
+            .lwTurbo__stop:hover:not(:disabled),
+            .lwTurbo__skip:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.08); }
+
+            .lwTurbo__stop:active:not(:disabled),
+            .lwTurbo__skip:active:not(:disabled) { transform: translateY(1px) scale(.98); }
+
+            .lwTurbo__stop:disabled,
+            .lwTurbo__skip:disabled { cursor: not-allowed; opacity: .5; filter: brightness(.7); }
+
+
+        /* =========================================================
+   STATUS TEXT
+========================================================= */
+
+        .lwTurbo__status { min-height: 16px; margin: 8px 4px 0; color: rgba(255, 239, 190, .76); font-size: 11px; font-weight: 700; line-height: 1.35; text-align: center; text-shadow: 0 2px 7px rgba(0, 0, 0, .55); }
+
+
+        /* =========================================================
+   RUNNING STATE
+========================================================= */
+
+        .lwTurbo.is-running .lwTurbo__speeds { border-color: rgba(245, 206, 108, .55); box-shadow: 0 15px 28px rgba(0, 0, 0, .36), 0 0 24px rgba(245, 206, 108, .17), inset 0 1px 0 rgba(255, 255, 255, .12); }
+
+        .lwTurbo.is-running .lwTurbo__label { animation: lwTurboRunningGlow 1.1s ease-in-out infinite; }
+
+
+        /* =========================================================
+   SLIDE ANIMATIONS
+========================================================= */
+
+        @keyframes lwTurboSlideIn {
+            0% { opacity: 0; transform: translateY(-18px) scaleY(.82); filter: blur(2px); }
+
+            65% { opacity: 1; transform: translateY(3px) scaleY(1.02); filter: blur(0); }
+
+            100% { opacity: 1; transform: translateY(0) scaleY(1); filter: blur(0); }
+        }
+
+        @keyframes lwTurboSlideOut {
+            0% { opacity: 1; transform: translateY(0) scaleY(1); }
+
+            100% { opacity: 0; transform: translateY(-14px) scaleY(.84); }
+        }
+
+        @keyframes lwTurboBoltPulse {
+            0%, 100% { transform: scale(1); opacity: .82; }
+
+            50% { transform: scale(1.16); opacity: 1; }
+        }
+
+        @keyframes lwTurboRunningGlow {
+            0%, 100% { text-shadow: 0 2px 0 rgba(0, 0, 0, .45), 0 0 8px rgba(245, 206, 108, .24); }
+
+            50% { text-shadow: 0 2px 0 rgba(0, 0, 0, .45), 0 0 18px rgba(245, 206, 108, .62); }
+        }
+
+
+        /* =========================================================
+   TABLET
+========================================================= */
+
+        @media (max-width: 1080px) {
+            .lwTurbo { width: min(480px, 92%); }
+
+            .lwTurbo__speeds { grid-template-columns: auto repeat(4, minmax(48px, 1fr)); gap: 7px; padding: 8px 10px; }
+
+            .lwTurbo__label { padding-inline: 7px; font-size: 12px; }
+
+            .lwTurbo__speed { min-height: 40px; font-size: 14px; }
+        }
+
+
+        /* =========================================================
+   MOBILE
+========================================================= */
+
+        @media (max-width: 767px) {
+            .lwTurbo { width: min(360px, 94vw); margin-top: 10px; }
+
+            .lwTurbo__speeds { grid-template-columns: repeat(4, 1fr); gap: 7px; min-height: 0; padding: 42px 9px 9px; }
+
+            .lwTurbo__label { position: absolute; top: 9px; left: 50%; min-height: 26px; padding: 0 10px; transform: translateX(-50%); font-size: 12px; }
+
+            .lwTurbo__bolt { font-size: 15px; }
+
+            .lwTurbo__speed { min-height: 40px; padding-inline: 5px; border-radius: 10px; font-size: 13px; }
+
+            .lwTurbo__actions { gap: 8px; margin-top: 8px; }
+
+            .lwTurbo__stop,
+            .lwTurbo__skip { min-height: 44px; padding-inline: 10px; font-size: 12px; letter-spacing: .02em; }
+
+            .lwTurbo__status { margin-top: 7px; font-size: 10px; }
+        }
+
+
+        /* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+        @media (max-width: 380px) {
+            .lwTurbo { width: 94vw; }
+
+            .lwTurbo__speeds { gap: 5px; padding-inline: 7px; }
+
+            .lwTurbo__speed { min-height: 38px; font-size: 12px; }
+
+            .lwTurbo__stop,
+            .lwTurbo__skip { min-height: 42px; font-size: 11px; }
+        }
     </style>
     <style>
-            /* =========================================================
-           FIFA THEME - FULL THEME OVERRIDE
-           Replace the old FIFA style blocks with this one.
-        ========================================================= */
+        /* =========================================================
+                   FIFA THEME - FULL THEME OVERRIDE
+                   Replace the old FIFA style blocks with this one.
+                ========================================================= */
 
-        :root {
-            --lw-bg-image: url('./Lucky Wheel - Gold Luxury_files/wheel_bg.jpg');
-            --lw-wheel-base-image: url('./Lucky Wheel - Gold Luxury_files/wheel_base.png');
-            --lw-wheel-shell-image: url('./Lucky Wheel - Gold Luxury_files/wheel_shell2.png');
-            /* Gold */
-            --lw-wheel-seg-2-start: #895710;
-            --lw-wheel-seg-2-end: #895710;
-            /* Green */
-            --lw-wheel-seg-1-start: #033f1e;
-            --lw-wheel-seg-1-end: #001508;
-            /* Blue */
-            --lw-wheel-seg-3-start: #152123;
-            --lw-wheel-seg-3-end: #01354e;
-            /* Lose */
-            --lw-wheel-lose-seg-start: #1f1e17;
-            --lw-wheel-lose-seg-end: #080303;
-            --fifa-panel-bg: rgba(2,14,24,.8);
-            --fifa-red: #895710;
-            --fifa-red-dark: #5f3b0b;
-            --fifa-spin-bg-size: clamp(218px,18.4vw,254px);
-            --fifa-spin-btn-size: clamp(118px,10.2vw,138px);
-            --fifa-chance-h: clamp(72px,11vw,121px);
-            --fifa-chance-mt: clamp(-52px,-4.2vw,-18px);
-            --fifa-chance-mb: clamp(-30px,-2vw,-8px);
-            --fifa-chance-pad-bottom: clamp(18px,3.2vw,36px);
-            --fifa-action-font: clamp(16px,2.25vw,26px);
-            --fifa-action-height: clamp(48px,5.7vw,68px);
+        :root { --lw-bg-image: url('image/Lucky Wheel - Gold Luxury_files/wheel_bg.jpg'); --lw-wheel-base-image: url('image/Lucky Wheel - Gold Luxury_files/wheel_base.png'); --lw-wheel-shell-image: url('image/Lucky Wheel - Gold Luxury_files/wheel_shell2.png'); /* Gold */ --lw-wheel-seg-2-start: #895710; --lw-wheel-seg-2-end: #895710; /* Green */ --lw-wheel-seg-1-start: #033f1e; --lw-wheel-seg-1-end: #001508; /* Blue */ --lw-wheel-seg-3-start: #152123; --lw-wheel-seg-3-end: #01354e; /* Lose */ --lw-wheel-lose-seg-start: #1f1e17; --lw-wheel-lose-seg-end: #080303; --fifa-panel-bg: rgba(2,14,24,.8); --fifa-red: #895710; --fifa-red-dark: #5f3b0b; --fifa-spin-bg-size: clamp(218px,18.4vw,254px); --fifa-spin-btn-size: clamp(118px,10.2vw,138px); --fifa-chance-h: clamp(72px,11vw,121px); --fifa-chance-mt: clamp(-52px,-4.2vw,-18px); --fifa-chance-mb: clamp(-30px,-2vw,-8px); --fifa-chance-pad-bottom: clamp(18px,3.2vw,36px); --fifa-action-font: clamp(16px,2.25vw,26px); --fifa-action-height: clamp(48px,5.7vw,68px); }
+
+        /* =========================================================
+                   STAGE DECORATION
+                ========================================================= */
+
+        .lwStage { padding-top: 0; isolation: isolate; }
+
+            .lwStage::before,
+            .lwStage::after { content: ""; position: absolute; z-index: 0; pointer-events: none; width: clamp(130px, 17vw, 204px); height: clamp(165px, 21.6vw, 259px); border-radius: 0; opacity: .95; background-image: transparent; background-repeat: no-repeat; background-position: center; background-size: contain; filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .35)); display: none; }
+
+            .lwStage::before { left: -10%; top: 0; animation: lwFloatBackOne 5.2s ease-in-out infinite; }
+
+            .lwStage::after { right: -10%; top: 0; animation: lwFloatBackTwo 6s ease-in-out infinite; }
+
+        @keyframes lwFloatBackOne {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(0, -14px, 0); }
         }
 
-            /* =========================================================
-           STAGE DECORATION
-        ========================================================= */
-
-            .lwStage { padding-top: 0; isolation: isolate; }
-
-                .lwStage::before,
-                .lwStage::after {
-                    content: "";
-                    position: absolute;
-                    z-index: 0;
-                    pointer-events: none;
-                    width: clamp(130px, 17vw, 204px);
-                    height: clamp(165px, 21.6vw, 259px);
-                    border-radius: 0;
-                    opacity: .95;
-                    background-image: transparent;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    background-size: contain;
-                    filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .35));
-                    display:none;
-                }
-
-                .lwStage::before { left: -10%; top: 0; animation: lwFloatBackOne 5.2s ease-in-out infinite; }
-
-                .lwStage::after { right: -10%; top: 0; animation: lwFloatBackTwo 6s ease-in-out infinite; }
-
-            @keyframes lwFloatBackOne {
-                0%, 100% { transform: translate3d(0, 0, 0); }
-                50% { transform: translate3d(0, -14px, 0); }
-            }
-
-            @keyframes lwFloatBackTwo {
-                0%, 100% { transform: translate3d(0, 0, 0); }
-                50% { transform: translate3d(0, -18px, 0); }
-            }
-
-            @keyframes lwFloatFront {
-                0%, 100% { transform: translate3d(0, 0, 0); }
-                50% { transform: translate3d(0, -12px, 0); }
-            }
-
-            /* =========================================================
-           WHEEL THEME
-        ========================================================= */
-
-            .lwWheelWrap { width: min(650px, 100%); filter: drop-shadow(0 34px 34px rgba(0, 0, 0, .48)) drop-shadow(0 0 26px rgba(255, 207, 89, .24)); }
-
-                .lwWheelWrap::before {
-                    content: "";
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    z-index: 6;
-                    width: var(--fifa-spin-bg-size);
-                    height: var(--fifa-spin-bg-size);
-                    transform: translate(-50%, -50%);
-                    pointer-events: none;
-                    background-image: url("./Lucky Wheel - Gold Luxury_files/spin_bg.png");
-                    background-size: 100% 100%;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    filter: drop-shadow(0 24px 24px rgba(0, 0, 0, .5)) drop-shadow(0 0 32px rgba(255, 216, 112, .45));
-                }
-
-                .lwWheelWrap::after { bottom: -24px; width: 88%; height: 90px; background: radial-gradient( ellipse, rgba(255, 213, 94, .42), rgba(167, 52, 71, .18) 42%, transparent 72% ); }
-
-        .lwChance::after {
-            display:none !important;
-            content: "";
-            position: absolute;
-            right: 0;
-            top: -100%;
-            z-index: 9;
-            width: clamp(60px, 13vw, 120px);
-            height: clamp(60px, 13vw, 120px);
-            pointer-events: none;
-            background-image: url('./Lucky Wheel - Gold Luxury_files/img-ball.png');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            filter: drop-shadow(0 16px 18px rgba(0, 0, 0, .38));
-            animation: lwFloatFront 4.8s ease-in-out infinite;
-            clip-path: none;
-            border-radius: 9999px;
+        @keyframes lwFloatBackTwo {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(0, -18px, 0); }
         }
 
-            .lwWheelDisc { width: 87%; height: 87%; --lw-label-distance: -245px; box-shadow: inset 0 0 0 2px rgba(255, 245, 190, .24), inset 0 0 38px rgba(0, 0, 0, .52), inset 0 0 90px rgba(0, 0, 0, .18); filter: saturate(1.28) contrast(1.08) brightness(1.03); }
-
-                .lwWheelDisc::before { z-index: 1; background: repeating-conic-gradient( from 0deg, rgba(255, 241, 168, .95) 0deg 1.05deg, rgba(255, 186, 50, .72) 1.05deg 1.55deg, transparent 1.55deg 45deg ), radial-gradient(circle at 50% 50%, transparent 0 40%, rgba(255, 255, 255, .10) 41%, transparent 43%), radial-gradient(circle at 34% 22%, rgba(255, 255, 255, .25), transparent 27%), radial-gradient(circle at 50% 52%, transparent 0 52%, rgba(0, 0, 0, .25) 74%, rgba(0, 0, 0, .42) 100%); mix-blend-mode: screen; opacity: .76; }
-
-                .lwWheelDisc::after { z-index: 2; background: repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .055) 0 1px, transparent 1px 7px), radial-gradient(circle at 50% 50%, rgba(0, 0, 0, .20) 0 22%, transparent 23% 67%, rgba(255, 255, 255, .11) 68%, transparent 71%); opacity: .42; }
-
-            .lwWheel__label { z-index: 3; width: clamp(116px, 9.8vw, 148px); margin-left: calc(clamp(116px, 9.8vw, 148px) / -2); padding: 4px 3px; color: #fffdf0; font-family: Arial, Helvetica, sans-serif; font-size: clamp(18px, 1.55vw, 26px) !important; font-weight: 1000; line-height: .98; letter-spacing: -.045em; text-transform: none; text-shadow: 0 2px 0 rgba(44, 13, 4, .72), 0 4px 8px rgba(0, 0, 0, .56), 0 0 12px rgba(0, 0, 0, .32); -webkit-text-stroke: .45px rgba(60, 15, 2, .36); transform-origin: 50% 0; }
-
-                .lwWheel__label span { display: block; }
-
-                .lwWheel__label[data-prize-index="0"],
-                .lwWheel__label[data-prize-index="1"],
-                .lwWheel__label[data-prize-index="2"],
-                .lwWheel__label[data-prize-index="3"],
-                .lwWheel__label[data-prize-index="4"],
-                .lwWheel__label[data-prize-index="5"],
-                .lwWheel__label[data-prize-index="6"] { font-size: clamp(16px, 2.1vw, 26px) !important; }
-
-                .lwWheel__label[data-prize-index="7"] { width: clamp(120px, 9.6vw, 142px); margin-left: calc(clamp(120px, 9.6vw, 142px) / -2); font-size: clamp(18px, 2vw, 22px) !important; line-height: 1.02; letter-spacing: -.04em; }
-
-            .lwPointer { top: 26%; left: 50%; z-index: 8; width: clamp(42px, 6.5vw, 70px); height: clamp(66px, 10vw, 110px); transform: translateX(-50%) rotate(180deg); filter: drop-shadow(0 10px 10px rgba(0, 0, 0, .42)) drop-shadow(0 0 12px rgba(255, 220, 100, .62)); }
-
-            /* =========================================================
-           CENTER SPIN BUTTON
-        ========================================================= */
-
-            .lwSpinBtn-Con { position: absolute; left: 50%; top: 50%; z-index: 9; width: var(--fifa-spin-btn-size); height: var(--fifa-spin-btn-size); transform: translate(-50%, -50%); display: grid; place-items: center; overflow: visible; }
-
-                .lwSpinBtn-Con::before,
-                .lwSpinBtn-Con::after { content: ""; position: absolute; inset: -18px; border-radius: 50%; pointer-events: none; }
-
-                .lwSpinBtn-Con::before { background: conic-gradient( from 20deg, transparent, rgba(255, 235, 149, .65), transparent 34%, rgba(255, 255, 255, .45), transparent 68%, rgba(255, 217, 94, .5), transparent ); filter: blur(6px); opacity: .72; animation: lwCenterGlowSpin 5.5s linear infinite; }
-
-                .lwSpinBtn-Con::after { inset: -7px; border: 2px solid rgba(255, 240, 174, .72); box-shadow: 0 0 16px rgba(255, 224, 118, .56), inset 0 0 14px rgba(255, 255, 255, .22); }
-
-        .lwSpinBtn {
-            position: relative;
-            z-index: 1;
-            left: auto;
-            top: auto;
-            width: var(--fifa-spin-btn-size);
-            height: var(--fifa-spin-btn-size);
-            transform: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            border: 0;
-            border-radius: 50%;
-            color: #fff;
-            background: radial-gradient(circle at 35% 22%, rgba(255, 255, 255, .46), transparent 26%), radial-gradient(circle at 50% 82%, rgb(4 60 0 / 55%), transparent 42%), linear-gradient(180deg, #0f1a09 0%, #0d3102 48%, #0d3f01 100%);
-            box-shadow: inset 0 4px 0 rgba(255, 255, 255, .28), inset 0 -10px 18px rgb(27 60 0 / 48%), 0 12px 28px rgba(0, 0, 0, .5), 0 0 28px rgba(255, 221, 100, .46);
-            text-shadow: 0 2px 0 rgb(31 70 0 / 75%), 0 4px 12px rgba(0, 0, 0, .5);
-            transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
+        @keyframes lwFloatFront {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(0, -12px, 0); }
         }
 
-                .lwSpinBtn:hover:not(:disabled) { transform: translateY(-1px) scale(1.035); filter: brightness(1.08) saturate(1.08); box-shadow: inset 0 4px 0 rgba(255, 255, 255, .32), inset 0 -10px 18px rgba(60, 0, 0, .48), 0 16px 30px rgba(0, 0, 0, .52), 0 0 36px rgba(255, 221, 100, .62); }
+        /* =========================================================
+                   WHEEL THEME
+                ========================================================= */
 
-                .lwSpinBtn:active { transform: scale(.96); }
+        .lwWheelWrap { width: min(650px, 100%); filter: drop-shadow(0 34px 34px rgba(0, 0, 0, .48)) drop-shadow(0 0 26px rgba(255, 207, 89, .24)); }
 
-                .lwSpinBtn:disabled { filter: grayscale(.15) brightness(.72); }
+            .lwWheelWrap::before { content: ""; position: absolute; left: 50%; top: 50%; z-index: 6; width: var(--fifa-spin-bg-size); height: var(--fifa-spin-bg-size); transform: translate(-50%, -50%); pointer-events: none; background-image: url("image/Lucky Wheel - Gold Luxury_files/spin_bg.png"); background-size: 100% 100%; background-repeat: no-repeat; background-position: center; filter: drop-shadow(0 24px 24px rgba(0, 0, 0, .5)) drop-shadow(0 0 32px rgba(255, 216, 112, .45)); }
 
-            .lwSpinBtn__top { color: #ffe580; font-size: clamp(26px, 3vw, 39px); line-height: .82; font-weight: 1000; letter-spacing: -.065em; }
+            .lwWheelWrap::after { bottom: -24px; width: 88%; height: 90px; background: radial-gradient( ellipse, rgba(255, 213, 94, .42), rgba(167, 52, 71, .18) 42%, transparent 72% ); }
 
-            .lwSpinBtn__bottom { color: #fff; font-size: clamp(22px, 2.55vw, 34px); line-height: .82; font-weight: 1000; letter-spacing: -.055em; }
+        .lwChance::after { display: none !important; content: ""; position: absolute; right: 0; top: -100%; z-index: 9; width: clamp(60px, 13vw, 120px); height: clamp(60px, 13vw, 120px); pointer-events: none; background-image: url('image/Lucky Wheel - Gold Luxury_files/img-ball.png'); background-repeat: no-repeat; background-position: center; background-size: contain; filter: drop-shadow(0 16px 18px rgba(0, 0, 0, .38)); animation: lwFloatFront 4.8s ease-in-out infinite; clip-path: none; border-radius: 9999px; }
 
-            @keyframes lwCenterGlowSpin {
-                to { transform: rotate(360deg); }
-            }
+        .lwWheelDisc { width: 87%; height: 87%; --lw-label-distance: -245px; box-shadow: inset 0 0 0 2px rgba(255, 245, 190, .24), inset 0 0 38px rgba(0, 0, 0, .52), inset 0 0 90px rgba(0, 0, 0, .18); filter: saturate(1.28) contrast(1.08) brightness(1.03); }
 
-            /* =========================================================
-           CHANCE RIBBON + ACTION BUTTONS
-        ========================================================= */
+            .lwWheelDisc::before { z-index: 1; background: repeating-conic-gradient( from 0deg, rgba(255, 241, 168, .95) 0deg 1.05deg, rgba(255, 186, 50, .72) 1.05deg 1.55deg, transparent 1.55deg 45deg ), radial-gradient(circle at 50% 50%, transparent 0 40%, rgba(255, 255, 255, .10) 41%, transparent 43%), radial-gradient(circle at 34% 22%, rgba(255, 255, 255, .25), transparent 27%), radial-gradient(circle at 50% 52%, transparent 0 52%, rgba(0, 0, 0, .25) 74%, rgba(0, 0, 0, .42) 100%); mix-blend-mode: screen; opacity: .76; }
 
-        .lwChance {
-            position: relative;
-            z-index: 3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(360px, 45vw, 650px);
-            min-height: var(--fifa-chance-h);
-            margin: var(--fifa-chance-mt) auto var(--fifa-chance-mb);
-            padding: 0 7% var(--fifa-chance-pad-bottom);
-            background-image: url('./Lucky Wheel - Gold Luxury_files/gold-ribbon.png');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            border: 0;
-            box-shadow: none;
-            transform: translateY(-4px);
-            filter: drop-shadow(0 18px 18px rgba(0, 0, 0, .28)) drop-shadow(0 0 18px rgba(255, 212, 80, .28));
+            .lwWheelDisc::after { z-index: 2; background: repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .055) 0 1px, transparent 1px 7px), radial-gradient(circle at 50% 50%, rgba(0, 0, 0, .20) 0 22%, transparent 23% 67%, rgba(255, 255, 255, .11) 68%, transparent 71%); opacity: .42; }
+
+        .lwWheel__label { z-index: 3; width: clamp(116px, 9.8vw, 148px); margin-left: calc(clamp(116px, 9.8vw, 148px) / -2); padding: 4px 3px; color: #fffdf0; font-family: Arial, Helvetica, sans-serif; font-size: clamp(18px, 1.55vw, 26px) !important; font-weight: 1000; line-height: .98; letter-spacing: -.045em; text-transform: none; text-shadow: 0 2px 0 rgba(44, 13, 4, .72), 0 4px 8px rgba(0, 0, 0, .56), 0 0 12px rgba(0, 0, 0, .32); -webkit-text-stroke: .45px rgba(60, 15, 2, .36); transform-origin: 50% 0; }
+
+            .lwWheel__label span { display: block; }
+
+            .lwWheel__label[data-prize-index="0"],
+            .lwWheel__label[data-prize-index="1"],
+            .lwWheel__label[data-prize-index="2"],
+            .lwWheel__label[data-prize-index="3"],
+            .lwWheel__label[data-prize-index="4"],
+            .lwWheel__label[data-prize-index="5"],
+            .lwWheel__label[data-prize-index="6"] { font-size: clamp(16px, 2.1vw, 26px) !important; }
+
+            .lwWheel__label[data-prize-index="7"] { width: clamp(120px, 9.6vw, 142px); margin-left: calc(clamp(120px, 9.6vw, 142px) / -2); font-size: clamp(18px, 2vw, 22px) !important; line-height: 1.02; letter-spacing: -.04em; }
+
+        .lwPointer { top: 26%; left: 50%; z-index: 8; width: clamp(42px, 6.5vw, 70px); height: clamp(66px, 10vw, 110px); transform: translateX(-50%) rotate(180deg); filter: drop-shadow(0 10px 10px rgba(0, 0, 0, .42)) drop-shadow(0 0 12px rgba(255, 220, 100, .62)); }
+
+        /* =========================================================
+                   CENTER SPIN BUTTON
+                ========================================================= */
+
+        .lwSpinBtn-Con { position: absolute; left: 50%; top: 50%; z-index: 9; width: var(--fifa-spin-btn-size); height: var(--fifa-spin-btn-size); transform: translate(-50%, -50%); display: grid; place-items: center; overflow: visible; }
+
+            .lwSpinBtn-Con::before,
+            .lwSpinBtn-Con::after { content: ""; position: absolute; inset: -18px; border-radius: 50%; pointer-events: none; }
+
+            .lwSpinBtn-Con::before { background: conic-gradient( from 20deg, transparent, rgba(255, 235, 149, .65), transparent 34%, rgba(255, 255, 255, .45), transparent 68%, rgba(255, 217, 94, .5), transparent ); filter: blur(6px); opacity: .72; animation: lwCenterGlowSpin 5.5s linear infinite; }
+
+            .lwSpinBtn-Con::after { inset: -7px; border: 2px solid rgba(255, 240, 174, .72); box-shadow: 0 0 16px rgba(255, 224, 118, .56), inset 0 0 14px rgba(255, 255, 255, .22); }
+
+        .lwSpinBtn { position: relative; z-index: 1; left: auto; top: auto; width: var(--fifa-spin-btn-size); height: var(--fifa-spin-btn-size); transform: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border: 0; border-radius: 50%; color: #fff; background: radial-gradient(circle at 35% 22%, rgba(255, 255, 255, .46), transparent 26%), radial-gradient(circle at 50% 82%, rgb(4 60 0 / 55%), transparent 42%), linear-gradient(180deg, #0f1a09 0%, #0d3102 48%, #0d3f01 100%); box-shadow: inset 0 4px 0 rgba(255, 255, 255, .28), inset 0 -10px 18px rgb(27 60 0 / 48%), 0 12px 28px rgba(0, 0, 0, .5), 0 0 28px rgba(255, 221, 100, .46); text-shadow: 0 2px 0 rgb(31 70 0 / 75%), 0 4px 12px rgba(0, 0, 0, .5); transition: transform .16s ease, filter .16s ease, box-shadow .16s ease; }
+
+            .lwSpinBtn:hover:not(:disabled) { transform: translateY(-1px) scale(1.035); filter: brightness(1.08) saturate(1.08); box-shadow: inset 0 4px 0 rgba(255, 255, 255, .32), inset 0 -10px 18px rgba(60, 0, 0, .48), 0 16px 30px rgba(0, 0, 0, .52), 0 0 36px rgba(255, 221, 100, .62); }
+
+            .lwSpinBtn:active { transform: scale(.96); }
+
+            .lwSpinBtn:disabled { filter: grayscale(.15) brightness(.72); }
+
+        .lwSpinBtn__top { color: #ffe580; font-size: clamp(26px, 3vw, 39px); line-height: .82; font-weight: 1000; letter-spacing: -.065em; }
+
+        .lwSpinBtn__bottom { color: #fff; font-size: clamp(22px, 2.55vw, 34px); line-height: .82; font-weight: 1000; letter-spacing: -.055em; }
+
+        @keyframes lwCenterGlowSpin {
+            to { transform: rotate(360deg); }
         }
 
-                .lwChance::before,
-                .lwChance::after { display: none; }
+        /* =========================================================
+                   CHANCE RIBBON + ACTION BUTTONS
+                ========================================================= */
 
-            .lwChance__main { align-items: baseline; gap: clamp(4px, 1vw, 8px); white-space: nowrap; }
+        .lwChance { position: relative; z-index: 3; display: flex; align-items: center; justify-content: center; width: clamp(360px, 45vw, 650px); min-height: var(--fifa-chance-h); margin: var(--fifa-chance-mt) auto var(--fifa-chance-mb); padding: 0 7% var(--fifa-chance-pad-bottom); background-image: url('image/Lucky Wheel - Gold Luxury_files/gold-ribbon.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center; border: 0; box-shadow: none; transform: translateY(-4px); filter: drop-shadow(0 18px 18px rgba(0, 0, 0, .28)) drop-shadow(0 0 18px rgba(255, 212, 80, .28)); }
 
-                .lwChance__main strong { color: #000; font-size: clamp(32px, 5.3vw, 54px); line-height: 1; font-weight: 1000; letter-spacing: -.04em; text-shadow: none; }
+            .lwChance::before,
+            .lwChance::after { display: none; }
 
-                .lwChance__main span { color: #000; font-size: clamp(13px, 2vw, 21px); font-weight: 1000; letter-spacing: -.02em; }
+        .lwChance__main { align-items: baseline; gap: clamp(4px, 1vw, 8px); white-space: nowrap; }
 
-            .lwSpinActions { width: min(560px, 92%); gap: clamp(8px, 1.6vw, 14px); }
+            .lwChance__main strong { color: #000; font-size: clamp(32px, 5.3vw, 54px); line-height: 1; font-weight: 1000; letter-spacing: -.04em; text-shadow: none; }
 
-            .lwSpinAction { min-height: var(--fifa-action-height); padding: 0 18px; border: 0; border-radius: 0; color: #fff; font-size: var(--fifa-action-font); line-height: 1; letter-spacing: .02em; white-space: nowrap; background-size: 100% 100%; background-repeat: no-repeat; background-position: center; }
+            .lwChance__main span { color: #000; font-size: clamp(13px, 2vw, 21px); font-weight: 1000; letter-spacing: -.02em; }
 
-                .lwSpinAction:disabled { cursor: not-allowed; filter: brightness(.68) saturate(.9); }
+        .lwSpinActions { width: min(560px, 92%); gap: clamp(8px, 1.6vw, 14px); }
 
-        .lwSpinAction--single {
-            background-image: url('./Lucky Wheel - Gold Luxury_files/img-btn-red.png');
+        .lwSpinAction { min-height: var(--fifa-action-height); padding: 0 18px; border: 0; border-radius: 0; color: #fff; font-size: var(--fifa-action-font); line-height: 1; letter-spacing: .02em; white-space: nowrap; background-size: 100% 100%; background-repeat: no-repeat; background-position: center; }
+
+            .lwSpinAction:disabled { cursor: not-allowed; filter: brightness(.68) saturate(.9); }
+
+        .lwSpinAction--single { background-image: url('image/Lucky Wheel - Gold Luxury_files/img-btn-red.png'); }
+
+        .lwSpinAction--all { background-image: url('image/Lucky Wheel - Gold Luxury_files/img-btn-green.png'); filter: drop-shadow(0 18px 22px rgba(0, 0, 0, .48)) drop-shadow(0 0 22px rgba(245, 206, 108, .28)); }
+
+        .lwSpinNote { width: auto; font-size: 22px; }
+
+        /* =========================================================
+                   HISTORY PANEL
+                ========================================================= */
+
+        .lwPanel { background: var(--fifa-panel-bg); border-color: var(--fifa-red-dark); }
+
+            .lwPanel::before { display: none; }
+
+        .lwPanel__head { margin: 0 0 8px; }
+
+            .lwPanel__head::after { display: none; }
+
+        .lwhead__container { min-height: clamp(92px, 16vw, 150px); margin-top: clamp(-100px, -10vw, -40px); background-image: url('image/Lucky Wheel - Gold Luxury_files/img-trophy.png'); background-repeat: no-repeat; background-position: center top; background-size: contain; display: flex; align-items: flex-end; justify-content: center; }
+
+        .lwPanel__head h2 { margin: 0; padding: 0 0 clamp(12px, 2.2vw, 22px); color: #fff; font-family: Arial, sans-serif; font-size: clamp(12px, 1.45vw, 16px); line-height: 1; letter-spacing: 0; text-transform: uppercase; }
+
+        /* =========================================================
+                   TNC
+                ========================================================= */
+
+        .lwTnc { margin-top: 32px; background: var(--fifa-panel-bg); border-color: var(--fifa-red-dark); overflow: visible; }
+
+            .lwTnc::before { display: none; }
+
+        .lwTnc__head { position: relative; width: min(430px, calc(100% - 28px)); min-height: clamp(44px, 5.2vw, 56px); margin: -28px auto 0; padding: 0 clamp(34px, 5vw, 56px); display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(255, 255, 255, .12), transparent 38%), linear-gradient(180deg, #013514 0%, #091a01 48%, #102f00 100%); border: 1px solid rgb(141 109 0 / 65%); clip-path: polygon(6% 0, 94% 0, 100% 50%, 94% 100%, 6% 100%, 0 50%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -3px 0 rgba(80, 0, 20, .28), 0 10px 22px rgba(0, 0, 0, .28); }
+
+            .lwTnc__head::before { content: ""; position: absolute; inset: 6px 12px; clip-path: inherit; border: 1px solid rgba(255, 255, 255, .08); pointer-events: none; }
+
+            .lwTnc__head::after { content: none; }
+
+            .lwTnc__head h2 { position: relative; z-index: 1; margin: 0; color: #fff; font-family: Arial, sans-serif; font-size: clamp(15px, 2.2vw, 22px); line-height: 1; font-weight: 900; letter-spacing: .035em; text-align: center; text-transform: uppercase; white-space: nowrap; text-shadow: 0 2px 0 rgba(60, 0, 18, .55), 0 4px 10px rgba(0, 0, 0, .35); }
+
+        /* =========================================================
+                   FIFA POPUP THEME
+                   Requires .lwPopup__inner wrapper inside .lwPopup__card
+                ========================================================= */
+
+        .lwPopup.is-open .lwPopup__card { position: relative; width: min(560px, 92vw, calc(88vh * 560 / 879)); aspect-ratio: 560 / 879; padding: 0; border: 0; border-radius: 0; max-height: none; overflow: visible; box-shadow: none; background-image: url('image/Lucky Wheel - Gold Luxury_files/popup_box.png'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat; display: block; }
+
+        .lwPopup__card::before,
+        .lwPopup__card::after { display: none; }
+
+        .lwPopup__inner { position: absolute; top: calc(250 / 879 * 100%); right: calc(50 / 560 * 100%); bottom: calc(150 / 879 * 100%); left: calc(50 / 560 * 100%); display: flex; flex-direction: column; min-height: 0; justify-content: center; }
+
+        .lwPopup__head { position: relative; z-index: 3; height: auto; margin: 0 0 24px; display: flex; align-items: center; justify-content: center; }
+
+        .lwPopup__title { position: relative; left: auto; top: auto; transform: none; min-width: 180px; margin: 0; padding: 10px 24px; color: #fff; font-family: Arial, sans-serif; font-size: clamp(13px, 1.6vw, 16px); font-weight: 900; line-height: 1; letter-spacing: .06em; text-align: center; text-transform: uppercase; white-space: nowrap; background: linear-gradient(180deg, rgba(255, 255, 255, .16), transparent 30%), linear-gradient(180deg, #d8003b 0%, #b90031 50%, #8c0025 100%); border: 1px solid rgba(255, 70, 110, .72); box-shadow: 0 10px 20px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .18); clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%); text-shadow: 0 2px 6px rgba(0, 0, 0, .35); }
+
+            .lwPopup__title::before,
+            .lwPopup__title::after { display: none; }
+
+        .lwPopup__close { position: absolute; right: calc(32 / 560 * 100%); top: calc(36 / 879 * 100%); z-index: 6; width: clamp(30px, 7vw, 40px); height: clamp(30px, 7vw, 40px); border: 1px solid rgba(255, 255, 255, .16); border-radius: 50%; color: #fff; background: linear-gradient(180deg, rgba(255, 255, 255, .16), transparent 26%), linear-gradient(180deg, #d8003b 0%, #aa002d 100%); box-shadow: 0 8px 16px rgba(0, 0, 0, .28); font-size: clamp(24px, 6vw, 30px); display: flex; align-items: center; justify-content: center; }
+
+        .lwPopup__body { position: relative; z-index: 2; min-height: 0; padding: 0; display: flex; align-items: center; justify-content: center; padding: 0px 30px; }
+
+        .lwResult { width: 100%; text-align: center; }
+
+        .lwResult--win .lwResult__title:first-child { margin-top: 0; }
+
+        .lwResult__icon { width: 112px; height: 112px; margin: 10px auto 18px; border-radius: 50%; border: 3px solid rgba(72, 160, 255, .68); background: radial-gradient(circle at 50% 25%, rgba(255, 255, 255, .14), transparent 28%), linear-gradient(180deg, #07245f 0%, #04163f 100%); color: #ffd54f; box-shadow: 0 0 0 8px rgba(255, 255, 255, .05), 0 0 24px rgba(64, 138, 255, .18), inset 0 1px 0 rgba(255, 255, 255, .12); font-size: 46px; }
+
+        .lwResult__icon--image { overflow: hidden; padding: 0; }
+
+            .lwResult__icon--image img { width: 72%; height: 72%; object-fit: contain; display: block; }
+
+        .lwResult__title { margin: 0; color: #fff; font-family: Georgia, "Times New Roman", serif; font-size: clamp(28px, 4vw, 48px); line-height: 1; text-shadow: 0 3px 10px rgba(0, 0, 0, .45); }
+
+        .lwResult__reward { margin-top: 14px; padding-top: 14px; color: #ffd95a; font-family: Georgia, "Times New Roman", serif; font-size: 28px; font-weight: 900; text-shadow: 0 2px 8px rgba(0, 0, 0, .42); }
+
+            .lwResult__reward::before { height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .22), transparent); }
+
+        .lwResult__desc { max-width: 360px; margin: 10px auto 0; color: rgba(255, 255, 255, .82); font-size: 14px; line-height: 1.5; }
+
+        .lwResult__action { min-width: 220px; min-height: 54px; margin-top: 26px; border: 1px solid rgba(255, 90, 130, .68); border-radius: 999px; color: #fff; font-size: 17px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; background: linear-gradient(180deg, rgba(255, 255, 255, .18), transparent 30%), linear-gradient(180deg, #ef234f 0%, #cb0d3a 52%, #8f0128 100%); box-shadow: 0 12px 24px rgba(0, 0, 0, .32), 0 0 16px rgba(255, 0, 80, .18), inset 0 1px 0 rgba(255, 255, 255, .18); }
+
+            .lwResult__action:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+        /* Lose popup */
+        .lwPopup.is-lose .lwPopup__title { color: #fff; background: linear-gradient(180deg, rgba(255, 255, 255, .12), transparent 32%), linear-gradient(180deg, #8f8829 0%, #674e0e 52%, #8b6000 100%); border-color: rgb(255 204 0 / 45%); box-shadow: 0 8px 18px rgb(119 109 0 / 32%), inset 0 1px 0 rgba(255, 255, 255, .12); }
+
+        .lwResult--lose .lwResult__icon { border-color: rgba(104, 170, 255, .55); background: radial-gradient(circle at 50% 25%, rgba(255, 255, 255, .14), transparent 28%), linear-gradient(180deg, #183b7a 0%, #0b2454 100%); color: #fff; box-shadow: 0 0 0 8px rgba(255, 255, 255, .04), 0 0 24px rgba(64, 138, 255, .18), inset 0 1px 0 rgba(255, 255, 255, .10); }
+
+        .lwResult--lose .lwResult__title { color: #f4f8ff; text-shadow: 0 2px 8px rgba(0, 0, 0, .45), 0 0 10px rgba(90, 150, 255, .12); }
+
+        .lwResult--lose .lwResult__reward { color: #dbe9ff; text-shadow: 0 2px 8px rgba(0, 0, 0, .35); }
+
+            .lwResult--lose .lwResult__reward::before { background: linear-gradient(90deg, transparent, rgba(120, 170, 255, .24), transparent); }
+
+        .lwResult--lose .lwResult__desc { color: rgba(255, 255, 255, .82); }
+
+        .lwResult--lose .lwResult__action { color: #fff; border-color: rgb(255 215 90 / 42%); background: linear-gradient(180deg, rgba(255, 255, 255, .14), transparent 30%), linear-gradient(180deg, #a88635 0%, #7c691d 52%, #5c3a10 100%); box-shadow: 0 10px 20px rgba(0, 0, 0, .28), 0 0 14px rgba(64, 138, 255, .16), inset 0 1px 0 rgba(255, 255, 255, .14); }
+
+        /* Spin all popup */
+        .lwResult--spinAll .lwResult__title { font-size: clamp(30px, 3.5vw, 42px); }
+
+        .lwSpinAllList { max-height: min(240px, 38vh); margin-top: 18px; gap: 8px; }
+
+        .lwSpinAllItem { grid-template-columns: 48px 1fr; border-color: rgba(64, 138, 255, .26); background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025)), rgba(4, 16, 48, .52); }
+
+            .lwSpinAllItem.is-lose { border-color: rgba(120, 170, 255, .14); background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02)), rgba(18, 42, 88, .42); opacity: .88; }
+
+        /* =========================================================
+                   RESPONSIVE
+                ========================================================= */
+
+        @media (max-width: 1080px) {
+            :root { --fifa-spin-bg-size: clamp(150px, 16.5vw, 180px); --fifa-spin-btn-size: clamp(78px, 8.7vw, 96px); }
+
+            .lwLayout { grid-template-columns: minmax(430px, 1fr) minmax(220px, 340px); }
+
+            .lwWheelDisc { --lw-label-distance: -21vw; }
+
+            .lwWheel__label { font-size: clamp(14px, 1.7vw, 20px) !important; }
+
+                .lwWheel__label[data-prize-index="7"] { font-size: clamp(16px, 1.7vw, 22px) !important; }
+
+            .lwSpinActions { width: min(480px, 92%); }
+
+            .lwSpinNote { font-size: clamp(11px, 1.4vw, 16px); }
+
+            .lwPanel { height: 460px; }
         }
 
-        .lwSpinAction--all {
-            background-image: url('./Lucky Wheel - Gold Luxury_files/img-btn-green.png');
-            filter: drop-shadow(0 18px 22px rgba(0, 0, 0, .48)) drop-shadow(0 0 22px rgba(245, 206, 108, .28));
+        @media (max-width: 767px) {
+            :root { --fifa-spin-bg-size: clamp(104px, 30vw, 130px); --fifa-spin-btn-size: clamp(54px, 16vw, 68px); --fifa-chance-h: clamp(58px, 16vw, 78px); --fifa-chance-mt: -10px; --fifa-chance-mb: -4px; --fifa-chance-pad-bottom: clamp(12px, 4vw, 20px); --fifa-action-font: clamp(13px, 4.2vw, 18px); --fifa-action-height: clamp(44px, 12vw, 54px); }
+
+            .lwTitle img { max-width: min(330px, 92vw); height: auto; }
+
+            .lwWheelWrap { width: min(94vw, 410px); }
+
+            .lwWheelDisc { --lw-label-distance: -150px; }
+
+            .lwWheel__label { width: 94px; margin-left: -47px; font-size: clamp(10px, 3.05vw, 13px) !important; line-height: .98; -webkit-text-stroke: .25px rgba(60, 15, 2, .34); }
+
+                .lwWheel__label[data-prize-index="7"] { width: 86px; margin-left: -43px; font-size: clamp(10px, 2.55vw, 12px) !important; line-height: 1.04; }
+
+            .lwPointer { top: 29%; width: 42px; height: 66px; }
+
+            .lwSpinBtn-Con::before { inset: -8px; }
+
+            .lwSpinBtn-Con::after { inset: -4px; border-width: 1px; }
+
+            .lwSpinBtn__top { font-size: clamp(14px, 5vw, 19px); }
+
+            .lwSpinBtn__bottom { font-size: clamp(13px, 4.5vw, 17px); }
+
+            .lwChance { width: min(340px, 92vw); padding-inline: 8%; transform: none; background-size: 100% 100%; }
+
+            .lwChance__main strong { font-size: clamp(25px, 8vw, 34px); }
+
+            .lwChance__main span { font-size: clamp(10px, 3.4vw, 14px); }
+
+            .lwSpinActions { width: min(360px, 94vw); gap: 8px; }
+
+            .lwSpinAction { padding-inline: 10px; letter-spacing: 0; }
+
+            .lwhead__container { min-height: 96px; margin-top: -38px; background-size: auto 96px; }
+
+            .lwPanel__head h2 { padding-bottom: 12px; font-size: 12px; }
+
+            .lwTnc { margin-top: 40px; }
+
+            .lwTnc__head { width: min(360px, calc(100% - 14px)); min-height: 44px; margin-top: -22px; padding-inline: 32px; }
+
+                .lwTnc__head h2 { font-size: clamp(14px, 4.4vw, 17px); letter-spacing: .02em; }
+
+            .lwTnc__list { padding-top: 18px; }
+
+            .lwStage::before,
+            .lwStage::after { width: 112px; height: 142px; }
+
+            .lwPopup.is-open .lwPopup__card { width: min(390px, 94vw, calc(88dvh * 560 / 879)); }
+
+            .lwPopup__inner { top: calc(235 / 879 * 100%); right: calc(46 / 560 * 100%); bottom: calc(135 / 879 * 100%); left: calc(46 / 560 * 100%); }
+
+            .lwPopup__head { margin-bottom: 8px; }
+
+            .lwPopup__title { min-width: 148px; padding: 9px 20px; font-size: 13px; }
+
+            .lwPopup__close { width: 34px; height: 34px; font-size: 26px; }
+
+            .lwResult__icon { width: 88px; height: 88px; margin: 6px auto 14px; font-size: 38px; border-width: 2px; }
+
+            .lwResult__title { font-size: clamp(28px, 9vw, 38px); }
+
+            .lwResult__reward { margin-top: 12px; padding-top: 12px; font-size: 22px; line-height: 1.15; }
+
+            .lwResult__desc { margin-top: 8px; font-size: 12px; line-height: 1.45; }
+
+            .lwResult__action { min-width: 180px; min-height: 46px; margin-top: 20px; font-size: 14px; }
+
+            .lwSpinAllList { max-height: min(150px, 42dvh); margin-top: 14px; gap: 7px; }
+
+            .lwSpinAllItem { grid-template-columns: 42px 1fr; min-height: 40px; padding: 7px 10px; gap: 7px; }
+
+            .lwSpinAllItem__index { font-size: 11px; }
+
+            .lwSpinAllItem__name { font-size: 12px; line-height: 1.25; }
         }
 
-            .lwSpinNote { width: auto; font-size: 22px; }
+        @media (max-width: 380px) {
+            :root { --fifa-spin-bg-size: 98px; --fifa-spin-btn-size: 50px; --fifa-chance-h: 56px; --fifa-action-font: 12px; --fifa-action-height: 42px; }
 
-            /* =========================================================
-           HISTORY PANEL
-        ========================================================= */
+            .lwChance__main { gap: 4px; }
 
-            .lwPanel { background: var(--fifa-panel-bg); border-color: var(--fifa-red-dark); }
+                .lwChance__main strong { font-size: 20px; }
 
-                .lwPanel::before { display: none; }
+                .lwChance__main span { font-size: 9px; }
 
-            .lwPanel__head { margin: 0 0 8px; }
+            .lwTnc__head h2 { font-size: 13px; }
 
-                .lwPanel__head::after { display: none; }
+            .lwWheelDisc { --lw-label-distance: -37vw; }
 
-        .lwhead__container {
-            min-height: clamp(92px, 16vw, 150px);
-            margin-top: clamp(-100px, -10vw, -40px);
-            background-image: url('./Lucky Wheel - Gold Luxury_files/img-trophy.png');
-            background-repeat: no-repeat;
-            background-position: center top;
-            background-size: contain;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
+            .lwWheel__label { width: 80px; margin-left: -40px; font-size: 10px !important; }
+
+                .lwWheel__label[data-prize-index="7"] { width: 74px; margin-left: -37px; font-size: 12px !important; }
+
+            .lwPopup.is-open .lwPopup__card { width: min(350px, 94vw, calc(88dvh * 560 / 879)); }
+
+            .lwPopup__inner { top: calc(225 / 879 * 100%); right: calc(42 / 560 * 100%); bottom: calc(125 / 879 * 100%); left: calc(42 / 560 * 100%); }
+
+            .lwResult__title { font-size: 30px; }
+
+            .lwResult__reward { font-size: 20px; }
+
+            .lwResult__action { min-width: 168px; min-height: 44px; font-size: 13px; }
         }
-
-            .lwPanel__head h2 { margin: 0; padding: 0 0 clamp(12px, 2.2vw, 22px); color: #fff; font-family: Arial, sans-serif; font-size: clamp(12px, 1.45vw, 16px); line-height: 1; letter-spacing: 0; text-transform: uppercase; }
-
-            /* =========================================================
-           TNC
-        ========================================================= */
-
-            .lwTnc { margin-top: 32px; background: var(--fifa-panel-bg); border-color: var(--fifa-red-dark); overflow: visible; }
-
-                .lwTnc::before { display: none; }
-
-        .lwTnc__head {
-            position: relative;
-            width: min(430px, calc(100% - 28px));
-            min-height: clamp(44px, 5.2vw, 56px);
-            margin: -28px auto 0;
-            padding: 0 clamp(34px, 5vw, 56px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(180deg, rgba(255, 255, 255, .12), transparent 38%), linear-gradient(180deg, #013514 0%, #091a01 48%, #102f00 100%);
-            border: 1px solid rgb(141 109 0 / 65%);
-            clip-path: polygon(6% 0, 94% 0, 100% 50%, 94% 100%, 6% 100%, 0 50%);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -3px 0 rgba(80, 0, 20, .28), 0 10px 22px rgba(0, 0, 0, .28);
-        }
-
-                .lwTnc__head::before { content: ""; position: absolute; inset: 6px 12px; clip-path: inherit; border: 1px solid rgba(255, 255, 255, .08); pointer-events: none; }
-
-                .lwTnc__head::after { content: none; }
-
-                .lwTnc__head h2 { position: relative; z-index: 1; margin: 0; color: #fff; font-family: Arial, sans-serif; font-size: clamp(15px, 2.2vw, 22px); line-height: 1; font-weight: 900; letter-spacing: .035em; text-align: center; text-transform: uppercase; white-space: nowrap; text-shadow: 0 2px 0 rgba(60, 0, 18, .55), 0 4px 10px rgba(0, 0, 0, .35); }
-
-            /* =========================================================
-           FIFA POPUP THEME
-           Requires .lwPopup__inner wrapper inside .lwPopup__card
-        ========================================================= */
-
-        .lwPopup.is-open .lwPopup__card {
-            position: relative;
-            width: min(560px, 92vw, calc(88vh * 560 / 879));
-            aspect-ratio: 560 / 879;
-            padding: 0;
-            border: 0;
-            border-radius: 0;
-            max-height: none;
-            overflow: visible;
-            box-shadow: none;
-            background-image: url('./Lucky Wheel - Gold Luxury_files/popup_box.png');
-            background-size: 100% 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: block;
-        }
-
-            .lwPopup__card::before,
-            .lwPopup__card::after { display: none; }
-
-            .lwPopup__inner { position: absolute; top: calc(250 / 879 * 100%); right: calc(50 / 560 * 100%); bottom: calc(150 / 879 * 100%); left: calc(50 / 560 * 100%); display: flex; flex-direction: column; min-height: 0; justify-content:center;}
-
-            .lwPopup__head { position: relative; z-index: 3; height: auto; margin: 0 0 24px; display: flex; align-items: center; justify-content: center; }
-
-            .lwPopup__title { position: relative; left: auto; top: auto; transform: none; min-width: 180px; margin: 0; padding: 10px 24px; color: #fff; font-family: Arial, sans-serif; font-size: clamp(13px, 1.6vw, 16px); font-weight: 900; line-height: 1; letter-spacing: .06em; text-align: center; text-transform: uppercase; white-space: nowrap; background: linear-gradient(180deg, rgba(255, 255, 255, .16), transparent 30%), linear-gradient(180deg, #d8003b 0%, #b90031 50%, #8c0025 100%); border: 1px solid rgba(255, 70, 110, .72); box-shadow: 0 10px 20px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .18); clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%); text-shadow: 0 2px 6px rgba(0, 0, 0, .35); }
-
-                .lwPopup__title::before,
-                .lwPopup__title::after { display: none; }
-
-            .lwPopup__close { position: absolute; right: calc(32 / 560 * 100%); top: calc(36 / 879 * 100%); z-index: 6; width: clamp(30px, 7vw, 40px); height: clamp(30px, 7vw, 40px); border: 1px solid rgba(255, 255, 255, .16); border-radius: 50%; color: #fff; background: linear-gradient(180deg, rgba(255, 255, 255, .16), transparent 26%), linear-gradient(180deg, #d8003b 0%, #aa002d 100%); box-shadow: 0 8px 16px rgba(0, 0, 0, .28); font-size: clamp(24px, 6vw, 30px); display: flex; align-items: center; justify-content: center; }
-
-        .lwPopup__body {
-            position: relative;
-            z-index: 2;
-            min-height: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0px 30px;
-        }
-
-            .lwResult { width: 100%; text-align: center; }
-
-            .lwResult--win .lwResult__title:first-child { margin-top: 0; }
-
-            .lwResult__icon { width: 112px; height: 112px; margin: 10px auto 18px; border-radius: 50%; border: 3px solid rgba(72, 160, 255, .68); background: radial-gradient(circle at 50% 25%, rgba(255, 255, 255, .14), transparent 28%), linear-gradient(180deg, #07245f 0%, #04163f 100%); color: #ffd54f; box-shadow: 0 0 0 8px rgba(255, 255, 255, .05), 0 0 24px rgba(64, 138, 255, .18), inset 0 1px 0 rgba(255, 255, 255, .12); font-size: 46px; }
-
-            .lwResult__icon--image { overflow: hidden; padding: 0; }
-
-                .lwResult__icon--image img { width: 72%; height: 72%; object-fit: contain; display: block; }
-
-            .lwResult__title { margin: 0; color: #fff; font-family: Georgia, "Times New Roman", serif; font-size: clamp(28px, 4vw, 48px); line-height: 1; text-shadow: 0 3px 10px rgba(0, 0, 0, .45); }
-
-            .lwResult__reward { margin-top: 14px; padding-top: 14px; color: #ffd95a; font-family: Georgia, "Times New Roman", serif; font-size: 28px; font-weight: 900; text-shadow: 0 2px 8px rgba(0, 0, 0, .42); }
-
-                .lwResult__reward::before { height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .22), transparent); }
-
-            .lwResult__desc { max-width: 360px; margin: 10px auto 0; color: rgba(255, 255, 255, .82); font-size: 14px; line-height: 1.5; }
-
-            .lwResult__action { min-width: 220px; min-height: 54px; margin-top: 26px; border: 1px solid rgba(255, 90, 130, .68); border-radius: 999px; color: #fff; font-size: 17px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; background: linear-gradient(180deg, rgba(255, 255, 255, .18), transparent 30%), linear-gradient(180deg, #ef234f 0%, #cb0d3a 52%, #8f0128 100%); box-shadow: 0 12px 24px rgba(0, 0, 0, .32), 0 0 16px rgba(255, 0, 80, .18), inset 0 1px 0 rgba(255, 255, 255, .18); }
-
-                .lwResult__action:hover { transform: translateY(-1px); filter: brightness(1.05); }
-
-            /* Lose popup */
-        .lwPopup.is-lose .lwPopup__title {
-            color: #fff;
-            background: linear-gradient(180deg, rgba(255, 255, 255, .12), transparent 32%), linear-gradient(180deg, #8f8829 0%, #674e0e 52%, #8b6000 100%);
-            border-color: rgb(255 204 0 / 45%);
-            box-shadow: 0 8px 18px rgb(119 109 0 / 32%), inset 0 1px 0 rgba(255, 255, 255, .12);
-        }
-
-            .lwResult--lose .lwResult__icon { border-color: rgba(104, 170, 255, .55); background: radial-gradient(circle at 50% 25%, rgba(255, 255, 255, .14), transparent 28%), linear-gradient(180deg, #183b7a 0%, #0b2454 100%); color: #fff; box-shadow: 0 0 0 8px rgba(255, 255, 255, .04), 0 0 24px rgba(64, 138, 255, .18), inset 0 1px 0 rgba(255, 255, 255, .10); }
-
-            .lwResult--lose .lwResult__title { color: #f4f8ff; text-shadow: 0 2px 8px rgba(0, 0, 0, .45), 0 0 10px rgba(90, 150, 255, .12); }
-
-            .lwResult--lose .lwResult__reward { color: #dbe9ff; text-shadow: 0 2px 8px rgba(0, 0, 0, .35); }
-
-                .lwResult--lose .lwResult__reward::before { background: linear-gradient(90deg, transparent, rgba(120, 170, 255, .24), transparent); }
-
-            .lwResult--lose .lwResult__desc { color: rgba(255, 255, 255, .82); }
-
-        .lwResult--lose .lwResult__action {
-            color: #fff;
-            border-color: rgb(255 215 90 / 42%);
-            background: linear-gradient(180deg, rgba(255, 255, 255, .14), transparent 30%), linear-gradient(180deg, #a88635 0%, #7c691d 52%, #5c3a10 100%);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, .28), 0 0 14px rgba(64, 138, 255, .16), inset 0 1px 0 rgba(255, 255, 255, .14);
-        }
-
-            /* Spin all popup */
-            .lwResult--spinAll .lwResult__title { font-size: clamp(30px, 3.5vw, 42px); }
-
-            .lwSpinAllList { max-height: min(240px, 38vh); margin-top: 18px; gap: 8px; }
-
-            .lwSpinAllItem { grid-template-columns: 48px 1fr; border-color: rgba(64, 138, 255, .26); background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025)), rgba(4, 16, 48, .52); }
-
-                .lwSpinAllItem.is-lose { border-color: rgba(120, 170, 255, .14); background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02)), rgba(18, 42, 88, .42); opacity: .88; }
-
-            /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-            @media (max-width: 1080px) {
-                :root { --fifa-spin-bg-size: clamp(150px, 16.5vw, 180px); --fifa-spin-btn-size: clamp(78px, 8.7vw, 96px); }
-
-                .lwLayout { grid-template-columns: minmax(430px, 1fr) minmax(220px, 340px); }
-
-                .lwWheelDisc { --lw-label-distance: -21vw; }
-
-                .lwWheel__label { font-size: clamp(14px, 1.7vw, 20px) !important; }
-
-                    .lwWheel__label[data-prize-index="7"] { font-size: clamp(16px, 1.7vw, 22px) !important; }
-
-                .lwSpinActions { width: min(480px, 92%); }
-
-                .lwSpinNote { font-size: clamp(11px, 1.4vw, 16px); }
-
-                .lwPanel { height: 460px; }
-            }
-
-            @media (max-width: 767px) {
-                :root { --fifa-spin-bg-size: clamp(104px, 30vw, 130px); --fifa-spin-btn-size: clamp(54px, 16vw, 68px); --fifa-chance-h: clamp(58px, 16vw, 78px); --fifa-chance-mt: -10px; --fifa-chance-mb: -4px; --fifa-chance-pad-bottom: clamp(12px, 4vw, 20px); --fifa-action-font: clamp(13px, 4.2vw, 18px); --fifa-action-height: clamp(44px, 12vw, 54px); }
-
-                .lwTitle img { max-width: min(330px, 92vw); height: auto; }
-
-                .lwWheelWrap { width: min(94vw, 410px); }
-
-                .lwWheelDisc { --lw-label-distance: -150px; }
-
-                .lwWheel__label { width: 94px; margin-left: -47px; font-size: clamp(10px, 3.05vw, 13px) !important; line-height: .98; -webkit-text-stroke: .25px rgba(60, 15, 2, .34); }
-
-                    .lwWheel__label[data-prize-index="7"] { width: 86px; margin-left: -43px; font-size: clamp(10px, 2.55vw, 12px) !important; line-height: 1.04; }
-
-                .lwPointer { top: 29%; width: 42px; height: 66px; }
-
-                .lwSpinBtn-Con::before { inset: -8px; }
-
-                .lwSpinBtn-Con::after { inset: -4px; border-width: 1px; }
-
-                .lwSpinBtn__top { font-size: clamp(14px, 5vw, 19px); }
-
-                .lwSpinBtn__bottom { font-size: clamp(13px, 4.5vw, 17px); }
-
-                .lwChance { width: min(340px, 92vw); padding-inline: 8%; transform: none; background-size: 100% 100%; }
-
-                .lwChance__main strong { font-size: clamp(25px, 8vw, 34px); }
-
-                .lwChance__main span { font-size: clamp(10px, 3.4vw, 14px); }
-
-                .lwSpinActions { width: min(360px, 94vw); gap: 8px; }
-
-                .lwSpinAction { padding-inline: 10px; letter-spacing: 0; }
-
-                .lwhead__container { min-height: 96px; margin-top: -38px; background-size: auto 96px; }
-
-                .lwPanel__head h2 { padding-bottom: 12px; font-size: 12px; }
-
-                .lwTnc { margin-top: 40px; }
-
-                .lwTnc__head { width: min(360px, calc(100% - 14px)); min-height: 44px; margin-top: -22px; padding-inline: 32px; }
-
-                    .lwTnc__head h2 { font-size: clamp(14px, 4.4vw, 17px); letter-spacing: .02em; }
-
-                .lwTnc__list { padding-top: 18px; }
-
-                .lwStage::before,
-                .lwStage::after { width: 112px; height: 142px; }
-
-                .lwPopup.is-open .lwPopup__card { width: min(390px, 94vw, calc(88dvh * 560 / 879)); }
-
-                .lwPopup__inner { top: calc(235 / 879 * 100%); right: calc(46 / 560 * 100%); bottom: calc(135 / 879 * 100%); left: calc(46 / 560 * 100%); }
-
-                .lwPopup__head { margin-bottom: 8px; }
-
-                .lwPopup__title { min-width: 148px; padding: 9px 20px; font-size: 13px; }
-
-                .lwPopup__close { width: 34px; height: 34px; font-size: 26px; }
-
-                .lwResult__icon { width: 88px; height: 88px; margin: 6px auto 14px; font-size: 38px; border-width: 2px; }
-
-                .lwResult__title { font-size: clamp(28px, 9vw, 38px); }
-
-                .lwResult__reward { margin-top: 12px; padding-top: 12px; font-size: 22px; line-height: 1.15; }
-
-                .lwResult__desc { margin-top: 8px; font-size: 12px; line-height: 1.45; }
-
-                .lwResult__action { min-width: 180px; min-height: 46px; margin-top: 20px; font-size: 14px; }
-
-                .lwSpinAllList { max-height: min(150px, 42dvh); margin-top: 14px; gap: 7px; }
-
-                .lwSpinAllItem { grid-template-columns: 42px 1fr; min-height: 40px; padding: 7px 10px; gap: 7px; }
-
-                .lwSpinAllItem__index { font-size: 11px; }
-
-                .lwSpinAllItem__name { font-size: 12px; line-height: 1.25; }
-            }
-
-            @media (max-width: 380px) {
-                :root { --fifa-spin-bg-size: 98px; --fifa-spin-btn-size: 50px; --fifa-chance-h: 56px; --fifa-action-font: 12px; --fifa-action-height: 42px; }
-
-                .lwChance__main { gap: 4px; }
-
-                    .lwChance__main strong { font-size: 20px; }
-
-                    .lwChance__main span { font-size: 9px; }
-
-                .lwTnc__head h2 { font-size: 13px; }
-
-                .lwWheelDisc { --lw-label-distance: -37vw; }
-
-                .lwWheel__label { width: 80px; margin-left: -40px; font-size: 10px !important; }
-
-                    .lwWheel__label[data-prize-index="7"] { width: 74px; margin-left: -37px; font-size: 12px !important; }
-
-                .lwPopup.is-open .lwPopup__card { width: min(350px, 94vw, calc(88dvh * 560 / 879)); }
-
-                .lwPopup__inner { top: calc(225 / 879 * 100%); right: calc(42 / 560 * 100%); bottom: calc(125 / 879 * 100%); left: calc(42 / 560 * 100%); }
-
-                .lwResult__title { font-size: 30px; }
-
-                .lwResult__reward { font-size: 20px; }
-
-                .lwResult__action { min-width: 168px; min-height: 44px; font-size: 13px; }
-            }
 
         .lwSpinBtn-Con { animation: lwSpinCorePulse 1.9s ease-in-out infinite; }
 
@@ -951,8 +868,8 @@
         .lwSpinBtn:hover:not(:disabled) { filter: brightness(1.1) saturate(1.12); }
 
         /* =========================================
-   keyframes
-========================================= */
+           keyframes
+        ========================================= */
 
 
         @keyframes lwWheelSurfacePulse {
@@ -984,9 +901,9 @@
         }
 
         /* =========================================
-   Shell border-ring shine
-   Better: independent rounded ring
-========================================= */
+           Shell border-ring shine
+           Better: independent rounded ring
+        ========================================= */
 
         .lwWheelShell { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--lw-wheel-shell-image) center / 100% no-repeat; transform: scale(1.075); }
 
@@ -1006,18 +923,7 @@
             100% { opacity: 0; transform: rotate(360deg); }
         }
 
-        .lwWheelShell:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-image: url('./Lucky Wheel - Gold Luxury_files/wheel_shell-ribbon.png');
-            z-index: 9;
-            background-size: 100%;
-            display:none;
-        }
+        .lwWheelShell:after { content: ''; position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-image: url('image/Lucky Wheel - Gold Luxury_files/wheel_shell-ribbon.png'); z-index: 9; background-size: 100%; display: none; }
     </style>
 </head>
 
@@ -1025,7 +931,7 @@
     <div class="luckyWheelPage theme-goldLuxury">
         <header class="lwHeader">
 
-            <h1 class="lwTitle"> <img src="./Lucky Wheel - Gold Luxury_files/img-text-title.png"></h1>
+            <h1 class="lwTitle"> <img src="image/Lucky Wheel - Gold Luxury_files/img-text-title.png" /></h1>
             <!--<p class="lwSubtitle">Spin the luxury wheel and stand a chance to win exclusive rewards.</p>-->
         </header>
 
@@ -1040,50 +946,8 @@
 
                     <div class="lwPointer"></div>
 
-                    <div class="lwWheelDisc" id="lwWheelDisc" style="--wheel-segments: conic-gradient(from 0deg, #895710 0deg, #895710 45deg, #1f1e17 45deg, #080303 90deg, #152123 90deg, #01354e 135deg, #033f1e 135deg, #001508 180deg, #020e08 180deg, #0f1411 225deg, #00240f 225deg, #013100 270deg, #011d2b 270deg, #00283b 315deg, #013319 315deg, #01210f 360deg);">
-            <div class="lwWheel__label" data-prize-index="0" style="transform: rotate(22.5deg) translateY(var(--lw-label-distance));">
-                <span>Try Again</span>
-            </div>
-        
-            <div class="lwWheel__label" data-prize-index="1" style="transform: rotate(67.5deg) translateY(var(--lw-label-distance));">
-                <span>Bonus</span><span>RM 88</span>
-            </div>
-        
-            <div class="lwWheel__label" data-prize-index="2" style="transform: rotate(112.5deg) translateY(var(--lw-label-distance));">
-                <span>Mystery</span><span>Gift</span>
-            </div>
-        
-            <div class="lwWheel__label" data-prize-index="3" style="transform: rotate(157.5deg) translateY(var(--lw-label-distance));">
-                <span>Bonus</span><span>RM 18</span>
-            </div>
-        
-            <div class="lwWheel__label" data-prize-index="4" style="transform: rotate(202.5deg) translateY(var(--lw-label-distance));">
-                <span>VIP</span><span>Point x100</span>
-            </div>
-        
-            <div class="lwWheel__label" data-prize-index="5" style="transform: rotate(247.5deg) translateY(var(--lw-label-distance));">
-                <span>Bonus</span><span>RM 8</span>
-            </div>
-        
-            <div class="lwWheel__label" data-prize-index="6" style="transform: rotate(292.5deg) translateY(var(--lw-label-distance));">
-                <span>Free</span><span>Spin x5</span>
-            </div>
-        
-            <div class="lwWheel__label" data-prize-index="7" style="transform: rotate(337.5deg) translateY(var(--lw-label-distance));">
-                <span>iPhone 17</span><span>Pro Max</span><span>1TB (Silver)</span>
-            </div>
-        </div>
-                    <div class="lwWinnerHighlight" id="lwWinnerHighlight" style="--lw-winner-highlight-bg: conic-gradient(
-                                                from -22.5deg,
-                                                rgba(255, 241, 178, 0.00) 0deg,
-                                                rgba(255, 224, 140, 0.08) 4.5deg,
-                                                rgba(245, 206, 108, 0.22) 12.600000000000001deg,
-                                                rgba(255, 239, 178, 0.34) 22.5deg,
-                                                rgba(245, 206, 108, 0.22) 32.4deg,
-                                                rgba(255, 224, 140, 0.08) 40.5deg,
-                                                rgba(255, 241, 178, 0.00) 45deg,
-                                                transparent 45deg 360deg
-                                            );"></div>
+                    <div class="lwWheelDisc" id="lwWheelDisc"></div>
+                    <div class="lwWinnerHighlight" id="lwWinnerHighlight"></div>
 
                     <div class="lwSpinBtn-Con">
                         <button class="lwSpinBtn" id="lwCenterSpinBtn" type="button" aria-label="Spin now">
@@ -1094,15 +958,12 @@
                 </div>
                 <div class="lwChance">
                     <div class="lwChance__main">
-                        <strong>23</strong>
+                        <strong>100</strong>
                         <span>Spin(s) Available</span>
                     </div>
                 </div>
 
-
-
-                <div class="lwSpinActions">
-
+                <div class="lwSpinActions" id="lwSpinActions">
                     <button class="lwSpinAction lwSpinAction--all" id="lwSpinAllBtn" type="button">
                         Spin All
                     </button>
@@ -1111,10 +972,23 @@
                     </button>
                 </div>
 
+                <div class="lwTurbo" id="lwTurboPanel" hidden>
+                    <div class="lwTurbo__speeds" role="group" aria-label="Turbo batch size">
+                        <span class="lwTurbo__label"><span class="lwTurbo__bolt">⚡</span> TURBO</span>
+                        <button class="lwTurbo__speed" type="button" data-turbo-speed="1">X1</button>
+                        <button class="lwTurbo__speed" type="button" data-turbo-speed="2">X2</button>
+                        <button class="lwTurbo__speed" type="button" data-turbo-speed="4">X4</button>
+                        <button class="lwTurbo__speed" type="button" data-turbo-speed="8">X8</button>
+                    </div>
+                    <div class="lwTurbo__actions" id="lwTurboRunningActions">
+                        <button class="lwTurbo__stop" id="lwTurboStopBtn" type="button">CANCEL</button>
+                        <button class="lwTurbo__skip" id="lwTurboSkipBtn" type="button">SKIP ALL</button>
+                    </div>
+                    <p class="lwTurbo__status" id="lwTurboStatus">Choose X1, X2, X4 or X8 to start auto spin.</p>
+                </div>
+
                 <p class="lwSpinNote">
-                    Deposit 1 gets FREE LUCKY DRAW SPIN CHANCE.
-                    <br>
-                    Maximum of 100 chances per deposit.
+                    Maximum of 600 chances per deposit.
                 </p>
 
                 <div class="lwMobileActions">
@@ -1130,16 +1004,11 @@
                     </div>
                 </div>
 
-                <div class="lwHistoryList" id="lwHistoryList">
-                <div class="lwHistoryEmpty">
-                    No spin records yet.<br>
-                    Spin the wheel to create your first record.
-                </div>
-            </div>
+                <div class="lwHistoryList" id="lwHistoryList"></div>
             </aside>
             <section class="lwTnc">
                 <div class="lwTnc__head">
-                    <h2>Terms &amp; Conditions</h2>
+                    <h2>Terms & Conditions</h2>
                 </div>
 
                 <ul class="lwTnc__list">
@@ -1158,15 +1027,10 @@
 
                 <div class="lwPopup__inner">
                     <div class="lwPopup__head">
-                        <h2 class="lwPopup__title" id="lwPopupTitle">Spin History</h2>
+                        <h2 class="lwPopup__title" id="lwPopupTitle">Popup</h2>
                     </div>
 
-                    <div class="lwPopup__body" id="lwPopupBody"><div class="lwHistoryList" id="lwHistoryList">
-                <div class="lwHistoryEmpty">
-                    No spin records yet.<br>
-                    Spin the wheel to create your first record.
-                </div>
-            </div></div>
+                    <div class="lwPopup__body" id="lwPopupBody"></div>
                 </div>
             </div>
         </div>
@@ -1237,6 +1101,15 @@
         const centerSpinBtn = document.getElementById("lwCenterSpinBtn");
         const spinBtn = document.getElementById("lwSpinBtn");
         const spinAllBtn = document.getElementById("lwSpinAllBtn");
+        const turboPanel = document.getElementById("lwTurboPanel");
+        const spinActions = document.getElementById("lwSpinActions");
+        const turboSelectActions = document.getElementById("lwTurboSelectActions");
+        const turboRunningActions = document.getElementById("lwTurboRunningActions");
+        const turboCancelBtn = document.getElementById("lwTurboCancelBtn");
+        const turboSpeedButtons = [...document.querySelectorAll("[data-turbo-speed]")];
+        const turboStopBtn = document.getElementById("lwTurboStopBtn");
+        const turboSkipBtn = document.getElementById("lwTurboSkipBtn");
+        const turboStatus = document.getElementById("lwTurboStatus");
 
         const spinButtons = [centerSpinBtn, spinBtn, spinAllBtn].filter(Boolean);
 
@@ -1369,18 +1242,18 @@
             winnerHighlight.style.setProperty(
                 "--lw-winner-highlight-bg",
                 `
-                                            conic-gradient(
-                                                from ${-halfAngle}deg,
-                                                rgba(255, 241, 178, 0.00) 0deg,
-                                                rgba(255, 224, 140, 0.08) ${softStart}deg,
-                                                rgba(245, 206, 108, 0.22) ${glowStart}deg,
-                                                rgba(255, 239, 178, 0.34) ${glowCenter}deg,
-                                                rgba(245, 206, 108, 0.22) ${glowEnd}deg,
-                                                rgba(255, 224, 140, 0.08) ${softEnd}deg,
-                                                rgba(255, 241, 178, 0.00) ${segmentAngle}deg,
-                                                transparent ${segmentAngle}deg 360deg
-                                            )
-                                        `
+                                                            conic-gradient(
+                                                                from ${-halfAngle}deg,
+                                                                rgba(255, 241, 178, 0.00) 0deg,
+                                                                rgba(255, 224, 140, 0.08) ${softStart}deg,
+                                                                rgba(245, 206, 108, 0.22) ${glowStart}deg,
+                                                                rgba(255, 239, 178, 0.34) ${glowCenter}deg,
+                                                                rgba(245, 206, 108, 0.22) ${glowEnd}deg,
+                                                                rgba(255, 224, 140, 0.08) ${softEnd}deg,
+                                                                rgba(255, 241, 178, 0.00) ${segmentAngle}deg,
+                                                                transparent ${segmentAngle}deg 360deg
+                                                            )
+                                                        `
             );
         }
         function escapeHTML(value) {
@@ -1437,10 +1310,10 @@
                 const darkClass = shouldUseDarkText(index) ? " is-dark" : "";
 
                 return `
-            <div class="lwWheel__label${darkClass}" data-prize-index="${index}" style="transform: rotate(${labelAngle}deg) translateY(var(--lw-label-distance));">
-                ${formatWheelLabel(labelText)}
-            </div>
-        `;
+                            <div class="lwWheel__label${darkClass}" data-prize-index="${index}" style="transform: rotate(${labelAngle}deg) translateY(var(--lw-label-distance));">
+                                ${formatWheelLabel(labelText)}
+                            </div>
+                        `;
             }).join("");
         }
 
@@ -1500,45 +1373,45 @@
         function renderHistoryList() {
             if (!historyRecords.length) {
                 historyList.innerHTML = `
-                <div class="lwHistoryEmpty">
-                    No spin records yet.<br>
-                    Spin the wheel to create your first record.
-                </div>
-            `;
+                                <div class="lwHistoryEmpty">
+                                    No spin records yet.<br>
+                                    Spin the wheel to create your first record.
+                                </div>
+                            `;
                 return;
             }
 
             historyList.innerHTML = `
-            <div class="lwHistoryTable">
-                <div class="lwHistoryTable__head">
-                    <div>No.</div>
-                    <div>Date Time</div>
-                    <div>Prize</div>
-                </div>
+                            <div class="lwHistoryTable">
+                                <div class="lwHistoryTable__head">
+                                    <div>No.</div>
+                                    <div>Date Time</div>
+                                    <div>Prize</div>
+                                </div>
 
-                <div class="lwHistoryTable__body">
-                    ${historyRecords.map((record, index) => {
+                                <div class="lwHistoryTable__body">
+                                    ${historyRecords.map((record, index) => {
                 const recordNo = historyRecords.length - index;
 
                 return `
-                            <div class="lwHistoryTable__row">
-                                <div class="lwHistoryTable__no">
-                                    #${String(recordNo).padStart(2, "0")}
-                                </div>
+                                            <div class="lwHistoryTable__row">
+                                                <div class="lwHistoryTable__no">
+                                                    #${String(recordNo).padStart(2, "0")}
+                                                </div>
 
-                                <div class="lwHistoryTable__time">
-                                    ${record.time}
-                                </div>
+                                                <div class="lwHistoryTable__time">
+                                                    ${record.time}
+                                                </div>
 
-                                <div class="lwHistoryTable__prize">
-                                    ${record.reward}
+                                                <div class="lwHistoryTable__prize">
+                                                    ${record.reward}
+                                                </div>
+                                            </div>
+                                        `;
+            }).join("")}
                                 </div>
                             </div>
                         `;
-            }).join("")}
-                </div>
-            </div>
-        `;
         }
 
 
@@ -1628,18 +1501,18 @@
                 const shape = shapes[Math.floor(Math.random() * shapes.length)];
 
                 return `
-                                                    <span
-                                                        class="lwPopupConfettiPiece ${shape}"
-                                                        style="
-                                                            animation-delay: ${delay}s;
-                                                            animation-duration: ${duration}s;
-                                                            --confetti-x: ${x}px;
-                                                            --confetti-y: ${y}px;
-                                                            --confetti-rotate: ${rotate}deg;
-                                                            --confetti-color: ${color};
-                                                        "
-                                                    ></span>
-                                                `;
+                                                                    <span
+                                                                        class="lwPopupConfettiPiece ${shape}"
+                                                                        style="
+                                                                            animation-delay: ${delay}s;
+                                                                            animation-duration: ${duration}s;
+                                                                            --confetti-x: ${x}px;
+                                                                            --confetti-y: ${y}px;
+                                                                            --confetti-rotate: ${rotate}deg;
+                                                                            --confetti-color: ${color};
+                                                                        "
+                                                                    ></span>
+                                                                `;
             }).join("");
 
             window.setTimeout(() => {
@@ -1651,18 +1524,18 @@
 
             if (prize.image) {
                 return `
-            <div class="lwResult__icon lwResult__icon--image">
-                <img src="${escapeHTML(prize.image)}" alt="${escapeHTML(prize.name)}">
-            </div>
-        `;
+                            <div class="lwResult__icon lwResult__icon--image">
+                                <img src="${escapeHTML(prize.image)}" alt="${escapeHTML(prize.name)}">
+                            </div>
+                        `;
             }
 
             if (prize.icon) {
                 return `
-            <div class="lwResult__icon">
-                ${prize.icon}
-            </div>
-        `;
+                            <div class="lwResult__icon">
+                                ${prize.icon}
+                            </div>
+                        `;
             }
 
             return "";
@@ -1676,29 +1549,29 @@
             popupTitle.textContent = isLose ? "Result" : "You Won";
 
             popupBody.innerHTML = `
-                                                        <div class="lwResult ${isLose ? "lwResult--lose" : "lwResult--win"}">
-                                                           ${renderPopupPrizeVisual(prize, isLose)}
+                                                                        <div class="lwResult ${isLose ? "lwResult--lose" : "lwResult--win"}">
+                                                                           ${renderPopupPrizeVisual(prize, isLose)}
 
-                                                            <h3 class="lwResult__title">
-                                                                ${isLose ? "Good Luck" : "Congratulations!"}
-                                                            </h3>
+                                                                            <h3 class="lwResult__title">
+                                                                                ${isLose ? "Good Luck" : "Congratulations!"}
+                                                                            </h3>
 
-                                                            <div class="lwResult__reward">
-                                                                ${prize.name}
-                                                            </div>
+                                                                            <div class="lwResult__reward">
+                                                                                ${prize.name}
+                                                                            </div>
 
-                                                            <p class="lwResult__desc">
-                                                                ${isLose
+                                                                            <p class="lwResult__desc">
+                                                                                ${isLose
                     ? "Try again and your luck may come next."
                     : "Your reward has been selected. Please claim it according to the event rules."
                 }
-                                                            </p>
+                                                                            </p>
 
-                                                            <button class="lwResult__action" type="button" data-close-result>
-                                                                ${isLose ? "Close" : "Claim Now"}
-                                                            </button>
-                                                        </div>
-                                                    `;
+                                                                            <button class="lwResult__action" type="button" data-close-result>
+                                                                                ${isLose ? "Close" : "Claim Now"}
+                                                                            </button>
+                                                                        </div>
+                                                                    `;
 
             popup.classList.add("is-open");
             playSound(isLose ? soundLose : soundPopup);
@@ -1737,24 +1610,24 @@
             popupTitle.textContent = "Notice";
 
             popupBody.innerHTML = `
-                    <div class="lwResult lwResult--lose">
-                        <div class="lwResult__icon">
-                            ⚠️
-                        </div>
+                                    <div class="lwResult lwResult--lose">
+                                        <div class="lwResult__icon">
+                                            ⚠️
+                                        </div>
 
-                        <h3 class="lwResult__title">
-                            Not Enough Spin Chance
-                        </h3>
+                                        <h3 class="lwResult__title">
+                                            Not Enough Spin Chance
+                                        </h3>
 
-                        <p class="lwResult__desc">
-                            You do not have enough spin chance to continue.
-                        </p>
+                                        <p class="lwResult__desc">
+                                            You do not have enough spin chance to continue.
+                                        </p>
 
-                        <button class="lwResult__action" type="button" data-close-result>
-                            Close
-                        </button>
-                    </div>
-                `;
+                                        <button class="lwResult__action" type="button" data-close-result>
+                                            Close
+                                        </button>
+                                    </div>
+                                `;
 
             popup.classList.add("is-open");
             playSound(soundLose);
@@ -1812,9 +1685,50 @@
             }, 1250);
         }
 
-        spinAllBtn?.addEventListener("click", spinAll);
+        function showTurboOptions() {
+            if (turboRunning || isSpinning) return;
+            if (getAvailableSpinCount() <= 0) {
+                openInsufficientSpinPopup();
+                return;
+            }
 
-        function openSpinAllPopup(results) {
+            spinActions.hidden = true;
+            turboPanel.classList.remove("is-closing");
+            turboPanel.hidden = false;
+            if (turboRunningActions) turboRunningActions.hidden = false;
+            if (turboStopBtn) {
+                turboStopBtn.textContent = "CANCEL";
+                turboStopBtn.disabled = false;
+            }
+            if (turboSkipBtn) turboSkipBtn.disabled = false;
+            turboPanel.classList.remove("is-selecting");
+            void turboPanel.offsetWidth;
+            turboPanel.classList.add("is-selecting");
+            turboSpeedButtons.forEach((button) => button.classList.remove("is-active"));
+            setTurboStatus("Choose X1, X2, X4 or X8 to start auto spin.");
+        }
+
+        function closeTurboOptions() {
+            if (turboRunning || isSpinning || turboPanel.hidden) return;
+
+            turboPanel.classList.remove("is-selecting", "is-running");
+            turboPanel.classList.add("is-closing");
+
+            window.setTimeout(() => {
+                turboPanel.hidden = true;
+                turboPanel.classList.remove("is-closing");
+                if (spinActions) spinActions.hidden = false;
+                if (spinAllBtn) spinAllBtn.hidden = false;
+                if (turboRunningActions) turboRunningActions.hidden = false;
+                if (turboStopBtn) turboStopBtn.textContent = "CANCEL";
+                turboSpeedButtons.forEach((button) => button.classList.remove("is-active"));
+                setTurboStatus("Choose X1, X2, X4 or X8 to start auto spin.");
+            }, 260);
+        }
+
+        spinAllBtn?.addEventListener("click", showTurboOptions);
+
+        function openSpinAllPopup(results, showTurboSummary = false) {
             stopSound(soundSpin);
             popup.classList.remove("is-lose");
             popup.classList.add("is-win");
@@ -1822,34 +1736,47 @@
             popupTitle.textContent = "Spin All Result";
 
             popupBody.innerHTML = `
-                                    <div class="lwResult lwResult--win lwResult--spinAll">
-                                        <h3 class="lwResult__title">
-                                            Spin Completed
-                                        </h3>
+                                                    <div class="lwResult lwResult--win lwResult--spinAll">
+                                                        <h3 class="lwResult__title">
+                                                            Spin Completed
+                                                        </h3>
 
-                                        <p class="lwResult__desc">
-                                            Your spin results are listed below.
-                                        </p>
+                                                        <p class="lwResult__desc">
+                                                            ${showTurboSummary ? "Auto spin stopped. Here is your session summary." : "Your spin results are listed below."}
+                                                        </p>
 
-                                        <div class="lwSpinAllList is-revealing" data-spin-all-list>
-                                ${results.map((prize, index) => {
+                                                        ${showTurboSummary ? `
+                                                            <div class="lwTurboSummary">
+                                                                <div class="lwTurboSummary__item">
+                                                                    <span class="lwTurboSummary__value">${results.length}</span>
+                                                                    <span class="lwTurboSummary__label">Total Spins</span>
+                                                                </div>
+                                                                <div class="lwTurboSummary__item">
+                                                                    <span class="lwTurboSummary__value">${results.filter((prize) => prize.type === "win").length}</span>
+                                                                    <span class="lwTurboSummary__label">Total Wins</span>
+                                                                </div>
+                                                            </div>
+                                                        ` : ""}
+
+                                                        <div class="lwSpinAllList is-revealing" data-spin-all-list>
+                                                ${results.map((prize, index) => {
                 return `
-                                        <div
-                                            class="lwSpinAllItem ${prize.type === "lose" ? "is-lose" : ""}"
-                                            style="--reveal-index: ${index};"
-                                        >
-                                            <span class="lwSpinAllItem__index">#${String(index + 1).padStart(2, "0")}</span>
-                                            <span class="lwSpinAllItem__name">${prize.name}</span>
-                                        </div>
-                                    `;
+                                                        <div
+                                                            class="lwSpinAllItem ${prize.type === "lose" ? "is-lose" : ""}"
+                                                            style="--reveal-index: ${index};"
+                                                        >
+                                                            <span class="lwSpinAllItem__index">#${String(index + 1).padStart(2, "0")}</span>
+                                                            <span class="lwSpinAllItem__name">${prize.name}</span>
+                                                        </div>
+                                                    `;
             }).join("")}
 </div>
 
-                                        <button class="lwResult__action" type="button" data-close-result>
-                                            Close
-                                        </button>
-                                    </div>
-                                `;
+                                                        <button class="lwResult__action" type="button" data-close-result>
+                                                            Close
+                                                        </button>
+                                                    </div>
+                                                `;
 
             popup.classList.add("is-open");
             const spinAllList = popupBody.querySelector("[data-spin-all-list]");
@@ -1873,6 +1800,12 @@
         }
 
         function spinOnce() {
+            if (!turboPanel.hidden && !turboRunning && !isSpinning) {
+                // SPIN NOW / Spin Once should leave Turbo selection mode
+                // and immediately perform one normal spin.
+                closeTurboOptions();
+            }
+
             if (isSpinning) return;
 
             if (getAvailableSpinCount() <= 0) {
@@ -1917,9 +1850,193 @@
             }, 4200);
         }
 
+        let turboBatchSize = 1;
+        let turboRunning = false;
+        let turboStopRequested = false;
+        let turboSkipRequested = false;
+        let turboSessionResults = [];
+        let turboTimer = null;
+
+        function setTurboStatus(message) {
+            if (turboStatus) turboStatus.textContent = message;
+        }
+
+        function setTurboControlsRunning(running) {
+            turboPanel?.classList.toggle("is-running", running);
+            if (turboSelectActions) turboSelectActions.hidden = running;
+            if (turboRunningActions) turboRunningActions.hidden = false;
+            if (turboStopBtn) {
+                turboStopBtn.textContent = running ? "STOP" : "CANCEL";
+                turboStopBtn.disabled = false;
+            }
+            if (turboSkipBtn) turboSkipBtn.disabled = false;
+            turboSpeedButtons.forEach((button) => {
+                button.disabled = running;
+            });
+            centerSpinBtn.disabled = running;
+            if (spinBtn) spinBtn.disabled = running;
+            if (spinAllBtn) spinAllBtn.disabled = running;
+        }
+
+        function finishTurboSession() {
+            window.clearTimeout(turboTimer);
+            turboTimer = null;
+            turboRunning = false;
+            turboStopRequested = false;
+            turboSkipRequested = false;
+            isSpinning = false;
+            stopSound(soundSpin);
+            wheel.classList.remove("is-spin-all");
+            setTurboControlsRunning(false);
+            turboPanel.hidden = true;
+            turboPanel.classList.remove("is-selecting");
+            if (spinActions) spinActions.hidden = false;
+            if (spinAllBtn) spinAllBtn.hidden = false;
+            if (turboRunningActions) turboRunningActions.hidden = false;
+            if (turboStopBtn) turboStopBtn.textContent = "CANCEL";
+
+            const results = [...turboSessionResults];
+            turboSessionResults = [];
+
+            if (!results.length) {
+                setTurboStatus("Auto spin stopped.");
+                return;
+            }
+
+            const wins = results.filter((prize) => prize.type === "win").length;
+            setTurboStatus(`Completed ${results.length} spin(s) with ${wins} win(s).`);
+            openSpinAllPopup(results, true);
+        }
+
+        function settleRemainingTurboSpins() {
+            const count = getAvailableSpinCount();
+            if (count <= 0) return;
+
+            deductSpinChance(count);
+            const results = Array.from({ length: count }, () => getPrizeResult());
+            turboSessionResults.push(...results);
+            results.forEach(addHistoryItem);
+        }
+
+        function runTurboBatch() {
+            if (!turboRunning) return;
+
+            const available = getAvailableSpinCount();
+            if (available <= 0 || turboStopRequested) {
+                finishTurboSession();
+                return;
+            }
+
+            const batchCount = Math.min(turboBatchSize, available);
+            if (!deductSpinChance(batchCount)) {
+                finishTurboSession();
+                return;
+            }
+
+            isSpinning = true;
+            const batchResults = Array.from({ length: batchCount }, () => getPrizeResult());
+            turboSessionResults.push(...batchResults);
+            batchResults.forEach(addHistoryItem);
+
+            const lastPrize = batchResults[batchResults.length - 1];
+            const baseSpin = 360 * (turboBatchSize === 1 ? 2 : 1);
+            const targetRotation = getRotationForPrize(lastPrize);
+            const currentAngle = ((currentRotation % 360) + 360) % 360;
+            const angleToTarget = (targetRotation - currentAngle + 360) % 360;
+            currentRotation += baseSpin + angleToTarget;
+
+            wheel.classList.add("is-spin-all");
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+            setTurboStatus(`Auto spinning X${turboBatchSize} · ${turboSessionResults.length} spin(s) completed`);
+
+            turboTimer = window.setTimeout(() => {
+                playWinnerHighlight(lastPrize);
+                if (lastPrize.type === "win") playShellJackpot();
+                isSpinning = false;
+
+                if (turboSkipRequested) {
+                    settleRemainingTurboSpins();
+                    finishTurboSession();
+                    return;
+                }
+
+                if (turboStopRequested || getAvailableSpinCount() <= 0) {
+                    finishTurboSession();
+                    return;
+                }
+
+                runTurboBatch();
+            }, 620);
+        }
+
+        function startTurbo(batchSize = turboBatchSize) {
+            if (turboRunning || isSpinning) return;
+            if (getAvailableSpinCount() <= 0) {
+                openInsufficientSpinPopup();
+                return;
+            }
+
+            turboBatchSize = batchSize;
+            turboSessionResults = [];
+            turboStopRequested = false;
+            turboSkipRequested = false;
+            turboRunning = true;
+            turboPanel.classList.remove("is-selecting");
+            playSound(soundSpin);
+            setTurboControlsRunning(true);
+            setTurboStatus(`Starting auto spin X${turboBatchSize}...`);
+            runTurboBatch();
+        }
+
+        function skipAllTurbo() {
+            if (turboRunning || isSpinning) {
+                turboSkipRequested = true;
+                if (turboSkipBtn) turboSkipBtn.disabled = true;
+                setTurboStatus("Skipping all remaining spins after the current batch...");
+                return;
+            }
+            const count = getAvailableSpinCount();
+            if (count <= 0) {
+                openInsufficientSpinPopup();
+                return;
+            }
+
+            deductSpinChance(count);
+            const results = Array.from({ length: count }, () => getPrizeResult());
+            results.forEach(addHistoryItem);
+            const wins = results.filter((prize) => prize.type === "win").length;
+            setTurboStatus(`Skipped ${count} spin(s) with ${wins} win(s).`);
+            turboPanel.hidden = true;
+            turboPanel.classList.remove("is-selecting");
+            if (spinActions) spinActions.hidden = false;
+            if (turboSelectActions) turboSelectActions.hidden = false;
+            if (turboRunningActions) turboRunningActions.hidden = false;
+            if (turboStopBtn) turboStopBtn.textContent = "CANCEL";
+            openSpinAllPopup(results, true);
+        }
+
+        turboSpeedButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                turboBatchSize = Number(button.dataset.turboSpeed) || 1;
+                turboSpeedButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+                startTurbo(turboBatchSize);
+            });
+        });
+
+        turboStopBtn?.addEventListener("click", () => {
+            if (!turboRunning && !isSpinning) {
+                closeTurboOptions();
+                return;
+            }
+
+            turboStopRequested = true;
+            turboStopBtn.disabled = true;
+            setTurboStatus("Stopping after the current batch...");
+        });
+
+        turboSkipBtn?.addEventListener("click", skipAllTurbo);
         centerSpinBtn?.addEventListener("click", spinOnce);
         spinBtn?.addEventListener("click", spinOnce);
     </script>
-
-
-</body></html>
+</body>
+</html>
