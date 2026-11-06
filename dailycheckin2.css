@@ -1639,7 +1639,7 @@ dci-hero-note img {
     .dci-hero-copy img {
         width: 50%;
     }
-
+   
     .dci-page {
         padding: 0 14px 20px;
     }
@@ -1999,6 +1999,10 @@ dci-hero-note img {
     .dci-term-row p {
         font-size: 11px;
         line-height: 1.5;
+    }
+
+       .dci-hero-copy {
+        margin-bottom: 0px;
     }
 }
 
@@ -3184,6 +3188,7 @@ body.dci-tnc-open { overflow: hidden; }
         max-width: 820px;
         margin: 0 auto;
         transform: none;
+        margin-bottom: 125px;
     }
 
     .dci-hero-copy img {
