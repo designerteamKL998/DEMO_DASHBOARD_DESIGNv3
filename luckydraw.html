@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -447,7 +447,7 @@
 
 
 
-                <div class="lwSpinActions">
+                <div class="lwSpinActions" id="lwSpinActions">
 
                     <button class="lwSpinAction lwSpinAction--all" id="lwSpinAllBtn" type="button">
                         Spin All
@@ -455,6 +455,21 @@
                     <button class="lwSpinAction lwSpinAction--single" id="lwSpinBtn" type="button">
                         Spin Once
                     </button>
+                </div>
+
+                <div class="lwTurbo" id="lwTurboPanel" hidden>
+                    <div class="lwTurbo__speeds" role="group" aria-label="Turbo batch size">
+                        <span class="lwTurbo__label"><span class="lwTurbo__bolt">⚡</span> TURBO</span>
+                        <button class="lwTurbo__speed" type="button" data-turbo-speed="1">X1</button>
+                        <button class="lwTurbo__speed" type="button" data-turbo-speed="2">X2</button>
+                        <button class="lwTurbo__speed" type="button" data-turbo-speed="4">X4</button>
+                        <button class="lwTurbo__speed" type="button" data-turbo-speed="8">X8</button>
+                    </div>
+                    <div class="lwTurbo__actions" id="lwTurboRunningActions">
+                        <button class="lwTurbo__stop" id="lwTurboStopBtn" type="button">CANCEL</button>
+                        <button class="lwTurbo__skip" id="lwTurboSkipBtn" type="button">SKIP ALL</button>
+                    </div>
+                    <p class="lwTurbo__status" id="lwTurboStatus">Choose X1, X2, X4 or X8 to start auto spin.</p>
                 </div>
 
                 <p class="lwSpinNote">

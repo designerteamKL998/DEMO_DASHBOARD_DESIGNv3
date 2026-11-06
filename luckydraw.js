@@ -1,4 +1,5 @@
-﻿        const popup = document.getElementById("lwPopup");
+
+        const popup = document.getElementById("lwPopup");
         const popupTitle = document.getElementById("lwPopupTitle");
         const popupBody = document.getElementById("lwPopupBody");
         const popupClose = document.getElementById("lwPopupClose");
@@ -56,6 +57,15 @@
         const centerSpinBtn = document.getElementById("lwCenterSpinBtn");
         const spinBtn = document.getElementById("lwSpinBtn");
         const spinAllBtn = document.getElementById("lwSpinAllBtn");
+        const turboPanel = document.getElementById("lwTurboPanel");
+        const spinActions = document.getElementById("lwSpinActions");
+        const turboSelectActions = document.getElementById("lwTurboSelectActions");
+        const turboRunningActions = document.getElementById("lwTurboRunningActions");
+        const turboCancelBtn = document.getElementById("lwTurboCancelBtn");
+        const turboSpeedButtons = [...document.querySelectorAll("[data-turbo-speed]")];
+        const turboStopBtn = document.getElementById("lwTurboStopBtn");
+        const turboSkipBtn = document.getElementById("lwTurboSkipBtn");
+        const turboStatus = document.getElementById("lwTurboStatus");
 
         const spinButtons = [centerSpinBtn, spinBtn, spinAllBtn].filter(Boolean);
 
@@ -188,18 +198,18 @@
             winnerHighlight.style.setProperty(
                 "--lw-winner-highlight-bg",
                 `
-                                            conic-gradient(
-                                                from ${-halfAngle}deg,
-                                                rgba(255, 241, 178, 0.00) 0deg,
-                                                rgba(255, 224, 140, 0.08) ${softStart}deg,
-                                                rgba(245, 206, 108, 0.22) ${glowStart}deg,
-                                                rgba(255, 239, 178, 0.34) ${glowCenter}deg,
-                                                rgba(245, 206, 108, 0.22) ${glowEnd}deg,
-                                                rgba(255, 224, 140, 0.08) ${softEnd}deg,
-                                                rgba(255, 241, 178, 0.00) ${segmentAngle}deg,
-                                                transparent ${segmentAngle}deg 360deg
-                                            )
-                                        `
+                                                            conic-gradient(
+                                                                from ${-halfAngle}deg,
+                                                                rgba(255, 241, 178, 0.00) 0deg,
+                                                                rgba(255, 224, 140, 0.08) ${softStart}deg,
+                                                                rgba(245, 206, 108, 0.22) ${glowStart}deg,
+                                                                rgba(255, 239, 178, 0.34) ${glowCenter}deg,
+                                                                rgba(245, 206, 108, 0.22) ${glowEnd}deg,
+                                                                rgba(255, 224, 140, 0.08) ${softEnd}deg,
+                                                                rgba(255, 241, 178, 0.00) ${segmentAngle}deg,
+                                                                transparent ${segmentAngle}deg 360deg
+                                                            )
+                                                        `
             );
         }
         function escapeHTML(value) {
@@ -256,10 +266,10 @@
                 const darkClass = shouldUseDarkText(index) ? " is-dark" : "";
 
                 return `
-            <div class="lwWheel__label${darkClass}" data-prize-index="${index}" style="transform: rotate(${labelAngle}deg) translateY(var(--lw-label-distance));">
-                ${formatWheelLabel(labelText)}
-            </div>
-        `;
+                            <div class="lwWheel__label${darkClass}" data-prize-index="${index}" style="transform: rotate(${labelAngle}deg) translateY(var(--lw-label-distance));">
+                                ${formatWheelLabel(labelText)}
+                            </div>
+                        `;
             }).join("");
         }
 
@@ -319,45 +329,45 @@
         function renderHistoryList() {
             if (!historyRecords.length) {
                 historyList.innerHTML = `
-                <div class="lwHistoryEmpty">
-                    No spin records yet.<br>
-                    Spin the wheel to create your first record.
-                </div>
-            `;
+                                <div class="lwHistoryEmpty">
+                                    No spin records yet.<br>
+                                    Spin the wheel to create your first record.
+                                </div>
+                            `;
                 return;
             }
 
             historyList.innerHTML = `
-            <div class="lwHistoryTable">
-                <div class="lwHistoryTable__head">
-                    <div>No.</div>
-                    <div>Date Time</div>
-                    <div>Prize</div>
-                </div>
+                            <div class="lwHistoryTable">
+                                <div class="lwHistoryTable__head">
+                                    <div>No.</div>
+                                    <div>Date Time</div>
+                                    <div>Prize</div>
+                                </div>
 
-                <div class="lwHistoryTable__body">
-                    ${historyRecords.map((record, index) => {
+                                <div class="lwHistoryTable__body">
+                                    ${historyRecords.map((record, index) => {
                 const recordNo = historyRecords.length - index;
 
                 return `
-                            <div class="lwHistoryTable__row">
-                                <div class="lwHistoryTable__no">
-                                    #${String(recordNo).padStart(2, "0")}
-                                </div>
+                                            <div class="lwHistoryTable__row">
+                                                <div class="lwHistoryTable__no">
+                                                    #${String(recordNo).padStart(2, "0")}
+                                                </div>
 
-                                <div class="lwHistoryTable__time">
-                                    ${record.time}
-                                </div>
+                                                <div class="lwHistoryTable__time">
+                                                    ${record.time}
+                                                </div>
 
-                                <div class="lwHistoryTable__prize">
-                                    ${record.reward}
+                                                <div class="lwHistoryTable__prize">
+                                                    ${record.reward}
+                                                </div>
+                                            </div>
+                                        `;
+            }).join("")}
                                 </div>
                             </div>
                         `;
-            }).join("")}
-                </div>
-            </div>
-        `;
         }
 
 
@@ -447,18 +457,18 @@
                 const shape = shapes[Math.floor(Math.random() * shapes.length)];
 
                 return `
-                                                    <span
-                                                        class="lwPopupConfettiPiece ${shape}"
-                                                        style="
-                                                            animation-delay: ${delay}s;
-                                                            animation-duration: ${duration}s;
-                                                            --confetti-x: ${x}px;
-                                                            --confetti-y: ${y}px;
-                                                            --confetti-rotate: ${rotate}deg;
-                                                            --confetti-color: ${color};
-                                                        "
-                                                    ></span>
-                                                `;
+                                                                    <span
+                                                                        class="lwPopupConfettiPiece ${shape}"
+                                                                        style="
+                                                                            animation-delay: ${delay}s;
+                                                                            animation-duration: ${duration}s;
+                                                                            --confetti-x: ${x}px;
+                                                                            --confetti-y: ${y}px;
+                                                                            --confetti-rotate: ${rotate}deg;
+                                                                            --confetti-color: ${color};
+                                                                        "
+                                                                    ></span>
+                                                                `;
             }).join("");
 
             window.setTimeout(() => {
@@ -470,18 +480,18 @@
 
             if (prize.image) {
                 return `
-            <div class="lwResult__icon lwResult__icon--image">
-                <img src="${escapeHTML(prize.image)}" alt="${escapeHTML(prize.name)}">
-            </div>
-        `;
+                            <div class="lwResult__icon lwResult__icon--image">
+                                <img src="${escapeHTML(prize.image)}" alt="${escapeHTML(prize.name)}">
+                            </div>
+                        `;
             }
 
             if (prize.icon) {
                 return `
-            <div class="lwResult__icon">
-                ${prize.icon}
-            </div>
-        `;
+                            <div class="lwResult__icon">
+                                ${prize.icon}
+                            </div>
+                        `;
             }
 
             return "";
@@ -495,29 +505,29 @@
             popupTitle.textContent = isLose ? "Result" : "You Won";
 
             popupBody.innerHTML = `
-                                                        <div class="lwResult ${isLose ? "lwResult--lose" : "lwResult--win"}">
-                                                           ${renderPopupPrizeVisual(prize, isLose)}
+                                                                        <div class="lwResult ${isLose ? "lwResult--lose" : "lwResult--win"}">
+                                                                           ${renderPopupPrizeVisual(prize, isLose)}
 
-                                                            <h3 class="lwResult__title">
-                                                                ${isLose ? "Good Luck" : "Congratulations!"}
-                                                            </h3>
+                                                                            <h3 class="lwResult__title">
+                                                                                ${isLose ? "Good Luck" : "Congratulations!"}
+                                                                            </h3>
 
-                                                            <div class="lwResult__reward">
-                                                                ${prize.name}
-                                                            </div>
+                                                                            <div class="lwResult__reward">
+                                                                                ${prize.name}
+                                                                            </div>
 
-                                                            <p class="lwResult__desc">
-                                                                ${isLose
+                                                                            <p class="lwResult__desc">
+                                                                                ${isLose
                     ? "Try again and your luck may come next."
                     : "Your reward has been selected. Please claim it according to the event rules."
                 }
-                                                            </p>
+                                                                            </p>
 
-                                                            <button class="lwResult__action" type="button" data-close-result>
-                                                                ${isLose ? "Close" : "Claim Now"}
-                                                            </button>
-                                                        </div>
-                                                    `;
+                                                                            <button class="lwResult__action" type="button" data-close-result>
+                                                                                ${isLose ? "Close" : "Claim Now"}
+                                                                            </button>
+                                                                        </div>
+                                                                    `;
 
             popup.classList.add("is-open");
             playSound(isLose ? soundLose : soundPopup);
@@ -556,24 +566,24 @@
             popupTitle.textContent = "Notice";
 
             popupBody.innerHTML = `
-                    <div class="lwResult lwResult--lose">
-                        <div class="lwResult__icon">
-                            ⚠️
-                        </div>
+                                    <div class="lwResult lwResult--lose">
+                                        <div class="lwResult__icon">
+                                            ⚠️
+                                        </div>
 
-                        <h3 class="lwResult__title">
-                            Not Enough Spin Chance
-                        </h3>
+                                        <h3 class="lwResult__title">
+                                            Not Enough Spin Chance
+                                        </h3>
 
-                        <p class="lwResult__desc">
-                            You do not have enough spin chance to continue.
-                        </p>
+                                        <p class="lwResult__desc">
+                                            You do not have enough spin chance to continue.
+                                        </p>
 
-                        <button class="lwResult__action" type="button" data-close-result>
-                            Close
-                        </button>
-                    </div>
-                `;
+                                        <button class="lwResult__action" type="button" data-close-result>
+                                            Close
+                                        </button>
+                                    </div>
+                                `;
 
             popup.classList.add("is-open");
             playSound(soundLose);
@@ -631,9 +641,50 @@
             }, 1250);
         }
 
-        spinAllBtn?.addEventListener("click", spinAll);
+        function showTurboOptions() {
+            if (turboRunning || isSpinning) return;
+            if (getAvailableSpinCount() <= 0) {
+                openInsufficientSpinPopup();
+                return;
+            }
 
-        function openSpinAllPopup(results) {
+            spinActions.hidden = true;
+            turboPanel.classList.remove("is-closing");
+            turboPanel.hidden = false;
+            if (turboRunningActions) turboRunningActions.hidden = false;
+            if (turboStopBtn) {
+                turboStopBtn.textContent = "CANCEL";
+                turboStopBtn.disabled = false;
+            }
+            if (turboSkipBtn) turboSkipBtn.disabled = false;
+            turboPanel.classList.remove("is-selecting");
+            void turboPanel.offsetWidth;
+            turboPanel.classList.add("is-selecting");
+            turboSpeedButtons.forEach((button) => button.classList.remove("is-active"));
+            setTurboStatus("Choose X1, X2, X4 or X8 to start auto spin.");
+        }
+
+        function closeTurboOptions() {
+            if (turboRunning || isSpinning || turboPanel.hidden) return;
+
+            turboPanel.classList.remove("is-selecting", "is-running");
+            turboPanel.classList.add("is-closing");
+
+            window.setTimeout(() => {
+                turboPanel.hidden = true;
+                turboPanel.classList.remove("is-closing");
+                if (spinActions) spinActions.hidden = false;
+                if (spinAllBtn) spinAllBtn.hidden = false;
+                if (turboRunningActions) turboRunningActions.hidden = false;
+                if (turboStopBtn) turboStopBtn.textContent = "CANCEL";
+                turboSpeedButtons.forEach((button) => button.classList.remove("is-active"));
+                setTurboStatus("Choose X1, X2, X4 or X8 to start auto spin.");
+            }, 260);
+        }
+
+        spinAllBtn?.addEventListener("click", showTurboOptions);
+
+        function openSpinAllPopup(results, showTurboSummary = false) {
             stopSound(soundSpin);
             popup.classList.remove("is-lose");
             popup.classList.add("is-win");
@@ -641,34 +692,47 @@
             popupTitle.textContent = "Spin All Result";
 
             popupBody.innerHTML = `
-                                    <div class="lwResult lwResult--win lwResult--spinAll">
-                                        <h3 class="lwResult__title">
-                                            Spin Completed
-                                        </h3>
+                                                    <div class="lwResult lwResult--win lwResult--spinAll">
+                                                        <h3 class="lwResult__title">
+                                                            Spin Completed
+                                                        </h3>
 
-                                        <p class="lwResult__desc">
-                                            Your spin results are listed below.
-                                        </p>
+                                                        <p class="lwResult__desc">
+                                                            ${showTurboSummary ? "Auto spin stopped. Here is your session summary." : "Your spin results are listed below."}
+                                                        </p>
 
-                                        <div class="lwSpinAllList is-revealing" data-spin-all-list>
-                                ${results.map((prize, index) => {
+                                                        ${showTurboSummary ? `
+                                                            <div class="lwTurboSummary">
+                                                                <div class="lwTurboSummary__item">
+                                                                    <span class="lwTurboSummary__value">${results.length}</span>
+                                                                    <span class="lwTurboSummary__label">Total Spins</span>
+                                                                </div>
+                                                                <div class="lwTurboSummary__item">
+                                                                    <span class="lwTurboSummary__value">${results.filter((prize) => prize.type === "win").length}</span>
+                                                                    <span class="lwTurboSummary__label">Total Wins</span>
+                                                                </div>
+                                                            </div>
+                                                        ` : ""}
+
+                                                        <div class="lwSpinAllList is-revealing" data-spin-all-list>
+                                                ${results.map((prize, index) => {
                 return `
-                                        <div
-                                            class="lwSpinAllItem ${prize.type === "lose" ? "is-lose" : ""}"
-                                            style="--reveal-index: ${index};"
-                                        >
-                                            <span class="lwSpinAllItem__index">#${String(index + 1).padStart(2, "0")}</span>
-                                            <span class="lwSpinAllItem__name">${prize.name}</span>
-                                        </div>
-                                    `;
+                                                        <div
+                                                            class="lwSpinAllItem ${prize.type === "lose" ? "is-lose" : ""}"
+                                                            style="--reveal-index: ${index};"
+                                                        >
+                                                            <span class="lwSpinAllItem__index">#${String(index + 1).padStart(2, "0")}</span>
+                                                            <span class="lwSpinAllItem__name">${prize.name}</span>
+                                                        </div>
+                                                    `;
             }).join("")}
 </div>
 
-                                        <button class="lwResult__action" type="button" data-close-result>
-                                            Close
-                                        </button>
-                                    </div>
-                                `;
+                                                        <button class="lwResult__action" type="button" data-close-result>
+                                                            Close
+                                                        </button>
+                                                    </div>
+                                                `;
 
             popup.classList.add("is-open");
             const spinAllList = popupBody.querySelector("[data-spin-all-list]");
@@ -692,6 +756,12 @@
         }
 
         function spinOnce() {
+            if (!turboPanel.hidden && !turboRunning && !isSpinning) {
+                // SPIN NOW / Spin Once should leave Turbo selection mode
+                // and immediately perform one normal spin.
+                closeTurboOptions();
+            }
+
             if (isSpinning) return;
 
             if (getAvailableSpinCount() <= 0) {
@@ -736,5 +806,191 @@
             }, 4200);
         }
 
+        let turboBatchSize = 1;
+        let turboRunning = false;
+        let turboStopRequested = false;
+        let turboSkipRequested = false;
+        let turboSessionResults = [];
+        let turboTimer = null;
+
+        function setTurboStatus(message) {
+            if (turboStatus) turboStatus.textContent = message;
+        }
+
+        function setTurboControlsRunning(running) {
+            turboPanel?.classList.toggle("is-running", running);
+            if (turboSelectActions) turboSelectActions.hidden = running;
+            if (turboRunningActions) turboRunningActions.hidden = false;
+            if (turboStopBtn) {
+                turboStopBtn.textContent = running ? "STOP" : "CANCEL";
+                turboStopBtn.disabled = false;
+            }
+            if (turboSkipBtn) turboSkipBtn.disabled = false;
+            turboSpeedButtons.forEach((button) => {
+                button.disabled = running;
+            });
+            centerSpinBtn.disabled = running;
+            if (spinBtn) spinBtn.disabled = running;
+            if (spinAllBtn) spinAllBtn.disabled = running;
+        }
+
+        function finishTurboSession() {
+            window.clearTimeout(turboTimer);
+            turboTimer = null;
+            turboRunning = false;
+            turboStopRequested = false;
+            turboSkipRequested = false;
+            isSpinning = false;
+            stopSound(soundSpin);
+            wheel.classList.remove("is-spin-all");
+            setTurboControlsRunning(false);
+            turboPanel.hidden = true;
+            turboPanel.classList.remove("is-selecting");
+            if (spinActions) spinActions.hidden = false;
+            if (spinAllBtn) spinAllBtn.hidden = false;
+            if (turboRunningActions) turboRunningActions.hidden = false;
+            if (turboStopBtn) turboStopBtn.textContent = "CANCEL";
+
+            const results = [...turboSessionResults];
+            turboSessionResults = [];
+
+            if (!results.length) {
+                setTurboStatus("Auto spin stopped.");
+                return;
+            }
+
+            const wins = results.filter((prize) => prize.type === "win").length;
+            setTurboStatus(`Completed ${results.length} spin(s) with ${wins} win(s).`);
+            openSpinAllPopup(results, true);
+        }
+
+        function settleRemainingTurboSpins() {
+            const count = getAvailableSpinCount();
+            if (count <= 0) return;
+
+            deductSpinChance(count);
+            const results = Array.from({ length: count }, () => getPrizeResult());
+            turboSessionResults.push(...results);
+            results.forEach(addHistoryItem);
+        }
+
+        function runTurboBatch() {
+            if (!turboRunning) return;
+
+            const available = getAvailableSpinCount();
+            if (available <= 0 || turboStopRequested) {
+                finishTurboSession();
+                return;
+            }
+
+            const batchCount = Math.min(turboBatchSize, available);
+            if (!deductSpinChance(batchCount)) {
+                finishTurboSession();
+                return;
+            }
+
+            isSpinning = true;
+            const batchResults = Array.from({ length: batchCount }, () => getPrizeResult());
+            turboSessionResults.push(...batchResults);
+            batchResults.forEach(addHistoryItem);
+
+            const lastPrize = batchResults[batchResults.length - 1];
+            const baseSpin = 360 * (turboBatchSize === 1 ? 2 : 1);
+            const targetRotation = getRotationForPrize(lastPrize);
+            const currentAngle = ((currentRotation % 360) + 360) % 360;
+            const angleToTarget = (targetRotation - currentAngle + 360) % 360;
+            currentRotation += baseSpin + angleToTarget;
+
+            wheel.classList.add("is-spin-all");
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+            setTurboStatus(`Auto spinning X${turboBatchSize} · ${turboSessionResults.length} spin(s) completed`);
+
+            turboTimer = window.setTimeout(() => {
+                playWinnerHighlight(lastPrize);
+                if (lastPrize.type === "win") playShellJackpot();
+                isSpinning = false;
+
+                if (turboSkipRequested) {
+                    settleRemainingTurboSpins();
+                    finishTurboSession();
+                    return;
+                }
+
+                if (turboStopRequested || getAvailableSpinCount() <= 0) {
+                    finishTurboSession();
+                    return;
+                }
+
+                runTurboBatch();
+            }, 620);
+        }
+
+        function startTurbo(batchSize = turboBatchSize) {
+            if (turboRunning || isSpinning) return;
+            if (getAvailableSpinCount() <= 0) {
+                openInsufficientSpinPopup();
+                return;
+            }
+
+            turboBatchSize = batchSize;
+            turboSessionResults = [];
+            turboStopRequested = false;
+            turboSkipRequested = false;
+            turboRunning = true;
+            turboPanel.classList.remove("is-selecting");
+            playSound(soundSpin);
+            setTurboControlsRunning(true);
+            setTurboStatus(`Starting auto spin X${turboBatchSize}...`);
+            runTurboBatch();
+        }
+
+        function skipAllTurbo() {
+            if (turboRunning || isSpinning) {
+                turboSkipRequested = true;
+                if (turboSkipBtn) turboSkipBtn.disabled = true;
+                setTurboStatus("Skipping all remaining spins after the current batch...");
+                return;
+            }
+            const count = getAvailableSpinCount();
+            if (count <= 0) {
+                openInsufficientSpinPopup();
+                return;
+            }
+
+            deductSpinChance(count);
+            const results = Array.from({ length: count }, () => getPrizeResult());
+            results.forEach(addHistoryItem);
+            const wins = results.filter((prize) => prize.type === "win").length;
+            setTurboStatus(`Skipped ${count} spin(s) with ${wins} win(s).`);
+            turboPanel.hidden = true;
+            turboPanel.classList.remove("is-selecting");
+            if (spinActions) spinActions.hidden = false;
+            if (turboSelectActions) turboSelectActions.hidden = false;
+            if (turboRunningActions) turboRunningActions.hidden = false;
+            if (turboStopBtn) turboStopBtn.textContent = "CANCEL";
+            openSpinAllPopup(results, true);
+        }
+
+        turboSpeedButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                turboBatchSize = Number(button.dataset.turboSpeed) || 1;
+                turboSpeedButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+                startTurbo(turboBatchSize);
+            });
+        });
+
+        turboStopBtn?.addEventListener("click", () => {
+            if (!turboRunning && !isSpinning) {
+                closeTurboOptions();
+                return;
+            }
+
+            turboStopRequested = true;
+            turboStopBtn.disabled = true;
+            setTurboStatus("Stopping after the current batch...");
+        });
+
+        turboSkipBtn?.addEventListener("click", skipAllTurbo);
         centerSpinBtn?.addEventListener("click", spinOnce);
         spinBtn?.addEventListener("click", spinOnce);
+    

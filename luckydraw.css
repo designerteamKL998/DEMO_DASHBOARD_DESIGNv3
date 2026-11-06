@@ -1,4 +1,4 @@
-﻿:root { /* Theme images */
+:root { /* Theme images */
     --lw-bg-image: url('./Lucky Wheel - Gold Luxury_files/wheel_bg.jpg');
     --lw-wheel-base-image: url('./Lucky Wheel - Gold Luxury_files/wheel_base.png');
     --lw-wheel-shell-image: url('./Lucky Wheel - Gold Luxury_files/wheel_shell.png');
@@ -2977,3 +2977,202 @@ button {
 }
 
 
+
+
+
+
+/* Restored Turbo controls and animations from Lucky Wheel reference */
+/* =========================================================
+   TURBO PANEL
+   Paste this at the bottom of your existing CSS
+========================================================= */
+
+        .lwTurbo { position: relative; z-index: 4; width: min(560px, 92%); margin: 16px auto 0; overflow: hidden; opacity: 1; visibility: visible; transform: translateY(0); transform-origin: top center; transition: max-height .32s cubic-bezier(.22, .8, .22, 1), opacity .24s ease, transform .32s cubic-bezier(.22, .8, .22, 1), margin .32s ease, visibility 0s linear 0s; }
+
+            /*
+JS 使用 hidden 时，浏览器本身会 display:none。
+这一行确保 hidden 状态绝对不会占位置。
+*/
+            .lwTurbo[hidden] { display: none !important; }
+
+
+            /* =========================================================
+   SLIDE IN
+   JS 打开 Turbo 时加入 .is-selecting
+========================================================= */
+
+            .lwTurbo.is-selecting { animation: lwTurboSlideIn .34s cubic-bezier(.18, .86, .32, 1.12) both; }
+
+
+            /* =========================================================
+   SLIDE OUT
+   JS 关闭 Turbo 时加入 .is-closing
+========================================================= */
+
+            .lwTurbo.is-closing { pointer-events: none; animation: lwTurboSlideOut .26s ease-in both; }
+
+
+        /* =========================================================
+   TURBO SPEED ROW
+========================================================= */
+
+        .lwTurbo__speeds { position: relative; display: grid; grid-template-columns: auto repeat(4, minmax(56px, 1fr)); align-items: center; gap: 9px; min-height: 62px; padding: 9px 12px; border: 1px solid rgba(245, 206, 108, .42); border-radius: 18px; background: radial-gradient( circle at 18% 0%, rgba(245, 206, 108, .18), transparent 35% ), linear-gradient( 180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .025) ), rgba(7, 16, 12, .88); box-shadow: 0 15px 28px rgba(0, 0, 0, .36), 0 0 20px rgba(245, 206, 108, .10), inset 0 1px 0 rgba(255, 255, 255, .12); backdrop-filter: blur(12px); }
+
+            .lwTurbo__speeds::before { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(245, 206, 108, .10); border-radius: 13px; pointer-events: none; }
+
+
+        /* =========================================================
+   TURBO LABEL
+========================================================= */
+
+        .lwTurbo__label { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 42px; padding: 0 10px; color: #ffe580; font-size: 14px; font-weight: 1000; line-height: 1; letter-spacing: .05em; white-space: nowrap; text-shadow: 0 2px 0 rgba(0, 0, 0, .45), 0 0 12px rgba(245, 206, 108, .30); }
+
+        .lwTurbo__bolt { display: inline-block; color: #ffdc55; font-size: 18px; filter: drop-shadow(0 0 5px rgba(255, 218, 80, .65)); animation: lwTurboBoltPulse 1.2s ease-in-out infinite; }
+
+
+        /* =========================================================
+   X1 / X2 / X4 / X8 BUTTONS
+========================================================= */
+
+        .lwTurbo__speed { position: relative; z-index: 1; min-width: 0; min-height: 42px; padding: 0 8px; border: 1px solid rgba(255, 231, 155, .34); border-radius: 12px; color: rgba(255, 255, 255, .92); background: linear-gradient( 180deg, rgba(255, 255, 255, .10), transparent 38% ), linear-gradient( 180deg, #213426 0%, #102318 52%, #07130d 100% ); box-shadow: 0 7px 14px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .13); font-size: 15px; font-weight: 1000; line-height: 1; letter-spacing: .02em; cursor: pointer; transition: transform .16s ease, filter .16s ease, border-color .16s ease, box-shadow .16s ease, color .16s ease; }
+
+            .lwTurbo__speed:hover:not(:disabled) { transform: translateY(-1px); color: #fff7cf; border-color: rgba(245, 206, 108, .65); filter: brightness(1.1); box-shadow: 0 10px 18px rgba(0, 0, 0, .34), 0 0 15px rgba(245, 206, 108, .15), inset 0 1px 0 rgba(255, 255, 255, .18); }
+
+            .lwTurbo__speed:active:not(:disabled) { transform: translateY(1px) scale(.97); }
+
+            .lwTurbo__speed.is-active { color: #171006; border-color: rgba(255, 243, 185, .88); background: radial-gradient( circle at 38% 18%, rgba(255, 255, 255, .52), transparent 30% ), linear-gradient( 180deg, #fff0a8 0%, #f5ce6c 48%, #b87924 100% ); box-shadow: 0 9px 20px rgba(0, 0, 0, .34), 0 0 22px rgba(245, 206, 108, .38), inset 0 2px 0 rgba(255, 255, 255, .42), inset 0 -4px 9px rgba(80, 40, 0, .22); }
+
+            .lwTurbo__speed:disabled { cursor: not-allowed; opacity: .56; filter: grayscale(.2) brightness(.74); }
+
+
+        /* =========================================================
+   CANCEL / STOP / SKIP ALL
+========================================================= */
+
+        .lwTurbo__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+
+        .lwTurbo__stop,
+        .lwTurbo__skip { position: relative; min-height: 50px; padding: 0 18px; border-radius: 999px; color: #fff; font-size: 15px; font-weight: 1000; line-height: 1; letter-spacing: .045em; text-transform: uppercase; cursor: pointer; transition: transform .16s ease, filter .16s ease, opacity .16s ease, box-shadow .16s ease; }
+
+        .lwTurbo__stop { border: 1px solid rgba(255, 228, 150, .66); background: linear-gradient( 180deg, rgba(255, 255, 255, .16), transparent 34% ), linear-gradient( 180deg, #e13d49 0%, #b8142b 50%, #620510 100% ); box-shadow: 0 12px 22px rgba(0, 0, 0, .32), 0 0 16px rgba(190, 20, 50, .18), inset 0 1px 0 rgba(255, 255, 255, .18); }
+
+        .lwTurbo__skip { border: 1px solid rgba(255, 231, 155, .62); background: linear-gradient( 180deg, rgba(255, 255, 255, .15), transparent 34% ), linear-gradient( 180deg, #42794a 0%, #20542c 50%, #0b2914 100% ); box-shadow: 0 12px 22px rgba(0, 0, 0, .32), 0 0 16px rgba(45, 130, 65, .16), inset 0 1px 0 rgba(255, 255, 255, .16); }
+
+            .lwTurbo__stop:hover:not(:disabled),
+            .lwTurbo__skip:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.08); }
+
+            .lwTurbo__stop:active:not(:disabled),
+            .lwTurbo__skip:active:not(:disabled) { transform: translateY(1px) scale(.98); }
+
+            .lwTurbo__stop:disabled,
+            .lwTurbo__skip:disabled { cursor: not-allowed; opacity: .5; filter: brightness(.7); }
+
+
+        /* =========================================================
+   STATUS TEXT
+========================================================= */
+
+        .lwTurbo__status { min-height: 16px; margin: 8px 4px 0; color: rgba(255, 239, 190, .76); font-size: 11px; font-weight: 700; line-height: 1.35; text-align: center; text-shadow: 0 2px 7px rgba(0, 0, 0, .55); }
+
+
+        /* =========================================================
+   RUNNING STATE
+========================================================= */
+
+        .lwTurbo.is-running .lwTurbo__speeds { border-color: rgba(245, 206, 108, .55); box-shadow: 0 15px 28px rgba(0, 0, 0, .36), 0 0 24px rgba(245, 206, 108, .17), inset 0 1px 0 rgba(255, 255, 255, .12); }
+
+        .lwTurbo.is-running .lwTurbo__label { animation: lwTurboRunningGlow 1.1s ease-in-out infinite; }
+
+
+        /* =========================================================
+   SLIDE ANIMATIONS
+========================================================= */
+
+        @keyframes lwTurboSlideIn {
+            0% { opacity: 0; transform: translateY(-18px) scaleY(.82); filter: blur(2px); }
+
+            65% { opacity: 1; transform: translateY(3px) scaleY(1.02); filter: blur(0); }
+
+            100% { opacity: 1; transform: translateY(0) scaleY(1); filter: blur(0); }
+        }
+
+        @keyframes lwTurboSlideOut {
+            0% { opacity: 1; transform: translateY(0) scaleY(1); }
+
+            100% { opacity: 0; transform: translateY(-14px) scaleY(.84); }
+        }
+
+        @keyframes lwTurboBoltPulse {
+            0%, 100% { transform: scale(1); opacity: .82; }
+
+            50% { transform: scale(1.16); opacity: 1; }
+        }
+
+        @keyframes lwTurboRunningGlow {
+            0%, 100% { text-shadow: 0 2px 0 rgba(0, 0, 0, .45), 0 0 8px rgba(245, 206, 108, .24); }
+
+            50% { text-shadow: 0 2px 0 rgba(0, 0, 0, .45), 0 0 18px rgba(245, 206, 108, .62); }
+        }
+
+
+        /* =========================================================
+   TABLET
+========================================================= */
+
+        @media (max-width: 1080px) {
+            .lwTurbo { width: min(480px, 92%); }
+
+            .lwTurbo__speeds { grid-template-columns: auto repeat(4, minmax(48px, 1fr)); gap: 7px; padding: 8px 10px; }
+
+            .lwTurbo__label { padding-inline: 7px; font-size: 12px; }
+
+            .lwTurbo__speed { min-height: 40px; font-size: 14px; }
+        }
+
+
+        /* =========================================================
+   MOBILE
+========================================================= */
+
+        @media (max-width: 767px) {
+            .lwTurbo { width: min(360px, 94vw); margin-top: 10px; }
+
+            .lwTurbo__speeds { grid-template-columns: repeat(4, 1fr); gap: 7px; min-height: 0; padding: 42px 9px 9px; }
+
+            .lwTurbo__label { position: absolute; top: 9px; left: 50%; min-height: 26px; padding: 0 10px; transform: translateX(-50%); font-size: 12px; }
+
+            .lwTurbo__bolt { font-size: 15px; }
+
+            .lwTurbo__speed { min-height: 40px; padding-inline: 5px; border-radius: 10px; font-size: 13px; }
+
+            .lwTurbo__actions { gap: 8px; margin-top: 8px; }
+
+            .lwTurbo__stop,
+            .lwTurbo__skip { min-height: 44px; padding-inline: 10px; font-size: 12px; letter-spacing: .02em; }
+
+            .lwTurbo__status { margin-top: 7px; font-size: 10px; }
+        }
+
+
+        /* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+        @media (max-width: 380px) {
+            .lwTurbo { width: 94vw; }
+
+            .lwTurbo__speeds { gap: 5px; padding-inline: 7px; }
+
+            .lwTurbo__speed { min-height: 38px; font-size: 12px; }
+
+            .lwTurbo__stop,
+            .lwTurbo__skip { min-height: 42px; font-size: 11px; }
+        }
+    
+
+
+/* Turbo session summary */
+.lwTurboSummary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: 360px; margin: 14px auto 4px; }
+.lwTurboSummary__item { display: flex; flex-direction: column; gap: 3px; padding: 10px; border: 1px solid rgba(245,206,108,.32); border-radius: 12px; background: rgba(245,206,108,.08); }
+.lwTurboSummary__value { color: #ffe9a8; font-size: 22px; font-weight: 900; }
+.lwTurboSummary__label { color: rgba(255,255,255,.76); font-size: 10px; font-weight: 700; text-transform: uppercase; }
