@@ -1292,7 +1292,7 @@ dci-hero-note img {
     }
 
 /* Avoid an extra glow around the current day. */
-.dci-day.dci-today {
+.dci-day.dci-today:not(.dci-reset-day-one) {
     box-shadow: none !important;
     border-color: #2EE6C6 !important;
     box-shadow: inset 0 0 0 1px rgba(46, 230, 198, .2), 0 0 12px rgba(46, 230, 198, .15) !important;
@@ -1438,13 +1438,13 @@ dci-hero-note img {
     cursor: not-allowed;
 }
 
-.dci-day.dci-today:not(.dci-checked) {
+.dci-day.dci-today:not(.dci-checked):not(.dci-reset-day-one) {
     border-color: #2EE6C6 !important;
     box-shadow: inset 0 0 0 1px rgba(46,230,198,.2), 0 0 12px rgba(46,230,198,.15) !important;
     background: linear-gradient(145deg, #174a4a 0%, #112529 100%) !important;
 }
 
-    .dci-day.dci-today:not(.dci-checked) .dci-day-number {
+    .dci-day.dci-today:not(.dci-checked):not(.dci-reset-day-one) .dci-day-number {
         color: #2EE6C6 !important;
     }
 
@@ -2136,12 +2136,19 @@ dci-hero-note img {
 
 /* Current available check-in day: turquoise, including reward milestones.
    Reward days remain gold when they are not the active check-in day. */
-.dci-day.dci-checkin-open:not(.dci-checked):not(.dci-past) {
+.dci-day.dci-checkin-open:not(.dci-checked):not(.dci-past):not(.dci-reset-day-one) {
     background: linear-gradient(145deg, #174a4a 0%, #112529 100%) !important;
-    border-color: #2EE6C6 !important;
+    border: 1px solid #2EE6C6 !important;
     color: #2EE6C6 !important;
-    box-shadow: inset 0 0 0 1px rgba(46,230,198,.2), 0 0 12px rgba(46,230,198,.15) !important;
+    box-shadow: inset 0 0 0 1px rgba(46,230,198,.2),
+                0 0 12px rgba(46,230,198,.15) !important;
     filter: none !important;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { border-color: #2EE6C6; }
+    50% { border-color: #ffffff; }
 }
 
 .dci-day.dci-checkin-open .dci-day-label,
@@ -2157,7 +2164,7 @@ dci-hero-note img {
 }
 
 /* Keep active reward days turquoise on hover */
-.dci-day.dci-reward.dci-checkin-open:not(.dci-checked):not(.dci-past):hover {
+.dci-day.dci-reward.dci-checkin-open:not(.dci-checked):not(.dci-past):not(.dci-reset-day-one):hover {
     background: linear-gradient(145deg, #174a4a 0%, #112529 100%) !important;
     border-color: #2EE6C6 !important;
     color: #2EE6C6 !important;
@@ -2222,5 +2229,276 @@ dci-hero-note img {
     .dci-reward-claim {
         padding: 4px 6px;
         font-size: 9px;
+    }
+}
+
+/* Prominent check-in deadline / missed-day notice */
+.dci-reset-warning {
+    display: none;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 0 0 14px;
+    padding: 14px 16px;
+    color: #fff;
+    background: linear-gradient(110deg, rgba(112, 13, 24, .97), rgba(55, 13, 20, .97));
+    border: 2px solid #ff4b58;
+    border-radius: 12px;
+    box-shadow: 0 0 0 2px rgba(255, 55, 70, .12), 0 5px 18px rgba(0, 0, 0, .3), 0 0 18px rgba(255, 45, 60, .22);
+    animation: dci-warning-pulse 1.8s ease-in-out infinite;
+}
+.dci-reset-warning.is-visible { display: flex; }
+.dci-reset-warning > i {
+    flex: 0 0 auto;
+    margin-top: 2px;
+    color: #fff;
+    font-size: 22px;
+}
+.dci-reset-warning-copy { min-width: 0; }
+.dci-reset-warning strong {
+    display: block;
+    margin: 0 0 5px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: .4px;
+}
+.dci-reset-warning p {
+    margin: 0;
+    color: #ffe5e7;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.dci-reset-countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 9px;
+    padding: 5px 9px;
+    color: #fff;
+    background: rgba(0, 0, 0, .28);
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+.dci-reset-countdown b { color: #ffe36a; font-size: 16px; font-variant-numeric: tabular-nums; }
+.dci-reset-warning.is-missed { background: linear-gradient(110deg, #8d101d, #4a1018); }
+/* Missed-day image uses the same size, position and overlay treatment as RIGHTCLICK. */
+.dci-day .dci-missed-tick {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+    opacity: .38;
+    pointer-events: none;
+    z-index: 0;
+}
+.dci-day.dci-missed { position: relative; }
+.dci-day.dci-missed .dci-day-number { color: #ffb8bd !important; }
+@keyframes dci-warning-pulse {
+    0%, 100% { box-shadow: 0 0 0 2px rgba(255, 55, 70, .10), 0 5px 18px rgba(0,0,0,.3), 0 0 12px rgba(255,45,60,.16); }
+    50% { box-shadow: 0 0 0 3px rgba(255, 55, 70, .2), 0 5px 20px rgba(0,0,0,.35), 0 0 22px rgba(255,45,60,.32); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .dci-reset-warning { animation: none; }
+}
+
+/* =========================================================
+   CLEARER CHECK-IN STATES (V4)
+   Make completed and missed days easier to identify at a glance.
+========================================================= */
+.dci-day.dci-checked,
+.dci-day.dci-past {
+    filter: none !important;
+}
+
+.dci-day .dci-checked-tick,
+.dci-day .dci-missed-tick {
+    width: 64% !important;
+    height: 64% !important;
+    opacity: .88 !important;
+    object-fit: contain;
+    z-index: 0;
+}
+
+.dci-day.dci-checked {
+    border: 2px solid #28d879 !important;
+    background: linear-gradient(145deg, #123f30, #10251f) !important;
+    box-shadow: inset 0 0 0 1px rgba(40, 216, 121, .22),
+                0 0 12px rgba(40, 216, 121, .28) !important;
+}
+
+.dci-day.dci-checked .dci-day-number,
+.dci-day.dci-checked .dci-day-label {
+    color: #eafff2 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .85) !important;
+}
+
+.dci-day.dci-missed,
+.dci-day.dci-missed:hover,
+.dci-day.dci-missed.dci-selected {
+    border: 2px solid #ff4657 !important;
+    background: linear-gradient(145deg, #591820, #2b1016) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 70, 87, .28),
+                0 0 14px rgba(255, 55, 75, .34) !important;
+}
+
+.dci-day.dci-missed .dci-day-number,
+.dci-day.dci-missed .dci-day-label {
+    color: #fff0f1 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .9) !important;
+}
+
+/* =========================================================
+   V5 — GAME-STYLE CHECK-IN STATUS OVERLAYS
+   Keep the existing day/reward tile artwork. Use the supplied
+   RIGHTCLICK and MISSEDCLICK artwork as the clear centre status,
+   similar to the user's sample reference.
+========================================================= */
+.dci-day.dci-checked,
+.dci-day.dci-past {
+    filter: none !important;
+    opacity: 1 !important;
+}
+
+/* Preserve the original tile surface; use status-coloured framing
+   instead of replacing the whole tile with a flat green/red card. */
+.dci-day.dci-checked,
+.dci-day.dci-checked.dci-reward {
+    background: linear-gradient(145deg, #302940, #161821) !important;
+    border: 2px solid rgba(47, 220, 132, .92) !important;
+    box-shadow: inset 0 0 0 1px rgba(47, 220, 132, .22),
+                0 0 12px rgba(47, 220, 132, .24) !important;
+    cursor: default;
+}
+
+/* Reward milestones keep their gold surface when completed. */
+.dci-day.dci-checked.dci-reward {
+    background: linear-gradient(145deg, #ffe66c, #d0aa36) !important;
+    border-color: #35dc88 !important;
+}
+
+.dci-day.dci-missed,
+.dci-day.dci-missed:hover,
+.dci-day.dci-missed.dci-selected {
+    background: linear-gradient(145deg, #30202a, #1b151d) !important;
+    border: 2px solid rgba(255, 69, 86, .96) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 69, 86, .24),
+                0 0 13px rgba(255, 55, 75, .28) !important;
+    color: #fff !important;
+    cursor: not-allowed;
+    transform: none !important;
+    filter: none !important;
+}
+
+/* The supplied status artwork is the hero element, centred on the tile.
+   Its full opacity keeps the check/cross and embedded status lettering legible. */
+.dci-day .dci-checked-tick,
+.dci-day .dci-missed-tick {
+    position: absolute !important;
+    left: 50% !important;
+    top: 54% !important;
+    width: 78% !important;
+    height: 78% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    transform: translate(-50%, -50%) !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .38));
+}
+
+/* Keep the day heading above the artwork, as in the sample image. */
+.dci-day .dci-day-top,
+.dci-day .dci-day-label,
+.dci-day .dci-day-number {
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+.dci-day.dci-checked .dci-day-label,
+.dci-day.dci-checked .dci-day-number {
+    color: #effff5 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .9) !important;
+}
+
+.dci-day.dci-checked.dci-reward .dci-day-label,
+.dci-day.dci-checked.dci-reward .dci-day-number {
+    color: #4d3405 !important;
+}
+
+.dci-day.dci-missed .dci-day-label,
+.dci-day.dci-missed .dci-day-number {
+    color: #fff0f1 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .9) !important;
+}
+
+/* No legacy grey filter or tiny pseudo check should compete with the artwork. */
+.dci-day.dci-checked::after,
+.dci-day.dci-missed::after,
+.dci-day.dci-past::after {
+    content: none !important;
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+    .dci-day .dci-checked-tick,
+    .dci-day .dci-missed-tick {
+        width: 82% !important;
+        height: 82% !important;
+    }
+}
+
+/* Day 1 after automatic streak reset: green border pulses on the actual tile. */
+.dci-days-grid .dci-day.dci-reset-day-one:not(.dci-checked) {
+    border: 2px solid #39ff91;
+    border-radius: 12px;
+    outline: none;
+    animation: dci-reset-border-pulse 1.2s cubic-bezier(0.33, 0, 0.2, 1) infinite;
+}
+
+/* Do not add pseudo-element rings or detached glow dots. */
+.dci-days-grid .dci-day.dci-reset-day-one::before,
+.dci-days-grid .dci-day.dci-reset-day-one::after {
+    content: none !important;
+    display: none !important;
+    animation: none !important;
+}
+
+.dci-days-grid .dci-day.dci-reset-day-one .dci-day-label,
+.dci-days-grid .dci-day.dci-reset-day-one .dci-day-number {
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .95) !important;
+}
+
+@keyframes dci-reset-border-pulse {
+    0%, 100% {
+        border-color: rgba(57, 255, 145, .55);
+    }
+    10% {
+        border-color: transparent;
+    }
+    20% {
+        border-color: rgba(57, 255, 145, .55);
+    }
+    32% {
+        border-color: transparent;
+    }
+    60% {
+        border-color: rgba(57, 255, 145, .35);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dci-days-grid .dci-day.dci-reset-day-one:not(.dci-checked) {
+        animation: none;
+        border-color: #39ff91;
     }
 }

@@ -1,6 +1,6 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const dciDays = document.getElementById("dciDays");
-    const dciStatus = document.getElementById("dciStatus");
+    const dciStatuses = document.querySelectorAll("#dciStatus");
     const dciProgressText = document.getElementById("dciProgressText");
     const dciProgressBar = document.getElementById("dciProgressBar");
     const dciMonthLabel = document.getElementById("dciMonthLabel");
@@ -28,7 +28,7 @@
         return Array.from({ length: CYCLE_LENGTH }, (_, i) => dateKey(addDays(CYCLE_START, i)));
     }
     function setStatus(message) {
-        if (dciStatus) dciStatus.textContent = message;
+        dciStatuses.forEach(element => { element.textContent = message; });
     }
     function loadState() {
         try {
@@ -36,13 +36,15 @@
             if (parsed && Array.isArray(parsed.checkedDays) && Number.isInteger(parsed.activeDay)) return parsed;
         } catch (error) {}
         // Start a fresh 10-second demo cycle from Day 1.
-        return { checkedDays: [], claimedRewards: [], activeDay: 1, phase: "ready", nextUnlockAt: null, deadlineAt: null, showResetNotice: false };
+        return { checkedDays: [], claimedRewards: [], activeDay: 1, phase: "ready", nextUnlockAt: null, deadlineAt: null, missedDay: null, showResetNotice: false };
     }
     let state = loadState();
     state.phase = state.phase || "ready";
     state.nextUnlockAt = state.nextUnlockAt || null;
     state.deadlineAt = state.deadlineAt || null;
-    state.showResetNotice = Boolean(state.showResetNotice);
+    state.missedDay = Number.isInteger(state.missedDay) ? state.missedDay : null;
+    state.showResetNotice = false;
+    state.highlightDayOne = state.highlightDayOne === true || (state.activeDay === 1 && state.checkedDays.length === 0 && Number.isInteger(state.missedDay));
     state.claimedRewards = Array.isArray(state.claimedRewards)
         ? state.claimedRewards
         : state.checkedDays.filter(day => rewardDays.has(day));
@@ -50,27 +52,57 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
-    // Red notice appears only after the 10-second check-in deadline is missed.
+    // Prominent status panel: shows the active check-in deadline and the last missed day.
     let resetNotice = document.getElementById("dci-reset-warning");
     if (!resetNotice && dciDays) {
         resetNotice = document.createElement("div");
         resetNotice.id = "dci-reset-warning";
         resetNotice.className = "dci-reset-warning";
-        resetNotice.innerHTML = `
-            <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-            <div>
-                <strong>Check-in Streak Reset</strong>
-                <p>You missed the check-in window. Your previous streak has been reset, and you must start again from Day 1.</p>
-            </div>`;
-        dciDays.insertAdjacentElement("afterend", resetNotice);
+        resetNotice.setAttribute("role", "status");
+        resetNotice.setAttribute("aria-live", "polite");
+        dciDays.insertAdjacentElement("beforebegin", resetNotice);
     }
+
     function updateResetNotice() {
-        if (resetNotice) resetNotice.classList.toggle("is-visible", state.showResetNotice);
+        if (!resetNotice) return;
+        resetNotice.classList.remove("is-visible", "is-countdown", "is-missed");
+
+        if (state.phase === "open" && state.deadlineAt) {
+            resetNotice.classList.add("is-visible", "is-countdown");
+            resetNotice.innerHTML = `
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                <div class="dci-reset-warning-copy">
+                    <strong>CHECK IN NOW — DAY ${state.activeDay}</strong>
+                    <p>You must complete this check-in before the timer reaches zero. Otherwise, your streak will automatically reset to Day 1.</p>
+                    <span class="dci-reset-countdown">AUTO RESET IN <b>${formatRemaining(state.deadlineAt - Date.now())}</b></span>
+                </div>`;
+        } else if (state.missedDay) {
+            resetNotice.classList.add("is-visible", "is-missed");
+            resetNotice.innerHTML = `
+                <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i>
+                <div class="dci-reset-warning-copy">
+                    <strong>YOU MISSED DAY ${state.missedDay}!</strong>
+                    <p>Your previous streak has been reset. You can check in again from Day 1 immediately. The missed day is marked with a red X on the calendar.</p>
+                </div>`;
+        }
     }
-    function resetToDayOne() {
-        state = { checkedDays: [], claimedRewards: [], activeDay: 1, phase: "ready", nextUnlockAt: null, deadlineAt: null, showResetNotice: true };
+
+    function resetToDayOne(missedDay) {
+        state = {
+            checkedDays: [],
+            claimedRewards: [],
+            activeDay: 1,
+            phase: "ready",
+            nextUnlockAt: null,
+            deadlineAt: null,
+            missedDay: Number.isInteger(missedDay) ? missedDay : state.missedDay,
+            highlightDayOne: true
+        };
         saveState();
         renderCalendar();
+        setStatus(state.missedDay
+            ? `You missed Day ${state.missedDay}. Your streak has reset. Day 1 is available now.`
+            : "Your check-in cycle has restarted. Day 1 is available now.");
     }
     function formatRemaining(ms) {
         const seconds = Math.max(0, Math.ceil(ms / 1000));
@@ -88,7 +120,7 @@
             saveState();
         }
         if (state.phase === "open" && state.deadlineAt && now >= state.deadlineAt) {
-            resetToDayOne();
+            resetToDayOne(state.activeDay);
         }
     }
 
@@ -137,7 +169,8 @@
             const date = parseKey(key);
             const isChecked = state.checkedDays.includes(day);
             const isActive = day === state.activeDay;
-            const isPast = day < state.activeDay && !isChecked;
+            const isPast = day < state.activeDay && !isChecked && day !== state.missedDay;
+            const isMissed = day === state.missedDay && !isChecked;
             const isFuture = day > state.activeDay;
             const isRewardDay = rewardDays.has(day);
             const button = document.createElement("button");
@@ -146,18 +179,25 @@
             button.dataset.date = key;
             button.dataset.day = String(day);
             button.dataset.checkpoint = String(day);
-            button.setAttribute("aria-label", `Day ${day}, checkpoint ${day}`);
+            button.setAttribute("aria-label", isMissed ? `Day ${day}, missed check-in` : (isChecked ? `Day ${day}, completed check-in` : `Day ${day}, available check-in`));
+            button.dataset.status = isMissed ? "missed" : (isChecked ? "completed" : (isPast ? "missed" : (isFuture ? "locked" : "available")));
             if (isRewardDay) button.classList.add("dci-reward");
             if (isPast) button.classList.add("dci-past");
+            if (isMissed) button.classList.add("dci-missed");
             if (isChecked) button.classList.add("dci-checked");
             if (isFuture) button.classList.add("dci-locked");
             if (isActive) button.classList.add("dci-today");
             if (isActive && !isChecked && state.phase !== "waiting") {
                 button.classList.add("dci-checkin-open");
             }
+            // After an automatic reset, keep Day 1 visibly pulsing until its successful check-in.
+            if (day === 1 && state.highlightDayOne === true && !isChecked) {
+                button.classList.add("dci-reset-day-one");
+                button.setAttribute("aria-label", "Day 1, check in now. Your streak has reset.");
+            }
             button.innerHTML = `
                 <span class="dci-day-top"><span class="dci-day-label">Day</span></span>
-                ${isChecked ? '<img class="dci-checked-tick" src="imgs/checkin/RIGHTCLICK.png" alt="" aria-hidden="true" />' : ''}
+                ${isChecked ? '<img class="dci-checked-tick" src="imgs/checkin/RIGHTCLICK.png" alt="Completed" aria-hidden="true" />' : (isMissed ? '<img class="dci-missed-tick" src="imgs/checkin/MISSEDCLICK.png" alt="Missed" aria-hidden="true" />' : '')}
                 <strong class="dci-day-number">${day}</strong>`;
             button.addEventListener("click", () => handleDateClick(day, button));
             dciDays.appendChild(button);
@@ -175,7 +215,9 @@
         } else if (state.phase === "waiting" && state.nextUnlockAt) {
             setStatus(`Check-in saved for Day ${state.activeDay}. Next day unlocks in ${formatRemaining(state.nextUnlockAt - Date.now())}.`);
         } else if (state.phase === "open" && state.deadlineAt) {
-            setStatus(`Day ${state.activeDay} is available. Check in within ${formatRemaining(state.deadlineAt - Date.now())} or your streak resets to Day 1.`);
+            setStatus(`Day ${state.activeDay} is available. Check in within ${formatRemaining(state.deadlineAt - Date.now())} or your streak automatically resets to Day 1.`);
+        } else if (state.missedDay) {
+            setStatus(`Previous cycle: Day ${state.missedDay} was missed. Day ${state.activeDay} is available now.`);
         } else {
             setStatus(`Day ${state.activeDay} is available for check-in.`);
         }
@@ -196,7 +238,9 @@
             return;
         }
         const checkpoint = day;
-        state.showResetNotice = false;
+        // Once the player starts the new cycle, the previous missed-day notice is archived/cleared.
+        state.missedDay = null;
+        if (day === 1) state.highlightDayOne = false;
         state.checkedDays.push(day);
         state.checkedDays = [...new Set(state.checkedDays)].sort((a, b) => a - b);
         if (rewardDays.has(day)) {
