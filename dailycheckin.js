@@ -36,13 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if (parsed && Array.isArray(parsed.checkedDays) && Number.isInteger(parsed.activeDay)) return parsed;
         } catch (error) {}
         // Start a fresh 10-second demo cycle from Day 1.
-        return { checkedDays: [], claimedRewards: [], activeDay: 1, phase: "ready", nextUnlockAt: null, deadlineAt: null, missedDay: null, showResetNotice: false };
+        return { checkedDays: [], claimedRewards: [], activeDay: 1, phase: "ready", nextUnlockAt: null, deadlineAt: null, missedDay: null, pendingRestart: false, showResetNotice: false };
     }
     let state = loadState();
     state.phase = state.phase || "ready";
     state.nextUnlockAt = state.nextUnlockAt || null;
     state.deadlineAt = state.deadlineAt || null;
     state.missedDay = Number.isInteger(state.missedDay) ? state.missedDay : null;
+    state.pendingRestart = state.pendingRestart === true;
     state.showResetNotice = false;
     state.highlightDayOne = state.highlightDayOne === true || (state.activeDay === 1 && state.checkedDays.length === 0 && Number.isInteger(state.missedDay));
     state.claimedRewards = Array.isArray(state.claimedRewards)
@@ -82,27 +83,50 @@ document.addEventListener("DOMContentLoaded", () => {
                 <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i>
                 <div class="dci-reset-warning-copy">
                     <strong>YOU MISSED DAY ${state.missedDay}!</strong>
-                    <p>Your previous streak has been reset. You can check in again from Day 1 immediately. The missed day is marked with a red X on the calendar.</p>
+                    <p>Your cycle has automatically reset. Your previous check-in marks will remain until you press RESET.</p>
+                    <button type="button" class="dci-reset-action" id="dci-reset-action">RESET</button>
                 </div>`;
+            const resetButton = resetNotice.querySelector("#dci-reset-action");
+            if (resetButton) resetButton.addEventListener("click", handleResetButtonClick);
         }
     }
 
+    function handleResetButtonClick() {
+        if (!state.pendingRestart) return;
+        // The reset button acknowledges the reset and clears the previous cycle's marks.
+        // Day 1 becomes available only after this explicit action; it is not checked in yet.
+        state.checkedDays = [];
+        state.claimedRewards = [];
+        state.activeDay = 1;
+        state.phase = "ready";
+        state.nextUnlockAt = null;
+        state.deadlineAt = null;
+        state.missedDay = null;
+        state.pendingRestart = false;
+        state.highlightDayOne = true;
+        saveState();
+        renderCalendar();
+        setStatus("Your new cycle is ready. Click Day 1 to check in.");
+    }
+
     function resetToDayOne(missedDay) {
+        // Reset the cycle immediately, but preserve the previous cycle's visual history
+        // until the player presses the RESET button.
         state = {
-            checkedDays: [],
-            claimedRewards: [],
+            ...state,
             activeDay: 1,
             phase: "ready",
             nextUnlockAt: null,
             deadlineAt: null,
             missedDay: Number.isInteger(missedDay) ? missedDay : state.missedDay,
+            pendingRestart: true,
             highlightDayOne: true
         };
         saveState();
         renderCalendar();
         setStatus(state.missedDay
-            ? `You missed Day ${state.missedDay}. Your streak has reset. Day 1 is available now.`
-            : "Your check-in cycle has restarted. Day 1 is available now.");
+            ? `You missed Day ${state.missedDay}. Your cycle has reset automatically. Press RESET to clear the previous marks.`
+            : "Your cycle has reset automatically. Press RESET to begin again.");
     }
     function formatRemaining(ms) {
         const seconds = Math.max(0, Math.ceil(ms / 1000));
@@ -187,13 +211,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if (isChecked) button.classList.add("dci-checked");
             if (isFuture) button.classList.add("dci-locked");
             if (isActive) button.classList.add("dci-today");
-            if (isActive && !isChecked && state.phase !== "waiting") {
+            if (isActive && !isChecked && state.phase !== "waiting" && !state.pendingRestart) {
                 button.classList.add("dci-checkin-open");
             }
-            // After an automatic reset, keep Day 1 visibly pulsing until its successful check-in.
-            if (day === 1 && state.highlightDayOne === true && !isChecked) {
+            if (state.pendingRestart) button.disabled = true;
+            // Keep the previous calendar history visible until RESET is pressed.
+            if (day === 1 && state.highlightDayOne === true && !state.pendingRestart) {
                 button.classList.add("dci-reset-day-one");
-                button.setAttribute("aria-label", "Day 1, check in now. Your streak has reset.");
+                button.setAttribute("aria-label", "Day 1, available for a new check-in.");
             }
             button.innerHTML = `
                 <span class="dci-day-top"><span class="dci-day-label">Day</span></span>
@@ -216,6 +241,8 @@ document.addEventListener("DOMContentLoaded", () => {
             setStatus(`Check-in saved for Day ${state.activeDay}. Next day unlocks in ${formatRemaining(state.nextUnlockAt - Date.now())}.`);
         } else if (state.phase === "open" && state.deadlineAt) {
             setStatus(`Day ${state.activeDay} is available. Check in within ${formatRemaining(state.deadlineAt - Date.now())} or your streak automatically resets to Day 1.`);
+        } else if (state.pendingRestart) {
+            setStatus(`Previous cycle retained: ${state.missedDay ? `Day ${state.missedDay} was missed. ` : ""}Press RESET to clear the previous marks.`);
         } else if (state.missedDay) {
             setStatus(`Previous cycle: Day ${state.missedDay} was missed. Day ${state.activeDay} is available now.`);
         } else {
@@ -224,6 +251,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     function handleDateClick(day, button) {
         syncTimerState();
+        // Players must press RESET before any calendar day becomes clickable again.
+        if (state.pendingRestart) {
+            setStatus("Please press RESET to clear the previous cycle before checking in again.");
+            return;
+        }
         if (day !== state.activeDay) {
             if (state.checkedDays.includes(day)) setStatus(`Day ${day} has already been checked in.`);
             else setStatus(`Only Day ${state.activeDay} is available right now.`);

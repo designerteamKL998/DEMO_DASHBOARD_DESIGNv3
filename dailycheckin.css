@@ -2457,7 +2457,7 @@ dci-hero-note img {
 }
 
 /* Day 1 after automatic streak reset: green border pulses on the actual tile. */
-.dci-days-grid .dci-day.dci-reset-day-one:not(.dci-checked) {
+.dci-days-grid .dci-day.dci-reset-day-one {
     border: 2px solid #39ff91;
     border-radius: 12px;
     outline: none;
@@ -2497,8 +2497,33 @@ dci-hero-note img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .dci-days-grid .dci-day.dci-reset-day-one:not(.dci-checked) {
+    .dci-days-grid .dci-day.dci-reset-day-one {
         animation: none;
         border-color: #39ff91;
     }
 }
+
+
+/* Reset action shown after a missed check-in; matches the existing warning panel. */
+.dci-reset-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    min-width: 112px;
+    padding: 9px 20px;
+    border: 1px solid #ffffff;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #9f1724;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+.dci-reset-action:hover { background: #ffe8eb; transform: translateY(-1px); }
+.dci-reset-action:focus-visible { outline: 3px solid #ffffff; outline-offset: 3px; }
+.dci-day:disabled { cursor: not-allowed; }
