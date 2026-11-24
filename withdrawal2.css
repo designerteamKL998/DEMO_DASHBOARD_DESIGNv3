@@ -1,0 +1,2673 @@
+/* =========================================================
+   WITHDRAWAL PAGE STYLES
+   Consolidated base styles; responsive rules are kept at the end.
+   Existing HTML/JS class hooks and UI states are preserved.
+========================================================= */
+
+:root {
+    --wdr-success: #43C07A;
+    --wdr-error: #FF5B5B;
+    --wdr-live: #2EE6C6;
+    --wdr-on-primary: #111111;
+}
+
+.wdr-page {
+    width: 100%;
+}
+
+.wdr-modal-box input, .wdr-modal-box select {
+    font-family: var(--font-main);
+}
+
+.wdr-page-head {
+    display: flex;
+    align-items: center;
+}
+
+.wdr-title-accent {
+    width: 12px;
+    height: 74px;
+    border-radius: 7px;
+    background: var(--wdr-primary);
+    flex: 0 0 12px;
+}
+
+.wdr-page-head h2 {
+    margin: 0;
+}
+
+.wdr-page-head p {
+    margin: 7px 0 0;
+}
+
+.wdr-method {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+}
+
+.wdr-methods i {
+    font-size: 20px;
+}
+
+.wdr-method-icon {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+}
+
+.wdr-bank-icon:after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 5px;
+    width: 38px;
+    height: 20px;
+    border-top: 8px solid currentColor;
+    transform: skewY(-25deg);
+    box-shadow: 0 18px 0 -7px currentColor;
+}
+
+.wdr-wallet-icon:before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 10px;
+    width: 31px;
+    height: 23px;
+    border: 3px solid currentColor;
+    border-radius: 4px;
+}
+
+.wdr-wallet-icon:after {
+    content: "";
+    position: absolute;
+    right: 1px;
+    top: 17px;
+    width: 13px;
+    height: 10px;
+    border: 3px solid currentColor;
+    border-radius: 5px 0 0 5px;
+    background: transparent;
+}
+
+.wdr-method-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.wdr-view {
+    display: none;
+}
+
+    .wdr-view.is-visible {
+        display: block;
+    }
+
+.wdr-bank-columns {
+    display: grid;
+}
+
+.wdr-ewallet-columns {
+    display: grid;
+}
+
+.wdr-ewallet-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.wdr-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wdr-heading {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.wdr-heading-icon {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    color: var(--wdr-primary);
+}
+
+.wdr-heading h2 {
+    margin: 0;
+}
+
+.wdr-heading p {
+    margin: 4px 0 0;
+}
+
+.wdr-note-icon:before {
+    content: "";
+    position: absolute;
+}
+
+.wdr-note-icon {
+    position: relative;
+}
+
+    .wdr-note-icon:before {
+        left: 7px;
+        top: 3px;
+        width: 25px;
+        height: 31px;
+        border: 3px solid currentColor;
+        border-radius: 2px;
+        box-shadow: inset 0 7px 0 -5px currentColor;
+    }
+
+    .wdr-note-icon:after {
+        content: "";
+        position: absolute;
+        left: 14px;
+        top: 14px;
+        width: 15px;
+        height: 3px;
+        background: currentColor;
+        box-shadow: 0 7px 0 currentColor,0 14px 0 currentColor;
+    }
+
+.wdr-outline-btn {
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+    .wdr-outline-btn span {
+        vertical-align: -1px;
+        margin-right: 5px;
+    }
+
+.wdr-bank-details {
+    min-height: 0;
+}
+
+.wdr-bank-list {
+    display: grid;
+}
+
+.wdr-bank-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--wdr-text);
+    text-align: left;
+    cursor: pointer;
+}
+
+.wdr-bank-logo {
+    min-width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+    .wdr-bank-logo img {
+        display: block;
+        height: 100%;
+        max-width: 100%;
+    }
+
+.wdr-bank-data {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+    .wdr-bank-data span {
+        margin-top: 2px;
+    }
+
+    .wdr-bank-data small {
+        color: #A0A9B4;
+    }
+
+.wdr-radio {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wdr-bank-row.is-selected .wdr-radio {
+    border-color: var(--wdr-accent);
+}
+
+    .wdr-bank-row.is-selected .wdr-radio:after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--wdr-accent);
+    }
+
+.wdr-withdraw-panel {
+    padding-bottom: 16px;
+}
+
+.wdr-rollover {
+    flex: 0 0 auto;
+}
+
+.wdr-amount-field {
+    padding: 0;
+}
+
+.wdr-rollover span {
+    display: block;
+}
+
+.wdr-rollover strong {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+.wdr-rollover i {
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #06140C;
+    font-style: normal;
+}
+
+.wdr-field {
+    padding: 0;
+}
+
+    .wdr-field label {
+        display: block;
+    }
+
+        .wdr-field label em {
+            font-style: normal;
+            margin-left: 3px;
+        }
+
+.wdr-money-input {
+    display: flex;
+    overflow: hidden;
+}
+
+    .wdr-money-input > span {
+        display: flex;
+        align-items: center;
+    }
+
+    .wdr-money-input input {
+        min-width: 0;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+    }
+
+        .wdr-money-input input::-webkit-inner-spin-button,
+        .wdr-money-input input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+.wdr-field > small {
+    display: block;
+    margin-top: 5px;
+    color: #AEB5C0;
+}
+
+.wdr-quick {
+    display: grid;
+}
+
+    .wdr-quick button {
+        cursor: pointer;
+    }
+
+.wdr-summary {
+    overflow: hidden;
+}
+
+.wdr-summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+    .wdr-summary-row:last-child {
+        border-bottom: 0;
+    }
+
+.wdr-summary-bank > strong {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.wdr-summary-bank b {
+    color: #fff;
+}
+
+.wdr-summary-bank small {
+    font-weight: 400;
+    margin-top: 1px;
+}
+
+.wdr-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    cursor: pointer;
+}
+
+.wdr-bank-announcement {
+    margin-top: 12px;
+}
+
+.wdr-bank-announcement-grid {
+    display: grid;
+}
+
+.wdr-steps > div {
+    display: flex;
+    align-items: center;
+}
+
+.wdr-steps b {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wdr-notes {
+    display: flex;
+    flex-direction: column;
+}
+
+    .wdr-notes > div {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .wdr-notes i {
+        border-radius: 50%;
+    }
+
+.wdr-wallet-alert {
+    display: flex;
+    align-items: center;
+}
+
+.wdr-alert-icon {
+    border-radius: 50%;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.wdr-wallet-alert > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.wdr-wallet-alert strong {
+    display: block;
+}
+
+.wdr-wallet-alert p {
+    margin: 3px 0 0;
+}
+
+.wdr-wallet-address {
+    height: 44px;
+}
+
+.wdr-ewallet-info-box {
+    display: flex;
+    align-items: center;
+}
+
+.wdr-info-circle {
+    border-radius: 50%;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.wdr-ewallet-info-box strong {
+    display: block;
+}
+
+.wdr-ewallet-info-box p {
+    margin: 4px 0 0;
+}
+
+.wdr-how-list {
+    display: flex;
+    flex-direction: column;
+}
+
+    .wdr-how-list > div {
+        display: flex;
+        align-items: center;
+    }
+
+    .wdr-how-list b {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+.wdr-divider {
+    height: 1px;
+}
+
+.wdr-summary-ewallet > strong {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+    .wdr-summary-ewallet > strong > b {
+        color: #fff;
+    }
+
+.wdr-sklpay-mini {
+    width: 39px;
+    height: 39px;
+    border-radius: 6px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: .85;
+    background: #16235B;
+    color: #fff !important;
+    font-weight: 800;
+}
+
+    .wdr-sklpay-mini em {
+        color: var(--wdr-accent);
+        font-style: normal;
+    }
+
+.wdr-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,.78);
+    backdrop-filter: blur(5px);
+}
+
+    .wdr-modal.is-open {
+        display: flex;
+    }
+
+.wdr-modal-box {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    padding: 25px;
+    border: 1px solid var(--wdr-border-gold);
+}
+
+    .wdr-modal-box h3 {
+        margin: 0;
+    }
+
+    .wdr-modal-box > p {
+        margin: 4px 0 20px;
+    }
+
+.wdr-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 13px;
+    border: 0;
+    background: transparent;
+    color: #AEB5C0;
+    cursor: pointer;
+}
+
+.wdr-modal-box label {
+    display: block;
+    margin: 13px 0 6px;
+}
+
+.wdr-modal-box input,
+.wdr-modal-box select {
+    width: 100%;
+    height: 45px;
+    padding: 0 12px;
+    border: 1px solid #3B444D;
+    border-radius: 7px;
+    outline: 0;
+    background: #0B1014;
+    color: #fff;
+}
+
+.wdr-modal-box .wdr-submit {
+    width: 100%;
+    margin: 20px 0 0;
+}
+
+.wdr-toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 10000;
+    min-width: 270px;
+    max-width: calc(100vw - 48px);
+    padding: 13px 16px;
+    border: 1px solid #3B444D;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: .2s ease;
+}
+
+    .wdr-toast.is-show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+:root {
+    --wdr-primary: #EAD87D;
+    --wdr-secondary: #202228;
+    --wdr-accent: #EAD87D;
+    --wdr-surface: #121418;
+    --wdr-background: #000000;
+    --wdr-text: #FFFFFF;
+    --wdr-highlight: #FFF1A8;
+    --wdr-muted: #AEB5C0;
+    --wdr-muted-2: #87919E;
+    --wdr-border: rgba(255, 255, 255, 0.08);
+    --wdr-border-gold: rgba(234, 216, 125, 0.35);
+}
+
+.wdr-page {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px 28px 42px;
+    color: var(--wdr-text);
+    font-family: inherit;
+}
+
+.wdr-page-head {
+    margin-bottom: 10px;
+    gap: 12px;
+}
+
+    .wdr-page-head h2 {
+        color: #FFFFFF;
+        font-size: 23px;
+        line-height: 1.2;
+        letter-spacing: -0.7px;
+        font-weight: 600;
+    }
+
+    .wdr-page-head p {
+        color: #AEB5C0;
+    }
+
+.wdr-methods {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.wdr-method {
+    min-width: 0;
+    min-height: 64px;
+    height: auto;
+    padding: 13px 16px;
+    gap: 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 9px;
+    background: #121418;
+    color: #FFFFFF;
+    transition: border-color .18s ease, background .18s ease;
+}
+
+    .wdr-method > i {
+        width: 24px;
+        flex: 0 0 24px;
+        color: #EAD87D;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .wdr-method:hover {
+        border-color: rgba(234,216,125,.55);
+        background: #17191E;
+    }
+
+    .wdr-method.is-active {
+        color: #EAD87D;
+        background: #202228;
+        border-color: rgba(234,216,125,.35);
+    }
+
+        .wdr-method.is-active .wdr-method-copy small {
+            color: #AEB5C0;
+        }
+
+.wdr-method-copy strong {
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+.wdr-method-copy small {
+    margin-top: 3px;
+    color: #AEB5C0;
+    line-height: 1.4;
+}
+
+.wdr-bank-columns {
+    grid-template-columns: minmax(0, 0.9fr) minmax(300px, .5fr);
+    grid-template-areas: "bank-details announcement" "withdraw announcement";
+    gap: 14px 16px;
+    align-items: stretch;
+}
+
+.wdr-bank-details {
+    grid-area: bank-details;
+}
+
+.wdr-bank-columns > .wdr-withdraw-panel {
+    grid-area: withdraw;
+}
+
+.wdr-bank-columns > .wdr-bank-announcement {
+    grid-area: announcement;
+    height: 100%;
+    margin-top: 0;
+}
+
+    .wdr-bank-columns > .wdr-bank-announcement .wdr-bank-announcement-grid {
+        grid-template-columns: 1fr;
+        border-right: 0;
+    }
+
+    .wdr-bank-columns > .wdr-bank-announcement .wdr-steps {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+.wdr-ewallet-columns {
+    grid-template-columns: minmax(0, 0.9fr) minmax(300px, .5fr);
+    gap: 14px;
+}
+
+.wdr-ewallet-left {
+    gap: 14px;
+}
+
+.wdr-panel {
+    min-width: 0;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    background: #121418;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.wdr-panel-head {
+    padding: 20px 18px 14px;
+    gap: 12px;
+}
+
+.wdr-heading {
+    gap: 12px;
+}
+
+.wdr-heading-icon {
+    display: none;
+}
+
+.wdr-heading h2 {
+    color: #FFFFFF;
+    line-height: 1.35;
+    font-weight: 700;
+    letter-spacing: -.25px;
+}
+
+.wdr-heading p {
+    margin-top: 4px;
+    color: #AEB5C0;
+    line-height: 1.5;
+}
+
+.wdr-outline-btn {
+    min-height: 36px;
+    height: auto;
+    padding: 8px 12px;
+    border: 1px solid rgba(234,216,125,.45);
+    border-radius: 7px;
+    background: transparent;
+    color: #EAD87D;
+    font-weight: 600;
+    transition: background .18s ease, border-color .18s ease;
+}
+
+    .wdr-outline-btn:hover {
+        border-color: #EAD87D;
+        background: rgba(234,216,125,.07);
+    }
+
+.wdr-bank-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    padding: 20px 18px 18px;
+}
+
+.wdr-bank-row {
+    min-width: 0;
+    padding: 12px;
+    gap: 10px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #121418;
+    transition: border-color .18s ease, background .18s ease;
+}
+
+    .wdr-bank-row:hover {
+        border-color: rgba(234,216,125,.45);
+        background: #17191E;
+    }
+
+    .wdr-bank-row.is-selected {
+        border-color: rgba(234,216,125,.7);
+        background: #202228;
+    }
+
+.wdr-bank-logo {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: 5px;
+    background: transparent;
+}
+
+    .wdr-bank-logo img {
+        width: 34px;
+        max-height: 34px;
+        object-fit: contain;
+    }
+
+.wdr-bank-data span {
+    color: #AEB5C0;
+    overflow-wrap: anywhere;
+}
+
+.wdr-bank-data small {
+    display: none;
+}
+
+.wdr-radio {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+    border: 1px solid #73777D;
+}
+
+.wdr-withdraw-panel {
+    padding: 0 0 18px;
+}
+
+.wdr-field label {
+    margin-bottom: 7px;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+    .wdr-field label em {
+        color: #FF5B5B;
+    }
+
+.wdr-money-input {
+    height: 44px;
+    border: 1px solid rgba(234,216,125,.35);
+    border-radius: 8px;
+    background: #111111;
+}
+
+    .wdr-money-input > span {
+        width: 62px;
+        padding-left: 13px;
+        border-right: 1px solid rgba(255,255,255,.08);
+        color: #EAD87D;
+    }
+
+    .wdr-money-input input {
+        padding: 0 12px;
+        color: #FFFFFF;
+        font-family: inherit;
+    }
+
+        .wdr-money-input input::placeholder {
+            color: #747B85;
+        }
+
+    .wdr-money-input:focus-within {
+        border-color: #EAD87D;
+        box-shadow: 0 0 0 1px rgba(234,216,125,.12);
+    }
+
+.wdr-rollover {
+    width: 100%;
+    min-height: auto;
+    padding: 10px 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #202228;
+}
+
+    .wdr-rollover span {
+        color: #AEB5C0;
+    }
+
+    .wdr-rollover strong {
+        color: #FFFFFF;
+    }
+
+    .wdr-rollover i {
+        width: 18px;
+        height: 18px;
+        background: #43C07A;
+    }
+
+.wdr-amount-note {
+    color: #AEB5C0;
+}
+
+.wdr-quick {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6px;
+    padding: 13px 18px 16px;
+}
+
+    .wdr-quick button {
+        min-width: 0;
+        padding: 9px 3px;
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 6px;
+        background: #121418;
+        color: #FFFFFF;
+        font-weight: 500;
+    }
+
+        .wdr-quick button:hover,
+        .wdr-quick button.is-active {
+            border-color: #EAD87D;
+            color: #EAD87D;
+            background: #202228;
+        }
+
+.wdr-summary {
+    margin: 0 18px;
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    border-radius: 0;
+    background: transparent;
+}
+
+.wdr-summary-row {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+    .wdr-summary-row > span {
+        color: #AEB5C0;
+    }
+
+    .wdr-summary-row > b {
+        color: #FFFFFF;
+        font-weight: 600;
+        text-align: right;
+    }
+
+.wdr-summary-bank > strong {
+    color: #FFFFFF;
+}
+
+.wdr-summary-bank small {
+    color: #AEB5C0;
+}
+
+.wdr-receive > b {
+    color: #EAD87D;
+}
+
+.wdr-submit {
+    width: calc(100% - 36px);
+    min-height: 39px;
+    margin: 14px 18px 0;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 7px;
+    background: #EAD87D;
+    color: #111111;
+    font-weight: 700;
+    box-shadow: none;
+    transition: background .18s ease;
+}
+
+    .wdr-submit:hover {
+        background: #FFF1A8;
+        transform: none;
+    }
+
+    .wdr-submit span {
+        display: none;
+    }
+
+.wdr-bank-announcement-grid {
+    margin: 0 18px 18px;
+    min-height: 0;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #121418;
+}
+
+.wdr-steps {
+    padding: 12px 14px;
+    border-right: 1px solid rgba(255,255,255,.08);
+}
+
+    .wdr-steps > div {
+        min-height: 38px;
+        gap: 10px;
+        color: #D5D7DC;
+        line-height: 1.45;
+    }
+
+    .wdr-steps b {
+        width: 23px;
+        height: 23px;
+        flex: 0 0 23px;
+        border: 1px solid rgba(234,216,125,.5);
+        border-radius: 5px;
+        color: #EAD87D;
+    }
+
+.wdr-notes {
+    padding: 13px 14px;
+    gap: 12px;
+}
+
+    .wdr-notes > div {
+        gap: 9px;
+        color: #AEB5C0;
+        line-height: 1.5;
+    }
+
+    .wdr-notes i {
+        width: 6px;
+        height: 6px;
+        flex: 0 0 6px;
+        margin-top: 6px;
+        background: #EAD87D;
+    }
+
+.wdr-wallet-setup {
+    min-height: 0;
+}
+
+.wdr-wallet-alert {
+    margin: 0 18px 18px;
+    min-height: 0;
+    padding: 13px;
+    gap: 11px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #202228;
+}
+
+.wdr-alert-icon {
+    width: 25px;
+    height: 25px;
+    flex: 0 0 25px;
+    background: #EAD87D;
+}
+
+.wdr-wallet-alert strong {
+    color: #FFFFFF;
+}
+
+.wdr-wallet-alert p {
+    color: #AEB5C0;
+    line-height: 1.5;
+}
+
+.wdr-wallet-address {
+    flex: 0 0 auto;
+}
+
+.wdr-ewallet-info-box {
+    margin: 0 18px 16px;
+    padding: 13px;
+    gap: 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #202228;
+}
+
+.wdr-info-circle {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    background: #EAD87D;
+}
+
+.wdr-ewallet-info-box strong {
+    color: #FFFFFF;
+}
+
+.wdr-ewallet-info-box p {
+    color: #AEB5C0;
+    line-height: 1.5;
+}
+
+.wdr-subtitle {
+    margin: 14px 18px 10px;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.wdr-how-list {
+    padding: 0 18px;
+    gap: 8px;
+}
+
+    .wdr-how-list > div {
+        min-height: 30px;
+        gap: 10px;
+        color: #D5D7DC;
+        line-height: 1.45;
+    }
+
+    .wdr-how-list b {
+        width: 24px;
+        height: 24px;
+        flex: 0 0 24px;
+        border: 1px solid rgba(234,216,125,.5);
+        border-radius: 5px;
+        color: #EAD87D;
+    }
+
+.wdr-divider {
+    margin: 18px 18px 0;
+    background: rgba(255,255,255,.08);
+}
+
+.wdr-important-title {
+    margin-top: 14px;
+}
+
+.wdr-ewallet-notes {
+    padding: 0 18px 18px;
+    gap: 10px;
+}
+
+.wdr-modal-box {
+    border-color: rgba(255,255,255,.1);
+    border-radius: 12px;
+    background: #121418;
+    box-shadow: 0 18px 55px rgba(0,0,0,.45);
+}
+
+    .wdr-modal-box h3 {
+        color: #FFFFFF;
+        font-weight: 700;
+    }
+
+    .wdr-modal-box > p {
+        color: #AEB5C0;
+    }
+
+    .wdr-modal-box label {
+        color: #FFFFFF;
+        font-weight: 600;
+    }
+
+    .wdr-modal-box input,
+    .wdr-modal-box select {
+        border-color: rgba(255,255,255,.1);
+        border-radius: 7px;
+        background: #202228;
+        color: #FFFFFF;
+    }
+
+        .wdr-modal-box input:focus,
+        .wdr-modal-box select:focus {
+            border-color: #EAD87D;
+        }
+
+.wdr-toast {
+    border-color: rgba(255,255,255,.1);
+    border-radius: 8px;
+    background: #121418;
+}
+
+    .wdr-toast.is-error {
+        border-color: #FF5B5B;
+    }
+
+    .wdr-toast.is-success {
+        border-color: #43C07A;
+    }
+
+.wdr-page button:focus-visible,
+.wdr-modal-box input:focus-visible,
+.wdr-modal-box select:focus-visible {
+    outline: 2px solid #EAD87D;
+    outline-offset: 2px;
+}
+
+.wdr-bank-row .wdr-radio {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+    border: 1px solid #73777D;
+    border-radius: 50%;
+    background: transparent;
+}
+
+.wdr-bank-row.is-selected .wdr-radio {
+    border: 4px solid #EAD87D;
+    background: #121418;
+}
+
+    .wdr-bank-row.is-selected .wdr-radio::after {
+        content: none;
+        display: none;
+    }
+
+.wdr-withdraw-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px;
+    align-items: end;
+    gap: 14px;
+    padding: 18px 18px 0;
+}
+
+    .wdr-withdraw-top .wdr-rollover {
+        width: 100%;
+        min-height: 44px;
+        padding: 8px 11px;
+    }
+
+        .wdr-withdraw-top .wdr-rollover span {
+            line-height: 1.3;
+        }
+
+        .wdr-withdraw-top .wdr-rollover strong {
+            margin-top: 2px;
+            line-height: 1.3;
+        }
+
+.wdr-amount-note {
+    padding: 7px 18px 0;
+}
+
+.wdr-method {
+    position: relative;
+    padding-right: 32px;
+    width: 260px;
+    flex: 0 0 260px;
+}
+
+    .wdr-method.is-active::after {
+        content: "";
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #EAD87D;
+        transform: translateY(-50%);
+    }
+
+.wdr-crypto-columns {
+    display: grid;
+    grid-template-columns: minmax(0,.9fr) minmax(300px,.5fr);
+    gap: 14px;
+    align-items: stretch;
+}
+
+.wdr-crypto-left {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+.wdr-crypto-list {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 10px;
+    padding: 0 18px 16px;
+}
+
+.wdr-crypto-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    min-width: 0;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 8px;
+    background: #121418;
+    transition: border-color .18s ease, background .18s ease;
+}
+
+    .wdr-crypto-row:hover, .wdr-crypto-row.is-selected {
+        border-color: rgba(234,216,125,.65);
+        background: rgba(234,216,125,.045);
+    }
+
+.wdr-crypto-symbol {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(234,216,125,.25);
+    border-radius: 50%;
+    color: #EAD87D;
+    font-weight: 700;
+    padding: 5px;
+}
+
+    .wdr-crypto-symbol img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+
+.wdr-crypto-copy {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    gap: 4px;
+}
+
+    .wdr-crypto-copy strong {
+        line-height: 1.3;
+    }
+
+    .wdr-crypto-copy small {
+        color: #AEB5C0;
+        line-height: 1.35;
+    }
+
+.wdr-crypto-row .wdr-radio {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+    border: 1px solid #73777D;
+}
+
+.wdr-crypto-row.is-selected .wdr-radio {
+    border: 4px solid #EAD87D;
+    background: #121418;
+}
+
+.wdr-crypto-address-box {
+    margin: 0 18px 18px;
+    padding: 15px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 9px;
+    background: #0C1115;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    align-items: center;
+    gap: 10px 14px;
+}
+
+    .wdr-crypto-address-box label {
+        grid-column: 1/-1;
+        color: #AEB5C0;
+    }
+
+.wdr-crypto-address-content {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.wdr-crypto-address-symbol {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+}
+
+.wdr-crypto-address-value {
+    min-width: 0;
+    color: #fff;
+    overflow-wrap: anywhere;
+}
+
+.wdr-crypto-address-box .wdr-outline-btn {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.wdr-crypto-announcement {
+    height: 100%;
+}
+
+    .wdr-crypto-announcement .wdr-ewallet-info-box {
+        margin-top: 0;
+    }
+
+.wdr-crypto-withdraw .wdr-quick {
+    grid-template-columns: repeat(5,minmax(0,1fr));
+}
+
+.wdr-crypto-withdraw .wdr-summary-row:first-child b {
+    max-width: 60%;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+#wdrCryptoWalletModal .wdr-modal-box input:focus {
+    border-color: var(--wdr-primary);
+}
+
+#wdrCryptoWalletModal .wdr-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wdr-bank-logo-fallback {
+    color: var(--wdr-primary);
+    border: 1px solid rgba(234,216,125,.28);
+    border-radius: 50%;
+    letter-spacing: .3px;
+}
+
+.wdr-bank-edit .wdr-bank-logo-fallback > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.wdr-bank-data p {
+    margin: 0;
+    color: #FFFFFF;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+.wdr-bank-item {
+    overflow: visible;
+}
+
+    .wdr-bank-item .wdr-bank-row {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .wdr-bank-item .wdr-radio {
+        position: static;
+        margin-left: auto;
+        margin-right: 12px;
+        flex-shrink: 0;
+        order: 3;
+    }
+
+.wdr-bank-actions {
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.wdr-bank-delete {
+    position: absolute;
+    top: 50%;
+    right: 43px;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(234,216,125,.45);
+    border-radius: 6px;
+    background: #202228;
+    color: #EAD87D;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .16s ease, background .16s ease, color .16s ease;
+}
+
+.wdr-bank-item:hover .wdr-bank-delete,
+.wdr-bank-item:focus-within .wdr-bank-delete {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.wdr-bank-delete:hover {
+    background: #EAD87D;
+    color: #111;
+}
+
+.wdr-bank-item {
+    position: relative;
+    min-width: 0;
+}
+
+.wdr-bank-actions {
+    transform: translateY(-50%);
+}
+
+.wdr-bank-action {
+    border: 1px solid rgba(234,216,125,.35);
+    border-radius: 6px;
+    background: #202228;
+    color: #EAD87D;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.wdr-bank-item:hover .wdr-bank-action, .wdr-bank-item:focus-within .wdr-bank-action {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.wdr-bank-action.delete {
+    color: #FF7777;
+    border-color: rgba(255,119,119,.35);
+}
+
+.wdr-bank-item .wdr-bank-row {
+    padding-right: 0px;
+}
+
+#wdrAddBank:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.wdr-extra-view {
+    min-width: 0;
+}
+
+.wdr-extra-grid {
+    display: grid;
+    grid-template-columns: minmax(0,1.3fr) minmax(280px,.7fr);
+    gap: 14px;
+}
+
+.wdr-extra-form {
+    padding: 0 20px 22px;
+}
+
+    .wdr-extra-form label, .wdr-ewallet-account label {
+        display: block;
+        margin: 8px 0;
+        color: #D9DDE1;
+        font-weight: 600;
+    }
+
+    .wdr-extra-form input, .wdr-ewallet-account input {
+        width: 100%;
+        height: 48px;
+        border: 1px solid #3B444D;
+        border-radius: 7px;
+        background: #0B1014;
+        color: #fff;
+        padding: 0 13px;
+        outline: 0;
+    }
+
+        .wdr-extra-form input:focus, .wdr-ewallet-account input:focus {
+            border-color: #EAD87D;
+        }
+
+.wdr-extra-help {
+    margin-top: 18px;
+    color: #C6CBD2;
+}
+
+    .wdr-extra-help a {
+        color: #EAD87D;
+    }
+
+.wdr-app-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 16px 0 22px;
+    color: #C6CBD2;
+}
+
+.wdr-app-pill {
+    padding: 7px 10px;
+    border: 1px solid #41464E;
+    border-radius: 6px;
+    background: #050608;
+    color: #fff;
+}
+
+.wdr-extra-amount {
+    margin-top: 15px;
+}
+
+    .wdr-extra-amount input {
+        max-width: 100%;
+    }
+
+.wdr-extra-form .wdr-submit {
+    width: 100%;
+    margin: 18px 0 0;
+}
+
+.wdr-extra-copy {
+    padding: 0 20px 22px;
+    color: #AEB5C0;
+    line-height: 1.7;
+}
+
+.wdr-ewallet-account-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 18px 18px;
+}
+
+    .wdr-ewallet-account-grid .wdr-outline-btn {
+        grid-column: 1/-1;
+        justify-self: end;
+    }
+
+body.wdr-rejected-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .65);
+    z-index: 9997;
+}
+
+.wdr-resubmit-close {
+    position: absolute;
+    top: -20px;
+    right: -5px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #EAD87D;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2;
+}
+
+    .wdr-resubmit-close:hover {
+        background: #EAD87D;
+        color: #111;
+    }
+
+.wdr-resubmit-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #FF6565;
+}
+
+.wdr-reject-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #E44848;
+    color: #fff;
+    font-weight: 800;
+}
+
+.wdr-resubmit-card > p {
+    color: #C1C4CC;
+}
+
+.wdr-resubmit-details {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 9px;
+    padding: 10px;
+}
+
+    .wdr-resubmit-details > div {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+        padding: 9px;
+        border: 1px solid #34333D;
+        border-radius: 7px;
+        background: #1C1B23;
+    }
+
+    .wdr-resubmit-details small, .wdr-resubmit-note {
+        color: #AEB5C0;
+    }
+
+    .wdr-resubmit-details strong {
+        color: #fff;
+    }
+
+    .wdr-resubmit-details .wdr-not-required {
+        color: #43C07A;
+    }
+
+.wdr-resubmit-note {
+    display: block;
+    margin-top: 10px;
+    padding-right: 190px;
+}
+
+.wdr-resubmit-btn {
+    position: absolute;
+    right: 14px;
+    bottom: 13px;
+    padding: 9px 13px;
+    border: 0;
+    border-radius: 8px;
+    background: #EAD87D;
+    color: #111;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.wdr-simple-alert {
+    background: rgba(0,0,0,.45);
+    backdrop-filter: none;
+}
+
+.wdr-alert-box {
+    width: min(500px,100%);
+    padding: 30px 34px 18px;
+    border-radius: 7px;
+    background: #fff;
+    color: #777;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0,0,0,.25);
+}
+
+    .wdr-alert-box p {
+        margin: 0 auto 26px;
+        max-width: 420px;
+        color: #8A8A8A;
+        line-height: 1.55;
+        font-weight: 300;
+    }
+
+    .wdr-alert-box button {
+        min-width: 94px;
+        padding: 11px 24px;
+        border: 1px solid #1E6EB9;
+        border-radius: 5px;
+        background: #3288D5;
+        color: #fff;
+        cursor: pointer;
+    }
+
+.wdr-shared-a9-info {
+    margin: 20px 18px 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,.10);
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.wdr-shared-a9-visit,
+.wdr-shared-a9-download {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    color: #AEB5C0;
+}
+
+    .wdr-shared-a9-visit a {
+        color: #EAD87D;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+.wdr-shared-a9-download {
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.wdr-shared-a9-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+    .wdr-shared-a9-links .wdr-app-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 11px;
+        border: 1px solid #343A42;
+        border-radius: 7px;
+        background: #0C1115;
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+        .wdr-shared-a9-links .wdr-app-pill:hover {
+            border-color: #EAD87D;
+            color: #EAD87D;
+        }
+
+.wdr-bank-actions {
+    position: absolute;
+    top: 0px;
+    right: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+    .wdr-bank-actions .wdr-bank-action {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+.wdr-bank-action {
+    position: static !important;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.wdr-resubmit-note {
+    grid-column: 1;
+    min-width: 0;
+    align-self: center;
+}
+
+.wdr-resubmit-btn {
+    align-self: end;
+    white-space: nowrap;
+}
+
+#wdrAccountAlert.wdr-simple-alert {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+}
+
+    #wdrAccountAlert.wdr-simple-alert.is-open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+#wdrAccountAlert .wdr-alert-box {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    padding: 35px 30px 30px;
+    text-align: center;
+    background: #17181c;
+    border: 1px solid #9f873b;
+    border-radius: 12px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 215, 0, 0.08);
+    animation: wdrAlertShow 0.3s ease;
+}
+
+    #wdrAccountAlert .wdr-alert-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 25%;
+        width: 50%;
+        height: 2px;
+        background: #d6b84c;
+        border-radius: 0 0 5px 5px;
+    }
+
+    #wdrAccountAlert .wdr-alert-box p {
+        margin: 0 0 25px;
+        color: #f1f1f1;
+        font-weight: 500;
+        line-height: 1.7;
+    }
+
+#wdrAccountAlert #wdrAccountAlertOk {
+    min-width: 115px;
+    padding: 12px 30px;
+    border: 1px solid #e5c75b;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #e5c75b 0%, #c49b16 100%);
+    color: #171717;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    #wdrAccountAlert #wdrAccountAlertOk:hover {
+        background: #f3d976;
+        box-shadow: 0 0 14px rgba(229, 199, 91, 0.2);
+        transform: translateY(-1px);
+    }
+
+    #wdrAccountAlert #wdrAccountAlertOk:active {
+        transform: scale(0.97);
+    }
+
+.wdr-selected-bank-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+}
+
+    .wdr-selected-bank-display img {
+        display: block;
+        width: 58px;
+        height: 32px;
+        object-fit: contain;
+    }
+
+    .wdr-selected-bank-display small {
+        color: #AAB3BE;
+        font-weight: 400;
+    }
+
+.wdr-selected-crypto-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .wdr-selected-crypto-display img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+    }
+
+    .wdr-selected-crypto-display span {
+        color: #FFFFFF;
+        font-weight: 600;
+    }
+
+.wdr-empty-state {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 34px 16px 30px;
+    border: 1px dashed rgba(234,216,125,.25);
+    border-radius: 10px;
+    background: rgba(255,255,255,.015);
+}
+
+    .wdr-empty-state[hidden] {
+        display: none !important;
+    }
+
+.wdr-empty-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background: rgba(234,216,125,.09);
+    color: #ead87d;
+}
+
+.wdr-empty-state strong {
+    color: #f1f1f1;
+}
+
+.wdr-empty-state p {
+    max-width: 300px;
+    margin: 7px 0;
+    color: #9da3ad;
+    line-height: 1.5;
+}
+
+.wdr-empty-state small {
+    margin-top: 5px;
+    color: #ead87d;
+}
+
+.wdr-bank-columns > .wdr-withdraw-panel.is-locked, .wdr-crypto-withdraw.is-locked, .wdr-setup-locked {
+    display: none !important;
+}
+
+.wdr-setup-hint {
+    margin: 10px 0 0;
+    color: #aeb2bb;
+    line-height: 1.5;
+}
+
+.wdr-setup-save {
+    margin-top: 14px;
+}
+
+.wdr-view .wdr-panel [hidden] {
+    display: none !important;
+}
+
+.wdr-ewallet-view .wdr-withdraw-panel.is-locked,
+.wdr-extra-view .wdr-extra-announcement[hidden],
+.wdr-ewallet-view .wdr-ewallet-info-panel[hidden],
+.wdr-crypto-view .wdr-crypto-announcement[hidden] {
+    display: none !important;
+}
+
+.wdr-ewallet-view .wdr-withdraw-panel.is-locked {
+    display: none !important;
+}
+
+.wdr-ewallet-account input[readonly],
+.wdr-extra-form input[readonly] {
+    opacity: .8;
+    cursor: default;
+}
+
+.wdr-bank-columns > .wdr-withdraw-panel.is-locked,
+.wdr-ewallet-view .wdr-withdraw-panel.is-locked,
+.wdr-extra-view .wdr-withdraw-top[hidden],
+.wdr-extra-view .wdr-amount-note[hidden],
+.wdr-extra-view .wdr-quick[hidden],
+.wdr-extra-view .wdr-submit[hidden],
+.wdr-crypto-withdraw.is-locked {
+    display: none !important;
+}
+
+.wdr-bank-details .wdr-empty-state:not([hidden]) {
+    display: flex !important;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 7px;
+    padding: 30px 18px;
+    margin-top: 16px;
+    border: 1px dashed rgba(234,216,125,.28);
+    border-radius: 10px;
+    background: rgba(255,255,255,.018);
+}
+
+.wdr-bank-details .wdr-empty-state p {
+    margin: 0;
+}
+
+.wdr-bank-details .wdr-empty-state small {
+    margin-top: 2px;
+}
+
+.wdr-extra-form [hidden] {
+    display: none !important;
+}
+
+.wdr-setup-save {
+    margin: 12px 0 16px;
+}
+
+.wdr-crypto-withdraw.is-locked {
+    display: none !important;
+}
+
+.wdr-resubmit-details,
+.wdr-resubmit-note {
+    display: none !important;
+}
+
+.wdr-resubmit-close {
+    width: 32px !important;
+    height: 32px !important;
+    top: -10px !important;
+    right: -5px !important;
+    border-width: 2px !important;
+}
+
+.wdr-resubmit-details {
+    grid-row: 3;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+}
+
+.wdr-resubmit-note {
+    grid-row: 4;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 12px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.wdr-resubmit-btn {
+    right: 14px !important;
+    top: 50% !important;
+    bottom: auto !important;
+}
+
+.wdr-resubmit-card {
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    width: calc(100% - 44px);
+    max-width: 1600px;
+    height: 112px;
+    min-height: 112px;
+    max-height: 112px;
+    box-sizing: border-box;
+    padding: 8px 14px;
+    display: grid;
+    grid-template-columns: minmax(245px, 1.55fr) repeat(3, minmax(125px, .82fr)) auto;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    background: #15141A;
+    border: 1px solid rgba(255, 75, 75, .65);
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px rgba(255, 75, 75, 0.12), 0 4px 18px rgba(255, 55, 55, 0.18), 0 0 28px rgba(255, 55, 55, 0.10);
+}
+
+.wdr-resubmit-heading {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 0 5px !important;
+    color: #FF6565 !important;
+    line-height: 18px !important;
+}
+
+.wdr-resubmit-details {
+    display: contents !important;
+}
+
+    .wdr-resubmit-details > div {
+        min-width: 0 !important;
+        height: 66px !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        padding: 8px 10px !important;
+        border: 1px solid #34333D !important;
+        border-radius: 9px !important;
+        background: #1C1B23 !important;
+    }
+
+        .wdr-resubmit-details > div:nth-child(1) {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .wdr-resubmit-details > div:nth-child(2) {
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .wdr-resubmit-details > div:nth-child(3) {
+            grid-column: 4;
+            grid-row: 1;
+        }
+
+    .wdr-resubmit-details small {
+        color: #AEB5C0 !important;
+        line-height: 13px !important;
+    }
+
+    .wdr-resubmit-details strong {
+        color: #fff !important;
+        line-height: 16px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .wdr-resubmit-details .wdr-not-required {
+        color: #43C07A !important;
+    }
+
+.wdr-resubmit-note {
+    display: none !important;
+}
+
+.wdr-resubmit-btn {
+    grid-column: 5;
+    grid-row: 1;
+    position: static !important;
+    transform: none !important;
+    align-self: center !important;
+    justify-self: end !important;
+    min-width: 175px !important;
+    margin: 0 !important;
+    padding: 12px 14px !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    background: #EAD87D !important;
+    color: #111 !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+}
+
+.wdr-resubmit-close {
+    display: none !important;
+}
+
+.wdr-resubmit-card {
+    grid-template-rows: 20px 1fr 1fr !important;
+}
+
+.wdr-resubmit-heading {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: start !important;
+}
+
+.wdr-resubmit-card > p {
+    line-height: 12px !important;
+    color: #C1C4CC !important;
+    overflow: hidden !important;
+    font-size: 11px;
+    margin: 0px;
+}
+
+.wdr-resubmit-details > div {
+    grid-row: 1 / 4 !important;
+}
+
+.wdr-resubmit-btn {
+    grid-row: 1 / 4 !important;
+}
+
+.wdr-app-download {
+    margin-top: 16px;
+    padding: 10px;
+    border-top: 1px solid rgba(255,255,255,.10);
+    color: #D9DCE3;
+}
+
+    .wdr-app-download > p {
+        margin: 0 0 9px;
+    }
+
+        .wdr-app-download > p strong {
+            color: #EAD87D;
+        }
+
+.wdr-app-download-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.wdr-app-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+}
+
+.wdr-app-badge {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 7px;
+    border: 1px solid #55565C;
+    border-radius: 4px;
+    background: #08090C;
+    color: #fff;
+}
+
+    .wdr-app-badge img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        margin-top: 5px;
+    }
+
+    .wdr-app-badge > span {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+    }
+
+    .wdr-app-badge small {
+        line-height: 9px;
+    }
+
+    .wdr-app-badge strong {
+        line-height: 14px;
+        color: #fff;
+    }
+
+.wdr-app-play {
+    color: #55C8A0;
+}
+
+.wdr-app-gallery {
+    color: #E94D66;
+}
+
+#wdrResubmitCard[hidden] {
+    display: none !important;
+}
+
+.wdr-bank-item {
+    overflow: visible !important;
+}
+
+    .wdr-bank-item .wdr-bank-row {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+.wdr-bank-actions {
+    position: absolute !important;
+    top: 0px !important;
+    justify-content: center !important;
+    z-index: 10 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+    .wdr-bank-actions .wdr-bank-action {
+        position: static !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: 1px solid rgba(234,216,125,.5) !important;
+        border-radius: 6px !important;
+        background: #202228 !important;
+        color: #EAD87D !important;
+        cursor: pointer;
+    }
+
+        .wdr-bank-actions .wdr-bank-action.delete {
+            color: #FF7777 !important;
+            border-color: rgba(255,119,119,.45) !important;
+        }
+
+        .wdr-bank-actions .wdr-bank-action:hover {
+            background: #EAD87D !important;
+            color: #111 !important;
+        }
+
+        .wdr-bank-actions .wdr-bank-action.delete:hover {
+            background: #FF7777 !important;
+            color: #111 !important;
+        }
+
+#wdrAddBank:disabled {
+    opacity: .45 !important;
+    cursor: not-allowed !important;
+}
+
+.wdr-selected-bank-display img[hidden] {
+    display: none !important;
+}
+
+.wdr-bank-item {
+    position: relative !important;
+}
+
+.wdr-bank-actions {
+    right: 12px !important;
+    left: auto !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 6px !important;
+    z-index: 10;
+}
+
+    .wdr-bank-actions .wdr-bank-action {
+        width: 28px !important;
+        height: 28px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+.wdr-bank-item:hover .wdr-bank-action{
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+.wdr-bank-actions .wdr-bank-action {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+@keyframes wdrAlertShow {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE STYLES
+   ========================================================= */
+
+@media (max-width: 1024px) {
+    .wdr-resubmit-card {
+        display: block !important;
+        max-width: 100%;
+        width: 95%;
+        height: auto !important;
+        max-height: 150px;
+        min-height: auto;
+        bottom: 60px;
+        margin: auto;
+    }
+
+        .wdr-resubmit-card > p {
+            margin: 5px;
+        }
+
+    .wdr-resubmit-details {
+        display: none !important;
+    }
+
+    .wdr-resubmit-btn {
+        font-size: 12px;
+        padding: 6px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .wdr-empty-state {
+        padding: 28px 12px;
+    }
+
+    .wdr-bank-list {
+        display: flex !important;
+        flex-direction: column;
+        gap: 8px !important;
+        padding: 0 10px 10px !important;
+    }
+
+    .wdr-bank-item {
+        position: relative !important;
+        width: 100%;
+        min-width: 0;
+        min-height: 64px;
+        display: flex !important;
+        align-items: center;
+        background: #15171b;
+        border: 1px solid #30343d;
+        border-radius: 13px;
+        overflow: hidden !important;
+    }
+
+        .wdr-bank-item:has(.wdr-bank-row.is-selected) {
+            border: 1px solid #EAD87D;
+            background: #202019;
+        }
+
+        .wdr-bank-item .wdr-bank-row {
+            width: 100%;
+            min-width: 0;
+            min-height: 62px;
+            display: flex !important;
+            align-items: center;
+            padding: 8px 120px 8px 12px;
+            gap: 12px;
+            border: 0 !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            text-align: left;
+        }
+
+    .wdr-bank-logo {
+        width: 48px !important;
+        height: 48px !important;
+        flex: 0 0 48px !important;
+        border-radius: 9px !important;
+        overflow: hidden;
+    }
+
+        .wdr-bank-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    .wdr-bank-data {
+        flex: 1;
+        min-width: 0;
+        text-align: left;
+    }
+
+        .wdr-bank-data p {
+            font-weight: 700;
+            margin: 0 0 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .wdr-bank-data span {
+            white-space: nowrap;
+        }
+
+    .wdr-bank-item .wdr-radio {
+        position: absolute !important;
+        right: 100px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0 !important;
+        flex-shrink: 0;
+    }
+
+    .wdr-bank-actions {
+        position: absolute !important;
+        top: 50% !important;
+        right: 10px !important;
+        left: auto !important;
+        transform: translateY(-50%) !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding-left: 12px;
+        border-left: 1px solid #454951;
+        z-index: 5;
+    }
+
+        .wdr-bank-actions .wdr-bank-action {
+            width: 28px !important;
+            height: 32px !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            background: transparent !important;
+            border: 0 !important;
+            font-size: 19px;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+
+    .wdr-bank-action.edit {
+        color: #EAD87D !important;
+    }
+
+    .wdr-bank-action.delete {
+        color: #FF5555 !important;
+    }
+
+    .wdr-bank-item > .wdr-bank-delete {
+        position: absolute !important;
+        top: 50% !important;
+        right: 12px !important;
+        transform: translateY(-50%) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .wdr-method {
+        flex: 1 1 calc(50% - 8px);
+        padding: 11px 10px;
+    }
+
+    .wdr-method-copy small {
+        display: none;
+    }
+
+    .wdr-ewallet-account-grid {
+        grid-template-columns: 1fr;
+    }
+
+        .wdr-ewallet-account-grid .wdr-outline-btn {
+            grid-column: 1;
+            width: 100%;
+        }
+
+    .wdr-resubmit-details {
+        grid-template-columns: 1fr;
+    }
+
+    .wdr-resubmit-note {
+        padding-right: 0;
+        margin-bottom: 48px;
+    }
+
+    .wdr-resubmit-btn {
+        left: 14px;
+        right: 14px;
+        bottom: 12px;
+    }
+
+    .wdr-alert-box {
+        padding: 25px 20px 18px;
+    }
+
+    .wdr-bank-action {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .wdr-resubmit-heading {
+        padding-right: 125px;
+    }
+
+    .wdr-app-download-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .wdr-bank-logo img {
+        width: 40px !important;
+        max-height: 40px !important;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .wdr-bank-item:hover {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+}
+
+/* Preserve hidden state after successful resubmission. */
+#wdrResubmitCard[hidden] {
+    display: none !important;
+}
