@@ -7,12 +7,12 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home-content.css" />
-    <link rel="stylesheet" href="withdrawal.css" />
+    <link rel="stylesheet" href="withdrawal2.css" />
     <link rel="stylesheet" href="responsive.css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <!-- JQuery -->
-    <script src="withdrawal.js" defer></script>
+    <script src="withdrawal2.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -361,7 +361,6 @@
     <button class="floating-menu-btn mob-view" type="button">
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
-
     <main class="wdr-page">
         <!-- PAGE TITLE -->
         <header class="wdr-page-head">
@@ -369,6 +368,19 @@
                 <h2>Withdrawal</h2>
             </div>
         </header>
+        <!-- LAST REJECTED WITHDRAWAL / RESUBMIT -->
+        <section class="wdr-resubmit-card" id="wdrResubmitCard">
+            <div class="wdr-resubmit-heading"><span class="wdr-reject-icon">!</span><strong>Last withdrawal rejected</strong></div>
+            <p>Rejected on 2026-11-17 at 11:52. You can resubmit the same amount without meeting the rollover target.</p>
+            <p>Amount is locked. Void after your next deposit if your balance drops below MYR50.00</p>
+            <div class="wdr-resubmit-details">
+                <div><small>Amount</small><strong>MYR 50.00</strong></div>
+                <div><small>Rollover check</small><strong class="wdr-not-required">Not required</strong></div>
+                <div><small>Expires</small><strong id="wdrResubmitExpiry">23h 59m 45s</strong></div>
+            </div>
+            <small class="wdr-resubmit-note">Amount is locked. Void after your next deposit if your balance drops below MYR 500.</small>
+            <button type="button" id="wdrResubmitButton" class="wdr-resubmit-btn"><i class="fa-solid fa-rotate-right"></i> Resubmit Withdrawal</button>
+        </section>
         <!-- METHOD TABS -->
         <div class="wdr-methods">
             <button class="wdr-method is-active" data-method="bank" type="button">
@@ -384,6 +396,14 @@
                     <strong>E-Wallet (SKLPay)</strong>
                     <small>Withdraw to your e-wallet</small>
                 </span>
+            </button>
+            <button class="wdr-method" data-method="a9wallet" type="button">
+                <i class="fa-solid fa-wallet"></i>
+                <span class="wdr-method-copy"><strong>A9wallet / G2point</strong><small>Withdraw to A9wallet / G2point</small></span>
+            </button>
+            <button class="wdr-method" data-method="tng" type="button">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span class="wdr-method-copy"><strong>Touch'N Go</strong><small>Withdraw to Touch'N Go</small></span>
             </button>
             <button class="wdr-method" data-method="crypto" type="button">
                 <i class="fa-brands fa-bitcoin"></i>
@@ -411,53 +431,19 @@
                             <span>+</span> Add Bank Account
                         </button>
                     </div>
-                    <div class="wdr-bank-list" id="wdrBankList">
-                        <button class="wdr-bank-row is-selected"
-                                type="button"
-                                data-bank="Hong Leong Bank"
-                                data-account="123405678095"
-                                data-location="Selangor">
-                            <span class="wdr-bank-logo wdr-logo-hlb"><img src="imgs/assets/banks/hong-leong.png" /></span>
-                            <span class="wdr-bank-data">
-                                <p>Hong Leong Bank</p>
-                                <span>123405678095</span>
-                            </span>
-                            <span class="wdr-radio"></span>
-                        </button>
-                        <button class="wdr-bank-row"
-                                type="button"
-                                data-bank="Maybank"
-                                data-account="987654321098"
-                                data-location="Kuala Lumpur">
-                            <span class="wdr-bank-logo wdr-logo-maybank"><img src="imgs/assets/banks/maybank-transparent.svg" /></span>
-                            <span class="wdr-bank-data">
-                                <p>Maybank</p>
-                                <span>987654321098</span>
-                            </span>
-                            <span class="wdr-radio"></span>
-                        </button>
-                        <button class="wdr-bank-row"
-                                type="button"
-                                data-bank="CIMB Bank"
-                                data-account="112233445566"
-                                data-location="Johor">
-                            <span class="wdr-bank-logo wdr-logo-cimb"><img src="imgs/assets/banks/cimb-light.svg" /></span>
-                            <span class="wdr-bank-data">
-                                <p>CIMB Bank</p>
-                                <span>112233445566</span>
-                            </span>
-                            <span class="wdr-radio"></span>
-                        </button>
+                    <div class="wdr-bank-list" id="wdrBankList"></div>
+                    <div class="wdr-empty-state" id="wdrBankEmptyState">
+                        <span class="wdr-empty-icon"><i class="fa-solid fa-building-columns"></i></span>
+                        <strong>No bank account added yet</strong>
+                        <p>Add your bank account to start making withdrawals directly to your bank.</p>
+                        <small>0 / 3 Accounts</small>
                     </div>
                 </section>
                 <!-- BANK WITHDRAWAL -->
                 <section class="wdr-panel wdr-withdraw-panel">
                     <div class="wdr-withdraw-top">
-
                         <div class="wdr-field wdr-amount-field">
-
                             <label>Amount (MYR)<em>*</em></label>
-
                             <div class="wdr-money-input">
                                 <span>MYR</span>
                                 <input class="wdr-bank-amount"
@@ -466,22 +452,15 @@
                                        step="1"
                                        placeholder="0.00">
                             </div>
-
                         </div>
-
                         <div class="wdr-rollover">
-
                             <span>Rollover / Target</span>
-
                             <strong>
                                 0.00 / 0.00
                                 <i>✓</i>
                             </strong>
-
                         </div>
-
                     </div>
-
                     <div class="wdr-amount-note">
                         Minimum withdrawal amount: MYR 50
                     </div>
@@ -496,8 +475,10 @@
                     <div class="wdr-summary">
                         <div class="wdr-summary-row wdr-summary-bank">
                             <span>Selected Bank</span>
-                            <strong>
-                                <div id="wdrBankName">Hong Leong Bank</div>
+                            <strong class="wdr-selected-bank-display">
+                                <img id="wdrBankLogo"
+                                     src="imgs/assets/banks/hong-leong.png"
+                                     alt="Selected Bank">
                                 <small id="wdrBankAccount">123405678095</small>
                             </strong>
                         </div>
@@ -541,6 +522,42 @@
                             <div><i></i><span>Please contact Live Chat if your withdrawal status is not updated after 30 minutes.</span></div>
                         </div>
                     </div>
+                    <!-- APP INFORMATION & DOWNLOAD -->
+                    <div class="wdr-app-download">
+                        <p>
+                            Visit for more information:
+                            <strong>A9wallet/G2point</strong>
+                        </p>
+                        <div class="wdr-app-download-row">
+                            <span class="wdr-app-download-label">
+                                Download your A9wallet/G2point:
+                            </span>
+                            <div class="wdr-app-badges">
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-apple"><img src="imgs/icon/apple-with.png" /></b>
+                                    <span>
+                                        <small>Available on the</small>
+                                        <strong>App Store</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-play"><img src="imgs/icon/playstore.png" /></b>
+                                    <span>
+                                        <small>GET IT ON</small>
+                                        <strong>Google Play</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-gallery"><img src="imgs/icon/appgallery-with.png" /></b>
+                                    <span>
+                                        <small>EXPLORE IT ON</small>
+                                        <strong>AppGallery</strong>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
                 </section>
             </div>
         </section>
@@ -551,36 +568,19 @@
             <div class="wdr-ewallet-columns">
                 <!-- LEFT -->
                 <div class="wdr-ewallet-left">
-                    <!-- EWALLET SETUP -->
+                    <!-- EWALLET ACCOUNT DETAILS -->
                     <section class="wdr-panel wdr-wallet-setup">
-                        <div class="wdr-panel-head">
-                            <div class="wdr-heading">
-                                <span class="wdr-heading-icon wdr-wallet-icon"></span>
-                                <div>
-                                    <h2>E-Wallet Details</h2>
-                                    <p>Please set up your SKLPay wallet address.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wdr-wallet-alert">
-                            <span class="wdr-alert-icon">!</span>
-                            <div>
-                                <strong>Please set up your wallet address</strong>
-                                <p>Add and verify your SKLPay wallet address before making a withdrawal.</p>
-                            </div>
-                            <button class="wdr-outline-btn wdr-wallet-address" type="button" id="wdrSetWallet">
-                                <span>+</span> Set Wallet Address
-                            </button>
+                        <div class="wdr-panel-head"><div class="wdr-heading"><div><h2>E-Wallet Details</h2><p>Manage your SKLPay account information.</p></div></div></div>
+                        <div class="wdr-ewallet-account-grid">
+                            <div class="wdr-ewallet-account"><label for="wdrSklpayId">SKLPay ID / Mobile Number</label><input id="wdrSklpayId" type="text" placeholder="Enter SKLPay ID" autocomplete="off"></div>
+                            <button class="wdr-outline-btn" type="button" id="wdrSaveEwalletDetails">Save Account Details</button>
                         </div>
                     </section>
                     <!-- EWALLET WITHDRAW -->
                     <section class="wdr-panel wdr-withdraw-panel">
                         <div class="wdr-withdraw-top">
-
                             <div class="wdr-field wdr-amount-field">
-
                                 <label>Amount (MYR)<em>*</em></label>
-
                                 <div class="wdr-money-input">
                                     <span>MYR</span>
                                     <input class="wdr-ewallet-amount"
@@ -589,22 +589,15 @@
                                            step="1"
                                            placeholder="0.00">
                                 </div>
-
                             </div>
-
                             <div class="wdr-rollover">
-
                                 <span>Rollover / Target</span>
-
                                 <strong>
                                     0.00 / 0.00
                                     <i>✓</i>
                                 </strong>
-
                             </div>
-
                         </div>
-
                         <div class="wdr-amount-note">
                             Minimum withdrawal amount: MYR 50
                         </div>
@@ -672,10 +665,230 @@
                         <div><i></i><span>Processing time: 5 - 30 minutes (during peak hour).</span></div>
                         <div><i></i><span>Please contact Live Chat if your withdrawal status is not updated after 30 minutes.</span></div>
                     </div>
+                    <!-- APP INFORMATION & DOWNLOAD -->
+                    <div class="wdr-app-download">
+                        <p>
+                            Visit for more information:
+                            <strong>A9wallet/G2point</strong>
+                        </p>
+                        <div class="wdr-app-download-row">
+                            <span class="wdr-app-download-label">
+                                Download your A9wallet/G2point:
+                            </span>
+                            <div class="wdr-app-badges">
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-apple"><img src="imgs/icon/apple-with.png" /></b>
+                                    <span>
+                                        <small>Available on the</small>
+                                        <strong>App Store</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-play"><img src="imgs/icon/playstore.png" /></b>
+                                    <span>
+                                        <small>GET IT ON</small>
+                                        <strong>Google Play</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-gallery"><img src="imgs/icon/appgallery-with.png" /></b>
+                                    <span>
+                                        <small>EXPLORE IT ON</small>
+                                        <strong>AppGallery</strong>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
                 </section>
             </div>
         </section>
+        <!-- A9WALLET / G2POINT VIEW -->
+        <section class="wdr-view wdr-extra-view" data-view="a9wallet">
+            <div class="wdr-extra-grid">
+                <section class="wdr-panel">
+                    <div class="wdr-panel-head"><div class="wdr-heading"><div><h2>A9wallet / G2point</h2><p>Enter your registered A9wallet / G2point username.</p></div></div></div>
+                    <form class="wdr-extra-form" id="wdrA9Form">
+                        <label for="wdrA9Username">A9wallet/G2point Username</label>
+                        <input id="wdrA9Username" type="text" placeholder="Enter username" autocomplete="off" required>
 
+                        <div class="wdr-withdraw-top">
+                            <div class="wdr-field wdr-amount-field">
+                                <label>Amount (MYR)<em>*</em></label>
+                                <div class="wdr-money-input">
+                                    <span>MYR</span>
+                                    <input id="wdrA9Amount"
+                                           type="number"
+                                           min="0"
+                                           step="1"
+                                           placeholder="0.00"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="wdr-rollover">
+                                <span>Rollover / Target</span>
+                                <strong>0.00 / 0.00 <i>✓</i></strong>
+                            </div>
+                        </div>
+                        <div class="wdr-amount-note">
+                            Minimum withdrawal amount: MYR 50
+                        </div>
+                        <div class="wdr-quick">
+                            <button type="button" data-a9-amount="30">MYR 30</button>
+                            <button type="button" data-a9-amount="50">MYR 50</button>
+                            <button type="button" data-a9-amount="100">MYR 100</button>
+                            <button type="button" data-a9-amount="200">MYR 200</button>
+                            <button type="button" data-a9-amount="500">MYR 500</button>
+                            <button type="button" data-a9-amount="1000">MYR 1000</button>
+                        </div>
+                        <button class="wdr-submit" type="submit">Submit Withdrawal</button>
+                    </form>
+                </section>
+                <section class="wdr-panel wdr-extra-announcement">
+                    <div class="wdr-panel-head">
+                        <div class="wdr-heading">
+                            <div>
+                                <h2>Announcement</h2>
+                                <p>This is A9wallet/G2point withdrawal.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="wdr-extra-copy">Make sure the username is correct and matches your registered wallet account before submitting your withdrawal.</p>
+                    <!-- APP INFORMATION & DOWNLOAD -->
+                    <div class="wdr-app-download">
+                        <p>
+                            Visit for more information:
+                            <strong>A9wallet/G2point</strong>
+                        </p>
+                        <div class="wdr-app-download-row">
+                            <span class="wdr-app-download-label">
+                                Download your A9wallet/G2point:
+                            </span>
+                            <div class="wdr-app-badges">
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-apple"><img src="imgs/icon/apple-with.png" /></b>
+                                    <span>
+                                        <small>Available on the</small>
+                                        <strong>App Store</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-play"><img src="imgs/icon/playstore.png" /></b>
+                                    <span>
+                                        <small>GET IT ON</small>
+                                        <strong>Google Play</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-gallery"><img src="imgs/icon/appgallery-with.png" /></b>
+                                    <span>
+                                        <small>EXPLORE IT ON</small>
+                                        <strong>AppGallery</strong>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </section>
+            </div>
+        </section>
+        <!-- TOUCH'N GO VIEW -->
+        <section class="wdr-view wdr-extra-view" data-view="tng">
+            <div class="wdr-extra-grid">
+                <section class="wdr-panel">
+                    <div class="wdr-panel-head"><div class="wdr-heading"><div><h2>Touch'N Go</h2><p>Set up your Touch'N Go account details.</p></div></div></div>
+                    <form class="wdr-extra-form" id="wdrTngForm">
+                        <label for="wdrTngId">Touch'N Go ID</label>
+                        <input id="wdrTngId"
+                               type="text"
+                               placeholder="Enter Touch'N Go ID"
+                               required>
+                        <div class="wdr-withdraw-top">
+                            <div class="wdr-field wdr-amount-field">
+                                <label>Amount (MYR)<em>*</em></label>
+                                <div class="wdr-money-input">
+                                    <span>MYR</span>
+                                    <input id="wdrTngAmount"
+                                           type="number"
+                                           min="0"
+                                           step="1"
+                                           placeholder="0.00"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="wdr-rollover">
+                                <span>Rollover / Target</span>
+                                <strong>0.00 / 0.00 <i>✓</i></strong>
+                            </div>
+                        </div>
+                        <div class="wdr-amount-note">
+                            Minimum withdrawal amount: MYR 50
+                        </div>
+                        <div class="wdr-quick">
+                            <button type="button" data-tng-amount="30">MYR 30</button>
+                            <button type="button" data-tng-amount="50">MYR 50</button>
+                            <button type="button" data-tng-amount="100">MYR 100</button>
+                            <button type="button" data-tng-amount="200">MYR 200</button>
+                            <button type="button" data-tng-amount="500">MYR 500</button>
+                            <button type="button" data-tng-amount="1000">MYR 1000</button>
+                        </div>
+                        <button class="wdr-submit" type="submit">
+                            Submit Withdrawal
+                        </button>
+                    </form>
+                </section>
+                <section class="wdr-panel wdr-extra-announcement">
+                    <div class="wdr-panel-head">
+                        <div class="wdr-heading">
+                            <div>
+                                <h2>Announcement</h2>
+                                <p>This is Touch'N Go withdrawal.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="wdr-extra-copy">Please ensure your Touch'N Go ID is correct and active before submitting.</p>
+                    <!-- APP INFORMATION & DOWNLOAD -->
+                    <div class="wdr-app-download">
+                        <p>
+                            Visit for more information:
+                            <strong>A9wallet/G2point</strong>
+                        </p>
+                        <div class="wdr-app-download-row">
+                            <span class="wdr-app-download-label">
+                                Download your A9wallet/G2point:
+                            </span>
+                            <div class="wdr-app-badges">
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-apple"><img src="imgs/icon/apple-with.png" /></b>
+                                    <span>
+                                        <small>Available on the</small>
+                                        <strong>App Store</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-play"><img src="imgs/icon/playstore.png" /></b>
+                                    <span>
+                                        <small>GET IT ON</small>
+                                        <strong>Google Play</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-gallery"><img src="imgs/icon/appgallery-with.png" /></b>
+                                    <span>
+                                        <small>EXPLORE IT ON</small>
+                                        <strong>AppGallery</strong>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </section>
         <!-- ======================================================
              CRYPTO VIEW
         ======================================================= -->
@@ -730,7 +943,15 @@
                             <button type="button" data-crypto-amount="50">MYR 50</button><button type="button" data-crypto-amount="100">MYR 100</button><button type="button" data-crypto-amount="200">MYR 200</button><button type="button" data-crypto-amount="500">MYR 500</button><button type="button" data-crypto-amount="1000">MYR 1000</button>
                         </div>
                         <div class="wdr-summary">
-                            <div class="wdr-summary-row"><span>Selected Cryptocurrency</span><b id="wdrCryptoSelected">Ethereum</b></div>
+                            <div class="wdr-summary-row">
+                                <span>Selected Cryptocurrency</span>
+                                <b class="wdr-selected-crypto-display">
+                                    <img id="wdrCryptoLogo"
+                                         src="imgs/assets/crypto/crypto_0004_ethereum.png"
+                                         alt="Ethereum">
+                                    <span id="wdrCryptoSelected">Ethereum</span>
+                                </b>
+                            </div>
                             <div class="wdr-summary-row"><span>Withdrawal Amount</span><b id="wdrCryptoTotal">MYR 0.00</b></div>
                             <div class="wdr-summary-row wdr-receive"><span>You Will Receive</span><b id="wdrCryptoReceive">MYR 0.00</b></div>
                         </div>
@@ -744,18 +965,54 @@
                     <div class="wdr-how-list"><div><b>1</b><span>Select a cryptocurrency and network.</span></div><div><b>2</b><span>Set up and verify your wallet address.</span></div><div><b>3</b><span>Enter the withdrawal amount.</span></div><div><b>4</b><span>Review the details and submit your request.</span></div></div>
                     <div class="wdr-divider"></div><h3 class="wdr-subtitle wdr-important-title">Important Notes</h3>
                     <div class="wdr-notes wdr-ewallet-notes"><div><i></i><span>Only use a wallet address that supports the selected coin and network.</span></div><div><i></i><span>Sending funds through an incorrect network may result in loss of funds.</span></div><div><i></i><span>Minimum withdrawal amount is MYR 50 in this page demo.</span></div><div><i></i><span>Available coins and networks must be confirmed with the payment/backend configuration.</span></div></div>
+                    <!-- APP INFORMATION & DOWNLOAD -->
+                    <div class="wdr-app-download">
+                        <p>
+                            Visit for more information:
+                            <strong>A9wallet/G2point</strong>
+                        </p>
+                        <div class="wdr-app-download-row">
+                            <span class="wdr-app-download-label">
+                                Download your A9wallet/G2point:
+                            </span>
+                            <div class="wdr-app-badges">
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-apple"><img src="imgs/icon/apple-with.png" /></b>
+                                    <span>
+                                        <small>Available on the</small>
+                                        <strong>App Store</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-play"><img src="imgs/icon/playstore.png" /></b>
+                                    <span>
+                                        <small>GET IT ON</small>
+                                        <strong>Google Play</strong>
+                                    </span>
+                                </span>
+                                <span class="wdr-app-badge">
+                                    <b class="wdr-app-gallery"><img src="imgs/icon/appgallery-with.png" /></b>
+                                    <span>
+                                        <small>EXPLORE IT ON</small>
+                                        <strong>AppGallery</strong>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
                 </section>
             </div>
         </section>
-
     </main>
     <!-- ADD BANK MODAL -->
     <div class="wdr-modal" id="wdrBankModal">
         <div class="wdr-modal-box">
             <button class="wdr-modal-close" type="button" id="wdrCloseBank">×</button>
-            <h3>Add Bank Account</h3>
-            <p>Add your bank account details.</p>
+            <h3 id="wdrBankModalTitle">Add Bank Account</h3>
+            <p id="wdrBankModalText">Add your bank account details.</p>
             <form id="wdrBankForm">
+                <input type="hidden" id="wdrBankEditKey" value="">
                 <label>Bank</label>
                 <select id="wdrNewBank" required>
                     <option value="">Select Bank</option>
@@ -769,7 +1026,7 @@
                 <input id="wdrNewAccount" type="text" placeholder="Enter account number" required>
                 <label>Location</label>
                 <input id="wdrNewLocation" type="text" placeholder="e.g. Kuala Lumpur" required>
-                <button type="submit" class="wdr-submit">Add Bank Account</button>
+                <button type="submit" class="wdr-submit" id="wdrBankSaveButton">Add Bank Account</button>
             </form>
         </div>
     </div>
@@ -786,9 +1043,32 @@
             </form>
         </div>
     </div>
+    <!-- ACCOUNT INFORMATION REQUIRED POPUP -->
+    <div class="wdr-modal wdr-simple-alert" id="wdrAccountAlert" aria-hidden="true">
+        <div class="wdr-alert-box" role="alertdialog" aria-modal="true">
+            <p>You have to update your account information before deposit or withdrawal.</p>
+            <button type="button" id="wdrAccountAlertOk">OK</button>
+        </div>
+    </div>
+    <!-- RESUBMIT CONFIRMATION -->
+    <div class="wdr-modal" id="wdrResubmitModal" aria-hidden="true">
+        <div class="wdr-modal-box">
+            <button class="wdr-modal-close" type="button" id="wdrCloseResubmit">×</button>
+            <h3>Resubmit Withdrawal</h3>
+            <p>Resubmit your previous rejected withdrawal request?</p>
+            <div class="wdr-summary">
+                <div class="wdr-summary-row">
+                    <span>Amount</span>
+                    <b>MYR 50.00</b>
+                </div><div class="wdr-summary-row">
+                    <span>Rollover check</span>
+                    <b>Not required</b>
+                </div>
+            </div>
+            <button type="button" class="wdr-submit" id="wdrConfirmResubmit">Confirm Resubmit</button>
+        </div>
+    </div>
     <div class="wdr-toast" id="wdrToast"></div>
-
-
 
     <!-- LANGUAGE POPUP -->
     <div class="language-overlay" id="languagePopup">
@@ -799,23 +1079,19 @@
                     <div class="language-globe">
                         <i class="fa-solid fa-globe"></i>
                     </div>
-
                     <div class="language-title-content">
                         <h3>Language</h3>
                         <span>Choose your preferred language</span>
                     </div>
                 </div>
-
                 <button type="button" class="language-close" id="languageClose" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
             <!-- Decorative line -->
             <div class="language-divider">
                 <span></span>
             </div>
-
             <!-- Language List -->
             <div class="language-list">
                 <button class="language-item active" data-language="English">
@@ -825,10 +1101,8 @@
                         </span>
                         <span class="language-name">English</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ភាសាខ្មែរ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -836,10 +1110,8 @@
                         </span>
                         <span class="language-name">ភាសាខ្មែរ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="简体中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -847,10 +1119,8 @@
                         </span>
                         <span class="language-name">简体中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="မြန်မာ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -858,10 +1128,8 @@
                         </span>
                         <span class="language-name">မြန်မာ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="繁體中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -869,10 +1137,8 @@
                         </span>
                         <span class="language-name">繁體中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ジャパン">
                     <div class="language-info">
                         <span class="language-flag">
@@ -880,10 +1146,8 @@
                         </span>
                         <span class="language-name">ジャパン</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ภาษาไทย">
                     <div class="language-info">
                         <span class="language-flag">
@@ -891,10 +1155,8 @@
                         </span>
                         <span class="language-name">ภาษาไทย</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Français">
                     <div class="language-info">
                         <span class="language-flag">
@@ -902,10 +1164,8 @@
                         </span>
                         <span class="language-name">Français</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="한국어">
                     <div class="language-info">
                         <span class="language-flag">
@@ -913,10 +1173,8 @@
                         </span>
                         <span class="language-name">한국어</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Español">
                     <div class="language-info">
                         <span class="language-flag">
@@ -924,10 +1182,8 @@
                         </span>
                         <span class="language-name">Español</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Tiếng Việt">
                     <div class="language-info">
                         <span class="language-flag">
@@ -935,10 +1191,8 @@
                         </span>
                         <span class="language-name">Tiếng Việt</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Português">
                     <div class="language-info">
                         <span class="language-flag">
@@ -946,10 +1200,8 @@
                         </span>
                         <span class="language-name">Português</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Indonesia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -957,10 +1209,8 @@
                         </span>
                         <span class="language-name">Indonesia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="বাংলা">
                     <div class="language-info">
                         <span class="language-flag">
@@ -968,10 +1218,8 @@
                         </span>
                         <span class="language-name">বাংলা</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="इंडिया">
                     <div class="language-info">
                         <span class="language-flag">
@@ -979,10 +1227,8 @@
                         </span>
                         <span class="language-name">इंडिया</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Malaysia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -990,17 +1236,14 @@
                         </span>
                         <span class="language-name">Malaysia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
             </div>
-
             <!-- Footer -->
             <div class="language-footer">
                 <div class="language-footer-icon">
                     <i class="fa-solid fa-check"></i>
                 </div>
-
                 <div class="language-footer-text">
                     <strong>Applied instantly</strong>
                     <span>Your language preference will be saved automatically.</span>
@@ -1008,15 +1251,10 @@
             </div>
         </div>
     </div>
-
     <!-- BACK TO TOP -->
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
-
-
-
 
 
 

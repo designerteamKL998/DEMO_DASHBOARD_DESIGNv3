@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const bankAmount = document.querySelector(".wdr-bank-amount");
     const bankQuick = document.querySelectorAll("[data-bank-amount]");
 
-    const bankName = document.getElementById("wdrBankName");
-    const bankAccount = document.getElementById("wdrBankAccount");
     const bankTotal = document.getElementById("wdrBankTotal");
     const bankReceive = document.getElementById("wdrBankReceive");
 
@@ -87,26 +85,96 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       BANK SELECTION
+       BANK DETAILS: SELECT / EDIT / DELETE
     ===================================================== */
+    const bankLogo = document.getElementById("wdrBankLogo");
+    const bankAccountDisplay = document.getElementById("wdrBankAccount");
+    const bankEditKey = document.getElementById("wdrBankEditKey");
+    const bankModalTitle = document.getElementById("wdrBankModalTitle");
+    const bankModalText = document.getElementById("wdrBankModalText");
+    const bankSaveButton = document.getElementById("wdrBankSaveButton");
+    const bankSelect = document.getElementById("wdrNewBank");
+    const bankAccountInput = document.getElementById("wdrNewAccount");
+    const bankLocationInput = document.getElementById("wdrNewLocation");
+    const bankEmptyState = document.getElementById("wdrBankEmptyState");
+    const bankWithdrawPanel = document.querySelector('[data-view="bank"] .wdr-withdraw-panel');
 
-    function bindBankRow(row) {
-        row.addEventListener("click", () => {
-            bankList.querySelectorAll(".wdr-bank-row").forEach(item => {
-                item.classList.toggle("is-selected", item === row);
-            });
+    const bankLogos = {
+        "maybank": "imgs/assets/banks/maybank-transparent.svg",
+        "hong leong bank": "imgs/assets/banks/hong-leong.png",
+        "cimb bank": "imgs/assets/banks/cimb-light.svg",
+        "public bank": "imgs/assets/banks/public.png",
+        "rhb": "imgs/assets/banks/rhb-wordmark.png",
+        "rhb bank": "imgs/assets/banks/rhb-wordmark.png"
+    };
 
-            bankName.textContent = row.dataset.bank;
-            bankAccount.textContent = row.dataset.account;
-            localStorage.setItem("wdrSelectedBankAccount_v1", JSON.stringify({
-                bank: row.dataset.bank,
-                account: row.dataset.account
-            }));
-        });
+    function getBankLogo(bank) {
+        return bankLogos[String(bank || "").trim().toLowerCase()] || "";
     }
 
     function bankKey(bank, account) {
         return `${bank}::${account}`;
+    }
+
+    function getSavedBanks() {
+        try { return JSON.parse(localStorage.getItem(bankStorageKey) || "[]"); }
+        catch (_) { return []; }
+    }
+
+    function setSavedBanks(items) {
+        try { localStorage.setItem(bankStorageKey, JSON.stringify(items)); }
+        catch (_) { showToast("Could not save bank details in this browser.", "error"); }
+    }
+
+    function syncBankState() {
+        const rows = bankList ? [...bankList.querySelectorAll(".wdr-bank-row")] : [];
+        const hasBank = rows.length > 0;
+        if (bankEmptyState) bankEmptyState.hidden = hasBank;
+        if (bankWithdrawPanel) bankWithdrawPanel.classList.toggle("is-locked", !hasBank);
+        if (addBank) {
+            addBank.disabled = rows.length >= 3;
+            addBank.title = rows.length >= 3 ? "Maximum 3 bank accounts" : "Add Bank Account";
+        }
+        const emptyCount = bankEmptyState ? bankEmptyState.querySelector("small") : null;
+        if (emptyCount) emptyCount.textContent = `${rows.length} / 3 Accounts`;
+    }
+
+    function selectBankRow(row) {
+        if (!row) return;
+        bankList.querySelectorAll(".wdr-bank-row").forEach(item => {
+            item.classList.toggle("is-selected", item === row);
+        });
+        const bank = row.dataset.bank || "";
+        const account = row.dataset.account || "";
+        if (bankAccountDisplay) bankAccountDisplay.textContent = account;
+        if (bankLogo) {
+            const src = getBankLogo(bank);
+            if (src) {
+                bankLogo.src = src;
+                bankLogo.alt = `${bank} logo`;
+                bankLogo.hidden = false;
+            } else {
+                bankLogo.hidden = true;
+                bankLogo.alt = `${bank} logo unavailable`;
+            }
+        }
+        try { localStorage.setItem("wdrSelectedBankAccount_v1", JSON.stringify({ bank, account })); } catch (_) {}
+    }
+
+    function bindBankRow(row) {
+        row.addEventListener("click", () => selectBankRow(row));
+    }
+
+    function openBankModalForEdit(row) {
+        if (!row || !modal) return;
+        bankEditKey.value = bankKey(row.dataset.bank, row.dataset.account);
+        bankSelect.value = row.dataset.bank;
+        bankAccountInput.value = row.dataset.account;
+        bankLocationInput.value = row.dataset.location || "";
+        bankModalTitle.textContent = "Edit Bank Account";
+        bankModalText.textContent = "Update your bank account details.";
+        bankSaveButton.textContent = "Save Changes";
+        modal.classList.add("is-open");
     }
 
     function appendBankRow(row) {
@@ -114,107 +182,111 @@ document.addEventListener("DOMContentLoaded", () => {
         wrapper.className = "wdr-bank-item";
         wrapper.appendChild(row);
 
+        const actions = document.createElement("div");
+        actions.className = "wdr-bank-actions";
+
+        const editButton = document.createElement("button");
+        editButton.type = "button";
+        editButton.className = "wdr-bank-action edit";
+        editButton.title = "Edit bank account";
+        editButton.setAttribute("aria-label", `Edit ${row.dataset.bank} account`);
+        editButton.innerHTML = '<i class="fa-solid fa-pen" aria-hidden="true"></i>';
+        editButton.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            openBankModalForEdit(row);
+        });
+
         const deleteButton = document.createElement("button");
         deleteButton.type = "button";
-        deleteButton.className = "wdr-bank-delete";
-        deleteButton.setAttribute("aria-label", `Delete ${row.dataset.bank} account`);
+        deleteButton.className = "wdr-bank-action delete";
         deleteButton.title = "Delete bank account";
+        deleteButton.setAttribute("aria-label", `Delete ${row.dataset.bank} account`);
         deleteButton.innerHTML = '<i class="fa-solid fa-trash-can" aria-hidden="true"></i>';
         deleteButton.addEventListener("click", event => {
             event.preventDefault();
             event.stopPropagation();
-
-            const bank = row.dataset.bank;
-            const account = row.dataset.account;
-            const key = bankKey(bank, account);
-
+            const oldKey = bankKey(row.dataset.bank, row.dataset.account);
             if (row.dataset.added === "true") {
-                const savedBanks = JSON.parse(localStorage.getItem(bankStorageKey) || "[]");
-                localStorage.setItem(bankStorageKey, JSON.stringify(savedBanks.filter(item => bankKey(item.bank, item.account) !== key)));
+                setSavedBanks(getSavedBanks().filter(item => bankKey(item.bank, item.account) !== oldKey));
             } else {
-                const hiddenBanks = JSON.parse(localStorage.getItem(hiddenBankStorageKey) || "[]");
-                if (!hiddenBanks.includes(key)) hiddenBanks.push(key);
-                localStorage.setItem(hiddenBankStorageKey, JSON.stringify(hiddenBanks));
+                let hidden = [];
+                try { hidden = JSON.parse(localStorage.getItem(hiddenBankStorageKey) || "[]"); } catch (_) {}
+                if (!hidden.includes(oldKey)) hidden.push(oldKey);
+                try { localStorage.setItem(hiddenBankStorageKey, JSON.stringify(hidden)); } catch (_) {}
             }
-
             const wasSelected = row.classList.contains("is-selected");
             wrapper.remove();
-
+            syncBankState();
             if (wasSelected) {
-                localStorage.removeItem("wdrSelectedBankAccount_v1");
+                try { localStorage.removeItem("wdrSelectedBankAccount_v1"); } catch (_) {}
                 const nextRow = bankList.querySelector(".wdr-bank-row");
-                if (nextRow) nextRow.click();
+                if (nextRow) selectBankRow(nextRow);
                 else {
-                    bankName.textContent = "No bank selected";
-                    bankAccount.textContent = "";
+                    if (bankAccountDisplay) bankAccountDisplay.textContent = "";
+                    if (bankLogo) bankLogo.hidden = true;
                 }
             }
             showToast("Bank account deleted successfully.");
         });
-        wrapper.appendChild(deleteButton);
+
+        actions.append(editButton, deleteButton);
+        wrapper.appendChild(actions);
         bankList.appendChild(wrapper);
         return wrapper;
     }
 
-    function createBankRow({ bank, account, location = "" }) {
+    function createBankRow({ bank, account, location = "", added = true }) {
         const row = document.createElement("button");
         row.type = "button";
         row.className = "wdr-bank-row";
-
-        const bankLogos = {
-            "Maybank": "imgs/assets/banks/maybank-transparent.svg",
-            "Hong Leong Bank": "imgs/assets/banks/hong-leong.png",
-            "CIMB Bank": "imgs/assets/banks/cimb-light.svg"
-        };
-        const logoSrc = bankLogos[bank];
-        const bankMark = bank.split(/\s+/).map(part => part[0]).join("").slice(0, 3);
-
+        const logoSrc = getBankLogo(bank);
+        const bankMark = String(bank || "").split(/\s+/).map(part => part[0] || "").join("").slice(0, 3);
         row.dataset.bank = bank;
         row.dataset.account = account;
         row.dataset.location = location;
-        row.dataset.added = "true";
+        row.dataset.added = added ? "true" : "false";
         row.innerHTML = `
             <span class="wdr-bank-logo ${logoSrc ? "" : "wdr-bank-logo-fallback"}">
-                ${logoSrc
-                    ? `<img src="${logoSrc}" alt="${escapeHtml(bank)} logo">`
-                    : `<span aria-label="${escapeHtml(bank)}">${escapeHtml(bankMark)}</span>`}
+                ${logoSrc ? `<img src="${logoSrc}" alt="${escapeHtml(bank)} logo">` : `<span aria-label="${escapeHtml(bank)}">${escapeHtml(bankMark)}</span>`}
             </span>
-            <span class="wdr-bank-data">
-                <p>${escapeHtml(bank)}</p>
-                <span>${escapeHtml(account)}</span>
-            </span>
-            <span class="wdr-radio"></span>
-        `;
+            <span class="wdr-bank-data"><p>${escapeHtml(bank)}</p><span>${escapeHtml(account)}</span></span>
+            <span class="wdr-radio"></span>`;
         bindBankRow(row);
         return row;
     }
 
-    // Wrap the built-in bank rows so their delete controls can sit beside (not inside) each row button.
+    // Restore saved accounts and wrap any bank rows already present in the HTML.
     try {
         const hiddenBanks = JSON.parse(localStorage.getItem(hiddenBankStorageKey) || "[]");
         [...bankList.querySelectorAll(".wdr-bank-row")].forEach(row => {
-            if (hiddenBanks.includes(bankKey(row.dataset.bank, row.dataset.account))) {
-                row.remove();
-                return;
-            }
+            if (hiddenBanks.includes(bankKey(row.dataset.bank, row.dataset.account))) { row.remove(); return; }
+            if (!row.dataset.location) row.dataset.location = "";
             bindBankRow(row);
-            appendBankRow(row);
+            const parent = row.parentElement;
+            if (parent === bankList) appendBankRow(row);
+            else if (!parent.classList.contains("wdr-bank-item")) {
+                const wrap = document.createElement("div"); wrap.className = "wdr-bank-item";
+                parent.insertBefore(wrap, row); wrap.appendChild(row);
+            }
         });
-
-        // Restore bank accounts added previously in this browser.
-        const savedBanks = JSON.parse(localStorage.getItem(bankStorageKey) || "[]");
-        savedBanks.forEach(item => appendBankRow(createBankRow(item)));
+        getSavedBanks().forEach(item => appendBankRow(createBankRow(item)));
         const selectedBank = JSON.parse(localStorage.getItem("wdrSelectedBankAccount_v1") || "null");
         if (selectedBank) {
             const selectedRow = [...bankList.querySelectorAll(".wdr-bank-row")].find(row =>
-                row.dataset.bank === selectedBank.bank && row.dataset.account === selectedBank.account
-            );
-            if (selectedRow) selectedRow.click();
+                row.dataset.bank === selectedBank.bank && row.dataset.account === selectedBank.account);
+            if (selectedRow) selectBankRow(selectedRow);
+            else if (bankLogo) bankLogo.hidden = true;
+        } else {
+            const firstRow = bankList.querySelector(".wdr-bank-row");
+            if (firstRow) selectBankRow(firstRow);
+            else {
+                if (bankLogo) bankLogo.hidden = true;
+                if (bankAccountDisplay) bankAccountDisplay.textContent = "";
+            }
         }
-    } catch (error) {
-        console.warn("Could not restore saved bank accounts.", error);
-    }
-
+    } catch (error) { console.warn("Could not restore saved bank accounts.", error); }
+    syncBankState();
 
     /* =====================================================
        BANK AMOUNT
@@ -243,6 +315,135 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
+    /* =====================================================
+       FIRST-TIME ACCOUNT SETUP STATES
+    ===================================================== */
+
+/* =====================================================
+   FIRST-TIME ACCOUNT SETUP STATES
+===================================================== */
+
+const ewalletIdInput = document.getElementById("wdrSklpayId");
+const saveEwalletButton = document.getElementById("wdrSaveEwalletDetails");
+const ewalletWithdrawPanel = document.querySelector('[data-view="ewallet"] .wdr-withdraw-panel');
+
+const ewalletStorageKey = "wdrSklpayAccount_v1";
+
+function syncEwalletState() {
+    let saved = "";
+
+    try {
+        saved = localStorage.getItem(ewalletStorageKey) || "";
+    } catch (error) {}
+
+    const ready = !!saved;
+
+    if (ewalletIdInput) {
+        if (ready) {
+            ewalletIdInput.value = saved;
+            ewalletIdInput.readOnly = true;
+        } else {
+            ewalletIdInput.readOnly = false;
+        }
+    }
+
+    // Hide Save button after account is saved
+    if (saveEwalletButton) {
+        saveEwalletButton.hidden = ready;
+    }
+
+    // Unlock withdrawal panel after account is saved
+    if (ewalletWithdrawPanel) {
+        ewalletWithdrawPanel.classList.toggle("is-locked", !ready);
+    }
+}
+
+// Save account details - first time only
+if (saveEwalletButton) {
+    saveEwalletButton.addEventListener("click", () => {
+
+        const value = ewalletIdInput
+            ? ewalletIdInput.value.trim()
+            : "";
+
+        if (!value) {
+            showToast("Please enter your SKLPay ID / Mobile Number.", "error");
+            return;
+        }
+
+        try {
+            localStorage.setItem(ewalletStorageKey, value);
+        } catch (error) {}
+
+        syncEwalletState();
+
+        showToast("SKLPay account details saved successfully.");
+    });
+}
+
+// Restore saved account on page load
+syncEwalletState();
+
+
+
+function setupSavedId(inputId, formId, storageKey, methodName) {
+    const input = document.getElementById(inputId);
+    const form = document.getElementById(formId);
+
+    if (!input || !form) return;
+
+    const controls = [
+        ...form.querySelectorAll(
+            ".wdr-withdraw-top, .wdr-amount-note, .wdr-quick, .wdr-submit"
+        )
+    ];
+
+    let saved = "";
+
+    try {
+        saved = localStorage.getItem(storageKey) || "";
+    } catch (_) {}
+
+    if (saved) input.value = saved;
+
+    const save = document.createElement("button");
+    save.type = "button";
+    save.className = "wdr-outline-btn wdr-setup-save";
+    save.textContent = "Save Account Details";
+
+    input.insertAdjacentElement("afterend", save);
+
+    const toggle = ready => {
+        controls.forEach(el => {
+            el.hidden = !ready;
+        });
+
+        input.readOnly = ready;
+        save.hidden = ready;
+    };
+
+    toggle(!!saved);
+
+    save.addEventListener("click", () => {
+        const value = input.value.trim();
+
+        if (!value) {
+            showToast(`Please enter your ${methodName}.`, "error");
+            return;
+        }
+
+        try {
+            localStorage.setItem(storageKey, value);
+        } catch (_) {}
+
+        toggle(true);
+        showToast(`${methodName} saved successfully.`);
+    });
+}
+
+    setupSavedId("wdrA9Username", "wdrA9Form", "wdrA9Username_v2", "A9wallet / G2point username");
+    setupSavedId("wdrTngId", "wdrTngForm", "wdrTngId_v2", "Touch'N Go ID");
 
     /* =====================================================
        EWALLET AMOUNT
@@ -310,6 +511,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return row ? row.dataset.crypto : "";
     }
 
+    const initialCryptoWithdrawPanel = document.querySelector('[data-view="crypto"] .wdr-crypto-withdraw');
+    if (initialCryptoWithdrawPanel) initialCryptoWithdrawPanel.classList.add("is-locked");
+
     function renderCryptoWallet() {
         const row = getSelectedCryptoRow();
         if (!row) return;
@@ -337,6 +541,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 }
         if (setCryptoWallet) setCryptoWallet.innerHTML = address ? "<span>✎</span> Edit Wallet Address" : "<span>+</span> Set Wallet Address";
+        const cryptoWithdrawPanel = document.querySelector('[data-view="crypto"] .wdr-crypto-withdraw');
+        if (cryptoWithdrawPanel) cryptoWithdrawPanel.classList.toggle("is-locked", !address);
     }
 
     cryptoRows.forEach(row => {
@@ -405,66 +611,93 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* =====================================================
-       ADD BANK MODAL
+       ADD / EDIT BANK MODAL
     ===================================================== */
-
-    addBank.addEventListener("click", () => {
+    if (addBank) addBank.addEventListener("click", () => {
+        if (addBank.disabled) return;
+        bankForm.reset();
+        bankEditKey.value = "";
+        bankModalTitle.textContent = "Add Bank Account";
+        bankModalText.textContent = "Add your bank account details.";
+        bankSaveButton.textContent = "Add Bank Account";
         modal.classList.add("is-open");
     });
-
-    closeBank.addEventListener("click", () => {
-        modal.classList.remove("is-open");
+    if (closeBank) closeBank.addEventListener("click", () => modal.classList.remove("is-open"));
+    if (modal) modal.addEventListener("click", event => {
+        if (event.target === modal) modal.classList.remove("is-open");
     });
-
-    modal.addEventListener("click", event => {
-        if (event.target === modal) {
-            modal.classList.remove("is-open");
-        }
-    });
-
 
     /* =====================================================
-       ADD BANK
+       SAVE BANK (ADD OR EDIT)
     ===================================================== */
-
     bankForm.addEventListener("submit", event => {
         event.preventDefault();
-
-        const bank = document.getElementById("wdrNewBank").value;
-        const account = document.getElementById("wdrNewAccount").value.trim();
-        const location = document.getElementById("wdrNewLocation").value.trim();
-
+        const bank = bankSelect.value;
+        const account = bankAccountInput.value.trim();
+        const location = bankLocationInput.value.trim();
+        const editKey = bankEditKey.value;
         if (!bank || !account || !location) {
             showToast("Please complete all bank details.", "error");
             return;
         }
 
-        const rowData = { bank, account, location };
-        const row = createBankRow(rowData);
-        appendBankRow(row);
-
-        try {
-            const savedBanks = JSON.parse(localStorage.getItem(bankStorageKey) || "[]");
-            savedBanks.push(rowData);
-            localStorage.setItem(bankStorageKey, JSON.stringify(savedBanks));
-        } catch (error) {
-            showToast("Bank added for this session, but browser storage is unavailable.", "error");
+        const currentRows = [...bankList.querySelectorAll(".wdr-bank-row")];
+        if (!editKey && currentRows.length >= 3) {
+            showToast("You can add a maximum of 3 bank accounts.", "error");
+            return;
+        }
+        const duplicate = currentRows.find(row =>
+            row !== currentRows.find(item => bankKey(item.dataset.bank, item.dataset.account) === editKey) &&
+            row.dataset.bank.toLowerCase() === bank.toLowerCase() && row.dataset.account === account);
+        if (duplicate) {
+            showToast("This bank account already exists.", "error");
+            return;
         }
 
-        row.click();
-
+        if (editKey) {
+            const oldRow = currentRows.find(row => bankKey(row.dataset.bank, row.dataset.account) === editKey);
+            if (!oldRow) { showToast("Bank account could not be found. Please refresh and try again.", "error"); return; }
+            const oldKey = bankKey(oldRow.dataset.bank, oldRow.dataset.account);
+            const wasSelected = oldRow.classList.contains("is-selected");
+            const oldWasAdded = oldRow.dataset.added === "true";
+            const newRow = createBankRow({ bank, account, location, added: true });
+            const oldWrapper = oldRow.closest(".wdr-bank-item");
+            const newWrapper = appendBankRow(newRow);
+            oldWrapper.replaceWith(newWrapper);
+            // If the edited account was a built-in row, hide its original entry.
+            if (!oldWasAdded) {
+                let hidden = [];
+                try { hidden = JSON.parse(localStorage.getItem(hiddenBankStorageKey) || "[]"); } catch (_) {}
+                if (!hidden.includes(oldKey)) hidden.push(oldKey);
+                try { localStorage.setItem(hiddenBankStorageKey, JSON.stringify(hidden)); } catch (_) {}
+            }
+            const saved = getSavedBanks().filter(item => bankKey(item.bank, item.account) !== oldKey);
+            saved.push({ bank, account, location });
+            setSavedBanks(saved);
+            const selectedRow = [...bankList.querySelectorAll(".wdr-bank-row")].find(row =>
+                row.dataset.bank === bank && row.dataset.account === account);
+            if (wasSelected && selectedRow) selectBankRow(selectedRow);
+            showToast("Bank account updated successfully.");
+        } else {
+            const rowData = { bank, account, location };
+            const row = createBankRow(rowData);
+            appendBankRow(row);
+            const saved = getSavedBanks(); saved.push(rowData); setSavedBanks(saved);
+            selectBankRow(row);
+            showToast("Bank account added successfully.");
+        }
+        syncBankState();
         bankForm.reset();
+        bankEditKey.value = "";
         modal.classList.remove("is-open");
-
-        showToast("Bank account added successfully.");
     });
-
 
     /* =====================================================
        WALLET ADDRESS
     ===================================================== */
 
-    document.getElementById("wdrSetWallet").addEventListener("click", () => {
+    const setWalletButton = document.getElementById("wdrSetWallet");
+    if (setWalletButton) setWalletButton.addEventListener("click", () => {
         showToast("SKLPay wallet setup is not connected in this front-end demo.", "error");
     });
 
@@ -530,3 +763,38 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCryptoAmount();
 
 });
+
+
+/* =====================================================
+   COMPACT REJECTED WITHDRAWAL NOTICE
+===================================================== */
+const rejectedNotice = document.getElementById("wdrResubmitCard");
+const resubmitTrigger = document.getElementById("wdrResubmitButton");
+const resubmitModal = document.getElementById("wdrResubmitModal");
+const confirmResubmit = document.getElementById("wdrConfirmResubmit");
+const closeResubmitModal = document.getElementById("wdrCloseResubmit");
+
+if (resubmitTrigger && resubmitModal) {
+    resubmitTrigger.addEventListener("click", () => {
+        resubmitModal.classList.add("is-open");
+        resubmitModal.setAttribute("aria-hidden", "false");
+    });
+}
+
+if (closeResubmitModal && resubmitModal) {
+    closeResubmitModal.addEventListener("click", () => {
+        resubmitModal.classList.remove("is-open");
+        resubmitModal.setAttribute("aria-hidden", "true");
+    });
+}
+
+if (confirmResubmit && resubmitModal) {
+    confirmResubmit.addEventListener("click", () => {
+        resubmitModal.classList.remove("is-open");
+        resubmitModal.setAttribute("aria-hidden", "true");
+        if (rejectedNotice) rejectedNotice.setAttribute("hidden", "");
+        if (typeof showToast === "function") {
+            showToast("Demo only: resubmission requires backend integration.");
+        }
+    });
+}
