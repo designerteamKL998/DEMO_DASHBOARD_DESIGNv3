@@ -2467,6 +2467,9 @@ body.wdr-rejected-open::before {
 }
 
 @media (max-width: 768px) {
+    .wdr-extra-grid {
+        grid-template-columns: 100%;
+    }
     .wdr-empty-state {
         padding: 28px 12px;
     }
