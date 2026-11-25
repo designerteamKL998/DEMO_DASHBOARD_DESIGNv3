@@ -227,6 +227,7 @@
 
     .wdr-bank-data span {
         margin-top: 2px;
+        font-size: 12px !important;
     }
 
     .wdr-bank-data small {
@@ -2121,30 +2122,6 @@ body.wdr-rejected-open::before {
     bottom: auto !important;
 }
 
-.wdr-resubmit-card {
-    position: fixed;
-    left: 50%;
-    bottom: 18px;
-    transform: translateX(-50%);
-    width: calc(100% - 44px);
-    max-width: 1600px;
-    height: 112px;
-    min-height: 112px;
-    max-height: 112px;
-    box-sizing: border-box;
-    padding: 8px 14px;
-    display: grid;
-    grid-template-columns: minmax(245px, 1.55fr) repeat(3, minmax(125px, .82fr)) auto;
-    grid-template-rows: 1fr;
-    align-items: center;
-    gap: 8px;
-    overflow: hidden;
-    background: #15141A;
-    border: 1px solid rgba(255, 75, 75, .65);
-    border-radius: 12px;
-    box-shadow: 0 0 0 1px rgba(255, 75, 75, 0.12), 0 4px 18px rgba(255, 55, 55, 0.18), 0 0 28px rgba(255, 55, 55, 0.10);
-}
-
 .wdr-resubmit-heading {
     grid-column: 1;
     grid-row: 1;
@@ -2208,24 +2185,6 @@ body.wdr-rejected-open::before {
 
 .wdr-resubmit-note {
     display: none !important;
-}
-
-.wdr-resubmit-btn {
-    grid-column: 5;
-    grid-row: 1;
-    position: static !important;
-    transform: none !important;
-    align-self: center !important;
-    justify-self: end !important;
-    min-width: 175px !important;
-    margin: 0 !important;
-    padding: 12px 14px !important;
-    border: 0 !important;
-    border-radius: 8px !important;
-    background: #EAD87D !important;
-    color: #111 !important;
-    font-weight: 700 !important;
-    white-space: nowrap !important;
 }
 
 .wdr-resubmit-close {
@@ -2411,7 +2370,7 @@ body.wdr-rejected-open::before {
         justify-content: center !important;
     }
 
-.wdr-bank-item:hover .wdr-bank-action{
+.wdr-bank-item:hover .wdr-bank-action {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
@@ -2440,234 +2399,13 @@ body.wdr-rejected-open::before {
    RESPONSIVE STYLES
    ========================================================= */
 
-@media (max-width: 1024px) {
-    .wdr-resubmit-card {
-        display: block !important;
-        max-width: 100%;
-        width: 95%;
-        height: auto !important;
-        max-height: 150px;
-        min-height: auto;
-        bottom: 60px;
-        margin: auto;
-    }
 
-        .wdr-resubmit-card > p {
-            margin: 5px;
-        }
 
-    .wdr-resubmit-details {
-        display: none !important;
-    }
 
-    .wdr-resubmit-btn {
-        font-size: 12px;
-        padding: 6px !important;
-    }
-}
 
-@media (max-width: 768px) {
-    .wdr-extra-grid {
-        grid-template-columns: 100%;
-    }
-    .wdr-empty-state {
-        padding: 28px 12px;
-    }
 
-    .wdr-bank-list {
-        display: flex !important;
-        flex-direction: column;
-        gap: 8px !important;
-        padding: 0 10px 10px !important;
-    }
 
-    .wdr-bank-item {
-        position: relative !important;
-        width: 100%;
-        min-width: 0;
-        min-height: 64px;
-        display: flex !important;
-        align-items: center;
-        background: #15171b;
-        border: 1px solid #30343d;
-        border-radius: 13px;
-        overflow: hidden !important;
-    }
 
-        .wdr-bank-item:has(.wdr-bank-row.is-selected) {
-            border: 1px solid #EAD87D;
-            background: #202019;
-        }
-
-        .wdr-bank-item .wdr-bank-row {
-            width: 100%;
-            min-width: 0;
-            min-height: 62px;
-            display: flex !important;
-            align-items: center;
-            padding: 8px 120px 8px 12px;
-            gap: 12px;
-            border: 0 !important;
-            border-radius: 0 !important;
-            background: transparent !important;
-            text-align: left;
-        }
-
-    .wdr-bank-logo {
-        width: 48px !important;
-        height: 48px !important;
-        flex: 0 0 48px !important;
-        border-radius: 9px !important;
-        overflow: hidden;
-    }
-
-        .wdr-bank-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-    .wdr-bank-data {
-        flex: 1;
-        min-width: 0;
-        text-align: left;
-    }
-
-        .wdr-bank-data p {
-            font-weight: 700;
-            margin: 0 0 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .wdr-bank-data span {
-            white-space: nowrap;
-        }
-
-    .wdr-bank-item .wdr-radio {
-        position: absolute !important;
-        right: 100px;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: 0 !important;
-        flex-shrink: 0;
-    }
-
-    .wdr-bank-actions {
-        position: absolute !important;
-        top: 50% !important;
-        right: 10px !important;
-        left: auto !important;
-        transform: translateY(-50%) !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding-left: 12px;
-        border-left: 1px solid #454951;
-        z-index: 5;
-    }
-
-        .wdr-bank-actions .wdr-bank-action {
-            width: 28px !important;
-            height: 32px !important;
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            background: transparent !important;
-            border: 0 !important;
-            font-size: 19px;
-            opacity: 1 !important;
-            visibility: visible !important;
-            pointer-events: auto !important;
-        }
-
-    .wdr-bank-action.edit {
-        color: #EAD87D !important;
-    }
-
-    .wdr-bank-action.delete {
-        color: #FF5555 !important;
-    }
-
-    .wdr-bank-item > .wdr-bank-delete {
-        position: absolute !important;
-        top: 50% !important;
-        right: 12px !important;
-        transform: translateY(-50%) !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .wdr-method {
-        flex: 1 1 calc(50% - 8px);
-        padding: 11px 10px;
-    }
-
-    .wdr-method-copy small {
-        display: none;
-    }
-
-    .wdr-ewallet-account-grid {
-        grid-template-columns: 1fr;
-    }
-
-        .wdr-ewallet-account-grid .wdr-outline-btn {
-            grid-column: 1;
-            width: 100%;
-        }
-
-    .wdr-resubmit-details {
-        grid-template-columns: 1fr;
-    }
-
-    .wdr-resubmit-note {
-        padding-right: 0;
-        margin-bottom: 48px;
-    }
-
-    .wdr-resubmit-btn {
-        left: 14px;
-        right: 14px;
-        bottom: 12px;
-    }
-
-    .wdr-alert-box {
-        padding: 25px 20px 18px;
-    }
-
-    .wdr-bank-action {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .wdr-resubmit-heading {
-        padding-right: 125px;
-    }
-
-    .wdr-app-download-row {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .wdr-bank-logo img {
-        width: 40px !important;
-        max-height: 40px !important;
-    }
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .wdr-bank-item:hover {
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-    }
-}
 
 /* Preserve hidden state after successful resubmission. */
 #wdrResubmitCard[hidden] {
@@ -2821,38 +2559,7 @@ body.wdr-rejected-open::before {
 
 /* TABLET & MOBILE */
 
-@media(max-width:768px) {
 
-    .wdr-bank-manager {
-        max-height: 90vh;
-        overflow-y: auto;
-        padding: 20px 14px;
-    }
-
-        .wdr-bank-manager h3 {
-            font-size: 19px;
-        }
-
-    .wdr-manager-footer {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .wdr-manager-add {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .wdr-manager-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-        .wdr-manager-actions button {
-            width: 100%;
-            min-width: 0;
-        }
-}
 
 
 /* REMOVE GAP BETWEEN TABLE HEADER AND FIRST ROW */
@@ -3101,7 +2808,609 @@ body.wdr-rejected-open::before {
    BANK MANAGER - MOBILE RESPONSIVE
 ========================================== */
 
+
+
+
+
+/* =========================================
+   LAST REJECTED WITHDRAWAL - HORIZONTAL BAR
+========================================= */
+
+.wdr-resubmit-card {
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 44px) !important;
+    max-width: 50% !important;
+    padding: 8px 20px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    overflow: hidden !important;
+    z-index: 999 !important;
+    gap: 8px;
+    background: #15141A;
+    border: 1px solid rgba(255, 75, 75, .65);
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px rgba(255, 75, 75, 0.12), 0 4px 18px rgba(255, 55, 55, 0.18), 0 0 28px rgba(255, 55, 55, 0.10);
+}
+
+/* AMOUNT */
+.wdr-resubmit-amount {
+    flex: 0 0 auto;
+    color: #F5C85D;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ACCOUNT NUMBER */
+.wdr-resubmit-account {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-left: 22px;
+    border-left: 1px solid rgba(255,255,255,.35);
+    color: #D2D2D2;
+    font-weight: 600;
+}
+
+    .wdr-resubmit-account i {
+        flex: 0 0 auto;
+        color: #C7C9CE;
+    }
+
+    .wdr-resubmit-account span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+/* COUNTDOWN */
+.wdr-resubmit-timer {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 22px;
+    border-left: 1px solid rgba(255,255,255,.35);
+    color: #F5C85D;
+}
+
+    .wdr-resubmit-timer i {
+    }
+
+    .wdr-resubmit-timer strong {
+        font-weight: 800;
+        white-space: nowrap;
+    }
+
+/* RESUBMIT BUTTON */
+.wdr-resubmit-btn {
+    position: static !important;
+    flex: 0 0 auto !important;
+    transform: none !important;
+    align-self: center !important;
+    justify-self: end !important;
+    min-width: 175px !important;
+    margin: 0 !important;
+    padding: 8px 24px !important;
+    border: 2px solid #E9BD51 !important;
+    border-radius: 8px !important;
+    background: linear-gradient( 180deg, #FFDC79 0%, #DCA83D 100% ) !important;
+    color: #171717 !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+    .wdr-resubmit-btn:hover {
+        filter: brightness(1.08);
+    }
+
+/* FIX REJECTED LABEL ALIGNMENT */
+.wdr-resubmit-card .wdr-resubmit-heading {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: fit-content !important;
+    height: auto !important;
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 13px 23px !important;
+    background: #BD302D !important;
+    border-radius: 8px !important;
+    color: #FFFFFF !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+
+/* =========================================
+   LAST REJECTED WITHDRAWAL - RESPONSIVE
+========================================= */
+
+/* BASE / DESKTOP */
+.wdr-resubmit-card {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: 18px !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 44px) !important;
+    max-width: 1600px !important;
+    min-height: 76px !important;
+    padding: 10px 20px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    overflow: hidden !important;
+    z-index: 999 !important;
+    background: #15141A !important;
+    border: 1px solid rgba(255,75,75,.65) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 18px rgba(255,55,55,.15) !important;
+}
+
+
+
+/* AMOUNT */
+.wdr-resubmit-amount {
+    flex: 0 0 auto !important;
+    color: #EAD87D !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+}
+
+/* ACCOUNT NUMBER */
+.wdr-resubmit-account {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding-left: 18px !important;
+    border-left: 1px solid rgba(255,255,255,.3) !important;
+    color: #D2D2D2 !important;
+    font-weight: 600 !important;
+}
+
+    .wdr-resubmit-account i {
+        flex: 0 0 auto !important;
+    }
+
+    .wdr-resubmit-account span {
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+
+/* COUNTDOWN */
+.wdr-resubmit-timer {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding-left: 18px !important;
+    border-left: 1px solid rgba(255,255,255,.3) !important;
+    color: #EAD87D !important;
+}
+
+    .wdr-resubmit-timer strong {
+        font-weight: 800 !important;
+        white-space: nowrap !important;
+    }
+
+/* RESUBMIT BUTTON */
+.wdr-resubmit-card .wdr-resubmit-btn {
+    position: static !important;
+    flex: 0 0 auto !important;
+    align-self: center !important;
+    min-width: 150px !important;
+    margin: 0 !important;
+    padding: 12px 22px !important;
+    border: 2px solid #EAD87D !important;
+    border-radius: 12px !important;
+    background: #EAD87D !important;
+    color: #171717 !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+}
+
+    .wdr-resubmit-card .wdr-resubmit-btn:hover {
+        filter: brightness(1.08);
+    }
+
+
+
+/* DESKTOP: HIDE HEADER EDIT */
+.wdr-header-edit {
+    display: none !important;
+}
+
+/* =========================================
+   BANK MANAGER MODAL - MOBILE FIX
+========================================= */
+
+#wdrBankManagerModal {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    z-index: 2147483647 !important;
+    overflow-y: auto !important;
+}
+
+    #wdrBankManagerModal.is-open {
+        display: flex !important;
+    }
+
+    /* CLOSE BUTTON */
+    #wdrBankManagerModal .wdr-modal-close {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 20 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-left: auto !important;
+        width: 35px !important;
+        height: 35px !important;
+        cursor: pointer !important;
+    }
+
+/* MOBILE */
+
+
+
+/* RESUBMIT REJECTION INFORMATION */
+.wdr-rejection-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 18px 0;
+    padding: 14px;
+    background: rgba(234, 207, 105, 0.07);
+    border: 1px solid rgba(234, 207, 105, 0.25);
+    border-radius: 10px;
+}
+
+.wdr-rejection-icon {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #EACF69;
+    color: #171717;
+    font-size: 13px;
+}
+
+.wdr-rejection-message {
+    flex: 1;
+    min-width: 0;
+}
+
+    .wdr-rejection-message p {
+        margin: 0;
+        color: #D5D5D5;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+        .wdr-rejection-message p + p {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,.12);
+        }
+
+
+/* =========================================================
+   BANK MANAGER MODAL - BASE / DESKTOP
+   Desktop width is intentionally wider than the 760px table.
+========================================================= */
+#wdrBankManagerModal {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+    #wdrBankManagerModal .wdr-modal-box {
+        width: 100%;
+        max-width: 1080px;
+        max-height: calc(100vh - 40px);
+        margin: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    #wdrBankManagerModal .wdr-bank-manager {
+        max-width: 1080px;
+    }
+
+    #wdrBankManagerModal .wdr-manager-table-wrap {
+        width: 100%;
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+    }
+
+    #wdrBankManagerModal .wdr-manager-footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    #wdrBankManagerModal .wdr-manager-add {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+
+    #wdrBankManagerModal #wdrAddBankRow {
+        width: auto;
+        min-width: 150px;
+        white-space: nowrap;
+    }
+
+    #wdrBankManagerModal .wdr-manager-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+
+
+/* =========================================================
+   RESPONSIVE STYLES - CONSOLIDATED BREAKPOINTS
+   Original responsive rules are retained in their original
+   cascade order; only duplicate media wrappers are combined.
+========================================================= */
+
+@media (max-width: 1024px) {
+    .wdr-resubmit-card {
+        display: block !important;
+        max-width: 100%;
+        width: 95%;
+        height: auto !important;
+        max-height: 150px;
+        min-height: auto;
+        bottom: 60px;
+        margin: auto;
+    }
+    #wdrBankManagerModal .wdr-modal-box {
+        position: relative !important;
+        z-index: 1 !important;
+        width: 100% !important;
+        max-width: 600px !important;
+        max-height: calc(100dvh - 30px) !important;
+        margin: auto !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+    }
+    /* REJECTED LABEL */
+    .wdr-resubmit-card .wdr-resubmit-heading {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        align-self: center !important;
+        width: fit-content !important;
+        margin: 0 !important;
+        padding: 13px 23px !important;
+        border-bottom: 1px#BD302D solid !important;
+        background: transparent !important;
+        border-radius: 8px !important;
+        color: #fff !important;
+        line-height: 1.2 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+    }
+        .wdr-resubmit-card > p {
+            margin: 5px;
+        }
+
+    .wdr-resubmit-details {
+        display: none !important;
+    }
+
+    .wdr-resubmit-btn {
+        font-size: 12px;
+        padding: 6px !important;
+    }
+
+    .wdr-resubmit-card {
+        width: calc(100% - 100px) !important;
+        padding: 10px 12px !important;
+        gap: 9px !important;
+    }
+
+        .wdr-resubmit-card .wdr-resubmit-heading {
+            padding: 10px 12px !important;
+        }
+
+    .wdr-resubmit-amount {
+    }
+
+    .wdr-resubmit-account,
+    .wdr-resubmit-timer {
+        padding-left: 10px !important;
+        gap: 7px !important;
+    }
+
+    .wdr-resubmit-card .wdr-resubmit-btn {
+        min-width: 105px !important;
+        padding: 10px 12px !important;
+    }
+
+    #wdrBankManagerModal .wdr-modal-box {
+        max-width: min(960px, calc(100vw - 40px));
+        max-height: calc(100vh - 40px);
+    }
+}
+
 @media (max-width: 768px) {
+    .wdr-extra-grid {
+        grid-template-columns: 100%;
+    }
+
+    .wdr-empty-state {
+        padding: 28px 12px;
+    }
+
+    .wdr-bank-list {
+        display: flex !important;
+        flex-direction: column;
+        gap: 8px !important;
+        padding: 0 10px 10px !important;
+    }
+
+    .wdr-bank-item {
+        position: relative !important;
+        width: 100%;
+        min-width: 0;
+        min-height: 64px;
+        display: flex !important;
+        align-items: center;
+        background: #15171b;
+        border: 1px solid #30343d;
+        border-radius: 13px;
+        overflow: hidden !important;
+    }
+
+        .wdr-bank-item:has(.wdr-bank-row.is-selected) {
+            border: 1px solid #EAD87D;
+            background: #202019;
+        }
+
+        .wdr-bank-item .wdr-bank-row {
+            width: 100%;
+            min-width: 0;
+            min-height: 62px;
+            display: flex !important;
+            align-items: center;
+            padding: 8px 120px 8px 12px;
+            gap: 12px;
+            border: 0 !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            text-align: left;
+        }
+
+    .wdr-bank-logo {
+        width: 48px !important;
+        height: 48px !important;
+        flex: 0 0 48px !important;
+        border-radius: 9px !important;
+        overflow: hidden;
+    }
+
+        .wdr-bank-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    .wdr-bank-data {
+        flex: 1;
+        min-width: 0;
+        text-align: left;
+    }
+
+        .wdr-bank-data p {
+            font-weight: 700;
+            margin: 0 0 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .wdr-bank-data span {
+            white-space: nowrap;
+        }
+
+    .wdr-bank-item .wdr-radio {
+        position: absolute !important;
+        right: 100px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0 !important;
+        flex-shrink: 0;
+    }
+
+    .wdr-bank-actions {
+        position: absolute !important;
+        top: 50% !important;
+        right: 10px !important;
+        left: auto !important;
+        transform: translateY(-50%) !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding-left: 12px;
+        border-left: 1px solid #454951;
+        z-index: 5;
+    }
+
+        .wdr-bank-actions .wdr-bank-action {
+            width: 28px !important;
+            height: 32px !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            background: transparent !important;
+            border: 0 !important;
+            font-size: 19px;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+
+    .wdr-bank-action.edit {
+        color: #EAD87D !important;
+    }
+
+    .wdr-bank-action.delete {
+        color: #FF5555 !important;
+    }
+
+    .wdr-bank-item > .wdr-bank-delete {
+        position: absolute !important;
+        top: 50% !important;
+        right: 12px !important;
+        transform: translateY(-50%) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
 
     /* MODAL */
     #wdrBankManagerModal {
@@ -3270,5 +3579,374 @@ body.wdr-rejected-open::before {
             height: 45px !important;
             font-size: 13px !important;
         }
+
+    .wdr-resubmit-card .wdr-resubmit-heading {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        justify-self: start !important;
+    }
+
+    .wdr-resubmit-amount {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+    }
+
+    .wdr-resubmit-timer {
+        grid-column: 3 !important;
+        grid-row: 1 !important;
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    .wdr-resubmit-account {
+        display: none;
+    }
+
+    .wdr-resubmit-card .wdr-resubmit-btn {
+        grid-column: 3 !important;
+        grid-row: 2 !important;
+        min-width: 95px !important;
+        padding: 9px 10px !important;
+    }
+
+    /* BANK DETAILS PANEL */
+    .wdr-bank-details {
+        padding: 12px !important;
+    }
+
+        /* HEADER: TITLE LEFT, ADD RIGHT */
+        .wdr-bank-details .wdr-panel-head {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 10px !important;
+            margin-bottom: 14px !important;
+        }
+
+        .wdr-bank-details .wdr-heading h2 {
+            margin: 0 !important;
+        }
+
+        .wdr-bank-details .wdr-heading p {
+            display: none !important;
+        }
+
+        .wdr-bank-details #wdrAddBank {
+            width: auto !important;
+            min-width: 65px !important;
+            height: 34px !important;
+            padding: 0 12px !important;
+            margin: 0 !important;
+            white-space: nowrap !important;
+        }
+
+    /* BANK LIST */
+    .wdr-bank-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    /* EACH BANK ROW */
+    .wdr-bank-item {
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 0px 12px !important;
+        box-sizing: border-box !important;
+        gap: 10px !important;
+    }
+
+        /* BANK INFORMATION */
+        .wdr-bank-item .wdr-bank-row {
+            display: flex !important;
+            flex: 1 !important;
+            align-items: center !important;
+            min-width: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        /* LOGO */
+        .wdr-bank-item .wdr-bank-logo,
+        .wdr-bank-item .wdr-bank-logo img {
+            flex: 0 0 auto !important;
+            width: 42px !important;
+            height: 42px !important;
+            object-fit: contain !important;
+        }
+
+        /* BANK NAME + ACCOUNT */
+        .wdr-bank-item .wdr-bank-data {
+            flex: 1 !important;
+            min-width: 0 !important;
+            margin-left: 10px !important;
+        }
+
+            .wdr-bank-item .wdr-bank-data p {
+                line-height: 1.4 !important;
+            }
+
+        /* RADIO AT RIGHT */
+        .wdr-bank-item .wdr-radio {
+            position: static !important;
+            order: 3 !important;
+            flex: 0 0 auto !important;
+            margin: 0 2px 0 8px !important;
+        }
+
+        /* HIDE EDIT & DELETE ICONS INSIDE ROW */
+        .wdr-bank-item .wdr-bank-actions,
+        .wdr-bank-item .wdr-bank-action,
+        .wdr-bank-item .wdr-bank-delete {
+            display: none !important;
+        }
+
+    .wdr-bank-details .wdr-header-actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 8px !important;
+        flex: 0 0 auto !important;
+    }
+
+    .wdr-bank-details .wdr-header-edit {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 34px !important;
+        min-width: 65px !important;
+        padding: 0 12px !important;
+        margin: 0 !important;
+        font-size: 12px !important;
+    }
+
+    .wdr-bank-details #wdrAddBank {
+        height: 34px !important;
+        min-width: 65px !important;
+        padding: 0 12px !important;
+        margin: 0 !important;
+        font-size: 12px !important;
+    }
+
+    #wdrBankManagerModal {
+        padding: 10px !important;
+        align-items: center !important;
+    }
+
+        #wdrBankManagerModal .wdr-modal-box {
+            width: 100% !important;
+            max-height: calc(100dvh - 20px) !important;
+            border-radius: 12px !important;
+        }
+
+    .wdr-bank-manager {
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 20px 14px;
+    }
+
+        .wdr-bank-manager h3 {
+            font-size: 19px;
+        }
+
+    .wdr-manager-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .wdr-manager-add {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .wdr-manager-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+        .wdr-manager-actions button {
+            width: 100%;
+            min-width: 0;
+        }
+
+    #wdrBankManagerModal {
+        padding: 10px !important;
+        align-items: center !important;
+        overflow-y: auto !important;
+    }
+
+        #wdrBankManagerModal .wdr-modal-box {
+            width: 100% !important;
+            max-width: 100% !important;
+            max-height: calc(100dvh - 20px) !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            border-radius: 12px !important;
+        }
+
+        #wdrBankManagerModal .wdr-bank-manager {
+            max-width: 100% !important;
+            padding: 18px 14px !important;
+        }
 }
 
+@media (max-width: 480px) {
+    .wdr-method {
+        flex: 1 1 calc(50% - 8px);
+        padding: 11px 10px;
+    }
+
+    .wdr-method-copy small {
+        display: none;
+    }
+
+    .wdr-ewallet-account-grid {
+        grid-template-columns: 1fr;
+    }
+
+        .wdr-ewallet-account-grid .wdr-outline-btn {
+            grid-column: 1;
+            width: 100%;
+        }
+
+    .wdr-resubmit-details {
+        grid-template-columns: 1fr;
+    }
+
+    .wdr-resubmit-note {
+        padding-right: 0;
+        margin-bottom: 48px;
+    }
+
+    .wdr-resubmit-btn {
+        left: 14px;
+        right: 14px;
+        bottom: 12px;
+    }
+
+    .wdr-alert-box {
+        padding: 25px 20px 18px;
+    }
+
+    .wdr-bank-action {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .wdr-resubmit-heading {
+        padding-right: 125px;
+    }
+
+    .wdr-app-download-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .wdr-bank-logo img {
+        width: 40px !important;
+        max-height: 40px !important;
+    }
+
+    .wdr-resubmit-card {
+        display: grid !important;
+        grid-template-columns: auto minmax(0, 1fr) auto auto !important;
+        grid-template-rows: auto auto !important;
+        align-items: center !important;
+        justify-content: stretch !important;
+        width: calc(100% - 60px) !important;
+        max-width: none !important;
+        min-height: 0 !important;
+        height: auto !important;
+        padding: 0 8px 9px !important;
+        gap: 8px !important;
+        bottom: 60px !important;
+    }
+
+        /* RED LABEL - FULL WIDTH TOP */
+        .wdr-resubmit-card .wdr-resubmit-heading {
+            grid-column: 1 / -1 !important;
+            grid-row: 1 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: calc(100% + 16px) !important;
+            box-sizing: border-box !important;
+            margin: 0 0 2px -8px !important;
+            padding: 8px !important;
+            border-radius: 8px 8px 0 0 !important;
+            white-space: nowrap !important;
+        }
+
+    /* AMOUNT */
+    .wdr-resubmit-amount {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        white-space: nowrap !important;
+    }
+
+    /* ACCOUNT */
+    .wdr-resubmit-account {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+        .wdr-resubmit-account span {
+            display: none;
+        }
+
+    /* TIMER */
+    .wdr-resubmit-timer {
+        grid-column: 3 !important;
+        grid-row: 2 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 3px !important;
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    .wdr-resubmit-account i {
+        display: none;
+    }
+
+    .wdr-resubmit-timer strong {
+        white-space: nowrap !important;
+    }
+
+    /* RESUBMIT */
+    .wdr-resubmit-card .wdr-resubmit-btn {
+        grid-column: 4 !important;
+        grid-row: 2 !important;
+        justify-self: end !important;
+        min-width: 65px !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 5px 7px !important;
+        white-space: nowrap !important;
+        border-radius: 4px !important;
+    }
+
+    #wdrBankManagerModal {
+        padding: 8px !important;
+    }
+
+        #wdrBankManagerModal .wdr-bank-manager {
+            padding: 16px 12px !important;
+        }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .wdr-bank-item:hover {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+}

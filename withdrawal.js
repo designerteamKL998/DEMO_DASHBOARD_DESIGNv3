@@ -460,16 +460,41 @@ function updateManagerNumbers() {
 }
 
 
-/* OPEN MANAGER POPUP */
+
+/* ==========================================
+   OPEN MANAGER POPUP
+========================================== */
 
 function openBankManager() {
+
+    if (!bankManagerModal || !managerRows) {
+        console.error("Bank Manager Modal not found.");
+        return;
+    }
 
     const accounts = getCurrentBankAccounts();
 
     renderManagerRows(accounts);
 
     bankManagerModal.classList.add("is-open");
+    bankManagerModal.setAttribute("aria-hidden", "false");
 
+}
+
+
+/* ==========================================
+   MOBILE HEADER EDIT BUTTON
+========================================== */
+
+const editBankHeaderButton = document.getElementById("wdrEditBank");
+
+if (editBankHeaderButton) {
+    editBankHeaderButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        openBankManager();
+    });
 }
 
 
