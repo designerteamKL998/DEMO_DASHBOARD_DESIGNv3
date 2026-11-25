@@ -99,6 +99,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const bankEmptyState = document.getElementById("wdrBankEmptyState");
     const bankWithdrawPanel = document.querySelector('[data-view="bank"] .wdr-withdraw-panel');
 
+
+/* NEW EDIT ALL BANK ACCOUNTS MODAL */
+
+const bankManagerModal = document.getElementById("wdrBankManagerModal");
+const managerRows = document.getElementById("wdrBankManagerRows");
+const managerForm = document.getElementById("wdrBankManagerForm");
+
+const addBankRowButton = document.getElementById("wdrAddBankRow");
+const closeManagerButton = document.getElementById("wdrCloseBankManager");
+const cancelManagerButton = document.getElementById("wdrCancelBankManager");
+
+
     const bankLogos = {
         "maybank": "imgs/assets/banks/maybank-transparent.svg",
         "hong leong bank": "imgs/assets/banks/hong-leong.png",
@@ -194,7 +206,8 @@ document.addEventListener("DOMContentLoaded", () => {
         editButton.addEventListener("click", event => {
             event.preventDefault();
             event.stopPropagation();
-            openBankModalForEdit(row);
+
+            openBankManager();
         });
 
         const deleteButton = document.createElement("button");
@@ -235,6 +248,484 @@ document.addEventListener("DOMContentLoaded", () => {
         bankList.appendChild(wrapper);
         return wrapper;
     }
+
+
+/* ==========================================
+   EDIT ALL BANK ACCOUNTS MANAGER
+========================================== */
+
+const bankOptions = [
+    "Maybank",
+    "Hong Leong Bank",
+    "CIMB Bank",
+    "Public Bank",
+    "RHB Bank"
+];
+
+function getCurrentBankAccounts() {
+
+    return [...bankList.querySelectorAll(".wdr-bank-row")].map(row => ({
+        bank: row.dataset.bank || "",
+        account: row.dataset.account || "",
+        location: row.dataset.location || "",
+        added: row.dataset.added === "true"
+    }));
+
+}
+
+
+/* RENDER BANK TABLE */
+
+
+function renderManagerRows(accounts) {
+
+    managerRows.innerHTML = "";
+
+    accounts.forEach((item, index) => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${index + 1}</td>
+
+            <td>
+                <div class="wdr-bank-select">
+
+                    <input type="hidden"
+                        class="manager-bank"
+                        value="${escapeHtml(item.bank)}">
+
+                    <button type="button"
+                        class="manager-bank-trigger">
+
+                        <span class="manager-bank-selected"></span>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </button>
+
+                    <div class="manager-bank-menu" hidden></div>
+
+                </div>
+            </td>
+
+            <td>
+                <input type="text"
+                    class="wdr-manager-input manager-account"
+                    value="${escapeHtml(item.account)}"
+                    placeholder="Account Number"
+                    required>
+            </td>
+
+            <td>
+                <input type="text"
+                    class="wdr-manager-input manager-location"
+                    value="${escapeHtml(item.location)}"
+                    placeholder="Location"
+                    required>
+            </td>
+
+            <td>
+                <button type="button"
+                    class="wdr-manager-delete"
+                    title="Delete account">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </td>
+        `;
+
+        const hiddenInput = tr.querySelector(".manager-bank");
+        const trigger = tr.querySelector(".manager-bank-trigger");
+        const selectedDisplay = tr.querySelector(".manager-bank-selected");
+        const menu = tr.querySelector(".manager-bank-menu");
+
+        function updateSelectedBank(bank) {
+
+            hiddenInput.value = bank;
+
+            const logo = getBankLogo(bank);
+
+            selectedDisplay.innerHTML = `
+                ${logo ? `<img src="${logo}" alt="">` : ""}
+                <span>${escapeHtml(bank)}</span>
+            `;
+
+        }
+
+        // CREATE BANK OPTIONS
+
+        bankOptions.forEach(bank => {
+
+            const logo = getBankLogo(bank);
+
+            const option = document.createElement("button");
+
+            option.type = "button";
+            option.className = "manager-bank-option";
+
+            option.innerHTML = `
+                ${logo ? `<img src="${logo}" alt="">` : ""}
+                <span>${escapeHtml(bank)}</span>
+            `;
+
+            option.addEventListener("click", () => {
+
+                updateSelectedBank(bank);
+
+                menu.hidden = true;
+
+            });
+
+            menu.appendChild(option);
+
+        });
+
+        // OPEN / CLOSE DROPDOWN
+
+        trigger.addEventListener("click", event => {
+
+            event.stopPropagation();
+
+            document.querySelectorAll(".manager-bank-menu").forEach(other => {
+                if (other !== menu) other.hidden = true;
+            });
+
+            menu.hidden = !menu.hidden;
+
+        });
+
+        menu.addEventListener("click", event => {
+            event.stopPropagation();
+        });
+
+if (item.bank) {
+
+    updateSelectedBank(item.bank);
+
+} else {
+
+    selectedDisplay.innerHTML = `
+        <span class="manager-bank-placeholder">
+            Select Bank
+        </span>
+    `;
+
+}
+
+        // DELETE ROW
+
+        tr.querySelector(".wdr-manager-delete")
+            .addEventListener("click", () => {
+
+                tr.remove();
+                updateManagerNumbers();
+
+            });
+
+        managerRows.appendChild(tr);
+
+    });
+
+    updateManagerNumbers();
+
+}
+
+
+// CLOSE DROPDOWN WHEN CLICK OUTSIDE
+document.addEventListener("click", () => {
+
+    document.querySelectorAll(".manager-bank-menu").forEach(menu => {
+        menu.hidden = true;
+    });
+
+});
+
+
+/* UPDATE ROW NUMBER */
+
+function updateManagerNumbers() {
+
+    const rows = [...managerRows.querySelectorAll("tr")];
+
+    rows.forEach((row, index) => {
+        row.cells[0].textContent = index + 1;
+    });
+
+    if (addBankRowButton) {
+
+        addBankRowButton.disabled = rows.length >= 3;
+
+    }
+
+}
+
+
+/* OPEN MANAGER POPUP */
+
+function openBankManager() {
+
+    const accounts = getCurrentBankAccounts();
+
+    renderManagerRows(accounts);
+
+    bankManagerModal.classList.add("is-open");
+
+}
+
+
+/* ADD ROW */
+
+if (addBankRowButton) {
+
+    addBankRowButton.addEventListener("click", () => {
+
+        const currentRows = [...managerRows.querySelectorAll("tr")];
+
+        if (currentRows.length >= 3) {
+
+            showToast("Maximum 3 bank accounts.", "error");
+            return;
+
+        }
+
+        const accounts = currentRows.map(row => ({
+            bank: row.querySelector(".manager-bank").value,
+            account: row.querySelector(".manager-account").value,
+            location: row.querySelector(".manager-location").value
+        }));
+
+        accounts.push({
+            bank: "",
+            account: "",
+            location: ""
+        });
+
+        renderManagerRows(accounts);
+
+    });
+
+}
+
+
+/* CLOSE MANAGER POPUP */
+
+function closeBankManager() {
+
+    bankManagerModal.classList.remove("is-open");
+
+}
+
+if (closeManagerButton) {
+
+    closeManagerButton.addEventListener("click", closeBankManager);
+
+}
+
+if (cancelManagerButton) {
+
+    cancelManagerButton.addEventListener("click", closeBankManager);
+
+}
+
+if (bankManagerModal) {
+
+    bankManagerModal.addEventListener("click", event => {
+
+        if (event.target === bankManagerModal) {
+            closeBankManager();
+        }
+
+    });
+
+}
+
+
+/* SAVE ALL BANK ACCOUNTS */
+
+if (managerForm) {
+
+    managerForm.addEventListener("submit", event => {
+
+        event.preventDefault();
+
+        const rows = [...managerRows.querySelectorAll("tr")];
+
+        const accounts = rows.map(row => ({
+            bank: row.querySelector(".manager-bank").value.trim(),
+            account: row.querySelector(".manager-account").value.trim(),
+            location: row.querySelector(".manager-location").value.trim()
+        }));
+
+
+        // VALIDATE EMPTY FIELDS
+
+        if (accounts.some(item =>
+            !item.bank || !item.account || !item.location
+        )) {
+
+            showToast("Please complete all bank details.", "error");
+            return;
+
+        }
+
+
+        // VALIDATE MAXIMUM 3
+
+        if (accounts.length > 3) {
+
+            showToast("Maximum 3 bank accounts.", "error");
+            return;
+
+        }
+
+
+        // CHECK DUPLICATES
+
+        const accountKeys = accounts.map(item =>
+            bankKey(item.bank.toLowerCase(), item.account)
+        );
+
+        if (new Set(accountKeys).size !== accountKeys.length) {
+
+            showToast("Duplicate bank accounts are not allowed.", "error");
+            return;
+
+        }
+
+
+        // GET ORIGINAL BANKS
+
+        const originalBanks = getCurrentBankAccounts();
+
+        let hiddenBanks = [];
+
+        try {
+
+            hiddenBanks = JSON.parse(
+                localStorage.getItem(hiddenBankStorageKey) || "[]"
+            );
+
+        } catch (_) {}
+
+
+        // HIDE ORIGINAL BUILT-IN BANKS
+
+        originalBanks.forEach(item => {
+
+            if (!item.added) {
+
+                const key = bankKey(item.bank, item.account);
+
+                if (!hiddenBanks.includes(key)) {
+                    hiddenBanks.push(key);
+                }
+
+            }
+
+        });
+
+        try {
+
+            localStorage.setItem(
+                hiddenBankStorageKey,
+                JSON.stringify(hiddenBanks)
+            );
+
+        } catch (_) {}
+
+
+        // KEEP SELECTED BANK IF STILL AVAILABLE
+
+        let selectedBank = null;
+
+        try {
+
+            selectedBank = JSON.parse(
+                localStorage.getItem("wdrSelectedBankAccount_v1") || "null"
+            );
+
+        } catch (_) {}
+
+
+        // SAVE ALL ACCOUNTS
+
+        setSavedBanks(accounts);
+
+
+        // REBUILD BANK CARDS
+
+        bankList.innerHTML = "";
+
+        accounts.forEach(item => {
+
+            const row = createBankRow({
+                bank: item.bank,
+                account: item.account,
+                location: item.location,
+                added: true
+            });
+
+            appendBankRow(row);
+
+        });
+
+
+        // RESTORE SELECTED BANK
+
+        let selectedRow = null;
+
+        if (selectedBank) {
+
+            selectedRow = [...bankList.querySelectorAll(".wdr-bank-row")]
+                .find(row =>
+                    row.dataset.bank === selectedBank.bank &&
+                    row.dataset.account === selectedBank.account
+                );
+
+        }
+
+        if (!selectedRow) {
+
+            selectedRow = bankList.querySelector(".wdr-bank-row");
+
+        }
+
+        if (selectedRow) {
+
+            selectBankRow(selectedRow);
+
+        } else {
+
+            try {
+                localStorage.removeItem("wdrSelectedBankAccount_v1");
+            } catch (_) {}
+
+            if (bankAccountDisplay) {
+                bankAccountDisplay.textContent = "";
+            }
+
+            if (bankLogo) {
+                bankLogo.hidden = true;
+            }
+
+        }
+
+
+        // UPDATE BANK STATE
+
+        syncBankState();
+
+
+        // CLOSE POPUP
+
+        closeBankManager();
+
+        showToast("Bank accounts updated successfully.");
+
+    });
+
+}
+
 
     function createBankRow({ bank, account, location = "", added = true }) {
         const row = document.createElement("button");

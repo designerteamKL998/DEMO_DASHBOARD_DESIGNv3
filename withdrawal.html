@@ -1030,6 +1030,51 @@
             </form>
         </div>
     </div>
+
+    <!-- EDIT ALL BANK ACCOUNTS MODAL -->
+    <div class="wdr-modal" id="wdrBankManagerModal">
+        <div class="wdr-modal-box wdr-bank-manager">
+            <button class="wdr-modal-close" type="button"
+                    id="wdrCloseBankManager">
+                ×
+            </button>
+            <h3>Edit Bank Accounts</h3>
+            <p>Update, edit or delete your bank accounts (up to 3 accounts).</p>
+            <form id="wdrBankManagerForm">
+                <div class="wdr-manager-table-wrap">
+                    <table class="wdr-manager-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Bank</th>
+                                <th>Account Number</th>
+                                <th>Location</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="wdrBankManagerRows"></tbody>
+                    </table>
+                </div>
+                <div class="wdr-manager-footer">
+                    <div class="wdr-manager-add">
+                        <button type="button" id="wdrAddBankRow">
+                            + Add Bank Account
+                        </button>
+                        <span>Maximum 3 bank accounts.</span>
+                    </div>
+                    <div class="wdr-manager-actions">
+                        <button type="button" id="wdrCancelBankManager">
+                            Cancel
+                        </button>
+                        <button type="submit" id="wdrSaveBankManager">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- SET CRYPTO WALLET MODAL -->
     <div class="wdr-modal" id="wdrCryptoWalletModal" aria-hidden="true">
         <div class="wdr-modal-box" role="dialog" aria-modal="true" aria-labelledby="wdrCryptoWalletModalTitle">
