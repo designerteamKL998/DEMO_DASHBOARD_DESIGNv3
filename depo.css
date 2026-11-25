@@ -36,6 +36,13 @@ select {
     font: inherit;
 }
 
+.method .icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    display: block;
+}
+
 button,
 select {
     cursor: pointer;
@@ -260,10 +267,6 @@ h2 {
         outline-offset: 2px;
     }
 
-.helper {
-    margin-top: 9px;
-}
-
 .presets {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -335,8 +338,7 @@ h2 {
 
 .optional {
     border-top: 0;
-    padding-top: 20px;
-    margin-top: 24px;
+    padding-top: 10px;
 }
 
     .optional summary {
@@ -357,7 +359,7 @@ h2 {
     }
 
     .optional .helper {
-        margin-bottom: 14px;
+        margin-bottom: 0px;
     }
 
     .optional select,
@@ -484,6 +486,7 @@ dialog {
     padding: 30px;
     max-width: 450px;
     width: calc(100% - 32px);
+    margin: auto;
 }
 
     dialog::backdrop {
@@ -572,152 +575,11 @@ body.compact main {
     margin-top: 28px;
 }
 
-@media (max-width: 1100px) {
-    .workspace {
-        grid-template-columns: 190px 1fr;
-    }
 
-    .review {
-        grid-column: 2;
-        position: static;
-    }
 
-    .rail {
-        grid-row: 1/3;
-    }
 
-    .review dl {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0 28px;
-    }
 
-    .review .total strong {
-        margin-bottom: 15px;
-    }
 
-    body.compact .workspace {
-        grid-template-columns: 190px 1fr;
-    }
-}
-
-@media (max-width: 700px) {
-    header {
-        padding: 17px 22px;
-    }
-
-    main {
-        margin: 30px auto;
-        padding: 0 20px;
-    }
-
-    h1 {
-        font-size: 32px;
-    }
-
-    .heading {
-        margin-bottom: 25px;
-        align-items: start;
-        gap: 10px;
-    }
-
-        .heading > p {
-            font-size: 13px;
-        }
-
-        .heading .quiet {
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-    .workspace,
-    body.compact .workspace {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .rail {
-        width: 100%;
-    }
-
-        .rail .eyebrow {
-            margin-bottom: 10px;
-        }
-
-    .methods {
-        display: flex;
-        gap: 8px;
-        overflow-x: auto;
-        padding-bottom: 5px;
-    }
-
-    .method {
-        min-width: 145px;
-        max-width: 145px;
-        display: block;
-        padding: 13px;
-        margin: 0;
-        border-color: var(--line);
-    }
-
-        .method .icon {
-            display: block;
-            text-align: left;
-            margin-bottom: 8px;
-        }
-
-        .method strong {
-            font-size: 12px;
-        }
-
-        .method small {
-            font-size: 10px;
-        }
-
-    .indicator,
-    .rail-note {
-        display: none;
-    }
-
-    .form,
-    .review {
-        width: 100%;
-        padding: 22px;
-    }
-
-        .review dl {
-            display: block;
-        }
-
-    .foot {
-        gap: 20px;
-    }
-
-    .tag {
-        font-size: 9px;
-    }
-
-    .presets {
-        gap: 6px;
-    }
-
-    .preset {
-        padding: 10px 5px;
-    }
-
-    .tweaks {
-        position: static;
-        text-align: right;
-        margin: 0 20px 15px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-    }
-}
 
 /* Expanded layout: payment methods and every choice stay visible. */
 .workspace {
@@ -832,6 +694,7 @@ body.compact main {
 
 .optional h3 {
     margin-bottom: 12px;
+    font-size: 13px;
 }
 
 .heading {
@@ -859,120 +722,9 @@ body.compact main {
     margin-right: auto;
 }
 
-@media (max-width: 1000px) {
-    .workspace {
-        grid-template-columns: minmax(0, 1fr) 280px;
-        gap: 20px;
-    }
 
-    .method {
-        padding: 12px;
-    }
 
-        .method strong {
-            font-size: 12px;
-        }
 
-        .method small {
-            font-size: 10px;
-        }
-
-    .provider-options {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .bonus-options {
-        grid-template-columns: 1fr;
-    }
-
-    .review {
-        padding: 20px;
-    }
-
-    .rail {
-        grid-row: auto;
-    }
-
-    .review {
-        grid-column: auto;
-    }
-}
-
-@media (max-width: 700px) {
-    .workspace {
-        display: flex;
-        gap: 20px;
-    }
-
-    .methods {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        overflow: visible;
-        gap: 8px;
-        padding: 0;
-    }
-
-    .method {
-        min-width: 0;
-        max-width: none;
-        width: 100%;
-        height: 98px;
-        padding: 13px;
-        display: flex;
-    }
-
-        .method:last-child {
-            grid-column: 1/-1;
-            height: 80px;
-            flex-wrap: nowrap;
-            gap: 12px;
-        }
-
-            .method:last-child > span:nth-child(2) {
-                flex-basis: auto;
-            }
-
-        .method .icon {
-            margin: 0;
-            display: block;
-        }
-
-        .method strong {
-            font-size: 13px;
-        }
-
-        .method small {
-            font-size: 11px;
-        }
-
-        .method .indicator {
-            display: block;
-        }
-
-    .workspace > aside {
-        width: 100%;
-    }
-
-    .review {
-        position: static;
-    }
-
-    .provider-options {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .bonus-options {
-        grid-template-columns: 1fr;
-    }
-
-    .heading {
-        align-items: start;
-    }
-
-    .form {
-        padding: 20px;
-    }
-}
 
 .gateway-section {
     margin-top: 24px;
@@ -1036,39 +788,9 @@ main {
     line-height: 1.4;
 }
 
-@media (max-width: 1000px) {
-    .workspace {
-        grid-template-columns: minmax(0, 1fr) 270px;
-    }
 
-    .bank-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 
-    .presets {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
 
-@media (max-width: 700px) {
-    .bank-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .channel-options {
-        gap: 6px;
-    }
-
-        .channel-options .choice {
-            padding: 10px 8px;
-            font-size: 11px;
-        }
-
-        .channel-options .radio-dot {
-            width: 12px;
-            height: 12px;
-        }
-}
 
 /* Two horizontal rows: method navigation, then two compact content panels. */
 main {
@@ -1083,7 +805,7 @@ main {
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 23px;
     margin-bottom: 4px;
 }
 
@@ -1200,11 +922,6 @@ h2 {
     padding: 9px 3px;
 }
 
-.optional {
-    padding-top: 15px;
-    margin-top: 15px;
-}
-
 .bonus-options {
     grid-template-columns: 1fr;
     gap: 6px;
@@ -1228,10 +945,6 @@ h2 {
         white-space: nowrap;
         margin: 0 0 0 auto;
     }
-
-.optional .helper {
-    margin-bottom: 0;
-}
 
 .helper:empty,
 .error:empty {
@@ -1269,124 +982,9 @@ h2 {
     margin: 17px 0;
 }
 
-@media (max-width: 1000px) {
-    .workspace {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-    }
 
-    .method {
-        padding: 10px;
-        gap: 7px;
-    }
 
-        .method .icon {
-            display: none;
-        }
 
-        .method strong {
-            font-size: 11px;
-        }
-
-        .method small {
-            font-size: 9px;
-        }
-
-    .form {
-        padding: 16px;
-    }
-
-    .bank-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .provider-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .bonus-choice > span:first-child {
-        display: block;
-    }
-
-    .bonus-choice small {
-        margin-top: 3px;
-    }
-
-    .presets {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 700px) {
-    main {
-        margin-top: 22px;
-        padding: 0 16px;
-    }
-
-    .workspace {
-        display: flex;
-        gap: 14px;
-    }
-
-    .methods {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .method,
-    .method:last-child {
-        height: 62px;
-        padding: 11px;
-    }
-
-        .method .icon {
-            display: block;
-        }
-
-        .method .indicator {
-            position: static;
-        }
-
-        .method strong {
-            font-size: 12px;
-        }
-
-        .method small {
-            font-size: 10px;
-        }
-
-    .form {
-        width: 100%;
-        padding: 18px;
-    }
-
-    .provider-options {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-        .provider-options .choice {
-            font-size: 10px;
-        }
-
-    .bonus-choice > span:first-child {
-        display: flex;
-    }
-
-    .bonus-choice small {
-        margin: 0;
-    }
-
-    .heading p {
-        font-size: 12px;
-    }
-
-    .foot {
-        margin-top: 20px;
-    }
-
-    .bank-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
 
 .receipt-section {
     margin-top: 20px;
@@ -1610,14 +1208,7 @@ h2 {
     padding-top: 14px;
 }
 
-@media (max-width: 700px) {
-    .account-list > div {
-        grid-template-columns: 96px 1fr;
-    }
 
-    .account-source {
-    }
-}
 
 .wallet-limit-note {
     padding: 11px 13px;
@@ -1702,16 +1293,7 @@ h2 {
     height: 29px;
 }
 
-@media (max-width: 1000px) {
-    .provider-options .bank-identity {
-        flex-wrap: wrap;
-    }
 
-    .bank-logo {
-        width: 28px;
-        height: 28px;
-    }
-}
 
 .bank-logo[src$="rhb-wordmark.png"] {
     width: 42px;
@@ -1753,16 +1335,7 @@ h2 {
     padding: 10px 12px;
 }
 
-@media (max-width: 700px) {
-    .channel-options:has(.channel-logo) {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 
-    .channel-logo {
-        max-width: 100px;
-        height: 30px;
-    }
-}
 
 .submit-errors {
     padding: 11px 13px;
@@ -1914,124 +1487,11 @@ h2 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-@media (min-width: 701px) and (max-width: 1100px) {
-    .bank-options {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
 
-@media (max-width: 700px) {
-    .methods {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 6px;
-        overflow: visible;
-    }
 
-        .methods .method,
-        .methods .method:last-child {
-            grid-column: auto;
-            aspect-ratio: 1;
-            width: 100%;
-            height: auto;
-            min-height: 0;
-            min-width: 0;
-            max-width: none;
-            padding: 7px 3px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            text-align: center;
-            position: relative;
-            border-radius: 8px;
-        }
 
-            .methods .method .icon {
-                display: block;
-                width: auto;
-                line-height: 1;
-                margin: 0;
-            }
 
-            .methods .method > span:nth-child(2),
-            .methods .method:last-child > span:nth-child(2) {
-                flex-basis: auto;
-            }
 
-            .methods .method strong {
-                line-height: 1.15;
-                font-weight: 600;
-            }
-
-            .methods .method small {
-                display: none;
-            }
-
-            .methods .method .indicator {
-                position: absolute;
-                top: 3px;
-                right: 5px;
-                margin: 0;
-            }
-
-    .method-name-full {
-        display: none;
-    }
-
-    .method-name-short {
-        display: inline;
-    }
-
-    .bank-options {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 6px;
-    }
-
-        .bank-options .choice,
-        .receiving-bank-options .choice {
-            min-height: 95px;
-            padding: 11px 4px 7px;
-        }
-
-    .bank-logo-frame,
-    .bank-logo-frame .bank-logo,
-    .provider-options .bank-logo-frame .bank-logo,
-    .bank-logo-frame .bank-logo[src$="rhb-wordmark.png"],
-    .bank-logo-frame .bank-logo[src$="cimb-current.svg"] {
-        width: 34px;
-        height: 34px;
-    }
-
-    .bank-logo-frame {
-        flex-basis: 34px;
-    }
-
-    .bank-options .bank-identity,
-    .receiving-bank-options .bank-identity {
-        gap: 7px;
-    }
-
-        .bank-options .bank-identity > span:last-child,
-        .receiving-bank-options .bank-identity > span:last-child {
-            min-height: 25px;
-        }
-}
-
-@media (max-width: 359px) {
-    .methods {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-        .methods .method strong {
-        }
-
-    .bank-options {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
 
 .compact-summary {
     display: flex;
@@ -2081,17 +1541,7 @@ h2 {
     margin-top: 13px;
 }
 
-@media (max-width: 359px) {
-    .compact-summary {
-        gap: 10px;
-    }
 
-    .summary-value > strong {
-    }
-
-    .summary-details > span {
-    }
-}
 
 /* Consistent compact square choices across bank, wallet and network options. */
 .bank-options,
@@ -2265,108 +1715,15 @@ h2 {
     padding: 24px;
 }
 
-@media (min-width: 701px) and (max-width: 1100px) {
-    .bank-options,
-    .receiving-bank-options,
-    .wallet-provider-options,
-    .channel-options.wallet-tiles,
-    .choices.network-tiles {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
 
-@media (max-width: 700px) {
-    .bank-options,
-    .receiving-bank-options,
-    .wallet-provider-options,
-    .channel-options.wallet-tiles,
-    .choices.network-tiles {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 6px;
-    }
 
-        .bank-options .choice,
-        .receiving-bank-options .choice,
-        .wallet-provider-options .choice,
-        .wallet-tiles .choice,
-        .network-tiles .choice {
-            min-height: 0;
-            padding: 7px 3px;
-            gap: 3px;
-        }
 
-        .bank-options .bank-identity > span:last-child,
-        .receiving-bank-options .bank-identity > span:last-child {
-            min-height: 20px;
-        }
 
-        .bank-options .bank-identity,
-        .receiving-bank-options .bank-identity {
-            gap: 3px;
-        }
 
-        .wallet-provider-options .choice {
-        }
 
-    .network-tiles strong {
-    }
 
-    .network-tiles small {
-    }
 
-    .wallet-tiles .channel-logo {
-        height: 34px;
-    }
 
-    .qr-image-button {
-        width: 80px;
-        height: 80px;
-        flex-basis: 80px;
-    }
-}
-
-@media (max-width: 359px) {
-    .bank-options,
-    .receiving-bank-options,
-    .wallet-provider-options,
-    .channel-options.wallet-tiles,
-    .choices.network-tiles {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (min-width: 701px) and (max-width: 900px) {
-    .bank-options,
-    .receiving-bank-options,
-    .wallet-provider-options,
-    .channel-options.wallet-tiles,
-    .choices.network-tiles {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 700px) {
-    .bank-options .choice,
-    .receiving-bank-options .choice,
-    .wallet-provider-options .choice,
-    .wallet-tiles .choice,
-    .network-tiles .choice {
-        padding: 3px;
-    }
-
-    .bank-logo-frame,
-    .bank-logo-frame .bank-logo,
-    .provider-options .bank-logo-frame .bank-logo,
-    .bank-logo-frame .bank-logo[src$="rhb-wordmark.png"],
-    .bank-logo-frame .bank-logo[src$="cimb-current.svg"] {
-        width: 28px;
-        height: 28px;
-    }
-
-    .bank-logo-frame {
-        flex-basis: 28px;
-    }
-}
 /* Promo activation feedback. */
 .promo-active input {
     border-color: var(--gold);
@@ -2676,6 +2033,910 @@ body.light .bonus-info-dialog {
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* Clickable deposit help icon and popup */
+.deposit-title-row {
+    position: relative;
+    border: 0px solid red;
+}
+
+span.deposit-gift-icon {
+    font-size: 20px;
+}
+
+    span.deposit-gift-icon a {
+        color: #fff;
+    }
+
+.deposit-gift-icon img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
+}
+
+.deposit-help-icon {
+    padding: 0;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    border: 0px solid yellow;
+    top: 0px;
+    right: -25px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.deposit-help-icon {
+    background: #343538;
+    border: 1px solid #717171;
+    color: #fff;
+}
+
+.deposit-help-dialog {
+    width: min(650px, calc(100% - 32px));
+    max-width: 650px;
+    padding: 24px;
+    margin: auto;
+    color: var(--text, #fff);
+    background: #202228;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+}
+
+    .deposit-help-dialog::backdrop {
+        background: rgba(0,0,0,0.72);
+        backdrop-filter: blur(3px);
+    }
+
+.deposit-help-dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+    .deposit-help-dialog-head h2 {
+        margin: 0;
+        font-size: 21px;
+    }
+
+.deposit-help-close {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    padding: 0;
+    border: 1px solid var(--line, rgba(255,255,255,0.08));
+    border-radius: 8px;
+    background: #111;
+    color: var(--text, #fff);
+    font-size: 24px;
+    line-height: 1;
+}
+
+.deposit-help-dialog-content {
+    margin-bottom: 22px;
+    line-height: 1.7;
+}
+
+    .deposit-help-dialog-content p + p {
+        margin-top: 8px;
+    }
+
+    .deposit-help-dialog-content img {
+        width: 100%;
+    }
+
+.deposit-help-dialog > .primary {
+    width: 100%;
+}
+
+/* Universal Tooltip */
+.custom-tooltip {
+    position: relative;
+}
+
+    /* Tooltip box */
+    .custom-tooltip::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 6px 10px;
+        background: #ffffff;
+        color: #111;
+        font-family: var(--font-main);
+        font-size: 11px;
+        font-weight: 500;
+        white-space: nowrap;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: 0.2s ease;
+        z-index: 9999;
+    }
+
+    /* Show tooltip on hover */
+    .custom-tooltip:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+/* Main tutorial image */
+.deposit-help-dialog-content {
+    margin-bottom: 22px;
+}
+
+.deposit-help-slides {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.deposit-help-slide {
+    display: none;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+    .deposit-help-slide.active {
+        display: block;
+    }
+
+/* Thumbnail row */
+.deposit-help-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.deposit-help-thumb {
+    width: 64px;
+    height: 42px;
+    flex: 0 0 64px;
+    padding: 2px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 5px;
+    background: #202228;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, border-color 0.2s;
+}
+
+    .deposit-help-thumb img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 3px;
+    }
+
+    .deposit-help-thumb:hover {
+        opacity: 1;
+    }
+
+    .deposit-help-thumb.active {
+        opacity: 1;
+        border: 2px solid #EAD87D;
+    }
+
+
+/* Deposit page heading action icons */
+.deposit-heading-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex: 0 0 auto;
+}
+
+    .deposit-heading-actions .deposit-withdraw-icon,
+    .deposit-heading-actions .deposit-gift-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .deposit-heading-actions .deposit-withdraw-icon a,
+        .deposit-heading-actions .deposit-gift-icon a {
+            display: inline-flex;
+            width: 20px;
+            height: 24px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .deposit-heading-actions .deposit-withdraw-icon img,
+        .deposit-heading-actions .deposit-gift-icon img {
+            display: block;
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+.withdraw-icon img,
+.deposit-icon img {
+}
+
+.linecenter {
+    width: 1px;
+    height: 16px;
+    color: #fff;
+    background: #fff;
+}
+
+@media (max-width: 1100px) {
+    .workspace {
+        grid-template-columns: 190px 1fr;
+    }
+
+    .review {
+        grid-column: 2;
+        position: static;
+    }
+
+    .rail {
+        grid-row: 1/3;
+    }
+
+    .review dl {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 28px;
+    }
+
+    .review .total strong {
+        margin-bottom: 15px;
+    }
+
+    body.compact .workspace {
+        grid-template-columns: 190px 1fr;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+    .bank-options {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+    .bank-options,
+    .receiving-bank-options,
+    .wallet-provider-options,
+    .channel-options.wallet-tiles,
+    .choices.network-tiles {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1000px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr) 280px;
+        gap: 20px;
+    }
+
+    .method {
+        padding: 12px;
+    }
+
+        .method strong {
+            font-size: 12px;
+        }
+
+        .method small {
+            font-size: 10px;
+        }
+
+    .provider-options {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bonus-options {
+        grid-template-columns: 1fr;
+    }
+
+    .review {
+        padding: 20px;
+    }
+
+    .rail {
+        grid-row: auto;
+    }
+
+    .review {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 1000px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr) 270px;
+    }
+
+    .bank-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .presets {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1000px) {
+    .workspace {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .method {
+        padding: 10px;
+        gap: 7px;
+    }
+
+        .method .icon {
+            display: none;
+        }
+
+        .method strong {
+            font-size: 11px;
+        }
+
+        .method small {
+            font-size: 9px;
+        }
+
+    .form {
+        padding: 16px;
+    }
+
+    .bank-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .provider-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bonus-choice > span:first-child {
+        display: block;
+    }
+
+    .bonus-choice small {
+        margin-top: 3px;
+    }
+
+    .presets {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1000px) {
+    .provider-options .bank-identity {
+        flex-wrap: wrap;
+    }
+
+    .bank-logo {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .bank-options,
+    .receiving-bank-options,
+    .wallet-provider-options,
+    .channel-options.wallet-tiles,
+    .choices.network-tiles {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    header {
+        padding: 17px 22px;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 0 20px;
+    }
+
+    .bank-options .bank-identity > span:last-child, .receiving-bank-options .bank-identity > span:last-child {
+        font-size: 10px;
+    }
+
+    .heading {
+        margin-bottom: 25px;
+        align-items: start;
+        gap: 4px;
+    }
+
+    .deposit-heading-copy {
+        margin-left: -19px;
+    }
+
+    .heading > p {
+        font-size: 13px;
+    }
+
+    .heading .quiet {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .workspace,
+    body.compact .workspace {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .rail {
+        width: 100%;
+    }
+
+        .rail .eyebrow {
+            margin-bottom: 10px;
+        }
+
+    .methods {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .method {
+        min-width: 145px;
+        max-width: 145px;
+        display: block;
+        padding: 13px;
+        margin: 0;
+        border-color: var(--line);
+    }
+
+        .method .icon {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        .method strong {
+            font-size: 12px;
+        }
+
+        .method small {
+            font-size: 10px;
+        }
+
+    .indicator,
+    .rail-note {
+        display: none;
+    }
+
+    .form,
+    .review {
+        width: 100%;
+        padding: 22px;
+    }
+
+        .review dl {
+            display: block;
+        }
+
+    .foot {
+        gap: 20px;
+    }
+
+    .tag {
+        font-size: 9px;
+    }
+
+    .presets {
+        gap: 6px;
+    }
+
+    .preset {
+        padding: 10px 5px;
+    }
+
+    .tweaks {
+        position: static;
+        text-align: right;
+        margin: 0 20px 15px;
+    }
+}
+
+@media (max-width: 700px) {
+    .workspace {
+        display: flex;
+        gap: 20px;
+    }
+
+    .methods {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow: visible;
+        gap: 8px;
+        padding: 0;
+    }
+
+    .method {
+        min-width: 0;
+        max-width: none;
+        width: 100%;
+        height: 98px;
+        padding: 13px;
+        display: flex;
+    }
+
+        .method:last-child {
+            grid-column: 1/-1;
+            height: 80px;
+            flex-wrap: nowrap;
+            gap: 12px;
+        }
+
+            .method:last-child > span:nth-child(2) {
+                flex-basis: auto;
+            }
+
+        .method .icon {
+            margin: 0;
+            display: block;
+        }
+
+        .method strong {
+            font-size: 13px;
+        }
+
+        .method small {
+            font-size: 11px;
+        }
+
+        .method .indicator {
+            display: block;
+        }
+
+    .workspace > aside {
+        width: 100%;
+    }
+
+    .review {
+        position: static;
+    }
+
+    .provider-options {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bonus-options {
+        grid-template-columns: 1fr;
+    }
+
+    .heading {
+        align-items: start;
+    }
+
+    .form {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .bank-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .channel-options {
+        gap: 6px;
+    }
+
+        .channel-options .choice {
+            padding: 10px 8px;
+            font-size: 11px;
+        }
+
+        .channel-options .radio-dot {
+            width: 12px;
+            height: 12px;
+        }
+}
+
+@media (max-width: 700px) {
+    main {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .workspace {
+        display: flex;
+        gap: 5px;
+        max-width: 100%;
+    }
+
+    .heading {
+        max-width: 100%;
+        justify-content: space-around;
+    }
+
+    .methods {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .method,
+    .method:last-child {
+        height: 62px;
+        padding: 11px;
+    }
+
+        .method .icon {
+            display: block;
+        }
+
+        .method .indicator {
+            position: static;
+        }
+
+        .method strong {
+            font-size: 12px;
+        }
+
+        .method small {
+            font-size: 10px;
+        }
+
+    .form {
+        width: 100%;
+        padding: 18px;
+    }
+
+    .provider-options {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+        .provider-options .choice {
+            font-size: 10px;
+        }
+
+    .bonus-choice > span:first-child {
+        display: flex;
+    }
+
+    .bonus-choice small {
+        margin: 0;
+    }
+
+    .heading p {
+        font-size: 12px;
+    }
+
+    .foot {
+        margin-top: 20px;
+    }
+
+    .bank-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .account-list > div {
+        grid-template-columns: 96px 1fr;
+    }
+
+    .account-source {
+    }
+}
+
+@media (max-width: 700px) {
+    .channel-options:has(.channel-logo) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .channel-logo {
+        max-width: 100px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 700px) {
+    .methods {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+        overflow: visible;
+    }
+
+        .methods .method,
+        .methods .method:last-child {
+            grid-column: auto;
+            aspect-ratio: 1;
+            width: 100%;
+            height: auto;
+            min-height: 0;
+            min-width: 0;
+            max-width: none;
+            padding: 7px 3px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            text-align: center;
+            position: relative;
+            border-radius: 8px;
+        }
+
+            .methods .method .icon {
+                display: block;
+                width: auto;
+                line-height: 1;
+                margin: 0;
+            }
+
+            .methods .method > span:nth-child(2),
+            .methods .method:last-child > span:nth-child(2) {
+                flex-basis: auto;
+            }
+
+            .methods .method strong {
+                line-height: 1.15;
+                font-weight: 600;
+            }
+
+            .methods .method small {
+                display: none;
+            }
+
+            .methods .method .indicator {
+                position: absolute;
+                top: 3px;
+                right: 5px;
+                margin: 0;
+            }
+
+    .method-name-full {
+        display: none;
+    }
+
+    .method-name-short {
+        display: inline;
+    }
+
+    .bank-options {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+        .bank-options .choice,
+        .receiving-bank-options .choice {
+            min-height: 95px;
+            padding: 11px 4px 7px;
+        }
+
+    .bank-logo-frame,
+    .bank-logo-frame .bank-logo,
+    .provider-options .bank-logo-frame .bank-logo,
+    .bank-logo-frame .bank-logo[src$="rhb-wordmark.png"],
+    .bank-logo-frame .bank-logo[src$="cimb-current.svg"] {
+        width: 34px;
+        height: 34px;
+    }
+
+    .bank-logo-frame {
+        flex-basis: 34px;
+    }
+
+    .bank-options .bank-identity,
+    .receiving-bank-options .bank-identity {
+        gap: 7px;
+    }
+
+        .bank-options .bank-identity > span:last-child,
+        .receiving-bank-options .bank-identity > span:last-child {
+            min-height: 25px;
+        }
+}
+
+@media (max-width: 700px) {
+    .bank-options,
+    .receiving-bank-options,
+    .wallet-provider-options,
+    .channel-options.wallet-tiles,
+    .choices.network-tiles {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+        .bank-options .choice,
+        .receiving-bank-options .choice,
+        .wallet-provider-options .choice,
+        .wallet-tiles .choice,
+        .network-tiles .choice {
+            min-height: 0;
+            padding: 7px 3px;
+            gap: 3px;
+        }
+
+        .bank-options .bank-identity > span:last-child,
+        .receiving-bank-options .bank-identity > span:last-child {
+            min-height: 20px;
+        }
+
+        .bank-options .bank-identity,
+        .receiving-bank-options .bank-identity {
+            gap: 3px;
+        }
+
+        .wallet-provider-options .choice {
+        }
+
+    .network-tiles strong {
+    }
+
+    .network-tiles small {
+    }
+
+    .wallet-tiles .channel-logo {
+        height: 34px;
+    }
+
+    .qr-image-button {
+        width: 80px;
+        height: 80px;
+        flex-basis: 80px;
+    }
+}
+
+@media (max-width: 700px) {
+    .bank-options .choice,
+    .receiving-bank-options .choice,
+    .wallet-provider-options .choice,
+    .wallet-tiles .choice,
+    .network-tiles .choice {
+        padding: 3px;
+    }
+
+    .bank-logo-frame,
+    .bank-logo-frame .bank-logo,
+    .provider-options .bank-logo-frame .bank-logo,
+    .bank-logo-frame .bank-logo[src$="rhb-wordmark.png"],
+    .bank-logo-frame .bank-logo[src$="cimb-current.svg"] {
+        width: 28px;
+        height: 28px;
+    }
+
+    .bank-logo-frame {
+        flex-basis: 28px;
+    }
+}
+
 @media (max-width: 700px) {
     .bonus-info-dialog {
         width: 320px;
@@ -2708,3 +2969,766 @@ body.light .bonus-info-dialog {
         font-size: 10px;
     }
 }
+
+@media (max-width: 359px) {
+    .methods {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+        .methods .method strong {
+        }
+
+    .bank-options {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 359px) {
+    .compact-summary {
+        gap: 10px;
+    }
+
+    .summary-value > strong {
+    }
+
+    .summary-details > span {
+    }
+}
+
+@media (max-width: 359px) {
+    .bank-options,
+    .receiving-bank-options,
+    .wallet-provider-options,
+    .channel-options.wallet-tiles,
+    .choices.network-tiles {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+
+/* =========================================================
+   ADD A BONUS — compact icon-card selector
+   Scoped only to the bonus section.
+========================================================= */
+.bonus-section {
+    padding-top: 18px;
+    margin-top: 20px;
+}
+
+    .bonus-section .bonus-section-title {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 12px;
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 650;
+    }
+
+.bonus-section-title > i {
+    color: var(--gold);
+    font-size: 19px;
+}
+
+.bonus-section .bonus-options {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+}
+
+.bonus-section .bonus-choice,
+.bonus-section .bonus-choice:first-child {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    min-width: 0;
+    min-height: 96px;
+    padding: 13px 5px 10px;
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.11);
+    border-radius: 11px;
+    background: linear-gradient(145deg, #1b1d22 0%, #111317 100%);
+    color: var(--text);
+}
+
+    .bonus-section .bonus-choice:hover:not(:disabled) {
+        border-color: rgba(234,216,125,0.65);
+        background: linear-gradient(145deg, #24231d 0%, #151515 100%);
+    }
+
+    .bonus-section .bonus-choice.selected {
+        border: 1.5px solid var(--gold);
+        color: #fff;
+        background: linear-gradient(145deg, rgba(234,216,125,0.19) 0%, #171714 72%);
+    }
+
+.bonus-section .bonus-icon {
+    display: grid;
+    place-items: center;
+    min-height: 25px;
+    color: var(--gold);
+    font-size: 22px;
+    line-height: 1;
+}
+
+.bonus-section .bonus-value {
+    display: block;
+    max-width: 100%;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -.35px;
+    white-space: nowrap;
+}
+
+.bonus-section .bonus-choice:first-child .bonus-value {
+    font-size: 13px;
+    letter-spacing: -.2px;
+}
+
+.bonus-section .bonus-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.bonus-section .bonus-label {
+    display: block;
+    color: #b9bbc1;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.bonus-section .bonus-choice.selected .bonus-label,
+.bonus-section .bonus-choice.selected .bonus-icon {
+    color: var(--gold);
+}
+
+.bonus-section .bonus-check {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    color: #171717;
+    background: var(--gold);
+    font-size: 10px;
+    opacity: 0;
+    transform: scale(.75);
+    transition: opacity .18s ease, transform .18s ease;
+}
+
+.bonus-section .bonus-choice.selected .bonus-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.bonus-section .bonus-info {
+    width: 13px;
+    height: 13px;
+    flex: 0 0 13px;
+    opacity: .72;
+}
+
+    .bonus-section .bonus-info img {
+        width: 13px;
+        height: 13px;
+    }
+
+.bonus-section .bonus-choice:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.bonus-section #bonus-note {
+    font-size: 11px;
+}
+
+@media (max-width: 700px) {
+    .bonus-section {
+        padding-top: 14px;
+        margin-top: 16px;
+    }
+
+        .bonus-section .bonus-options {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 6px;
+        }
+
+        .bonus-section .bonus-choice,
+        .bonus-section .bonus-choice:first-child {
+            min-height: 82px;
+            padding: 12px 2px 8px;
+            gap: 4px;
+            border-radius: 9px;
+        }
+
+        .bonus-section .bonus-icon {
+            min-height: 21px;
+            font-size: 18px;
+        }
+
+        .bonus-section .bonus-value {
+            font-size: 14px;
+        }
+
+        .bonus-section .bonus-choice:first-child .bonus-value {
+            font-size: 10px;
+        }
+
+        .bonus-section .bonus-label {
+            font-size: 10px;
+        }
+
+        .bonus-section .bonus-check {
+            top: 4px;
+            right: 4px;
+            width: 15px;
+            height: 15px;
+            font-size: 8px;
+        }
+
+        .bonus-section .bonus-info,
+        .bonus-section .bonus-info img {
+            width: 11px;
+            height: 11px;
+            flex-basis: 11px;
+        }
+}
+
+@media (max-width: 380px) {
+    .bonus-section .bonus-options {
+        gap: 4px;
+    }
+
+    .bonus-section .bonus-choice,
+    .bonus-section .bonus-choice:first-child {
+        min-height: 76px;
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+
+    .bonus-section .bonus-value {
+        font-size: 12px;
+    }
+
+    .bonus-section .bonus-choice:first-child .bonus-value {
+        font-size: 9px;
+    }
+
+    .bonus-section .bonus-label {
+        font-size: 9px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bonus-section .bonus-choice,
+    .bonus-section .bonus-check {
+        transition: none;
+    }
+}
+
+/* Add a Bonus: equal-size horizontal carousel (4 desktop / 3 tablet / 2 mobile). */
+.bonus-section .bonus-options {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 24px) / 4);
+    grid-template-columns: none;
+    grid-template-rows: 1fr;
+    gap: 8px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 3px 2px 10px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 2px;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+    .bonus-section .bonus-options::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+/* Clickable pagination dots under the bonus carousel. */
+.bonus-section .bonus-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 18px;
+    margin: 7px 0 0;
+}
+
+    .bonus-section .bonus-pagination[hidden] {
+        display: none !important;
+    }
+
+.bonus-section .bonus-page-dot {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 7px;
+    height: 7px;
+    min-width: 7px;
+    min-height: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,.28);
+    cursor: pointer;
+}
+
+    .bonus-section .bonus-page-dot:hover {
+        background: rgba(234,216,125,.72);
+        transform: scale(1.15);
+    }
+
+    .bonus-section .bonus-page-dot[aria-current="true"] {
+        width: 18px;
+        min-width: 18px;
+        border-radius: 99px;
+        background: var(--gold);
+    }
+
+    .bonus-section .bonus-page-dot:focus-visible {
+        outline: 2px solid var(--highlight);
+        outline-offset: 3px;
+    }
+
+.bonus-section .bonus-choice,
+.bonus-section .bonus-choice:first-child {
+    width: 100%;
+    min-width: 0;
+    height: 96px;
+    min-height: 96px;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+}
+
+@media (max-width: 1024px) {
+    .bonus-section .bonus-options {
+        grid-auto-columns: calc((100% - 16px) / 3);
+    }
+}
+
+@media (max-width: 700px) {
+    .bonus-section .bonus-options {
+        grid-auto-columns: calc((100% - 6px) / 4);
+        gap: 4px;
+    }
+
+    .bonus-section .bonus-choice,
+    .bonus-section .bonus-choice:first-child {
+        height: 88px;
+        min-height: 88px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bonus-section .bonus-options {
+        grid-auto-columns: calc((100% - 6px) / 3);
+        gap: 4px;
+    }
+}
+
+    @media (max-width: 380px) {
+        .bonus-section .bonus-options {
+            grid-auto-columns: calc((100% - 6px) / 2);
+            gap: 6px;
+        }
+
+        .bonus-section .bonus-choice,
+        .bonus-section .bonus-choice:first-child {
+            height: 82px;
+            min-height: 82px;
+        }
+    }
+
+
+    /* Add a Bonus: use the same radio indicator as the VADERPAY provider choice. */
+    .bonus-section .bonus-check {
+        width: 15px;
+        height: 15px;
+        min-width: 15px;
+        min-height: 15px;
+        border: 1px solid #747474;
+        border-radius: 50%;
+        background: transparent;
+        color: transparent;
+        font-size: 0;
+        opacity: 1;
+        transform: none;
+        box-shadow: none;
+    }
+
+        .bonus-section .bonus-check i {
+            display: none;
+        }
+
+    .bonus-section .bonus-choice.selected .bonus-check {
+        border: 4px solid var(--gold);
+        background: var(--ink);
+        opacity: 1;
+        transform: none;
+    }
+
+    @media (max-width: 700px) {
+        .bonus-section .bonus-check {
+            width: 15px;
+            height: 15px;
+            min-width: 15px;
+            min-height: 15px;
+        }
+    }
+
+
+    /* Payment Provider: keep the original static grid (3 columns, all providers visible). */
+    #provider-options.provider-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-flow: row;
+        grid-auto-columns: auto;
+        grid-template-rows: auto;
+        overflow: visible;
+        overflow-x: visible;
+        overflow-y: visible;
+        scroll-snap-type: none;
+        cursor: default;
+        padding: 0;
+        gap: 8px;
+    }
+
+        #provider-options.provider-options .choice {
+            width: 100%;
+            min-width: 0;
+            min-height: 47px;
+            height: auto;
+            scroll-snap-align: none;
+        }
+
+    @media (max-width: 700px) {
+        #provider-options.provider-options {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6px;
+        }
+
+            #provider-options.provider-options .choice {
+                min-height: 44px;
+                height: auto;
+                padding: 8px;
+                font-size: 10px;
+            }
+    }
+
+    .bonus-icon img {
+        width: 35px;
+        height: 35px;
+        object-fit: contain;
+        display: block;
+    }
+
+
+    /* =========================================
+   BONUS INFO POPUP - SPLIT BLACK & GOLD
+========================================= */
+
+    #bonus-info-dialog.bonus-info-dialog {
+        width: 500px;
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 24px);
+        overflow-y: auto;
+        margin: auto;
+        padding: 10px;
+        border: 1px solid #594a00;
+        border-radius: 14px;
+        background: #080808;
+        color: #FFFFFF;
+        box-sizing: border-box;
+    }
+
+    #bonus-info-dialog::backdrop {
+        background: rgba(0, 0, 0, 0.78);
+    }
+
+    /* MAIN LAYOUT */
+    #bonus-info-dialog .bonus-info-layout {
+        display: grid !important;
+        grid-template-columns: 125px minmax(0, 1fr);
+        gap: 13px;
+        position: relative;
+        padding: 17px 10px 62px;
+        border-radius: 12px;
+        background: #080808;
+        box-sizing: border-box;
+    }
+
+    /* CLOSE */
+    #bonus-info-dialog .bonus-info-close {
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        z-index: 5;
+        width: 25px;
+        height: 25px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    /* LEFT */
+    #bonus-info-dialog .bonus-info-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        padding: 8px;
+        border-right: 0px solid #EAD87D;
+        text-align: center;
+    }
+
+    #bonus-info-dialog .bonus-info-main-icon {
+        display: block;
+        width: 58px !important;
+        height: 58px !important;
+        max-width: 100%;
+        object-fit: contain;
+        margin-bottom: 7px;
+    }
+
+    #bonus-info-dialog .bonus-info-left h2 {
+        margin: 0 0 5px;
+        color: #FFFFFF;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    #bonus-info-dialog .bonus-info-percentage {
+        color: #EAD87D;
+        font-weight: 800;
+        line-height: 1.1;
+    }
+
+    #bonus-info-dialog .bonus-info-label {
+        width: 100%;
+        margin-top: 7px;
+        padding: 5px 3px;
+        border: 1px solid #EAD87D;
+        border-radius: 8px;
+        color: #EAD87D;
+        font-weight: 600;
+    }
+
+    /* RIGHT */
+    #bonus-info-dialog .bonus-info-right {
+        min-width: 0;
+    }
+
+        #bonus-info-dialog .bonus-info-right h3,
+        #bonus-info-dialog .bonus-info-section h3,
+        #bonus-info-dialog .bonus-info-terms h3 {
+            margin: 15px 0 5px;
+            color: #FFFFFF;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+    /* STATS */
+    #bonus-info-dialog .bonus-info-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0;
+        margin: 0 0 8px;
+        padding: 7px 3px;
+        border: 1px solid #555555;
+        border-radius: 8px;
+        background: #171717;
+    }
+
+    #bonus-info-dialog .bonus-info-stat {
+        min-width: 0;
+        text-align: center;
+    }
+
+        #bonus-info-dialog .bonus-info-stat + .bonus-info-stat {
+            border-left: 1px solid #777777;
+        }
+
+        #bonus-info-dialog .bonus-info-stat strong {
+            display: block;
+            color: #FFFFFF;
+        }
+
+        #bonus-info-dialog .bonus-info-stat span {
+            display: block;
+            margin-top: 2px;
+            color: #EAD87D;
+            font-weight: 600;
+        }
+
+    /* PRODUCT / ELIGIBLE */
+    #bonus-info-dialog .bonus-info-section {
+        margin-top: 7px;
+    }
+
+    #bonus-info-dialog .bonus-info-icons {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        align-items: center;
+        gap: 5px;
+        padding: 7px 4px;
+        border: 1px solid #444444;
+        border-radius: 8px;
+        background: #171717;
+    }
+
+        #bonus-info-dialog .bonus-info-icons.no-bonus-products {
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        }
+
+        #bonus-info-dialog .bonus-info-icons.no-bonus-eligible {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+
+    #bonus-info-dialog .bonus-info-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        color: #FFFFFF;
+        text-align: center;
+        font-weight: 600;
+        line-height: 1.15;
+    }
+
+        #bonus-info-dialog .bonus-info-item img {
+            display: block;
+            width: 20px !important;
+            height: 20px !important;
+            object-fit: contain;
+            margin-bottom: 3px;
+        }
+
+        #bonus-info-dialog .bonus-info-item span {
+            display: block;
+            max-width: 65px;
+        }
+
+        #bonus-info-dialog .bonus-info-item[hidden] {
+            display: none !important;
+        }
+
+    /* TERMS */
+    #bonus-info-dialog .bonus-info-terms {
+        margin-top: 8px;
+    }
+
+        #bonus-info-dialog .bonus-info-terms p {
+            margin: 0;
+            line-height: 1.4;
+        }
+
+    /* OK */
+    #bonus-info-dialog .bonus-info-ok {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        height: 39px;
+        padding: 0;
+        border: 0;
+        border-radius: 8px;
+        background: #EAD87D;
+        color: #080808;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    /* MOBILE */
+    @media (max-width: 480px) {
+
+        #bonus-info-dialog .bonus-info-layout {
+            grid-template-columns: 90px minmax(0, 1fr);
+            gap: 8px;
+            padding: 28px 7px 58px;
+        }
+
+        #bonus-info-dialog .bonus-info-left {
+            padding: 6px 5px;
+        }
+
+        #bonus-info-dialog .bonus-info-main-icon {
+            width: 43px !important;
+            height: 43px !important;
+        }
+
+        #bonus-info-dialog .bonus-info-left h2 {
+            font-size: 13px;
+        }
+
+        #bonus-info-dialog .bonus-info-percentage {
+            font-size: 27px;
+        }
+
+        #bonus-info-dialog .bonus-info-label {
+            font-size: 9px;
+            padding: 5px 1px;
+        }
+
+        #bonus-info-dialog .bonus-info-right h3,
+        #bonus-info-dialog .bonus-info-section h3,
+        #bonus-info-dialog .bonus-info-terms h3 {
+            font-size: 11px;
+        }
+
+        #bonus-info-dialog .bonus-info-stat strong {
+            font-size: 8px;
+        }
+
+        #bonus-info-dialog .bonus-info-stat span {
+            font-size: 10px;
+        }
+
+        #bonus-info-dialog .bonus-info-item {
+            font-size: 9px;
+        }
+
+            #bonus-info-dialog .bonus-info-item img {
+                width: 17px !important;
+                height: 17px !important;
+            }
+
+        #bonus-info-dialog .bonus-info-ok {
+            height: 35px;
+            font-size: 15px;
+        }
+    }
+

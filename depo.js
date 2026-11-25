@@ -1,7 +1,7 @@
 ﻿const configs = [{
 	name: 'Payment gateway',
 	desc: 'Pay through a provider',
-	icon: '↗',
+	icon: '<img src="imgs/icon/depo-pg01.png" alt="">',
 	min: 10,
 	max: 30000,
 	providers: ['VADERPAY', 'VADERPAY (C2)', 'PAY ESSENCE', 'BigPayz', 'SKLPAY', 'PayJom'],
@@ -12,7 +12,7 @@
 }, {
 	name: 'DuitNow QR',
 	desc: 'Scan with your banking app',
-	icon: '▦',
+	icon: '<img src="imgs/icon/depo-qr01.png" alt="">',
 	min: 30,
 	max: 10000,
 	providers: ['VADERPAY (C1)', 'VADERPAY (C2)', 'EeziePay'],
@@ -23,7 +23,7 @@
 }, {
 	name: 'Bank transfer',
 	desc: 'Manual transfer',
-	icon: '⇄',
+	icon: '<img src="imgs/icon/depo-btr01.png" alt="">',
 	min: 20,
 	max: 30000,
 	providers: ['MAYBANK', 'ALLIANCE BANK', 'PUBLIC BANK'],
@@ -34,7 +34,7 @@
 }, {
 	name: 'E-wallet',
 	desc: 'Pay with your wallet',
-	icon: '▱',
+	icon: '<img src="imgs/icon/depo-ew01.png" alt="">',
 	min: 30,
 	max: 10000,
 	providers: ['VADERPAY (C1)', 'A9Wallet', 'PAY ESSENCE', 'PayJom', 'BigPayz', 'EeziePay'],
@@ -45,7 +45,7 @@
 }, {
 	name: 'Crypto',
 	desc: 'USDT on your chosen network',
-	icon: '₮',
+	icon: '<img src="imgs/icon/depo-crp01.png" alt="">',
 	min: 5,
 	max: 50000,
 	providers: ['VADERPAY (C2)', 'TERRACOIN'],
@@ -253,20 +253,39 @@ function acceptReceipt(file) {
 	update()
 }
 const bonuses = [{
-	name: 'No bonus',
-	min: 0
+    name: 'No bonus',
+    min: 0,
+    icon: 'imgs/depopopup/depo-bonus.png',
+    value: 'No Bonus',
+    label: ''
 }, {
-	name: '2% Unlimited Reload Bonus (Free Spin)',
-	min: 50
+    name: '2% Unlimited Reload Bonus (Free Spin)',
+    min: 50,
+    icon: 'imgs/depopopup/depo-rebate.png',
+    value: '2%',
+    label: 'Rebate',
+    note: '2% Unlimited Reload Bonus (Free Spin) | Minimum MYR 50'
 }, {
-	name: 'Unlimited Casino Bonus 15% (MYR)',
-	min: 100
+    name: 'Unlimited Casino Bonus 15% (MYR)',
+    min: 100,
+    icon: 'imgs/depopopup/depo-casino.png',
+    value: '15%',
+    label: 'Casino',
+    note: 'Unlimited Casino Bonus 15% (MYR) | Minimum MYR 100'
 }, {
-	name: '10% Unlimited Slot Reload Bonus (MYR)',
-	min: 50
+    name: '10% Unlimited Slot Reload Bonus (MYR)',
+    min: 50,
+    icon: 'imgs/depopopup/depo-slot.png',
+    value: '10%',
+    label: 'Slot',
+    note: '10% Unlimited Slot Reload Bonus (MYR) | Minimum MYR 50'
 }, {
-	name: '10% Daily Deposit Bonus–Lottery Only',
-	min: 30
+    name: '10% Daily Deposit Bonus–Lottery Only',
+    min: 30,
+    icon: 'imgs/depopopup/depo-daily.png',
+    value: '10%',
+    label: 'Daily',
+    note: '10% Daily Deposit Bonus–Lottery Only | Minimum MYR 30'
 }];
 const bonusInfo = {
 	0: {
@@ -293,12 +312,68 @@ function bonusInfoMarkup(i) {
 	return `<span class="bonus-info" role="button" tabindex="0" data-bonus-info="${i}" aria-label="View information for ${b.title}"><img src="imgs/assets/info/icn-info.svg" alt=""></span>`
 }
 
-function bonusInfoDialog(i) {
-	const b = bonusInfo[i] || {
-		title: bonuses[i].name
-	};
-	const isNoBonus = i === 0;
-	return `<div class="bonus-info-head"><h2 id="bonus-info-title" class="bonus-info-title">${b.title}</h2><button type="button" class="bonus-info-close" id="bonus-info-close" aria-label="Close bonus information">×</button></div><div class="bonus-info-stats"><div class="bonus-info-stat"><strong>Bonus</strong><span>${isNoBonus?'-':'2%'}</span></div><div class="bonus-info-stat"><strong>Rollover</strong><span>x5</span></div><div class="bonus-info-stat"><strong>Max Bonus</strong><span>${isNoBonus?'-':'88 MYR'}</span></div></div><section class="bonus-info-section"><h3>Eligible Product</h3><div class="bonus-info-icons ${isNoBonus?'no-bonus-products':''}"><div class="bonus-info-item"><img src="imgs/assets/info/icn-sport.svg" alt=""><span>Sport</span></div>${isNoBonus?'': '<div class="bonus-info-item"><img src="imgs/assets/info/icn-casino.svg" alt=""><span>Casino</span></div>'}<div class="bonus-info-item"><img src="imgs/assets/info/icn-games.svg" alt=""><span>Games</span></div>${isNoBonus?'': '<div class="bonus-info-item"><img src="imgs/assets/info/icn-lottery.svg" alt=""><span>Lottery</span></div>'}<div class="bonus-info-item"><img src="imgs/assets/info/icn-p2p.svg" alt=""><span>P2P</span></div></div></section><section class="bonus-info-section"><h3>Eligible For</h3><div class="bonus-info-icons three ${isNoBonus?'no-bonus-eligible':''}"><div class="bonus-info-item"><img src="imgs/assets/info/icn-freespin.svg" alt=""><span>Free<br>Spin</span></div>${isNoBonus?'': '<div class="bonus-info-item"><img src="imgs/assets/info/icn-luckyDraw.svg" alt=""><span>Lucky<br>Draw</span></div>'}<div class="bonus-info-item"><img src="imgs/assets/info/icn-deposit_reward.svg" alt=""><span>Deposit<br>Reward</span></div></div></section><section class="bonus-info-terms"><h3>Terms And Conditions</h3><p>This text from agent BO</p></section>`
+
+function renderBonusInfo(i) {
+
+    const item = bonuses[i];
+    const isNoBonus = i === 0;
+
+    // LEFT SIDE
+    $('bonus-main-icon').src = item.icon;
+
+    $('bonus-main-title').textContent = isNoBonus
+        ? 'No Bonus'
+        : item.label + ' Bonus';
+
+    $('bonus-main-percentage').textContent = isNoBonus
+        ? ''
+        : item.value;
+
+    $('bonus-main-label').textContent = isNoBonus
+        ? 'No Bonus'
+        : 'Deposit Bonus';
+
+    // BONUS DETAILS
+    $('bonus-detail-value').textContent = isNoBonus
+        ? '-'
+        : item.value;
+
+    $('bonus-detail-rollover').textContent = 'x5';
+
+    $('bonus-detail-max').textContent = isNoBonus
+        ? '-'
+        : '88 MYR';
+
+    // ELIGIBLE PRODUCT
+    const products = isNoBonus
+        ? ['sport', 'games', 'p2p']
+        : ['sport', 'casino', 'games', 'lottery', 'p2p'];
+
+    document.querySelectorAll('[data-product]').forEach(el => {
+        el.hidden = !products.includes(el.dataset.product);
+    });
+
+    $('bonus-products').classList.toggle(
+        'no-bonus-products',
+        isNoBonus
+    );
+
+    // ELIGIBLE FOR
+    const eligible = isNoBonus
+        ? ['freespin', 'deposit_reward']
+        : ['freespin', 'luckyDraw', 'deposit_reward'];
+
+    document.querySelectorAll('[data-eligible]').forEach(el => {
+        el.hidden = !eligible.includes(el.dataset.eligible);
+    });
+
+    $('bonus-eligible').classList.toggle(
+        'no-bonus-eligible',
+        isNoBonus
+    );
+
+    // TERMS
+    $('bonus-terms').textContent = 'This text from agent BO';
 }
 
 let method = 0,
@@ -328,7 +403,7 @@ function render() {
 	$('qr-presets').hidden = false;
 	$('qr-presets').innerHTML = [0, 1, 2, 3, 4].includes(method) ? [30, 50, 100, 200, 500, 1000].map(n => `<button class="preset" data-amount="${n}" aria-label="Add MYR ${n}" ${n<c.min||n>c.max?'disabled':''}>MYR ${n}</button>`).join('') : '';
 	$('limits').textContent = `Per transaction: MYR ${c.min.toLocaleString()}–${c.max.toLocaleString()}`;
-	$('specific').innerHTML = `<span class="field-label">${c.label}</span><div class="provider-options" role="group" aria-label="${c.label}">${c.providers.map(p=>`<button class="choice ${p===provider?'selected':''}" data-provider="${p}" aria-pressed="${p===provider}">${p}<span class="radio-dot" aria-hidden="true"></span></button>`).join('')}</div>${gatewayDetails()}${method===4?cryptoDetails():''}`;
+	$('specific').innerHTML = `<span class="field-label">${c.label}</span><div class="provider-options" id="provider-options" role="group" aria-label="${c.label}">${c.providers.map(p=>`<button type="button" class="choice ${p===provider?'selected':''}" data-provider="${p}" aria-pressed="${p===provider}">${p}<span class="radio-dot" aria-hidden="true"></span></button>`).join('')}</div>${gatewayDetails()}${method===4?cryptoDetails():''}`;
 	const manual = method === 2;
 	$('manual-account').hidden = !manual;
 	$('receiving-bank').textContent = provider;
@@ -427,6 +502,56 @@ function updateSummary() {
 	$('summary-amount').textContent = 'MYR ' + ($('amount').value.trim() && Number.isFinite(n) && n > 0 ? fmt(n) : '—');
 }
 
+function bonusCardsPerPage() {
+    if (window.matchMedia('(max-width: 700px)').matches) return 2;
+    if (window.matchMedia('(max-width: 1024px)').matches) return 3;
+    return 4;
+}
+
+function bonusPageTarget(pageIndex, pageCount) {
+    const track = $('bonus');
+    if (!track) return 0;
+    const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+    return Math.min(pageIndex * track.clientWidth, maxScroll);
+}
+
+function syncBonusPagination() {
+    const track = $('bonus');
+    const dots = $('bonus-pagination');
+    if (!track || !dots || dots.hidden) return;
+
+    const buttons = [...dots.querySelectorAll('.bonus-page-dot')];
+    if (!buttons.length) return;
+
+    let activeIndex = 0;
+    let nearestDistance = Infinity;
+    buttons.forEach((button, index) => {
+        const distance = Math.abs(track.scrollLeft - bonusPageTarget(index, buttons.length));
+        if (distance < nearestDistance) {
+            nearestDistance = distance;
+            activeIndex = index;
+        }
+    });
+
+    buttons.forEach((button, index) => {
+        const active = index === activeIndex;
+        button.setAttribute('aria-current', active ? 'true' : 'false');
+    });
+}
+
+function renderBonusPagination() {
+    const track = $('bonus');
+    const dots = $('bonus-pagination');
+    if (!track || !dots) return;
+
+    const pageCount = Math.ceil(bonuses.length / bonusCardsPerPage());
+    dots.hidden = pageCount <= 1;
+    dots.innerHTML = pageCount > 1
+        ? Array.from({ length: pageCount }, (_, index) => `<button type="button" class="bonus-page-dot" data-bonus-page="${index}" aria-label="Go to bonus page ${index + 1}" aria-current="${index === 0 ? 'true' : 'false'}"></button>`).join('')
+        : '';
+    syncBonusPagination();
+}
+
 function update() {
 	$('sender-name').setAttribute('aria-required', method === 2);
 	const c = currentConfig(),
@@ -441,27 +566,47 @@ function update() {
 		i
 	}));
 	$('bonus').innerHTML = visibleBonuses.map(({
-		b,
-		i
-	}) => `<button class="choice bonus-choice ${i===bonus?'selected':''}" data-bonus="${i}" aria-pressed="${i===bonus}" ${n<b.min?'disabled':''}><span class="bonus-name"><span class="bonus-name-text">${b.name}</span>${bonusInfoMarkup(i)}</span>${b.min?'<small>Minimum MYR '+b.min+'</small>':''}<span class="radio-dot" aria-hidden="true"></span></button>`).join('');
+        b,
+        i
+    }) => `<button type="button" class="choice bonus-choice ${i===bonus?'selected':''}" data-bonus="${i}" aria-pressed="${i===bonus}" aria-label="Select ${b.name}${b.min?`, minimum deposit MYR ${b.min}`:''}" title="${b.name}${b.min?` · Minimum MYR ${b.min}`:''}" ${n<b.min?'disabled':''}>
+            <span class="bonus-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+            <span class="bonus-icon" aria-hidden="true">
+    <img src="${b.icon}" alt="">
+</span>
+            <span class="bonus-value">${b.value}</span>
+            <span class="bonus-bottom"><span class="bonus-label">${b.label}</span>${bonusInfoMarkup(i)}</span>
+        </button>`).join('');
+    renderBonusPagination();
 	document.querySelectorAll('[data-network]').forEach(b => {
 		b.classList.toggle('selected', b.dataset.network === network);
 		b.setAttribute('aria-pressed', b.dataset.network === network)
 	});
-	$('bonus-note').textContent = bonus === 2 ? 'Deposit MYR 30 get 1 Free Spin | up to 3 Free spin.' : '';
+	$('bonus-note').textContent = bonuses[bonus].note || '';
 	updateSummary();
 	if (validationAttempted) showValidation();
 }
 document.addEventListener('click', async e => {
-	const bonusInfoButton = e.target.closest('[data-bonus-info]');
-	if (bonusInfoButton) {
-		const i = Number(bonusInfoButton.dataset.bonusInfo),
-			dialog = $('bonus-info-dialog');
-		dialog.innerHTML = bonusInfoDialog(i);
-		dialog.showModal();
-		$('bonus-info-close').onclick = () => dialog.close();
-		return;
-	}
+   const bonusPageButton = e.target.closest('[data-bonus-page]');
+    if (bonusPageButton) {
+        const pageIndex = Number(bonusPageButton.dataset.bonusPage);
+        const pageCount = $('bonus-pagination').querySelectorAll('.bonus-page-dot').length;
+        $('bonus').scrollTo({ left: bonusPageTarget(pageIndex, pageCount), behavior: 'smooth' });
+        return;
+    }
+
+const bonusInfoButton = e.target.closest('[data-bonus-info]');
+
+if (bonusInfoButton) {
+    const i = Number(bonusInfoButton.dataset.bonusInfo);
+    const dialog = $('bonus-info-dialog');
+
+    renderBonusInfo(i);
+
+    dialog.showModal();
+
+    return;
+}
+
 	const qr = e.target.closest('[data-qr-title]');
 	if (qr) {
 		$('qr-dialog-title').textContent = qr.dataset.qrTitle;
@@ -571,15 +716,20 @@ $('continue').onclick = () => {
 	}
 };
 $('bonus-info-close').onclick = () => $('bonus-info-dialog').close();
+
+
 document.addEventListener('keydown', e => {
-	const info = e.target.closest('[data-bonus-info]');
-	if (info && (e.key === 'Enter' || e.key === ' ')) {
-		e.preventDefault();
-		$('bonus-info-dialog').innerHTML = bonusInfoDialog(Number(info.dataset.bonusInfo));
-		$('bonus-info-dialog').showModal();
-		$('bonus-info-close').onclick = () => $('bonus-info-dialog').close();
-	}
+    const info = e.target.closest('[data-bonus-info]');
+
+    if (info && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+
+        renderBonusInfo(Number(info.dataset.bonusInfo));
+
+        $('bonus-info-dialog').showModal();
+    }
 });
+
 $('bonus-info-dialog').addEventListener('click', e => {
 	if (e.target === $('bonus-info-dialog')) $('bonus-info-dialog').close()
 });
@@ -614,4 +764,52 @@ $('drop-zone').addEventListener('drop', e => {
 	}
 	acceptReceipt(e.dataTransfer.files[0])
 });
+$('bonus').addEventListener('scroll', syncBonusPagination, { passive: true });
+window.addEventListener('resize', renderBonusPagination);
 render();
+
+(() => {
+    const helpDialog = document.getElementById('depositHelpDialog');
+    const openHelp = document.getElementById('depositHelpOpen');
+    const closeHelp = document.getElementById('depositHelpClose');
+    const doneHelp = document.getElementById('depositHelpDone');
+
+    if (!helpDialog || !openHelp) return;
+
+    const slides = helpDialog.querySelectorAll('.deposit-help-slide');
+    const thumbs = helpDialog.querySelectorAll('.deposit-help-thumb');
+
+    function showSlide(index) {
+        if (!slides.length) return;
+
+        index = Math.max(0, Math.min(index, slides.length - 1));
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+
+        thumbs.forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === index);
+        });
+    }
+
+    thumbs.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => showSlide(index));
+    });
+
+    openHelp.addEventListener('click', () => {
+        showSlide(0);
+        helpDialog.showModal();
+    });
+
+    closeHelp?.addEventListener('click', () => helpDialog.close());
+    doneHelp?.addEventListener('click', () => helpDialog.close());
+
+    helpDialog.addEventListener('click', event => {
+        if (event.target === helpDialog) {
+            helpDialog.close();
+        }
+    });
+
+    showSlide(0);
+})();

@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Gaming Website</title>
-
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home-content.css" />
     <link rel="stylesheet" href="depo.css" />
     <link rel="stylesheet" href="responsive.css" />
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-
     <!-- JQuery -->
     <script src="depo.js" defer></script>
     <script src="script.js" defer></script>
@@ -28,7 +24,7 @@
             </a>
             <!-- NAVIGATION -->
             <nav class="main-nav">
-                <a href="index.html" class="nav-link active">
+                <a href="index.html" class="nav-link">
                     <span class="nav-icon">
                         <img src="imgs/icon/header/head_00001A_home-ich.png" />
                     </span>
@@ -162,7 +158,7 @@
                                     <img src="imgs/icon/sidebar/lucky-ich.png" alt="" />
                                     <span>Lucky Draw</span>
                                 </a>
-                                <a href="dailycheckin.html" class="profile-feature-item">
+                                <a href="dailycheckin.html" class="profile-feature-item daily-checkin-menu-item">
                                     <img src="imgs/icon/sidebar/checkin.png" alt="" />
                                     <span>Daily Check-In</span>
                                 </a>
@@ -186,7 +182,6 @@
                                     <img src="imgs/icon/angpowrainich.png" alt="" />
                                     <span>Angpow Rain</span>
                                 </a>
-
                             </div>
                         </div>
                         <!-- =========================================
@@ -213,19 +208,19 @@
                         <!-- DROPDOWN FOOTER -->
                         <div class="dropdown-actions">
                             <a href="deposit.html" class="profile-action">
-                                <img src="imgs/icon/sidebar/ewallet-ich.png">
+                                <img src="imgs/icon/sidebar/deposit-icon.svg">
                                 <span>Deposit</span>
                             </a>
                             <a href="withdrawal.html" class="profile-action">
-                                <img src="imgs/icon/sidebar/withdraw-ich.png" />
+                                <img src="imgs/icon/sidebar/withdraw-icon-vector.svg" />
                                 <span>Withdrawal</span>
                             </a>
                             <a href="transaction.html" class="profile-action">
-                                <img src="imgs/icon/sidebar/transactionich.png" />
+                                <img src="imgs/icon/sidebar/transaction-icon.svg" />
                                 <span>Transaction</span>
                             </a>
                             <a href="profile.html" class="profile-action">
-                                <img src="imgs/icon/sidebar/profileich.png" />
+                                <img src="imgs/icon/sidebar/profile-icon.svg" />
                                 <span>Profile</span>
                             </a>
                             <button type="button" class="logout-action">
@@ -242,7 +237,7 @@
                     </div>
                     <div class="balance-header-value">
                         <span class="balance-label">MYR</span>
-                        <span class="balance-amount">0.00</span>
+                        <span class="balance-amount">10,000.00</span>
                     </div>
                     <span class="balance-gp">GP 0</span>
                     <!--<button type="button" class="balance-view">
@@ -252,7 +247,7 @@
                 <!-- DEPOSIT -->
                 <button class="btn-deposit deks-view" type="button" data-tooltip="Deposit">
                     <a href="deposit.html">
-                        <img src="imgs/icon/sidebar/ewallet-ich.png" />
+                        <img src="imgs/icon/sidebar/deposit-icon-vector.svg" />
                         <span class="deposit-plus">+</span>
                     </a>
                 </button>
@@ -260,7 +255,6 @@
                 <button class="notification-btn" type="button" data-tooltip="Notifications">
                     <a href="inbox.html">
                         <img src="imgs/icon/sidebar/notiicon.png" />
-                        <span class="notification-dot"></span>
                     </a>
                 </button>
                 <!-- MOBILE MORE -->
@@ -367,13 +361,41 @@
     <button class="floating-menu-btn mob-view" type="button">
         <img src="imgs/icon/menuiconbottom.png" />
     </button>
-
-
     <main>
-        <div class="heading">
-            <div>
-                <h1 id="page-title">Make a deposit</h1>
-                <p id="page-description">Choose how you’d like to add funds.</p>
+        <div class="heading deposit-page-heading">
+            <div class="deposit-heading-copy">
+                <div class="deposit-title-row">
+                    <h1 id="page-title">Make a deposit</h1>
+                    <button class="deposit-help-icon"
+                            id="depositHelpOpen"
+                            type="button"
+                            aria-label="Deposit help"
+                            aria-haspopup="dialog"
+                            aria-controls="depositHelpDialog"
+                            data-tooltip="Deposit Help">
+                        <span class="custom-tooltip" data-tooltip="Deposit Tutorial">?</span>
+                    </button>
+                </div>
+                <p id="page-description">
+                    Choose how you’d like to add funds.
+                </p>
+            </div>
+            <div class="deposit-heading-actions">
+                <span class="custom-tooltip" data-tooltip="Withdrawal">
+                    <span class="deposit-withdraw-icon">
+                        <a href="withdrawal.html" aria-label="Go to withdrawal">
+                            <img src="imgs/icon/sidebar/withdraw-icon-vector.svg" alt="Withdrawal">
+                        </a>
+                    </span>
+                </span>
+                <span class="linecenter"></span>
+                <span class="custom-tooltip" data-tooltip="Redeem">
+                    <span class="deposit-gift-icon">
+                        <a href="redeemcode.html" aria-label="Go to redeem">
+                            <img src="imgs/assets/icn-redeem.svg" alt="Redeem" class="help-icon">
+                        </a>
+                    </span>
+                </span>
             </div>
         </div>
         <div class="workspace">
@@ -430,7 +452,7 @@
                                 data-qr-title="Public Bank payment QR"
                                 aria-label="Enlarge Public Bank payment QR placeholder">
                             <img src="imgs/assets/qr-placeholder.svg" alt="QR image placeholder" /><span class="qr-enlarge"
-                                                                                                    aria-hidden="true">⤢</span>
+                                                                                                         aria-hidden="true">⤢</span>
                         </button><strong>Public Bank payment QR</strong>
                     </div>
                 </section>
@@ -478,10 +500,14 @@
                 <div class="error" id="amount-error" role="status"></div>
                 <p class="helper" id="amount-hint"></p>
                 <div class="presets" id="qr-presets" hidden aria-label="Add to deposit amount"></div>
-                <section class="optional">
-                    <h3 class="field-label">Add a bonus</h3>
+                <section class="optional bonus-section">
+                    <h3 class="field-label bonus-section-title">
+                        <i class="fa-solid fa-gift" aria-hidden="true"></i>
+                        <span>Add a bonus</span>
+                    </h3>
                     <div id="bonus" class="bonus-options" role="group" aria-label="Bonus package"></div>
                     <p class="helper" id="bonus-note">Deposit without a bonus or additional bonus conditions.</p>
+                    <div id="bonus-pagination" class="bonus-pagination" role="group" aria-label="Bonus pages" hidden></div>
                 </section>
                 <section class="optional">
                     <h3 class="field-label">Have a promo code?</h3>
@@ -506,54 +532,105 @@
             </section>
         </div>
     </main>
-    <dialog id="bonus-info-dialog" class="bonus-info-dialog" aria-labelledby="bonus-info-title">
-        <div class="bonus-info-head">
-            <h2 id="bonus-info-title" class="bonus-info-title">10% Unlimited Slot Reload Bonus (MYR)</h2>
+
+    <dialog id="bonus-info-dialog" class="bonus-info-dialog">
+        <div class="bonus-info-layout">
+            <!-- CLOSE BUTTON -->
             <button type="button"
                     class="bonus-info-close"
-                    id="bonus-info-close"
-                    aria-label="Close bonus information">
+                    id="bonus-info-close">
                 ×
             </button>
-        </div>
-        <div class="bonus-info-stats">
-            <div class="bonus-info-stat"><strong>Bonus</strong><span>2%</span></div>
-            <div class="bonus-info-stat"><strong>Rollover</strong><span>x5</span></div>
-            <div class="bonus-info-stat"><strong>Max Bonus</strong><span>88 MYR</span></div>
-        </div>
-        <section class="bonus-info-section">
-            <h3>Eligible Product</h3>
-            <div class="bonus-info-icons ${isNoBonus?'no-bonus-products':''}">
-                <div class="bonus-info-item"><img src="imgs/assets/info/icn-sport.svg" alt="" /><span>Sport</span></div>
-                <div class="bonus-info-item">
-                    <img src="imgs/assets/info/icn-casino.svg" alt="" /><span>Casino</span>
-                </div>
-                <div class="bonus-info-item"><img src="imgs/assets/info/icn-games.svg" alt="" /><span>Games</span></div>
-                <div class="bonus-info-item">
-                    <img src="imgs/assets/info/icn-lottery.svg" alt="" /><span>Lottery</span>
-                </div>
-                <div class="bonus-info-item"><img src="imgs/assets/info/icn-p2p.svg" alt="" /><span>P2P</span></div>
+            <!-- LEFT SIDE -->
+            <div class="bonus-info-left">
+                <img id="bonus-main-icon"
+                     class="bonus-info-main-icon"
+                     src="imgs/depopopup/depo-bonus.png"
+                     alt="">
+                <h2 id="bonus-main-title">No Bonus</h2>
+                <div id="bonus-main-percentage"
+                     class="bonus-info-percentage"></div>
+                <div id="bonus-main-label"
+                     class="bonus-info-label">No Bonus</div>
             </div>
-        </section>
-        <section class="bonus-info-section">
-            <h3>Eligible For</h3>
-            <div class="bonus-info-icons three ${isNoBonus?'no-bonus-eligible':''}">
-                <div class="bonus-info-item">
-                    <img src="imgs/assets/info/icn-freespin.svg" alt="" /><span>Free<br />Spin</span>
+            <!-- RIGHT SIDE -->
+            <div class="bonus-info-right">
+                <h3>Bonus Details</h3>
+                <div class="bonus-info-stats">
+                    <div class="bonus-info-stat">
+                        <strong>Bonus</strong>
+                        <span id="bonus-detail-value">-</span>
+                    </div>
+                    <div class="bonus-info-stat">
+                        <strong>Rollover</strong>
+                        <span id="bonus-detail-rollover">x5</span>
+                    </div>
+                    <div class="bonus-info-stat">
+                        <strong>Max Bonus</strong>
+                        <span id="bonus-detail-max">-</span>
+                    </div>
                 </div>
-                <div class="bonus-info-item">
-                    <img src="imgs/assets/info/icn-luckyDraw.svg" alt="" /><span>Lucky<br />Draw</span>
-                </div>
-                <div class="bonus-info-item">
-                    <img src="imgs/assets/info/icn-deposit_reward.svg" alt="" /><span>Deposit<br />Reward</span>
-                </div>
+                <!-- ELIGIBLE PRODUCT -->
+                <section class="bonus-info-section">
+                    <h3>Eligible Product</h3>
+                    <div class="bonus-info-icons" id="bonus-products">
+                        <div class="bonus-info-item" data-product="sport">
+                            <img src="imgs/assets/info/icn-sport.svg" alt="">
+                            <span>Sport</span>
+                        </div>
+                        <div class="bonus-info-item" data-product="casino">
+                            <img src="imgs/assets/info/icn-casino.svg" alt="">
+                            <span>Casino</span>
+                        </div>
+                        <div class="bonus-info-item" data-product="games">
+                            <img src="imgs/assets/info/icn-games.svg" alt="">
+                            <span>Games</span>
+                        </div>
+                        <div class="bonus-info-item" data-product="lottery">
+                            <img src="imgs/assets/info/icn-lottery.svg" alt="">
+                            <span>Lottery</span>
+                        </div>
+                        <div class="bonus-info-item" data-product="p2p">
+                            <img src="imgs/assets/info/icn-p2p.svg" alt="">
+                            <span>P2P</span>
+                        </div>
+                    </div>
+                </section>
+                <!-- ELIGIBLE FOR -->
+                <section class="bonus-info-section">
+                    <h3>Eligible For</h3>
+                    <div class="bonus-info-icons eligible" id="bonus-eligible">
+                        <div class="bonus-info-item" data-eligible="freespin">
+                            <img src="imgs/assets/info/icn-freespin.svg" alt="">
+                            <span>Free<br>Spin</span>
+                        </div>
+                        <div class="bonus-info-item" data-eligible="luckyDraw">
+                            <img src="imgs/assets/info/icn-luckyDraw.svg" alt="">
+                            <span>Lucky<br>Draw</span>
+                        </div>
+                        <div class="bonus-info-item" data-eligible="deposit_reward">
+                            <img src="imgs/assets/info/icn-deposit_reward.svg" alt="">
+                            <span>Deposit<br>Reward</span>
+                        </div>
+                    </div>
+                </section>
+                <!-- TERMS -->
+                <section class="bonus-info-terms">
+                    <h3>Terms & Conditions</h3>
+                    <p id="bonus-terms">
+                        This text from agent BO
+                    </p>
+                </section>
             </div>
-        </section>
-        <section class="bonus-info-terms">
-            <h3>Terms And Conditions</h3>
-            <p>This text from agent BO</p>
-        </section>
+            <!-- OK BUTTON -->
+            <button type="button"
+                    class="bonus-info-ok"
+                    id="bonus-info-ok">
+                OK
+            </button>
+        </div>
     </dialog>
+
     <dialog id="qr-dialog" aria-labelledby="qr-dialog-title">
         <div class="qr-dialog-heading">
             <h2 id="qr-dialog-title">Payment QR</h2>
@@ -568,10 +645,42 @@
         <p id="dialog-copy"></p>
         <button class="primary" id="close">Back to request</button>
     </dialog>
-
-
-
-
+    <!-- Deposit help popup -->
+    <dialog id="depositHelpDialog" class="deposit-help-dialog" aria-labelledby="depositHelpTitle">
+        <div class="deposit-help-dialog-head">
+            <button type="button" class="deposit-help-close" id="depositHelpClose" aria-label="Close help">&times;</button>
+        </div>
+        <div class="deposit-help-dialog-content">
+            <div class="deposit-help-slides">
+                <img src="imgs/depopopup/default-deposit-tutorial-d-1.jpg"
+                     class="deposit-help-slide active"
+                     alt="Deposit tutorial 1" />
+                <img src="imgs/depopopup/default-deposit-tutorial-d-2.jpg"
+                     class="deposit-help-slide"
+                     alt="Deposit tutorial 2" />
+                <img src="imgs/depopopup/default-deposit-tutorial-d-3.jpg"
+                     class="deposit-help-slide"
+                     alt="Deposit tutorial 3" />
+                <img src="imgs/depopopup/default-deposit-tutorial-d-4.jpg"
+                     class="deposit-help-slide"
+                     alt="Deposit tutorial 4" />
+            </div>
+            <div class="deposit-help-thumbnails">
+                <button type="button" class="deposit-help-thumb active" data-slide="0">
+                    <img src="imgs/depopopup/default-deposit-tutorial-d-1.jpg" alt="Slide 1">
+                </button>
+                <button type="button" class="deposit-help-thumb" data-slide="1">
+                    <img src="imgs/depopopup/default-deposit-tutorial-d-2.jpg" alt="Slide 2">
+                </button>
+                <button type="button" class="deposit-help-thumb" data-slide="2">
+                    <img src="imgs/depopopup/default-deposit-tutorial-d-3.jpg" alt="Slide 3">
+                </button>
+                <button type="button" class="deposit-help-thumb" data-slide="3">
+                    <img src="imgs/depopopup/default-deposit-tutorial-d-4.jpg" alt="Slide 4">
+                </button>
+            </div>
+        </div>
+    </dialog>
     <!-- LANGUAGE POPUP -->
     <div class="language-overlay" id="languagePopup">
         <div class="language-popup">
@@ -581,23 +690,19 @@
                     <div class="language-globe">
                         <i class="fa-solid fa-globe"></i>
                     </div>
-
                     <div class="language-title-content">
                         <h3>Language</h3>
                         <span>Choose your preferred language</span>
                     </div>
                 </div>
-
                 <button type="button" class="language-close" id="languageClose" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
             <!-- Decorative line -->
             <div class="language-divider">
                 <span></span>
             </div>
-
             <!-- Language List -->
             <div class="language-list">
                 <button class="language-item active" data-language="English">
@@ -607,10 +712,8 @@
                         </span>
                         <span class="language-name">English</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ភាសាខ្មែរ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -618,10 +721,8 @@
                         </span>
                         <span class="language-name">ភាសាខ្មែរ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="简体中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -629,10 +730,8 @@
                         </span>
                         <span class="language-name">简体中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="မြန်မာ">
                     <div class="language-info">
                         <span class="language-flag">
@@ -640,10 +739,8 @@
                         </span>
                         <span class="language-name">မြန်မာ</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="繁體中文">
                     <div class="language-info">
                         <span class="language-flag">
@@ -651,10 +748,8 @@
                         </span>
                         <span class="language-name">繁體中文</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ジャパン">
                     <div class="language-info">
                         <span class="language-flag">
@@ -662,10 +757,8 @@
                         </span>
                         <span class="language-name">ジャパン</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="ภาษาไทย">
                     <div class="language-info">
                         <span class="language-flag">
@@ -673,10 +766,8 @@
                         </span>
                         <span class="language-name">ภาษาไทย</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Français">
                     <div class="language-info">
                         <span class="language-flag">
@@ -684,10 +775,8 @@
                         </span>
                         <span class="language-name">Français</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="한국어">
                     <div class="language-info">
                         <span class="language-flag">
@@ -695,10 +784,8 @@
                         </span>
                         <span class="language-name">한국어</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Español">
                     <div class="language-info">
                         <span class="language-flag">
@@ -706,10 +793,8 @@
                         </span>
                         <span class="language-name">Español</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Tiếng Việt">
                     <div class="language-info">
                         <span class="language-flag">
@@ -717,10 +802,8 @@
                         </span>
                         <span class="language-name">Tiếng Việt</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Português">
                     <div class="language-info">
                         <span class="language-flag">
@@ -728,10 +811,8 @@
                         </span>
                         <span class="language-name">Português</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Indonesia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -739,10 +820,8 @@
                         </span>
                         <span class="language-name">Indonesia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="বাংলা">
                     <div class="language-info">
                         <span class="language-flag">
@@ -750,10 +829,8 @@
                         </span>
                         <span class="language-name">বাংলা</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="इंडिया">
                     <div class="language-info">
                         <span class="language-flag">
@@ -761,10 +838,8 @@
                         </span>
                         <span class="language-name">इंडिया</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
-
                 <button class="language-item" data-language="Malaysia">
                     <div class="language-info">
                         <span class="language-flag">
@@ -772,17 +847,14 @@
                         </span>
                         <span class="language-name">Malaysia</span>
                     </div>
-
                     <span class="language-radio"></span>
                 </button>
             </div>
-
             <!-- Footer -->
             <div class="language-footer">
                 <div class="language-footer-icon">
                     <i class="fa-solid fa-check"></i>
                 </div>
-
                 <div class="language-footer-text">
                     <strong>Applied instantly</strong>
                     <span>Your language preference will be saved automatically.</span>
@@ -790,15 +862,9 @@
             </div>
         </div>
     </div>
-
     <!-- BACK TO TOP -->
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
-
-
-
-
 </body>
 </html>
